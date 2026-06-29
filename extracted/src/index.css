@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-primary-deep: #0f172a;
+  --color-brand-blue: #1e3a8a;
+  --color-brand-cyan: #3b82f6;
+  
+  --color-grower: #10b981;
+  --color-keeper: #d97706;
+  --color-mover: #dc2626;
+}
+
+/* Custom fade animations & scrollbar decoration */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.5);
+  border-radius: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(79, 70, 229, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 70, 229, 0.65);
+}
+
+.pulsate-subtle {
+  animation: pulseGradual 3s infinite;
+}
+
+@keyframes pulseGradual {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+/* --- High-Affordance Interactive Hover Zoom & Lift & Glow Rules --- */
+.interactive-hover-lift {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, background-color 0.18s ease !important;
+}
+.interactive-hover-lift:hover {
+  transform: translateY(-3px) scale(1.012) !important;
+  box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.16), 0 4px 10px -3px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Subtle row highlights in metrics table */
+.interactive-table-row {
+  transition: background-color 0.15s ease, transform 0.15s ease !important;
+}
+.interactive-table-row:hover {
+  background-color: rgba(99, 102, 241, 0.04) !important;
+  transform: translateX(2px);
+}
+
+/* --- High-Affordance Markdown List Styles & Bullet Separation --- */
+.markdown-body ul {
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important; /* High visual spacing */
+}
+
+.markdown-body li {
+  position: relative !important;
+  padding-left: 1.4rem !important;
+  margin: 0 !important;
+  line-height: 1.55 !important;
+  font-size: 11px !important;
+}
+
+/* Pure, minimal flat bullet indicator (centered neatly) */
+.markdown-body li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0.35rem !important;
+  top: 0.4rem !important;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 50% !important;
+  background-color: currentColor !important;
+  opacity: 0.6 !important;
+}
+
+/* Elegant separation line between list points for extreme readability */
+.markdown-body li + li {
+  border-top: 1px dashed rgba(99, 102, 241, 0.12) !important;
+  padding-top: 0.5rem !important;
+  margin-top: 0.1rem !important;
+}
+
+/* Custom separator line on dark backgrounds */
+.prose-indigo.markdown-body li + li {
+  border-top: 1px dashed rgba(255, 255, 255, 0.08) !important;
+}
+
