@@ -1317,7 +1317,20 @@ export default function App() {
                   </div>
                 )}
 
-                
+                <div className="overflow-x-auto w-full">
+                  <NineBoxMatrix
+                    talents={matrixTalents}
+                    selectedBox={selectedBox}
+                    onSelectBox={(box) => {
+                      setSelectedBox(box);
+                      setSelectedGroupFilter('ALL');
+                    }}
+                    onSelectTalent={(t) => setSelectedTalent(t)}
+                    onReclassifyTalent={handleReclassifyTalent}
+                    lang={lang}
+                    isLdMode={isLdMode}
+                  />
+                </div>
 
                 {/* Cell Deep-Dive analysis card based on clicked 9-box segment */}
                 {selectedBox !== 'ALL' && (() => {
