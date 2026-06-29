@@ -1047,6 +1047,9 @@ export default function DevelopmentPlanWorkspace({
     return 'bg-amber-100/90 text-amber-900 border-amber-300/80';
   };
 
+  // Select correct training proposals based on site
+  const activeProposals = selectedSite === 'WNK' ? dbProposalTrainingWNK : dbProposalTraining;
+
   // Filter lists based on requirements
   const rawFilteredProposals = useMemo(() => {
     return activeProposals.filter((pt) => {
