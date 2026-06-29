@@ -1270,7 +1270,6 @@ export default function App() {
               </button>
             </div>
 
-            {/* Split layout: Matrix 9-Box Left, Charts Right */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column: Interactive 9-Box Grid */}
               <div id="onboarding-9box-grid" className="lg:col-span-2 flex flex-col gap-6">
@@ -1318,18 +1317,7 @@ export default function App() {
                   </div>
                 )}
 
-                <NineBoxMatrix
-                  talents={matrixTalents}
-                  selectedBox={selectedBox}
-                  onSelectBox={(box) => {
-                    setSelectedBox(box);
-                    setSelectedGroupFilter('ALL'); // Mutually exclusive filters to avoid clashing
-                  }}
-                  onSelectTalent={(t) => setSelectedTalent(t)}
-                  onReclassifyTalent={handleReclassifyTalent}
-                  lang={lang}
-                  isLdMode={isLdMode}
-                />
+                
 
                 {/* Cell Deep-Dive analysis card based on clicked 9-box segment */}
                 {selectedBox !== 'ALL' && (() => {

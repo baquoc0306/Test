@@ -143,14 +143,14 @@ Tiếp tục học hỏi và nâng cao kỹ năng"	Ongoing		Digital	AI & Automat
 50804	Harry Hoang	INFORMATION SYSTEM	Specialist	Change Management	R3		Manage and track system changes to ensure smooth updates and stability.	Standardize documentation, keep it up-to-date, and improve accessibility for all user.	Ongoing		Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Harry Hoang
 50804	Harry Hoang	INFORMATION SYSTEM	Specialist	AI Usage in Development	R4		Use AI as a powerful assistant in coding, Replace most of the time spent coding.	Leverage AI to boost productivity and reduce manual coding effort.	Ongoing		Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Harry Hoang
 50804	Harry Hoang	INFORMATION SYSTEM	Specialist	System Performance Optimization	R3	X	Find ways to optimize system operations and avoid stagnation.	Continuously optimize performance and prevent system bottlenecks.	Ongoing		Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Harry Hoang
-	Denis Vy			"Incident Handling (Incident)
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"Incident Handling (Incident)
 Xử lý sự cố"	N/A	X	"Strong experience in handling daily incidents independently, able to prioritize and resolve issues effectively.
 Có kinh nghiệm tốt trong việc xử lý sự cố hàng ngày một cách độc lập, có khả năng ưu tiên và giải quyết vấn đề hiệu quả.
 Demonstrates the ability to independently resolve standard incidents. Should further strengthen proactive coordination with relevant teams before escalation to improve resolution efficiency and reduce unnecessary escalations
 Thể hiện khả năng tự giải quyết các sự cố thông thường. Cần tăng cường hơn nữa sự phối hợp chủ động với các nhóm liên quan trước khi leo thang vấn đề để nâng cao hiệu quả giải quyết và giảm thiểu việc leo thang không cần thiết."	"Improve incident root cause analysis
 Cải thiện phân tích nguyên nhân gốc (Root Cause Analysis)"	Ongoing	"Reviewing 100% of major incidents
 Rà soát 100% các sự cố nghiêm trọng"	Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Denis Vy
-	Denis Vy			"Hardware & Device Management
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"Hardware & Device Management
 Quản lý thiết bị & phần cứng"	N/A	X	"Able to manage and troubleshoot hardware devices effectively, including laptops, printers, and peripherals.
 Có khả năng quản lý và xử lý sự cố thiết bị phần cứng hiệu quả, bao gồm laptop, máy in và thiết bị ngoại vi.
 Needs to improve proactiveness in maintaining accurate and up-to-date asset inventory, especially when there are changes in device allocation or quantity.
@@ -161,14 +161,14 @@ Improve preventive maintenance
 - Học các công cụ tự động hóa quản lý tài sản
 - Nâng cao công tác bảo trì định kỳ"	Ongoing	"Need better tracking system
 Cần cải thiện hệ thống theo dõi (tracking)"	Digital	AI & Automation	Add to Training Plan	AI for Everyone; Power Automate; Power BI	L&D + IT/Automation SME	Denis Vy
-	Denis Vy			"Network Troubleshooting
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"Network Troubleshooting
 Xử lý sự cố mạng"	N/A	X	"Good understanding of basic networking but needs improvement in advanced troubleshooting (VLAN, routing, firewall).
 Có nền tảng tốt về mạng cơ bản nhưng cần cải thiện ở các kỹ năng xử lý sự cố nâng cao (VLAN, routing, firewall).
 Needs to enhance root cause analysis capability, particularly in network-related incidents, to improve troubleshooting effectiveness beyond basic issue resolution
 Cần tăng cường khả năng phân tích nguyên nhân gốc rễ, đặc biệt là trong các sự cố liên quan đến mạng, để nâng cao hiệu quả khắc phục sự cố vượt ra ngoài việc giải quyết vấn đề cơ bản."	"Practice real network troubleshooting scenarios
 Thực hành các tình huống xử lý sự cố mạng thực tế"	Ongoing	"Align with career path (Network Engineer)
 Định hướng theo lộ trình Network Engineer"	Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Denis Vy
-	Denis Vy			"System Administration (AD, File Server)
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"System Administration (AD, File Server)
 Quản trị hệ thống (AD, File Server)"	N/A	X	"Strong basic knowledge in AD and file server but lacks advanced configuration experience.
 Có kiến thức nền tảng tốt về AD và file server nhưng còn thiếu kinh nghiệm cấu hình nâng cao.
 Should improve collaboration with the server team, particularly in backup and recovery scenarios, to strengthen end-to-end incident resolution capability
@@ -176,7 +176,7 @@ Cần tăng cường sự phối hợp với nhóm máy chủ, đặc biệt là
 - Thực hành quản lý user/group policy
 - Học backup & disaster recovery"	Q3	"Need access to test environment
 Cần được cấp quyền truy cập môi trường test"	Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Denis Vy
-	Denis Vy			"IT Asset Management
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"IT Asset Management
 Quản lý tài sản IT"	N/A	X	"Able to manage IT assets but processes are mostly manual and not optimized.
 Có khả năng quản lý tài sản IT nhưng quy trình còn thủ công, chưa tối ưu.
 Should enhance ownership in asset management by maintaining accurate tracking data and developing a deeper understanding of hardware specifications and system-related metrics (e.g., bandwidth, performance indicators).
@@ -185,7 +185,7 @@ Automate reporting
 - Triển khai hệ thống quản lý tài sản (Excel/Tool)
 - Tự động hóa báo cáo"	Q3	"Can integrate with Power Automate
 Có thể tích hợp với Power Automate"	Digital	AI & Automation	Add to Training Plan	AI for Everyone; Power Automate; Power BI	L&D + IT/Automation SME	Denis Vy
-	Denis Vy			"Preventive Maintenance
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"Preventive Maintenance
 Bảo trì định kỳ"	N/A	X	"Currently performing preventive maintenance activities, however, the process is not yet fully structured or optimized.
 Đã thực hiện bảo trì định kỳ nhưng quy trình chưa được chuẩn hóa và tối ưu.
 Needs to improve ownership in planning and scheduling preventive maintenance activities, ensuring alignment across the team and providing clear, structured reporting to management.
@@ -194,7 +194,7 @@ Establish clear checklists and procedures
 - Xây dựng kế hoạch bảo trì định kỳ chuẩn hóa
 - Thiết lập checklist và quy trình rõ ràng"	Ongoing	"Aim to minimize system downtime and reduce incident frequency
 Mục tiêu giảm downtime và tần suất sự cố"	Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Denis Vy
-	Denis Vy			"IT Documentation & SOP
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"IT Documentation & SOP
 Tài liệu IT & SOP"	N/A	X	"Documentation is available but not standardized and lacks detail.
 Đã có tài liệu nhưng chưa chuẩn hóa và thiếu chi tiết.
 Should proactively update and standardize SOP documentation following major incidents to ensure knowledge retention and support team scalability
@@ -203,7 +203,7 @@ Improve documentation clarity
 - Xây dựng template SOP
 - Cải thiện độ rõ ràng của tài liệu"	Ongoing	"Useful for team training
 Hữu ích cho đào tạo nội bộ"	Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Denis Vy
-	Denis Vy			"Security Awareness & Compliance
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"Security Awareness & Compliance
 Nhận thức & tuân thủ bảo mật"	N/A	X	"Currently have basic understanding of IT security concepts, with opportunity to further develop knowledge in security standards, policies, and compliance practices.
 Có hiểu biết cơ bản về bảo mật IT, có tiềm năng phát triển thêm về tiêu chuẩn, chính sách và tuân thủ.
 Needs to strengthen coordination with the security team and improve follow-through in incident resolution to avoid repeated escalations and enhance resolution efficiency
@@ -212,7 +212,7 @@ Learn best practices in network and system security
 - Tham gia xử lý & giám sát sự cố bảo mật
 - Học best practices về security hệ thống & mạng"	Ongoing	"Key focus area for career growth toward Network/Security Engineer role
 Trọng tâm phát triển cho hướng Network/Security Engineer"	Functional	Process & Compliance	Department Follow-up	Process Improvement / Compliance Follow-up	Department / Functional SME	Denis Vy
-	Denis Vy			"User Training & Support
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"User Training & Support
 Đào tạo & hỗ trợ người dùng"	N/A	X	"Strong ability to support users and provide clear guidance.
 Có khả năng hỗ trợ người dùng tốt và hướng dẫn rõ ràng
 Should improve case ownership by ensuring full follow-through until resolution. Additionally, communication and user training capabilities should be enhanced to improve user understanding and satisfaction.
@@ -223,7 +223,7 @@ Conduct basic training sessions
 - Xây dựng tài liệu hướng dẫn
 - Tổ chức training cơ bản"	Q3	"Good soft skill advantage
 Lợi thế về kỹ năng mềm"	Soft Skill	Communication Skills	Add to Training Plan	Communication & Presentation	L&D + HRBP	Denis Vy
-	Denis Vy			"AI Usage in Troubleshooting
+	Denis Vy	INFORMATION SYSTEM	IT Technician	"AI Usage in Troubleshooting
 Ứng dụng AI trong xử lý sự cố"	N/A	X	"Able to use AI tools but not fully optimized in troubleshooting scenarios.
 Có khả năng sử dụng công cụ AI nhưng chưa tối ưu trong thực tế xử lý sự cố.
 Demonstrates strong initiative in adopting and leveraging AI tools in daily operations. Further development in automation and practical application is recommended to maximize efficiency gains
@@ -348,4 +348,5 @@ Chủ động cập nhật các xu hướng phát triển về AI và nâng cao 
 	Trudy Dinh / CS Team	CUSTOMER SERVICE		Maintaining and Developing a Culture around our Core and Growth Values	R4		Values embedded in daily HR practices	Reinforce through HR processes	Ongoing		People Development	Coaching Skills	Add to Training Plan	Train the Trainer / Coaching Program	L&D + HRBP	Readiness Development Pl
 	Trudy Dinh / CS Team	CUSTOMER SERVICE		Effective Communications	R4		Communicates clearly and effectively	Coach team on communication	Ongoing		Soft Skill	Communication Skills	Add to Training Plan	Communication & Presentation	L&D + HRBP	Readiness Development Pl
 	Trudy Dinh / CS Team	CUSTOMER SERVICE		Coaching and Mentoring	R2	X	Willing but lacks structured coaching skills	Attend coaching training; practice	Q2–Q3	Use GROW model	People Development	Coaching Skills	Add to Training Plan	Train the Trainer / Coaching Program	L&D + HRBP	Readiness Development Pl
-	Trudy Dinh / CS Team	CUSTOMER SERVICE		Employee Relations Improvement	R4		Handles ER cases effectively	Share ER best practices	Ongoing		Functional	Employee Relations	Department Follow-up	Employee Relations Follow-up	HRBP / Department	Readiness Development Pl`;
+	Trudy Dinh / CS Team	CUSTOMER SERVICE		Employee Relations Improvement	R4		Handles ER cases effectively	Share ER best practices	Ongoing		Functional	Employee Relations	Department Follow-up	Employee Relations Follow-up	HRBP / Department	Readiness Development Pl
+`;

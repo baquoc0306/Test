@@ -235,7 +235,7 @@ export default function NineBoxMatrix({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="grid grid-cols-[auto_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_auto] gap-3 bg-slate-50/65 p-4 rounded-2xl border border-slate-200"
+        className="grid grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] grid-rows-[1fr_1fr_1fr_auto] gap-3 bg-slate-50/65 p-4 rounded-2xl border border-slate-200 overflow-x-auto"
       >
         {/* --- HIGH EFFECTIVE ROW --- */}
         <div className="flex items-center justify-center font-sans font-black text-[9px] md:text-2xs text-slate-400 uppercase tracking-wider [writing-mode:vertical-lr] rotate-180 select-none text-center">

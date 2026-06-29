@@ -1354,6 +1354,7 @@ export default function DevelopmentPlanWorkspace({
                               coverage: entry.coverage,
                               category: categoryStr,
                               info: entry.action,
+                              depts: entry.depts || [],
                               icon: entry.priority === 1 ? <Settings className="w-4 h-4" /> : entry.priority === 2 ? <Star className="w-4 h-4" /> : entry.priority === 3 ? <MessageSquare className="w-4 h-4" /> : <Compass className="w-4 h-4" />
                             };
                             handleSetSelectedTrendComp(mappedItem);
@@ -1377,48 +1378,47 @@ export default function DevelopmentPlanWorkspace({
 
             <div id="onboarding-devplan-trend-cards" className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 h-full mt-2">
               {(() => {
-                const trendingCompetencies = [
-                  { 
-                    label: lang === 'VI' ? '1. Kỹ năng Lãnh đạo' : '1. Leadership Skills', 
-                    needs: 79, 
-                    coverage: '75%',
+                // Dynamic trending competencies from activeProposals (top 4 by priority)
+                const iconMap: Record<string, any> = {
+                  'Leadership': <Star className="w-4 h-4" />,
+                  'Digital': <Settings className="w-4 h-4" />,
+                  'Soft Skill': <MessageSquare className="w-4 h-4" />,
+                  'People Development': <Compass className="w-4 h-4" />,
+                  'Business Acumen': <TrendingUp className="w-4 h-4" />,
+                  'Functional': <Sliders className="w-4 h-4" />,
+                };
+                const infoMap: Record<string, { vi: string; en: string }> = {
+                  'Leadership Skills': { vi: 'Nâng cao năng lực dẫn dắt hỗ trợ, xây dựng môi trường gắn kết và an toàn tâm lý cho nhân sự.', en: 'Fosters support-based guidance and psychological safety for all staff members.' },
+                  'AI & Automation': { vi: 'Tối ưu hóa quy trình văn phòng và tự động hóa báo cáo bằng AI / Copilot hiệu quả.', en: 'Enhances administrative workflows and automates routine tasks with AI tools.' },
+                  'Communication Skills': { vi: 'Thuyết phục đa chiều, tăng cường sự đồng thuận liên phòng ban và truyền tải thông điệp sâu sắc.', en: 'Drives seamless presentation skills and key cross-unit corporate alignment.' },
+                  'Coaching Skills': { vi: 'Hoàn thiện kỹ năng sư phạm, kèm cặp nhân sự kế thừa và nâng cao chất lượng tự đào tạo.', en: 'Builds solid instructional mentorship to groom future legacy successors.' },
+                  'Business Acumen': { vi: 'Phát triển tư duy kinh doanh chiến lược và năng lực ra quyết định hiệu quả.', en: 'Develops strategic business thinking and effective decision-making capabilities.' },
+                  'Process & Compliance': { vi: 'Chuẩn hóa quy trình vận hành và đảm bảo tuân thủ các tiêu chuẩn chất lượng.', en: 'Standardizes operational processes and ensures compliance with quality standards.' },
+                  'Workforce Planning': { vi: 'Tối ưu hóa kế hoạch nhân lực và đảm bảo nguồn lực phù hợp với nhu cầu sản xuất.', en: 'Optimizes workforce planning and ensures resources align with production needs.' },
+                  'Finance / Cost Management': { vi: 'Quản lý chi phí hiệu quả và tối ưu hóa ngân sách bộ phận.', en: 'Manages costs effectively and optimizes departmental budget allocation.' },
+                };
+                const trendingCompetencies = activeProposals
+                  .filter(pt => pt.action === 'Add to Training Plan')
+                  .slice(0, 4)
+                  .map((pt, idx) => ({
+                    label: lang === 'VI' ? `${idx + 1}. ${translateFocusName(pt.focus)}` : `${idx + 1}. ${pt.focus}`,
+                    needs: pt.needs,
+                    coverage: pt.coverage,
                     trend: lang === 'VI' ? 'Xu hướng' : 'Trend',
-                    category: 'Leadership',
-                    color: 'indigo', 
-                    icon: <Star className="w-4 h-4" />,
-                    info: lang === 'VI' ? 'Nâng cao năng lực dẫn dắt hỗ trợ, xây dựng môi trường gắn kết và an toàn tâm lý cho nhân sự.' : 'Fosters support-based guidance and psychological safety for all staff members.'
-                  },
-                  { 
-                    label: lang === 'VI' ? '2. Kỹ năng Công nghệ' : '2. AI & Automation', 
-                    needs: 44, 
-                    coverage: '88%',
-                    trend: lang === 'VI' ? 'Xu hướng' : 'Trend',
-                    category: 'Digital',
-                    color: 'amber', 
-                    icon: <Settings className="w-4 h-4" />,
-                    info: lang === 'VI' ? 'Tối ưu hóa quy trình văn phòng và tự động hóa báo cáo bằng AI / Copilot hiệu quả.' : 'Enhances administrative workflows and automates routine tasks with AI tools.'
-                  },
-                  { 
-                    label: lang === 'VI' ? '3. Kỹ năng Giao tiếp' : '3. Communication Skills', 
-                    needs: 30, 
-                    coverage: '50%',
-                    trend: lang === 'VI' ? 'Xu hướng' : 'Trend',
-                    category: 'Soft Skill',
-                    color: 'sky', 
-                    icon: <MessageSquare className="w-4 h-4" />,
-                    info: lang === 'VI' ? 'Thuyết phục đa chiều, tăng cường sự đồng thuận liên phòng ban và truyền tải thông điệp sâu sắc.' : 'Drives seamless presentation skills and key cross-unit corporate alignment.'
-                  },
-                  { 
-                    label: lang === 'VI' ? '4. Kỹ năng Huấn luyện' : '4. Coaching Skills', 
-                    needs: 29, 
-                    coverage: '63%',
-                    trend: lang === 'VI' ? 'Xu hướng' : 'Trend',
-                    category: 'People Development',
-                    color: 'emerald', 
-                    icon: <Compass className="w-4 h-4" />,
-                    info: lang === 'VI' ? 'Hoàn thiện kỹ năng sư phạm, kèm cặp nhân sự kế thừa và nâng cao chất lượng tự đào tạo.' : 'Builds solid instructional mentorship to groom future legacy successors.'
-                  }
-                ];
+                    category: pt.category,
+                    color: pt.category === 'Leadership' ? 'indigo' : pt.category === 'Digital' ? 'amber' : pt.category === 'Soft Skill' ? 'sky' : 'emerald',
+                    icon: iconMap[pt.category] || <Compass className="w-4 h-4" />,
+                    info: lang === 'VI' ? (infoMap[pt.focus]?.vi || pt.action) : (infoMap[pt.focus]?.en || pt.action),
+                    depts: pt.depts,
+                    totalNeeds: pt.needs,
+                    employees: pt.needs,
+                    departments: pt.depts.length,
+                    r1: 0, r2: 0,
+                    lowReadinessCount: 0, lowReadinessPct: '0%',
+                    priorityCount: 0, priorityPct: '0%',
+                    actionVi: 'Đưa vào Kế hoạch Đào tạo',
+                    actionEn: pt.action,
+                  }));
 
                 return trendingCompetencies.map((item, idx) => {
                   // Uniform theme styled with Indigo accents
@@ -1804,7 +1804,7 @@ export default function DevelopmentPlanWorkspace({
                 <Calendar className="w-5 h-5 animate-pulse" />
               </span>
               <h3 className="text-sm font-black font-sans tracking-tight text-slate-955 flex items-center gap-2 uppercase">
-                <span>{lang === 'VI' ? 'SƠ ĐỒ TRÌNH TỰ ĐÀO TẠO KÉO THẢ — MILLENNIUM 2026' : 'DRAG-AND-DROP TRAINING PLAN CHRONOLOGY — MILLENNIUM 2026'}</span>
+                <span>{lang === 'VI' ? `SƠ ĐỒ TRÌNH TỰ ĐÀO TẠO KÉO THẢ — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026` : `DRAG-AND-DROP TRAINING PLAN CHRONOLOGY — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026`}</span>
                 <span className="bg-indigo-650 text-white font-mono text-[9px] font-black px-2 py-0.5 rounded-full tracking-wider animate-pulse select-none">
                   UPDATED
                 </span>
@@ -3117,12 +3117,35 @@ export default function DevelopmentPlanWorkspace({
       {selectedTrendComp && (() => {
         const key = selectedTrendComp.label;
         const rawLabel = selectedTrendComp.label;
-        const details: any = COMP_DETAILS[rawLabel] || COMP_DETAILS[rawLabel.replace(/^\d+\.\s*/, '')] || {
+        // For WNK/ASH: build details dynamically from activeProposals
+        const matchedProposal = activeProposals.find(pt => {
+          const focusLabel = lang === 'VI' ? translateFocusName(pt.focus) : pt.focus;
+          return rawLabel.includes(focusLabel) || rawLabel.includes(pt.focus) || (selectedTrendComp.depts && selectedTrendComp.depts === pt.depts);
+        });
+        const dynamicDetails = matchedProposal ? {
+          mappedNeedVi: translateFocusName(matchedProposal.focus),
+          mappedNeedEn: matchedProposal.focus,
+          totalNeeds: matchedProposal.needs,
+          employees: matchedProposal.needs,
+          departments: matchedProposal.depts.length,
+          r1: 0,
+          r2: 0,
+          lowReadinessCount: 0,
+          lowReadinessPct: '0%',
+          priorityCount: 0,
+          priorityPct: '0%',
+          actionVi: 'Đưa vào Kế hoạch Đào tạo',
+          actionEn: matchedProposal.action,
+          depts: matchedProposal.depts,
+        } : null;
+        // Use selectedTrendComp.depts if available (from dynamic trendingCompetencies)
+        const trendDepts = selectedTrendComp.depts || [];
+        const details: any = COMP_DETAILS[rawLabel] || COMP_DETAILS[rawLabel.replace(/^\d+\.\s*/, '')] || dynamicDetails || {
           mappedNeedVi: selectedTrendComp.info,
           mappedNeedEn: selectedTrendComp.info,
           totalNeeds: selectedTrendComp.needs,
-          employees: 10,
-          departments: 5,
+          employees: selectedTrendComp.needs || 10,
+          departments: trendDepts.length || 5,
           r1: 0,
           r2: 0,
           lowReadinessCount: 0,
@@ -3131,8 +3154,12 @@ export default function DevelopmentPlanWorkspace({
           priorityPct: '0%',
           actionVi: 'Đưa vào Kế hoạch Đào tạo',
           actionEn: 'Add to Training Plan',
-          depts: []
+          depts: trendDepts
         };
+        // Override depts with trendDepts if COMP_DETAILS has empty depts
+        if (details.depts && details.depts.length === 0 && trendDepts.length > 0) {
+          details.depts = trendDepts;
+        }
 
         const isVi = lang === 'VI';
 
