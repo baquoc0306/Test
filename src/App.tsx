@@ -12,6 +12,7 @@ import DevelopmentPlanWorkspace from './components/DevelopmentPlanWorkspace';
 import IndividualIDPWorkspace from './components/IndividualIDPWorkspace';
 import TalentComparisonView from './components/TalentComparisonView';
 import WhyHowPlaybook from './components/WhyHowPlaybook';
+import InsightPanel from './components/InsightPanel';
 import { SearchableDeptDropdown } from './components/SearchableDeptDropdown';
 import { DeptTalentAnalysisPanel } from './components/DeptTalentAnalysisPanel';
 import OnboardingGuide from './components/OnboardingGuide';
@@ -1270,6 +1271,9 @@ export default function App() {
               </button>
             </div>
 
+            {/* PHÂN TÍCH & KHUYẾN NGHỊ */}
+            <InsightPanel featureKey="9box" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column: Interactive 9-Box Grid */}
               <div id="onboarding-9box-grid" className="lg:col-span-2 flex flex-col gap-6">
@@ -2094,6 +2098,7 @@ export default function App() {
               lang={lang}
               isLdMode={isLdMode}
             />
+            <InsightPanel featureKey="pipeline" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
           </div>
         )}
 
@@ -2108,6 +2113,7 @@ export default function App() {
               isLdMode={isLdMode}
               selectedSite={selectedSite}
             />
+            <InsightPanel featureKey="devplan" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
           </div>
         )}
 
@@ -2122,6 +2128,7 @@ export default function App() {
               isLdMode={isLdMode}
               selectedSite={selectedSite}
             />
+            <InsightPanel featureKey="idp" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
           </div>
         )}
       </main>

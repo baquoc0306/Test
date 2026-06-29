@@ -1798,7 +1798,7 @@ export default function DevelopmentPlanWorkspace({
         </div>
       </div>
 
-      {/* SƠ ĐỒ KẾ HOẠCH ĐÀO TẠO MILLENNIUM 2026 (HTML5 Drag & Drop Workspace) */}
+      {/* SƠ ĐỒ KẾ HOẠCH ĐÀO TẠO (HTML5 Drag & Drop Workspace) */}
       <div id="onboarding-devplan-chronology" className="bg-white border border-slate-200 rounded-2xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] text-slate-850 relative overflow-hidden flex flex-col gap-5">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
           <div>
