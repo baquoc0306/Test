@@ -1,0 +1,6 @@
+{
+  "name": "Talent Review & Succession Plan",
+  "description": "Millennium TR&SP - Executive Production Dashboard and Succession Planning Management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

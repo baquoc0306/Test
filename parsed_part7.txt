@@ -1,0 +1,126 @@
+Index 1: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Build and maintain harmonious and stable
+Index 2: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Ensure compliance with labor laws and mi
+Index 3: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Lead the handling of complex and sensiti
+Index 4: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Collaborate in developing, reviewing, an
+Index 5: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Coordinate with the trade union and rele
+Index 6: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Manage and control disciplinary actions 
+Index 7: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Implement communication initiatives to e
+Index 8: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Drive initiatives to improve employee en
+Index 9: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Analyze data and prepare reports on abse
+Index 10: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Build, maintain, and expand relationship
+Index 11: ColsLength=17 | ID=16972 | Name=Mai Thi Hoang Bich Tram | Dept=Human Resources | Role=Supervisor | Duty=Prepare compliance documentation for ann
+Index 12: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Build and maintain harmonious and stable
+Index 13: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Ensure compliance with labor laws and mi
+Index 14: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Lead the handling of complex and sensiti
+Index 15: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Collaborate in developing, reviewing, an
+Index 16: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Coordinate with the trade union and rele
+Index 17: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Manage and control disciplinary actions 
+Index 18: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Implement communication initiatives to e
+Index 19: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Drive initiatives to improve employee en
+Index 20: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Analyze data and prepare reports on abse
+Index 21: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Build, maintain, and expand relationship
+Index 22: ColsLength=17 | ID=70355 | Name=Do Thi Thanh Nga | Dept=Human Resources | Role=Supervisor | Duty=Prepare compliance documentation for ann
+Index 23: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=People Development (Sharpen the Saw)
+Index 24: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Succession Planning
+Index 25: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Recruitment Plan Development
+Index 26: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Recruitment Execution
+Index 27: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=HR Market Analysis
+Index 28: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Budget development & management
+Index 29: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Personal Development (Sharpen the Saw)
+Index 30: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Operational Knowlegde & understanding (B
+Index 31: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Executive Presentation Skills
+Index 32: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Talent Assessment & Calibration
+Index 33: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=L&D Framework & Training Roadmap Design
+Index 34: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Headcount & Manpower Strategy Planning
+Index 35: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Performance Evaluation & PDMS Alignment
+Index 36: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Compensation & Benefits Strategy
+Index 37: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Labor Law & Employee Relations Complianc
+Index 38: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Lean HR & Process Automation
+Index 39: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Employee Retention & Engagement Strategy
+Index 40: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Culture & Core Values Cascade Leadership
+Index 41: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Audit Documentation & Compliance Readine
+Index 42: ColsLength=17 | ID=- | Name=Elsa Nguyen | Dept=Human Resources | Role=HR Head | Duty=Organizational Design & Workforce Strate
+Index 43: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Build and maintain harmonious and stable
+Index 44: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Ensure compliance with labor laws and mi
+Index 45: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Lead the handling of complex and sensiti
+Index 46: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Collaborate in developing, reviewing, an
+Index 47: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Coordinate with the trade union and rele
+Index 48: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Manage and control disciplinary actions 
+Index 49: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Implement communication initiatives to e
+Index 50: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Drive initiatives to improve employee en
+Index 51: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Analyze data and prepare reports on abse
+Index 52: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Build, maintain, and expand relationship
+Index 53: ColsLength=17 | ID=30200 | Name=Mai Thi Loan | Dept=Human Resources | Role=Supervisor | Duty=Prepare compliance documentation for ann
+Index 54: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Build and maintain harmonious and stable
+Index 55: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Ensure compliance with labor laws and mi
+Index 56: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Lead the handling of complex and sensiti
+Index 57: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Collaborate in developing, reviewing, an
+Index 58: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Coordinate with the trade union and rele
+Index 59: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Manage and control disciplinary actions 
+Index 60: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Implement communication initiatives to e
+Index 61: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Drive initiatives to improve employee en
+Index 62: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Analyze data and prepare reports on abse
+Index 63: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Build, maintain, and expand relationship
+Index 64: ColsLength=17 | ID=- | Name=Annie Nguyen | Dept=Human Resources | Role=Specialist | Duty=Prepare compliance documentation for ann
+Index 65: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=EHS Strategy & Regulatory Compliance
+Index 66: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Safety Audit Program Design & Governance
+Index 67: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=KPI & Incident Metics Reporting Dashboar
+Index 68: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Culture of Safety & Employee Awareness
+Index 69: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Disaster Recovery & Crisis Management Ov
+Index 70: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Critical Environmental & Permit Governan
+Index 71: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Wastewater & Waste Refurbishment Cost co
+Index 72: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Team Leadership & Professional Developme
+Index 73: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Cross‑Functional Collaboration (Ops/IE/H
+Index 74: ColsLength=17 | ID=- | Name=Amber Dinh | Dept=EHS | Role=EHS Head | Duty=Executive Presentation & Communication
+Index 75: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Develop organizational structure, execut
+Index 76: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Allocate purchasing roles effectively to
+Index 77: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Monitor, coordinate, and supervise work 
+Index 78: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Evaluate team performance and build cont
+Index 79: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Guide and supervise compliance with safe
+Index 80: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Conduct research and testing to optimize
+Index 81: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Organize and participate in employee eng
+Index 82: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Manage, utilize, and optimize procuremen
+Index 83: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Prepare compliance documentation for ann
+Index 84: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Build, maintain, and expand relationship
+Index 85: ColsLength=17 | ID=18320 | Name=Vu Van Xuan | Dept=Procurement | Role=Lead Supervisor | Duty=Analyze material markets and forecast pr
+Index 86: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Design master production schedules (MPS)
+Index 87: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Manage and balance production capacity a
+Index 88: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Monitor, adjust, and report daily produc
+Index 89: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Evaluate team performance and build cont
+Index 90: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Develop departmental structure, execute 
+Index 91: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Allocate planning and coordination roles
+Index 92: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Guide and supervise compliance with safe
+Index 93: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Conduct research and testing to optimize
+Index 94: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Organize and participate in employee eng
+Index 95: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Manage, utilize, and optimize operationa
+Index 96: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Prepare compliance documentation for ann
+Index 97: ColsLength=17 | ID=04698 | Name=Giap Quang Huy | Dept=P&IC | Role=Lead Supervisor | Duty=Học hỏi công cụ AI để lập kế hoạch cải t
+Index 98: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT Operations Oversight (Helpdesk, Infra
+Index 99: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT Service Management Practice
+Index 100: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT Budget Tracking & Cost Control
+Index 101: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=Vendor Coordination & SLA Governance
+Index 102: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT Policy Implementation
+Index 103: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=User Satisfaction & Service Improvement
+Index 104: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT Risk Identification & Escalation
+Index 105: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=Cross-Department Communication
+Index 106: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=Team Supervision & Performance Coaching
+Index 107: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=Digital Transformation Support
+Index 108: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT Asset Lifecycle Management
+Index 109: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=License & Access Administration
+Index 110: ColsLength=17 | ID=78201 | Name=Trinh Ngoc Phien | Dept=IT | Role=Lead Supervisor | Duty=IT SOP & Documentation Governance
+Index 111: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Coordinate production materials Điều phố
+Index 112: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Monitor, coordinate, and supervise work 
+Index 113: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Ensure output quality matches standards 
+Index 114: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Evaluate team performance and build cont
+Index 115: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Develop organizational structure, execut
+Index 116: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Allocate workforce effectively to meet o
+Index 117: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Guide and supervise compliance with dail
+Index 118: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Conduct research and testing to optimize
+Index 119: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Organize and participate in employee eng
+Index 120: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Manage, utilize, and optimize operationa
+Index 121: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Prepare for annual external compliance a
+Index 122: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Build, maintain, and expand relationship
+Index 123: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Học hỏi công cụ AI để lập kế hoạch cải t
+Index 124: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Evaluate and improve the efficiency of t
+Index 125: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Organize, and monitor standard training 
+Index 126: ColsLength=17 | ID=17436 | Name=Dinh Thi Hong Van | Dept=UPH Assembly WNK2 | Role=Specialist | Duty=Follow up after training to evaluate the
