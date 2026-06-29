@@ -187,10 +187,23 @@ export const getRatingTheme = (rRating: string, lang: 'VI' | 'EN' = 'VI') => {
       styleLabel: lang === 'VI' ? 'Ủy quyền' : 'Delegating'
     };
   }
+  // N/A rating - has data but no readiness score assigned yet
+  if (r === 'N/A' || r === 'NA') {
+    return {
+      badge: 'bg-purple-50 border border-purple-200 text-purple-700 font-extrabold',
+      rowBorder: 'border-l-4 border-l-purple-400',
+      text: 'text-purple-600 font-black',
+      actionLabel: lang === 'VI' ? 'Đang đánh giá' : 'Pending Review',
+      colorName: 'Tím',
+      bgSubtle: 'bg-purple-50/20',
+      ratingLabel: 'N/A',
+      styleLabel: lang === 'VI' ? 'Chờ đánh giá' : 'Pending'
+    };
+  }
   return {
-    badge: 'bg-slate-50 border border-slate-200 text-slate-700 font-medium',
+    badge: 'bg-slate-50 border border-slate-200 text-slate-500 font-medium',
     rowBorder: '',
-    text: 'text-slate-500',
+    text: 'text-slate-400',
     actionLabel: '—',
     colorName: 'Xám',
     bgSubtle: '',

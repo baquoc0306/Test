@@ -44,6 +44,7 @@ import {
   Search,
   Move,
   BellRing,
+  Sliders,
 } from 'lucide-react';
 
 interface DevelopmentPlanWorkspaceProps {
