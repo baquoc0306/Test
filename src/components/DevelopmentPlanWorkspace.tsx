@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
-import { dbProposalTraining, dbProposalTrainingWNK, dbTrainingSummary, allDepartments, wnkDepartments } from '../data';
+import { dbProposalTraining, dbProposalTrainingWNK, dbProposalTrainingASH, dbTrainingSummary, allDepartments, wnkDepartments, ashDepartments } from '../data';
 import { SearchableDeptDropdown } from './SearchableDeptDropdown';
 import {
   Flame,
@@ -51,7 +51,7 @@ interface DevelopmentPlanWorkspaceProps {
   onDeptChange?: (dept: string) => void;
   lang?: 'VI' | 'EN';
   isLdMode?: boolean;
-  selectedSite?: 'MLN' | 'WNK';
+  selectedSite?: 'MLN' | 'WNK' | 'ASH';
 }
 
 interface ProgramTimeline {
@@ -408,6 +408,7 @@ export default function DevelopmentPlanWorkspace({
 }: DevelopmentPlanWorkspaceProps) {
   const siteDepartments = useMemo(() => {
     if (selectedSite === 'WNK') return wnkDepartments;
+    if (selectedSite === 'ASH') return ashDepartments;
     return allDepartments;
   }, [selectedSite]);
 
@@ -606,9 +607,67 @@ export default function DevelopmentPlanWorkspace({
     },
   ], []);
 
+  // ASH courses based on ASH_DevPlan_Master.xlsx
+  const ashCourses = useMemo(() => [
+    {
+      id: 'ash_communication',
+      name: 'Communication & Presentation Workshop',
+      viName: 'Giao tiếp & Thuyết trình',
+      startMonth: 4,
+      duration: 3,
+      color: 'from-sky-500 to-sky-600 border-sky-650 shadow-sky-100 text-white',
+      active: true,
+      competency: 'Communication Skills',
+      viCompetency: 'Kỹ năng Giao tiếp',
+      needs: 12,
+      coverage: '100%',
+    },
+    {
+      id: 'ash_coaching',
+      name: 'Train the Trainer / Coaching Program',
+      viName: 'Đào tạo Giảng viên / Kèm cặp',
+      startMonth: 5,
+      duration: 5,
+      color: 'from-violet-500 to-purple-600 border-violet-600 shadow-violet-100 text-white',
+      active: true,
+      competency: 'Coaching Skills',
+      viCompetency: 'Kỹ năng Kèm cặp',
+      needs: 57,
+      coverage: '100%',
+    },
+    {
+      id: 'ash_leadership',
+      name: 'Servant Leadership Program',
+      viName: 'Chương trình Lãnh đạo Phục vụ',
+      startMonth: 7,
+      duration: 4,
+      color: 'from-amber-500 to-orange-600 border-amber-600 shadow-amber-100 text-white',
+      active: true,
+      competency: 'Leadership Skills',
+      viCompetency: 'Kỹ năng Lãnh đạo',
+      needs: 4,
+      coverage: '29%',
+    },
+    {
+      id: 'ash_digital',
+      name: 'AI for Everyone; Power Automate; Power BI',
+      viName: 'AI & Tự động hóa ứng dụng',
+      startMonth: 8,
+      duration: 3,
+      color: 'from-amber-400 to-orange-500 border-amber-500 shadow-amber-100 text-slate-900',
+      active: true,
+      competency: 'AI & Automation',
+      viCompetency: 'AI & Tự động hóa',
+      needs: 4,
+      coverage: '14%',
+    },
+  ], []);
+
   const siteActiveCourses = useMemo(() => {
-    return selectedSite === 'WNK' ? wnkCourses : courses;
-  }, [courses, wnkCourses, selectedSite]);
+    if (selectedSite === 'WNK') return wnkCourses;
+    if (selectedSite === 'ASH') return ashCourses;
+    return courses;
+  }, [courses, wnkCourses, ashCourses, selectedSite]);
 
   const siteActionTimeline = useMemo(() => {
     return actionTimeline;
@@ -1048,7 +1107,7 @@ export default function DevelopmentPlanWorkspace({
   };
 
   // Select correct training proposals based on site
-  const activeProposals = selectedSite === 'WNK' ? dbProposalTrainingWNK : dbProposalTraining;
+  const activeProposals = selectedSite === 'WNK' ? dbProposalTrainingWNK : selectedSite === 'ASH' ? dbProposalTrainingASH : dbProposalTraining;
 
   // Filter lists based on requirements
   const rawFilteredProposals = useMemo(() => {

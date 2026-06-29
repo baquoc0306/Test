@@ -15,7 +15,7 @@ import WhyHowPlaybook from './components/WhyHowPlaybook';
 import { SearchableDeptDropdown } from './components/SearchableDeptDropdown';
 import { DeptTalentAnalysisPanel } from './components/DeptTalentAnalysisPanel';
 import OnboardingGuide from './components/OnboardingGuide';
-import { dbTalentPool, allDepartments, wnkDepartments, getFullPipeline, initialPipelinePositions } from './data';
+import { dbTalentPool, allDepartments, wnkDepartments, ashDepartments, getFullPipeline, initialPipelinePositions } from './data';
 import { Talent, NineBoxCell, NineBoxGroup } from './types';
 import {
   TrendingUp,
@@ -283,28 +283,28 @@ export default function App() {
   };
 
   const [selectedDept, setSelectedDept] = useState<string>('ALL');
-  const [selectedSite, setSelectedSite] = useState<'MLN' | 'WNK'>(() => {
+  const [selectedSite, setSelectedSite] = useState<'MLN' | 'WNK' | 'ASH'>(() => {
     try {
       const saved = localStorage.getItem('app-site');
-      return (saved === 'MLN' || saved === 'WNK') ? saved : 'MLN';
+      return (saved === 'MLN' || saved === 'WNK' || saved === 'ASH') ? saved as 'MLN' | 'WNK' | 'ASH' : 'MLN';
     } catch {
       return 'MLN';
     }
   });
 
-  const handleSiteChange = (newSite: 'MLN' | 'WNK') => {
+  const handleSiteChange = (newSite: 'MLN' | 'WNK' | 'ASH') => {
     setSelectedSite(newSite);
     try {
       localStorage.setItem('app-site', newSite);
     } catch (e) {
       // Ignored
     }
-    // Since Wanek has no data yet, reset department filter to ALL when changing site
     setSelectedDept('ALL');
   };
 
   const siteDepartments = useMemo(() => {
     if (selectedSite === 'WNK') return wnkDepartments;
+    if (selectedSite === 'ASH') return ashDepartments;
     return allDepartments;
   }, [selectedSite]);
 
@@ -800,21 +800,17 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-8 flex-1 w-full">
 
         {/* DYNAMIC SITE INFORMATIONAL BANNER */}
-        {selectedSite === 'MLN' ? (
+        {selectedSite === 'MLN' && (
           <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm animate-in fade-in slide-in-from-top-4 duration-500">
             <div className="flex items-center gap-3.5">
-              <div className="p-3 bg-emerald-500 text-slate-950 rounded-2xl font-bold flex items-center justify-center animate-pulse shadow-md shadow-emerald-500/20 text-lg">
-                🟢
-              </div>
+              <div className="p-3 bg-emerald-500 text-slate-950 rounded-2xl font-bold flex items-center justify-center animate-pulse shadow-md shadow-emerald-500/20 text-lg">🟢</div>
               <div className="text-left">
                 <h3 className="text-base font-black text-emerald-950 tracking-tight flex items-center gap-2">
                   <span>{lang === 'VI' ? 'ĐÁNH GIÁ SỐ LIỆU: NHÀ MÁY MILLENNIUM (MLN)' : 'EVALUATING DATA: MILLENNIUM FACTORY (MLN)'}</span>
-                  <span className="bg-emerald-200 text-emerald-800 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-emerald-350">ACTIVE</span>
+                  <span className="bg-emerald-200 text-emerald-800 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-emerald-300">ACTIVE</span>
                 </h3>
                 <p className="text-xs text-emerald-800 font-medium mt-1">
-                  {lang === 'VI' 
-                    ? 'Bạn đang truy cập nguồn dữ liệu nhân sự chính thức của Millennium. Toàn bộ các công cụ phân tích 9-Box, sơ đồ kế thừa và lộ trình đào tạo đều khả dụng.' 
-                    : 'You are accessing the official Millennium HR master records. All 9-Box dashboards, succession matrices, and development tracks are fully loaded.'}
+                  {lang === 'VI' ? 'Bạn đang truy cập nguồn dữ liệu nhân sự chính thức của Millennium. Toàn bộ các công cụ phân tích 9-Box, sơ đồ kế thừa và lộ trình đào tạo đều khả dụng.' : 'You are accessing the official Millennium HR master records. All 9-Box dashboards, succession matrices, and development tracks are fully loaded.'}
                 </p>
               </div>
             </div>
@@ -822,25 +818,41 @@ export default function App() {
               {lang === 'VI' ? 'DỮ LIỆU ĐẦY ĐỦ (MASTER)' : 'FULL MASTER RECORDS'}
             </div>
           </div>
-        ) : (
+        )}
+        {selectedSite === 'WNK' && (
           <div className="bg-indigo-50 border border-indigo-200 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm animate-in fade-in slide-in-from-top-4 duration-500">
             <div className="flex items-center gap-3.5">
-              <div className="p-3 bg-indigo-500 text-white rounded-2xl font-bold flex items-center justify-center shadow-md shadow-indigo-500/20 text-lg">
-                ⚡
-              </div>
+              <div className="p-3 bg-indigo-500 text-white rounded-2xl font-bold flex items-center justify-center shadow-md shadow-indigo-500/20 text-lg">⚡</div>
               <div className="text-left">
                 <h3 className="text-base font-black text-indigo-950 tracking-tight flex items-center gap-2">
                   <span>{lang === 'VI' ? 'NGUỒN DỮ LIỆU CHÍNH THỨC: NHÀ MÁY WANEK (WNK)' : 'OFFICIAL DATASET: WANEK FACTORY (WNK)'}</span>
-                  <span className="bg-indigo-100 text-indigo-800 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-indigo-250">LIVE</span>
+                  <span className="bg-indigo-100 text-indigo-800 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-indigo-200">LIVE</span>
                 </h3>
                 <p className="text-xs text-indigo-800 font-medium mt-1">
-                  {lang === 'VI' 
-                    ? 'Bạn đang truy cập nguồn dữ liệu nhân sự chính thức của Wanek. Toàn bộ các công cụ phân tích 9-Box, sơ đồ kế thừa và lộ trình đào tạo đều khả dụng.' 
-                    : 'You are accessing the official Wanek HR master records. All 9-Box dashboards, succession matrices, and development tracks are fully loaded.'}
+                  {lang === 'VI' ? 'Bạn đang truy cập nguồn dữ liệu nhân sự chính thức của Wanek. Toàn bộ các công cụ phân tích 9-Box, sơ đồ kế thừa và lộ trình đào tạo đều khả dụng.' : 'You are accessing the official Wanek HR master records. All 9-Box dashboards, succession matrices, and development tracks are fully loaded.'}
                 </p>
               </div>
             </div>
             <div className="text-[10px] font-mono bg-white text-indigo-700 px-4 py-2 rounded-xl border border-indigo-200 uppercase font-black tracking-wider shadow-2xs whitespace-nowrap">
+              {lang === 'VI' ? 'DỮ LIỆU ĐẦY ĐỦ (MASTER)' : 'FULL MASTER RECORDS'}
+            </div>
+          </div>
+        )}
+        {selectedSite === 'ASH' && (
+          <div className="bg-amber-50 border border-amber-200 rounded-3xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm animate-in fade-in slide-in-from-top-4 duration-500">
+            <div className="flex items-center gap-3.5">
+              <div className="p-3 bg-amber-500 text-white rounded-2xl font-bold flex items-center justify-center shadow-md shadow-amber-500/20 text-lg">🏢</div>
+              <div className="text-left">
+                <h3 className="text-base font-black text-amber-950 tracking-tight flex items-center gap-2">
+                  <span>{lang === 'VI' ? 'NGUỒN DỮ LIỆU CHÍNH THỨC: ASHTON (ASH)' : 'OFFICIAL DATASET: ASHTON SITE (ASH)'}</span>
+                  <span className="bg-amber-200 text-amber-800 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border border-amber-300">LIVE</span>
+                </h3>
+                <p className="text-xs text-amber-800 font-medium mt-1">
+                  {lang === 'VI' ? 'Bạn đang truy cập nguồn dữ liệu nhân sự chính thức của Ashton. 44 nhân tài, 60 vị trí kế thừa và 199 kế hoạch phát triển cá nhân đều khả dụng.' : 'You are accessing the official Ashton HR master records. 44 talents, 60 succession roles, and 199 individual development plans are fully loaded.'}
+                </p>
+              </div>
+            </div>
+            <div className="text-[10px] font-mono bg-white text-amber-700 px-4 py-2 rounded-xl border border-amber-200 uppercase font-black tracking-wider shadow-2xs whitespace-nowrap">
               {lang === 'VI' ? 'DỮ LIỆU ĐẦY ĐỦ (MASTER)' : 'FULL MASTER RECORDS'}
             </div>
           </div>
@@ -855,21 +867,22 @@ export default function App() {
               activeTab === 'tab-9box'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
                 : 'bg-white border-slate-200 hover:border-slate-300'
             }`}
           >
             <div className="flex items-start justify-between w-full font-mono text-[16px]">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-9box' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Sơ đồ Ma trận 9-Box' : 'Interactive 9-Box Grid'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-9box' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <Grid className="w-4 h-4" />
@@ -883,12 +896,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-9box' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-9box' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-9box' 
@@ -906,21 +919,22 @@ export default function App() {
               activeTab === 'tab-pipeline'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
                 : 'bg-white border-slate-200 hover:border-slate-300'
             }`}
           >
             <div className="flex items-start justify-between w-full">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-pipeline' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Mạng lưới nhân tài' : 'Talent Pipeline'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-pipeline' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <TrendingUp className="w-4 h-4" />
@@ -934,12 +948,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-pipeline' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-pipeline' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-pipeline' 
@@ -957,21 +971,22 @@ export default function App() {
               activeTab === 'tab-devplan'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
                 : 'bg-white border-slate-200 hover:border-slate-300'
             }`}
           >
             <div className="flex items-start justify-between w-full">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-devplan' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Kế hoạch Đào tạo' : 'Training Plan'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-devplan' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <BookOpen className="w-4 h-4" />
@@ -985,12 +1000,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-devplan' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-devplan' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-devplan' 
@@ -1008,21 +1023,22 @@ export default function App() {
               activeTab === 'tab-indiv-idp'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
                 : 'bg-white border-slate-200 hover:border-slate-300'
             }`}
           >
             <div className="flex items-start justify-between w-full">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-indiv-idp' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Kế hoạch cá nhân (IDP)' : 'Individual IDPs'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-indiv-idp' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <UserCheck className="w-4 h-4" />
@@ -1036,12 +1052,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-indiv-idp' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-indiv-idp' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-indiv-idp' 

@@ -5,7 +5,7 @@ interface WhyHowPlaybookProps {
   featureKey: '9box' | 'pipeline' | 'devplan' | 'idp';
   lang: 'VI' | 'EN';
   isLdMode?: boolean;
-  selectedSite?: 'MLN' | 'WNK';
+  selectedSite?: 'MLN' | 'WNK' | 'ASH';
 }
 
 export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, selectedSite = 'MLN' }: WhyHowPlaybookProps) {

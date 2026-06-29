@@ -134,7 +134,7 @@ interface IndividualIDPWorkspaceProps {
   onDeptChange: (dept: string) => void;
   lang: 'VI' | 'EN';
   isLdMode?: boolean;
-  selectedSite?: 'MLN' | 'WNK';
+  selectedSite?: 'MLN' | 'WNK' | 'ASH';
 }
 
 export const getRatingTheme = (rRating: string, lang: 'VI' | 'EN' = 'VI') => {

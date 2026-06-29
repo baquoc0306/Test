@@ -22,7 +22,7 @@ export interface Talent {
   results: 'High Effective' | 'Effective' | 'Less Effective';
   potential: 'High' | 'Mid' | 'Low';
   dept: string;
-  site?: 'MLN' | 'WNK';
+  site?: 'MLN' | 'WNK' | 'ASH';
   newTransition?: boolean;
   highRisk?: boolean;
   idpExpiryDays?: number;
@@ -40,7 +40,7 @@ export interface PipelinePosition {
   successor: string;
   readiness: 'Ready Now' | '< 1 Year' | '1-2 Years' | 'None';
   pipeline: 'At Risk' | 'Critical' | 'Covered' | 'Developing';
-  site?: 'MLN' | 'WNK';
+  site?: 'MLN' | 'WNK' | 'ASH';
 }
 
 export interface TrainingProposal {

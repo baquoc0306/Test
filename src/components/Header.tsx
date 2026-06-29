@@ -8,8 +8,7 @@ interface HeaderProps {
   onStartOnboarding?: () => void;
   isLdMode?: boolean;
   onLdModeChange?: (isLdMode: boolean) => void;
-  site?: 'MLN' | 'WNK';
-  onSiteChange?: (site: 'MLN' | 'WNK') => void;
+  
 }
 
 export default function Header({ 
@@ -58,7 +57,9 @@ export default function Header({
 
   return (
     <header className={`relative overflow-hidden bg-slate-900 text-slate-100 border-b-2 transition-all duration-500 px-6 py-6 md:px-12 md:py-8 shadow-sm ${
-      site === 'MLN' ? 'border-b-emerald-550/45 shadow-[0_4px_20px_rgba(16,185,129,0.04)]' : 'border-b-indigo-550/45 shadow-[0_4px_20px_rgba(99,102,241,0.04)]'
+      site === 'MLN' ? 'border-b-emerald-500/45 shadow-[0_4px_20px_rgba(16,185,129,0.04)]'
+      : site === 'WNK' ? 'border-b-indigo-500/45 shadow-[0_4px_20px_rgba(99,102,241,0.04)]'
+      : 'border-b-amber-500/45 shadow-[0_4px_20px_rgba(245,158,11,0.04)]'
     }`}>
       {/* Decorative subtle ambient glowing orbs */}
       {site === 'MLN' ? (
@@ -66,10 +67,15 @@ export default function Header({
           <div className="absolute top-0 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none animate-pulse duration-[8000ms]" />
           <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
         </>
-      ) : (
+      ) : site === 'WNK' ? (
         <>
           <div className="absolute top-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none animate-pulse duration-[8000ms]" />
           <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+        </>
+      ) : (
+        <>
+          <div className="absolute top-0 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none animate-pulse duration-[8000ms]" />
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
         </>
       )}
 
@@ -79,12 +85,17 @@ export default function Header({
             {site === 'MLN' ? (
               <span className="bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[10px] md:text-xs font-bold px-3 py-1 rounded-lg tracking-wider uppercase flex items-center gap-1.5 shadow-sm transition-all duration-300">
                 <Shield className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Site Millennium (Active Data)</span>
+                <span>Site Millennium (MLN)</span>
               </span>
-            ) : (
+            ) : site === 'WNK' ? (
               <span className="bg-indigo-500/10 border border-indigo-500/25 text-indigo-400 text-[10px] md:text-xs font-bold px-3 py-1 rounded-lg tracking-wider uppercase flex items-center gap-1.5 shadow-sm transition-all duration-300">
                 <Shield className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Site Wanek (Empty / No Data)</span>
+                <span>Site Wanek (WNK)</span>
+              </span>
+            ) : (
+              <span className="bg-amber-500/10 border border-amber-500/25 text-amber-400 text-[10px] md:text-xs font-bold px-3 py-1 rounded-lg tracking-wider uppercase flex items-center gap-1.5 shadow-sm transition-all duration-300">
+                <Shield className="w-3.5 h-3.5 text-amber-400" />
+                <span>Site Ashton (ASH)</span>
               </span>
             )}
             <span className="bg-slate-500/10 border border-slate-500/20 text-slate-400 text-[10px] md:text-xs font-bold px-3 py-1 rounded-lg tracking-wider uppercase flex items-center gap-1.5 shadow-xs">
@@ -96,8 +107,8 @@ export default function Header({
           </h1>
           <p className="text-xs md:text-sm text-slate-400 font-sans max-w-2xl font-normal leading-relaxed font-semibold">
             {lang === 'VI' 
-              ? `Hệ thống Quản lý và Hoạch định Nhân sự Kế thừa — ${site === 'MLN' ? 'Nhà máy Millennium (MLN)' : 'Nhà máy Wanek (WNK)'}`
-              : `Interactive Succession & Talent Planning System — ${site === 'MLN' ? 'Millennium Site (MLN)' : 'Wanek Site (WNK)'}`}
+              ? `Hệ thống Quản lý và Hoạch định Nhân sự Kế thừa — ${site === 'MLN' ? 'Nhà máy Millennium (MLN)' : site === 'WNK' ? 'Nhà máy Wanek (WNK)' : 'Ashton Site (ASH)'}`
+              : `Interactive Succession & Talent Planning System — ${site === 'MLN' ? 'Millennium Site (MLN)' : site === 'WNK' ? 'Wanek Site (WNK)' : 'Ashton Site (ASH)'}`}
           </p>
         </div>
 
@@ -177,6 +188,18 @@ export default function Header({
                 >
                   <span className={`w-1.5 h-1.5 rounded-full ${site === 'WNK' ? 'bg-white animate-ping' : 'bg-slate-500'}`} />
                   <span>🏭 WNK</span>
+                </button>
+                <button
+                  onClick={() => onSiteChange('ASH')}
+                  className={`px-3 py-2 rounded-xl text-[11px] font-extrabold tracking-tight transition-all duration-300 uppercase flex items-center gap-1.5 cursor-pointer select-none border ${
+                    site === 'ASH'
+                      ? 'bg-amber-500 text-white border-amber-300 font-black shadow-[0_0_15px_rgba(245,158,11,0.4)] scale-105'
+                      : 'text-slate-400 border-transparent hover:text-amber-400 hover:bg-slate-900'
+                  }`}
+                  title="Ashton Site"
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${site === 'ASH' ? 'bg-white animate-ping' : 'bg-slate-500'}`} />
+                  <span>🏢 ASH</span>
                 </button>
               </div>
             )}

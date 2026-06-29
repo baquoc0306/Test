@@ -11,6 +11,7 @@ import { rawWanekIDPTSV_part4 } from './wanek_idp_raw_data_part4';
 import { rawWanekIDPTSV_part5 } from './wanek_idp_raw_data_part5';
 import { rawWanekIDPTSV_part6 } from './wanek_idp_raw_data_part6';
 import { rawWanekIDPTSV_part7 } from './wanek_idp_raw_data_part7';
+import { rawAshIDPTSV } from './ash_idp_raw_data';
 
 // Normalizer to align any discrepant department values to the official talent pool departments
 function findDeptFromTalentPool(engName: string, viName: string, originalDept: string, section: string = ''): string {
@@ -850,8 +851,75 @@ distinctWnkNames.forEach(officialName => {
   processedWnkRecords.push(...finalForEmp);
 });
 
+// ============================================================
+// ASHTON (ASH) IDP PARSING
+// ============================================================
+function parseAshTSV(tsvString: string): IndividualIDP[] {
+  const lines = tsvString.split('\n');
+  const idps: IndividualIDP[] = [];
+  let isHeader = true;
+
+  for (const line of lines) {
+    if (!line.trim()) continue;
+    if (isHeader) { isHeader = false; continue; }
+
+    // Simple TSV split (fields don't have complex quoting in Ash data)
+    const cols = line.split('\t');
+    if (cols.length < 5) continue;
+
+    const empCode = cols[0]?.trim() || '';
+    const name = cols[1]?.trim() || '';
+    const dept = cols[2]?.trim() || '';
+    const role = cols[3]?.trim() || '';
+    const jobDuty = cols[4]?.trim() || '';
+    const rRating = cols[5]?.trim() || '';
+    const topOpp = cols[6]?.trim() || '';
+    const comments = cols[7]?.trim() || '';
+    const wayForward = cols[8]?.trim() || '';
+    const timeline = cols[9]?.trim() || '';
+    const notes = cols[10]?.trim() || '';
+    const trainingCat = cols[11]?.trim() || '';
+    const competency = cols[12]?.trim() || '';
+    const action = cols[13]?.trim() || '';
+    const program = cols[14]?.trim() || '';
+    const owner = cols[15]?.trim() || '';
+
+    if (!name || !jobDuty) continue;
+
+    idps.push({
+      id: `idp-ash-${idps.length + 1}`,
+      empCode,
+      viName: name,
+      engName: name,
+      site: 'ASH',
+      location: 'Ashton',
+      department: dept,
+      section: '',
+      position: role,
+      title: role,
+      jobDuty,
+      rRating,
+      topOpportunity: topOpp,
+      comments,
+      wayForward,
+      timeline,
+      note: notes,
+      sourceFile: 'Ashton IDP Data',
+      mappedNeed: '',
+      competencyFocus: competency,
+      trainingCategory: trainingCat,
+      action,
+      proposedProgram: program,
+      owner,
+    });
+  }
+  return idps;
+}
+
+const parsedAshIDPs = parseAshTSV(rawAshIDPTSV);
+
 // Combine and assign final sequential IDs
-export const dbIndividualIDPs: IndividualIDP[] = [...mlnRecords, ...processedWnkRecords].map((idp, idx) => ({
+export const dbIndividualIDPs: IndividualIDP[] = [...mlnRecords, ...processedWnkRecords, ...parsedAshIDPs].map((idp, idx) => ({
   ...idp,
   id: `idp-final-${idx + 1}`
 }));
