@@ -855,16 +855,38 @@ distinctWnkNames.forEach(officialName => {
 // ASHTON (ASH) IDP PARSING
 // ============================================================
 function parseAshTSV(tsvString: string): IndividualIDP[] {
-  const lines = tsvString.split('\n');
   const idps: IndividualIDP[] = [];
+  
+  // Proper CSV/TSV parser that handles quoted fields
+  function parseTSVLine(line: string): string[] {
+    const fields: string[] = [];
+    let current = '';
+    let inQuote = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      const next = line[i + 1];
+      if (inQuote) {
+        if (ch === '"' && next === '"') { current += '"'; i++; }
+        else if (ch === '"') { inQuote = false; }
+        else { current += ch; }
+      } else {
+        if (ch === '"' && current === '') { inQuote = true; }
+        else if (ch === '\t') { fields.push(current); current = ''; }
+        else { current += ch; }
+      }
+    }
+    fields.push(current);
+    return fields;
+  }
+
+  const lines = tsvString.split('\n');
   let isHeader = true;
 
   for (const line of lines) {
     if (!line.trim()) continue;
     if (isHeader) { isHeader = false; continue; }
 
-    // Simple TSV split (fields don't have complex quoting in Ash data)
-    const cols = line.split('\t');
+    const cols = parseTSVLine(line);
     if (cols.length < 5) continue;
 
     const empCode = cols[0]?.trim() || '';
@@ -884,7 +906,10 @@ function parseAshTSV(tsvString: string): IndividualIDP[] {
     const program = cols[14]?.trim() || '';
     const owner = cols[15]?.trim() || '';
 
+    // Skip rows where name looks like a data value (not a person name)
+    const validRatings = ['R1', 'R2', 'R3', 'R4', 'N/A', ''];
     if (!name || !jobDuty) continue;
+    if (!validRatings.includes(rRating) && rRating.length > 3) continue;
 
     idps.push({
       id: `idp-ash-${idps.length + 1}`,

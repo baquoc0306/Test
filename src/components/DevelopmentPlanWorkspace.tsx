@@ -451,7 +451,7 @@ export default function DevelopmentPlanWorkspace({
     ];
   });
 
-  // Millennium drag-and-drop course schedules state
+  // Site-specific drag-and-drop course schedules state
   const [courses, setCourses] = useState(() => {
     try {
       const saved = localStorage.getItem('development_plan_millennium_courses2');
@@ -1397,9 +1397,11 @@ export default function DevelopmentPlanWorkspace({
                   'Workforce Planning': { vi: 'Tối ưu hóa kế hoạch nhân lực và đảm bảo nguồn lực phù hợp với nhu cầu sản xuất.', en: 'Optimizes workforce planning and ensures resources align with production needs.' },
                   'Finance / Cost Management': { vi: 'Quản lý chi phí hiệu quả và tối ưu hóa ngân sách bộ phận.', en: 'Manages costs effectively and optimizes departmental budget allocation.' },
                 };
-                const trendingCompetencies = activeProposals
-                  .filter(pt => pt.action === 'Add to Training Plan')
-                  .slice(0, 4)
+                const trendingCompetencies = (activeProposals
+                  .filter(pt => pt.action === 'Add to Training Plan').length >= 2
+                    ? activeProposals.filter(pt => pt.action === 'Add to Training Plan')
+                    : activeProposals
+                  ).slice(0, 4)
                   .map((pt, idx) => ({
                     label: lang === 'VI' ? `${idx + 1}. ${translateFocusName(pt.focus)}` : `${idx + 1}. ${pt.focus}`,
                     needs: pt.needs,

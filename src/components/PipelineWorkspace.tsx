@@ -584,8 +584,8 @@ export default function PipelineWorkspace({
             </h4>
             <p className="text-[11px] text-slate-500">
               {lang === 'VI'
-                ? `Tỷ lệ phân bổ mức độ phủ kế thừa cho các vị trí chủ chốt (${selectedDept === 'ALL' ? 'Toàn Site Millennium' : selectedDept})`
-                : `Current succession pipeline coverage ratios for critical roles (${selectedDept === 'ALL' ? 'Entire Millennium Site' : selectedDept})`}
+                ? `Tỷ lệ phân bổ mức độ phủ kế thừa cho các vị trí chủ chốt (${selectedDept === 'ALL' ? 'Toàn Site' : selectedDept})`
+                : `Current succession pipeline coverage ratios for critical roles (${selectedDept === 'ALL' ? 'Entire Site' : selectedDept})`}
             </p>
           </div>
           <div className="h-48 w-full relative mt-4 text-[10px]">
