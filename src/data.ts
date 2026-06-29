@@ -1025,6 +1025,119 @@ export const dbProposalTraining: TrainingProposal[] = [
   { priority: 14, category: "Functional", focus: "Training Capability", needs: 6, coverage: "38%", action: "Department Follow-up", program: "Training Capability Follow-up", owner: "Department / Functional SME", depts: ["Planning & Inventory", "EHS", "Training", "Warehouse", "PIC"] }
 ];
 
+export const dbProposalTrainingWNK: TrainingProposal[] = [
+  {
+    priority: 1,
+    category: "Leadership",
+    focus: "Leadership Skills",
+    needs: 47,
+    coverage: "41%",
+    action: "Add to Training Plan",
+    program: "Servant Leadership Program",
+    owner: "L&D + HRBP",
+    depts: ["Blow Molding", "Components", "Cut&Sew WNK3", "DC - C&S Raw Material", "Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "Training", "UPH Assembly WNK2", "UPH Assembly WNK3", "UPH Support WNK3"]
+  },
+  {
+    priority: 2,
+    category: "Soft Skill",
+    focus: "Communication Skills",
+    needs: 33,
+    coverage: "49%",
+    action: "Add to Training Plan",
+    program: "Communication & Presentation Workshop",
+    owner: "L&D + HRBP",
+    depts: ["Components", "Cut&Sew WNK3", "Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "Training", "UPH Assembly WNK3", "UPH Support WNK3"]
+  },
+  {
+    priority: 3,
+    category: "People Development",
+    focus: "Coaching Skills",
+    needs: 122,
+    coverage: "51%",
+    action: "Add to Training Plan",
+    program: "Train the Trainer / Coaching Program",
+    owner: "L&D + HRBP",
+    depts: ["Cut&Sew WNK3", "Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "Training", "UPH Assembly WNK3", "UPH Support WNK3"]
+  },
+  {
+    priority: 4,
+    category: "Digital",
+    focus: "AI & Automation",
+    needs: 34,
+    coverage: "20%",
+    action: "Add to Training Plan",
+    program: "AI for Everyone; Power Automate; Power BI",
+    owner: "L&D + HRBP",
+    depts: ["Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "Training"]
+  },
+  {
+    priority: 6,
+    category: "Business Acumen",
+    focus: "Business Acumen",
+    needs: 27,
+    coverage: "38%",
+    action: "Need Validation",
+    program: "Business Acumen Framework",
+    owner: "Department / Functional SME",
+    depts: ["Blow Molding", "Components", "Cut&Sew WNK3", "DC - C&S Raw Material", "Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "UPH Assembly WNK2", "UPH Assembly WNK3", "UPH Support WNK3"]
+  },
+  {
+    priority: 7,
+    category: "Functional",
+    focus: "Process & Compliance",
+    needs: 338,
+    coverage: "98%",
+    action: "Department Follow-up",
+    program: "Process Improvement / Compliance Follow-up",
+    owner: "L&D + HRBP",
+    depts: ["Blow Molding", "Components", "Cut&Sew WNK2", "Cut&Sew WNK3", "DC - C&S Raw Material", "Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "Training", "UPH Assembly WNK2", "UPH Assembly WNK3", "UPH Support WNK2", "UPH Support WNK3"]
+  },
+  {
+    priority: 8,
+    category: "Functional",
+    focus: "Workforce Planning",
+    needs: 95,
+    coverage: "84%",
+    action: "Department Follow-up",
+    program: "Workforce / Ramp Planning Follow-up",
+    owner: "Department / Functional SME",
+    depts: ["Blow Molding", "Components", "Cut&Sew WNK2", "Cut&Sew WNK3", "DC - C&S Raw Material", "Human Resources", "IT", "Planning & Inventory Control", "TAT Quality", "Training", "UPH Assembly WNK2", "UPH Assembly WNK3", "UPH Support WNK2", "UPH Support WNK3"]
+  },
+  {
+    priority: 9,
+    category: "Functional",
+    focus: "Finance / Cost Management",
+    needs: 60,
+    coverage: "64%",
+    action: "Department Follow-up",
+    program: "Finance / Cost Management Follow-up",
+    owner: "L&D + HRBP",
+    depts: ["Blow Molding", "Components", "Cut&Sew WNK2", "Cut&Sew WNK3", "DC - C&S Raw Material", "Human Resources", "IT", "TAT Quality", "Training", "UPH Assembly WNK2", "UPH Assembly WNK3", "UPH Support WNK2", "UPH Support WNK3"]
+  },
+  {
+    priority: 10,
+    category: "Functional",
+    focus: "Employee Relations",
+    needs: 31,
+    coverage: "33%",
+    action: "Department Follow-up",
+    program: "Employee Relations Follow-up",
+    owner: "L&D + HRBP / Dept",
+    depts: ["Components", "Cut&Sew WNK3", "DC - C&S Raw Material", "Human Resources", "IT", "Planning & Inventory Control", "UPH Assembly WNK3", "UPH Support WNK3"]
+  },
+  {
+    priority: 11,
+    category: "Functional",
+    focus: "Training Capability",
+    needs: 16,
+    coverage: "22%",
+    action: "Department Follow-up",
+    program: "Training Capability Follow-up",
+    owner: "L&D + HRBP / Dept",
+    depts: ["Components", "Cut&Sew WNK2", "Training", "UPH Assembly WNK2", "UPH Support WNK2"]
+  },
+];
+
 export const allDepartments = [
   "ALL",
   "Cut&Sew",

@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
-import { dbProposalTraining, dbTrainingSummary, allDepartments, wnkDepartments } from '../data';
+import { dbProposalTraining, dbProposalTrainingWNK, dbTrainingSummary, allDepartments, wnkDepartments } from '../data';
 import { SearchableDeptDropdown } from './SearchableDeptDropdown';
 import {
   Flame,
@@ -550,9 +550,65 @@ export default function DevelopmentPlanWorkspace({
   });
 
   const [editingCourse, setEditingCourse] = useState<any>(null);
+  // WNK courses based on DevP.xlsx data
+  const wnkCourses = useMemo(() => [
+    {
+      id: 'wnk_leadership',
+      name: 'Servant Leadership Program',
+      viName: 'Chương trình Lãnh đạo Phục vụ',
+      startMonth: 5,
+      duration: 6,
+      color: 'from-indigo-600 to-blue-700 border-indigo-700 shadow-indigo-100 text-white',
+      active: true,
+      competency: 'Leadership Skills',
+      viCompetency: 'Kỹ năng Lãnh đạo',
+      needs: 47,
+      coverage: '41%',
+    },
+    {
+      id: 'wnk_communication',
+      name: 'Communication & Presentation Workshop',
+      viName: 'Giao tiếp & Thuyết trình',
+      startMonth: 4,
+      duration: 4,
+      color: 'from-sky-500 to-sky-600 border-sky-650 shadow-sky-100 text-white',
+      active: true,
+      competency: 'Communication Skills',
+      viCompetency: 'Kỹ năng Giao tiếp',
+      needs: 33,
+      coverage: '49%',
+    },
+    {
+      id: 'wnk_coaching',
+      name: 'Train the Trainer / Coaching Program',
+      viName: 'Đào tạo Giảng viên / Kèm cặp',
+      startMonth: 7,
+      duration: 5,
+      color: 'from-violet-500 to-purple-600 border-violet-600 shadow-violet-100 text-white',
+      active: true,
+      competency: 'Coaching Skills',
+      viCompetency: 'Kỹ năng Kèm cặp',
+      needs: 122,
+      coverage: '51%',
+    },
+    {
+      id: 'wnk_digital',
+      name: 'AI for Everyone; Power Automate; Power BI',
+      viName: 'AI & Tự động hóa ứng dụng',
+      startMonth: 6,
+      duration: 3,
+      color: 'from-amber-400 to-orange-550 border-amber-500 shadow-amber-100 text-slate-900',
+      active: true,
+      competency: 'AI & Automation',
+      viCompetency: 'AI & Tự động hóa',
+      needs: 34,
+      coverage: '20%',
+    },
+  ], []);
+
   const siteActiveCourses = useMemo(() => {
-    return courses;
-  }, [courses]);
+    return selectedSite === 'WNK' ? wnkCourses : courses;
+  }, [courses, wnkCourses, selectedSite]);
 
   const siteActionTimeline = useMemo(() => {
     return actionTimeline;
@@ -993,7 +1049,7 @@ export default function DevelopmentPlanWorkspace({
 
   // Filter lists based on requirements
   const rawFilteredProposals = useMemo(() => {
-    return dbProposalTraining.filter((pt) => {
+    return activeProposals.filter((pt) => {
       // 1. Department match
       if (selectedDept && selectedDept.toUpperCase() !== 'ALL' && selectedDept !== 'Tất cả') {
         const matchDept = pt.depts.some(
@@ -1024,7 +1080,7 @@ export default function DevelopmentPlanWorkspace({
 
       return true;
     });
-  }, [selectedDept, selectedCategory, searchQuery, editedPrograms, lang]);
+  }, [activeProposals, selectedDept, selectedCategory, searchQuery, editedPrograms, lang]);
 
   const filteredProposals = useMemo(() => {
     const list = [...rawFilteredProposals];
@@ -1797,13 +1853,9 @@ export default function DevelopmentPlanWorkspace({
                 <div className="text-center py-10 flex flex-col items-center justify-center gap-2 text-slate-400">
                   <AlertCircle className="w-8 h-8 text-slate-300" />
                   <p className="text-xs font-bold font-display">
-                    {selectedSite === 'WNK'
-                      ? (lang === 'VI'
-                          ? 'Chưa có dữ liệu chương trình đào tạo cho Wanek.'
-                          : 'No training program data available for Wanek.')
-                      : (lang === 'VI' 
-                          ? 'Không có khóa học nào được kích hoạt. Hãy bật các hộp bên dưới!' 
-                          : 'No active programs. Please toggle program inputs below to populate.')}
+                    {lang === 'VI' 
+                      ? 'Không có khóa học nào được kích hoạt. Hãy bật các hộp bên dưới!' 
+                      : 'No active programs. Please toggle program inputs below to populate.'}
                   </p>
                 </div>
               ) : (
@@ -1970,9 +2022,7 @@ export default function DevelopmentPlanWorkspace({
 
             {siteActionTimeline.length === 0 && (
               <div className="text-center py-10 bg-slate-50 border border-dashed border-slate-200 rounded-2xl text-slate-400 italic text-xs">
-                {selectedSite === 'WNK'
-                  ? (lang === 'VI' ? 'Chưa có lộ trình đào tạo cho Wanek.' : 'No training roadmap available for Wanek.')
-                  : (lang === 'VI' ? 'Chưa duyệt chương trình nào vào lộ trình.' : 'No programs active in current plan.')}
+                {lang === 'VI' ? 'Chưa duyệt chương trình nào vào lộ trình.' : 'No programs active in current plan.'}
               </div>
             )}
           </div>
