@@ -16,7 +16,7 @@ import InsightPanel from './components/InsightPanel';
 import { SearchableDeptDropdown } from './components/SearchableDeptDropdown';
 import { DeptTalentAnalysisPanel } from './components/DeptTalentAnalysisPanel';
 import OnboardingGuide from './components/OnboardingGuide';
-import { dbTalentPool, allDepartments, wnkDepartments, getFullPipeline, initialPipelinePositions } from './data';
+import { dbTalentPool, allDepartments, wnkDepartments, ashDepartments, getFullPipeline, initialPipelinePositions } from './data';
 import { Talent, NineBoxCell, NineBoxGroup } from './types';
 import {
   TrendingUp,
