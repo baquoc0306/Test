@@ -1075,8 +1075,8 @@ export default function App() {
               </p>
               <h4 className="text-sm font-bold text-slate-800 font-display uppercase">
                 {lang === 'VI' 
-                  ? `BỘ LỌC PHÒNG BAN — ${selectedSite === 'MLN' ? 'MILLENNIUM' : 'WANEK'}` 
-                  : `DEPARTMENT FILTER — ${selectedSite === 'MLN' ? 'MILLENNIUM' : 'WANEK'}`}
+                  ? `BỘ LỌC PHÒNG BAN — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'}` 
+                  : `DEPARTMENT FILTER — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'}`}
               </h4>
             </div>
           </div>
