@@ -12,6 +12,7 @@ import DevelopmentPlanWorkspace from './components/DevelopmentPlanWorkspace';
 import IndividualIDPWorkspace from './components/IndividualIDPWorkspace';
 import TalentComparisonView from './components/TalentComparisonView';
 import WhyHowPlaybook from './components/WhyHowPlaybook';
+import InsightPanel from './components/InsightPanel';
 import { SearchableDeptDropdown } from './components/SearchableDeptDropdown';
 import { DeptTalentAnalysisPanel } from './components/DeptTalentAnalysisPanel';
 import OnboardingGuide from './components/OnboardingGuide';
@@ -1255,6 +1256,8 @@ export default function App() {
             </div>
 
             {/* Split layout: Matrix 9-Box Left, Charts Right */}
+            <InsightPanel featureKey="9box" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column: Interactive 9-Box Grid */}
               <div id="onboarding-9box-grid" className="lg:col-span-2 flex flex-col gap-6">
@@ -2069,6 +2072,7 @@ export default function App() {
         {activeTab === 'tab-pipeline' && (
           <div className="space-y-6">
             <WhyHowPlaybook featureKey="pipeline" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="pipeline" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <PipelineWorkspace
               pipelineData={siteFilteredPipeline}
               selectedDept={selectedDept}
@@ -2084,6 +2088,7 @@ export default function App() {
         {activeTab === 'tab-devplan' && (
           <div className="space-y-6">
             <WhyHowPlaybook featureKey="devplan" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="devplan" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <DevelopmentPlanWorkspace
               selectedDept={selectedDept}
               onDeptChange={handleDepartmentChange}
@@ -2098,6 +2103,7 @@ export default function App() {
         {activeTab === 'tab-indiv-idp' && (
           <div className="space-y-6">
             <WhyHowPlaybook featureKey="idp" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="idp" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <IndividualIDPWorkspace
               selectedDept={selectedDept}
               onDeptChange={handleDepartmentChange}
