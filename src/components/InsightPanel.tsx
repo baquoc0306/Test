@@ -43,7 +43,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Chỉ định Tiny Nguyen hoặc Harry Nguyen làm **ứng viên kế thừa chính thức** cho Julie Phung và bắt đầu chương trình kèm cặp thực chiến ngay trong quý 3. Mục tiêu: 1 người đạt mức "Sẵn sàng trong vòng 1 năm" trước quý 1/2027.' }
     },
     'ASH_FINANCE & ACCOUNTING': {
-      insight: { vi: 'Bộ phận Tài chính & Kế toán có **5 nhân sự** với cơ cấu **Growers 60% — Keepers 40% — Movers 0%** — tỷ lệ Growers cao nhất toàn site. Windy Sy (Superstar) và Ha Nguyen (High Professional) tạo thành cặp lãnh đạo mạnh nhất Ashton. Maya Nguyen (Rising Star) đang phát triển nhanh với **23 Cơ hội Ưu tiên** được ghi nhận trong hồ sơ phát triển cá nhân — đây là nhân tài cần được đầu tư ưu tiên cao nhất.' },
+      insight: { vi: 'Bộ phận Tài chính & Kế toán có **5 nhân sự** với cơ cấu **Growers 60% — Keepers 40% — Movers 0%** — tỷ lệ Growers cao. Windy Sy (Superstar) và Ha Nguyen (High Professional) tạo thành cặp lãnh đạo mạnh của Ashton. Maya Nguyen (Rising Star) đang phát triển nhanh với **23 Cơ hội Ưu tiên** được ghi nhận trong hồ sơ phát triển cá nhân — đây là nhân tài cần được đầu tư ưu tiên cao nhất.' },
       risk: { vi: 'Mặc dù hệ thống kế thừa đạt 100% độ phủ, chuỗi kế thừa Windy Sy → Ha Nguyen → Maya Nguyen là **chuỗi tuyến tính** — nếu Ha Nguyen (mắt xích giữa) rời đi, Windy Sy mất người kế thừa trực tiếp trong khi Maya Nguyen chưa đủ sẵn sàng để nhảy 2 cấp. Đây là điểm yếu ẩn thường bị bỏ qua khi tỷ lệ phủ đã đạt 100%.' },
       nextStep: { vi: 'Ha Nguyen giao cho Maya Nguyen **2 dự án thực chiến trong quý 3**: (1) Tự lập mô hình tài chính cho 1 dự án mới, (2) Tham gia trực tiếp quy trình khai báo thuế. Đây là hình thức đào tạo tại chỗ hiệu quả hơn bất kỳ khóa học lý thuyết nào.' }
     },
@@ -63,7 +63,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Giao cho KYLIE thêm trách nhiệm quản lý FCA Transportation độc lập trong quý 3 để rút ngắn mức sẵn sàng của người kế thừa từ "1-2 năm" xuống "dưới 1 năm". Chỉ định ALANA làm **người kèm cặp chính thức** cho KYLIE và ALICE — tận dụng kinh nghiệm thực chiến của chuyên gia kỳ cựu.' }
     },
     'ASH_WAREHOUSE': {
-      insight: { vi: 'Nhóm quản lý Kho vận có **5 nhân sự** với cơ cấu **Growers 60% — Keepers 40% — Movers 0%** — tỷ lệ Growers tốt nhất trong nhóm quản lý. Thinh Mai và Violet Nguyen (High Professionals) tạo thành cặp lãnh đạo mạnh. Clara Chau (Rising Star) có tiềm năng cao nhất. Tuy nhiên, đây chỉ là 5 nhà quản lý cấp cao — **34 vị trí vận hành trong hệ thống kế thừa đang có tỷ lệ phủ chỉ 9%**, tạo ra nghịch lý: nhóm quản lý tốt nhưng hệ thống kế thừa yếu nhất site.' },
+      insight: { vi: 'Nhóm quản lý Kho vận có **5 nhân sự** với cơ cấu **Growers 60% — Keepers 40% — Movers 0%** — tỷ lệ Growers cao trong nhóm quản lý. Thinh Mai và Violet Nguyen (High Professionals) tạo thành cặp lãnh đạo mạnh. Clara Chau (Rising Star) có tiềm năng cao nhất. Tuy nhiên, đây chỉ là 5 nhà quản lý cấp cao — **34 vị trí vận hành trong hệ thống kế thừa đang có tỷ lệ phủ chỉ 9%**, tạo ra nghịch lý: nhóm quản lý tốt nhưng hệ thống kế thừa cần được cải thiện khẩn cấp.' },
       risk: { vi: 'Ba vị trí "Khủng hoảng" tại Kho vận (Võ Anh Cảnh/Quản lý Kho, Francisco Gonzalez/Giám đốc Kho, Kim Trần/Quản lý Kho) không có người kế thừa và không có người tạm quyền. Đây là **rủi ro liên tục kinh doanh cấp độ site** — nếu bất kỳ 1 trong 3 người này nghỉ đột xuất, toàn bộ hoạt động Kho vận Ashton có thể bị tê liệt.' },
       nextStep: { vi: 'Thinh Mai và Violet Nguyen lập ngay **Ma trận Đào tạo Chéo** cho 23 vị trí không có người kế thừa — ưu tiên chuỗi Bốc xếp (3 Giám sát) và Trưởng nhóm UPH (3 người) trước. Mục tiêu quý 3: mỗi vị trí có ít nhất 1 người được đào tạo làm dự phòng.' }
     },
@@ -99,12 +99,12 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Rút ngắn mức sẵn sàng của người kế thừa KYLIE (Alice Le): Giao thêm trách nhiệm quản lý FCA Transportation độc lập trong quý 3 → Mục tiêu chuyển từ "1-2 năm" xuống "dưới 1 năm" trước quý 1/2027. KYLIE lập tài liệu quy trình FCA trong tháng 7.' }
     },
     'ASH_INFORMATION SYSTEM': {
-      insight: { vi: 'Hệ thống kế thừa Công nghệ Thông tin ghi nhận **4 vị trí then chốt** với **tỷ lệ phủ chỉ 25%** (1 Đã phủ / 3 Có rủi ro). Chỉ River Le có người kế thừa (Jindo Nguyen). Denis Vy và Ryder Nguyen đang ở trạng thái "Chỉ có người tạm quyền" — có người tạm thời nhưng không có người kế thừa thực sự. Harry Hoang (Chuyên viên Phát triển Phần mềm) hoàn toàn không có người dự phòng — rủi ro kỹ thuật cao nhất.' },
+      insight: { vi: 'Hệ thống kế thừa Công nghệ Thông tin ghi nhận **4 vị trí then chốt** với **tỷ lệ phủ chỉ 25%** (1 Đã phủ / 3 Có rủi ro). Chỉ River Le có người kế thừa (Jindo Nguyen). Denis Vy và Ryder Nguyen đang ở trạng thái "Chỉ có người tạm quyền" — có người tạm thời nhưng không có người kế thừa thực sự. Harry Hoang (Chuyên viên Phát triển Phần mềm) hoàn toàn không có người dự phòng — rủi ro kỹ thuật nghiêm trọng.' },
       risk: { vi: 'Harry Hoang là người duy nhất nắm giữ toàn bộ kiến thức phát triển phần mềm và tích hợp hệ thống tại Ashton. Nếu Harry nghỉ việc, **toàn bộ hệ thống phần mềm nội bộ sẽ không có người bảo trì** — bao gồm báo cáo phân tích dữ liệu, quản lý cơ sở dữ liệu và các kết nối hệ thống. Chi phí thuê ngoài hoặc tuyển dụng mới sẽ rất cao.' },
       nextStep: { vi: 'Ưu tiên Harry Hoang: Lập kế hoạch Chuyển giao Kiến thức — Harry lập tài liệu toàn bộ hệ thống và đào tạo River Le về các kỹ năng phát triển phần mềm cơ bản trong quý 3. Đây là biện pháp giảm thiểu rủi ro tối thiểu cần thực hiện ngay.' }
     },
     'ASH_FINANCE & ACCOUNTING': {
-      insight: { vi: 'Hệ thống kế thừa Tài chính & Kế toán ghi nhận **5 vị trí then chốt** với **tỷ lệ phủ 100%** — bộ phận duy nhất đạt độ phủ hoàn hảo. Chuỗi kế thừa rõ ràng: Windy Sy → Ha Nguyen → Maya Nguyen. Đây là mô hình tốt nhất Ashton và có thể làm chuẩn tham chiếu cho các bộ phận khác.' },
+      insight: { vi: 'Hệ thống kế thừa Tài chính & Kế toán ghi nhận **5 vị trí then chốt** với **tỷ lệ phủ 100%** — bộ phận đạt độ phủ hoàn hảo. Chuỗi kế thừa rõ ràng: Windy Sy → Ha Nguyen → Maya Nguyen. Đây là mô hình tốt nhất Ashton và có thể làm chuẩn tham chiếu cho các bộ phận khác.' },
       risk: { vi: 'Chuỗi kế thừa tuyến tính có điểm yếu ẩn: nếu Ha Nguyen (mắt xích giữa) rời đi, Windy Sy mất người kế thừa trực tiếp trong khi Maya Nguyen chưa đủ sẵn sàng để nhảy 2 cấp. **Rủi ro "đứt gãy chuỗi kế thừa"** này thường bị bỏ qua khi tỷ lệ phủ đã đạt 100%.' },
       nextStep: { vi: 'Xây dựng **người dự phòng theo chiều ngang**: Cheryl Nguyen và Helen Ngo cần được đào tạo thêm để có thể hỗ trợ Ha Nguyen trong các tình huống khẩn cấp. Đây là bước nâng cấp từ "100% phủ" lên "100% bền vững".' }
     },
@@ -114,7 +114,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Chỉ định Mi Nguyen làm **Phó Trưởng nhóm Quyền hạn** cho Helen Nguyen — tham gia tất cả cuộc họp quản lý, học cách ra quyết định và xử lý các vấn đề leo thang. Mục tiêu: Mi Nguyen đạt mức "Sẵn sàng ngay" trong 6 tháng.' }
     },
     'ASH_CUSTOMS': {
-      insight: { vi: 'Hệ thống kế thừa Hải quan ghi nhận **4 vị trí then chốt** với **tỷ lệ phủ 75%** (3 Đã phủ / 1 Có rủi ro) — tốt nhất trong nhóm bộ phận vận hành. Tiny, Lona và Harry đã có người kế thừa rõ ràng. Julie Phung (Trưởng nhóm Hải quan) là điểm yếu duy nhất — không có người kế thừa cho vị trí quan trọng nhất bộ phận.' },
+      insight: { vi: 'Hệ thống kế thừa Hải quan ghi nhận **4 vị trí then chốt** với **tỷ lệ phủ 75%** (3 Đã phủ / 1 Có rủi ro) — đạt mức tốt trong nhóm bộ phận vận hành. Tiny, Lona và Harry đã có người kế thừa rõ ràng. Julie Phung (Trưởng nhóm Hải quan) là điểm yếu duy nhất — không có người kế thừa cho vị trí quan trọng nhất bộ phận.' },
       risk: { vi: 'Julie Phung nắm giữ toàn bộ kiến thức nghiệp vụ Hải quan phức tạp (thông quan quốc tế, xử lý chứng từ, giải quyết vấn đề với cơ quan hải quan). Nếu Julie nghỉ đột xuất, **thời gian để người mới đạt năng lực tương đương có thể lên đến 12-18 tháng** — ảnh hưởng trực tiếp đến hoạt động xuất nhập khẩu của Ashton.' },
       nextStep: { vi: 'Ngay trong quý 3: Julie Phung lập **Tài liệu Quy trình Hải quan** chi tiết. Đồng thời chỉ định Tiny Nguyen làm ứng viên kế thừa chính thức và bắt đầu chương trình kèm cặp cho các trường hợp phức tạp.' }
     },
@@ -140,7 +140,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
   // ══════════════════════════════════════════════════════════════════════════
   'devplan': {
     'ASH_ALL': {
-      insight: { vi: 'Kế hoạch đào tạo của Ashton ghi nhận **9 chương trình** với tổng **226 nhu cầu phát triển**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (57 nhu cầu, 81,8% năng lực thấp)** là khoảng cách lớn nhất — phản ánh thực tế các Trưởng bộ phận chưa được trang bị đủ kỹ năng phát triển cấp dưới. **Kỹ năng Giao tiếp (12 nhu cầu, 100% bộ phận có nhu cầu)** — toàn bộ 7 bộ phận đều cần, đây là năng lực nền tảng cần triển khai trước.' },
+      insight: { vi: 'Kế hoạch đào tạo của Ashton ghi nhận **9 chương trình** với tổng **226 nhu cầu phát triển**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (57 nhu cầu, 81,8% năng lực thấp)** là khoảng cách đáng chú ý nhất — phản ánh thực tế các Trưởng bộ phận chưa được trang bị đủ kỹ năng phát triển cấp dưới. **Kỹ năng Giao tiếp (12 nhu cầu, 100% bộ phận có nhu cầu)** — toàn bộ 7 bộ phận đều cần, đây là năng lực nền tảng cần triển khai trước.' },
       risk: { vi: 'Kỹ năng Kèm cặp 81,8% năng lực thấp kết hợp với việc Trưởng bộ phận không biết cách phát triển cấp dưới tạo ra **vòng lặp thiếu hụt năng lực tự duy trì**. Nếu không phá vỡ vòng lặp này trong năm 2026, Ashton sẽ tiếp tục phụ thuộc vào bộ phận Đào tạo & Phát triển để đào tạo mọi thứ — không thể mở rộng quy mô.' },
       nextStep: { vi: 'Phá vỡ vòng lặp theo thứ tự: Triển khai Hội thảo Giao tiếp trước (quý 3, dễ nhất, 100% phủ) → Sau đó Chương trình Kèm cặp cho Trưởng bộ phận (quý 3-4) → Trưởng bộ phận tự đào tạo nhóm của mình từ quý 1/2027.' }
     },
@@ -150,7 +150,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Harry Hoang đảm nhận vai trò **Đại sứ Công nghệ Số** — đào tạo lại cho Denis Vy, River Le và Ryder Nguyen về các công cụ Trí tuệ Nhân tạo và Tự động hóa. Đây là cách tiếp cận hiệu quả nhất với nguồn lực bộ phận Đào tạo & Phát triển hạn chế.' }
     },
     'ASH_FINANCE & ACCOUNTING': {
-      insight: { vi: 'Hồ sơ đào tạo của bộ phận Tài chính & Kế toán ghi nhận **43 nhiệm vụ** với 21% năng lực thấp (9 nhiệm vụ đánh giá R2) và **23 Cơ hội Ưu tiên** — tỷ lệ cao nhất toàn site (53%). 9 nhiệm vụ R2 tập trung ở Cheryl Nguyen (Mô hình Tài chính, Phân tích Hiệu quả Kinh doanh) và Maya Nguyen (Tư duy Lãnh đạo) — đây là 3 kỹ năng cần thiết để chuỗi kế thừa Tài chính hoạt động trơn tru.' },
+      insight: { vi: 'Hồ sơ đào tạo của bộ phận Tài chính & Kế toán ghi nhận **43 nhiệm vụ** với 21% năng lực thấp (9 nhiệm vụ đánh giá R2) và **23 Cơ hội Ưu tiên** — tỷ lệ 53% Cơ hội Ưu tiên trên tổng nhiệm vụ. 9 nhiệm vụ R2 tập trung ở Cheryl Nguyen (Mô hình Tài chính, Phân tích Hiệu quả Kinh doanh) và Maya Nguyen (Tư duy Lãnh đạo) — đây là 3 kỹ năng cần thiết để chuỗi kế thừa Tài chính hoạt động trơn tru.' },
       risk: { vi: 'Cheryl Nguyen có năng lực thấp trong Mô hình Tài chính và Phân tích Hiệu quả Kinh doanh — 2 kỹ năng cốt lõi của Kế toán Tổng hợp. Nếu không được đào tạo trong quý 3, Cheryl sẽ tiếp tục phụ thuộc vào Ha Nguyen và Windy Sy cho các nhiệm vụ phức tạp — **tạo ra điểm nghẽn trong nhóm Tài chính**.' },
       nextStep: { vi: 'Ha Nguyen giao cho Maya Nguyen **2 dự án thực chiến cụ thể trong quý 3**: (1) Tự lập Mô hình Tài chính cho 1 dự án mới, (2) Tham gia quy trình Khai báo Thuế cùng Ha Nguyen. Cheryl Nguyen tham gia chương trình Theo dõi Tài chính & Quản lý Chi phí.' }
     },
@@ -160,9 +160,9 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Lisa và Ellie tham gia **Chương trình Kèm cặp** cùng với Trưởng bộ phận (quý 3) → Sau đó bộ phận Nhân sự có thể hỗ trợ Trưởng bộ phận trong việc rà soát kế hoạch phát triển cá nhân và phát triển nhân tài — giảm tải cho bộ phận Đào tạo & Phát triển.' }
     },
     'WNK_ALL': {
-      insight: { vi: 'Kế hoạch đào tạo của Wanek ghi nhận **10 chương trình** với **803 hồ sơ phát triển cá nhân**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (122 nhu cầu)** là nhu cầu lớn nhất trong kế hoạch — phản ánh nhu cầu xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Điều này phản ánh Wanek đang trong giai đoạn xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Kỹ thuật Số (34 nhu cầu) tập trung ở 5 bộ phận — Công nghệ Thông tin, Đào tạo, Nhân sự, Kế hoạch và Kiểm soát Chất lượng.' },
+      insight: { vi: 'Kế hoạch đào tạo của Wanek ghi nhận **10 chương trình** với **803 hồ sơ phát triển cá nhân**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (122 nhu cầu)** là nhu cầu đứng đầu trong kế hoạch — phản ánh nhu cầu xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Điều này phản ánh Wanek đang trong giai đoạn xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Kỹ thuật Số (34 nhu cầu) tập trung ở 5 bộ phận — Công nghệ Thông tin, Đào tạo, Nhân sự, Kế hoạch và Kiểm soát Chất lượng.' },
       risk: { vi: 'Kỹ năng Kèm cặp là nền tảng để hệ thống Đào tạo Viên Nội bộ hoạt động. Nếu không triển khai trong quý 3, **toàn bộ kế hoạch đào tạo nội bộ của Wanek sẽ bị trì hoãn** — bộ phận Đào tạo & Phát triển không thể đào tạo trực tiếp 55 người với 803 nhiệm vụ.' },
-      nextStep: { vi: 'Xác định **10 Đào tạo Viên Nội bộ** từ bộ phận Đào tạo (Ashton Vo, Quach Le Du, Phan Thi Ha) → Chương trình Kèm cặp thí điểm 4 tuần → Đào tạo Viên bắt đầu đào tạo lại nhóm của mình.' }
+      nextStep: { vi: 'Xác định **10 Đào tạo Viên Nội bộ** từ bộ phận Đào tạo (Vo, Quach Le Du, Phan Thi Ha) → Chương trình Kèm cặp thí điểm 4 tuần → Đào tạo Viên bắt đầu đào tạo lại nhóm của mình.' }
     },
     'MLN_ALL': {
       insight: { vi: 'Kế hoạch đào tạo của Millennium ghi nhận **14 chương trình** với Trí tuệ Nhân tạo & Tự động hóa (Ưu tiên 1) và Kỹ năng Lãnh đạo (Ưu tiên 2) là 2 ưu tiên hàng đầu — phản ánh định hướng nâng cao năng suất và năng lực lãnh đạo trong môi trường sản xuất.' },
@@ -176,13 +176,13 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
   // ══════════════════════════════════════════════════════════════════════════
   'idp': {
     'ASH_ALL': {
-      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Ashton ghi nhận **199 hồ sơ từ 16 nhân sự quản lý**. Dữ liệu cho thấy bộ phận Tài chính & Kế toán có tỷ lệ năng lực thấp cao nhất (21%) với 9 nhiệm vụ đánh giá R2. Bộ phận Công nghệ Thông tin có 75% hồ sơ chưa được đánh giá — khoảng trống đánh giá lớn nhất site. Tổng cộng **64 Cơ hội Ưu tiên** được đánh dấu — đây là 64 điểm can thiệp có tác động cao nhất cần được theo dõi.' },
+      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Ashton ghi nhận **199 hồ sơ từ 16 nhân sự quản lý**. Dữ liệu cho thấy bộ phận Tài chính & Kế toán có tỷ lệ năng lực thấp đáng chú ý (21%) với 9 nhiệm vụ đánh giá R2. Bộ phận Công nghệ Thông tin có 75% hồ sơ chưa được đánh giá — khoảng trống đánh giá cần được ưu tiên giải quyết. Tổng cộng **64 Cơ hội Ưu tiên** được đánh dấu — đây là 64 điểm can thiệp có tác động trực tiếp cần được theo dõi.' },
       risk: { vi: '64 Cơ hội Ưu tiên không được theo dõi → khoảng cách năng lực tích lũy → Trưởng bộ phận tiếp tục phải làm thay nhân viên trong các nhiệm vụ phức tạp → **kiệt sức quản lý và giảm năng suất toàn bộ phận**.' },
       nextStep: { vi: 'Mỗi Trưởng bộ phận chọn **3 Cơ hội Ưu tiên quan trọng nhất** của từng nhân viên → Chỉ định người chịu trách nhiệm và thời hạn cụ thể → Rà soát trong cuộc họp 1-1 hàng tuần. Không cần xử lý tất cả 64 cùng lúc.' }
     },
     'ASH_FINANCE & ACCOUNTING': {
-      insight: { vi: 'Hồ sơ phát triển cá nhân của bộ phận Tài chính & Kế toán ghi nhận **43 nhiệm vụ** với 21% năng lực thấp và **23 Cơ hội Ưu tiên** — tỷ lệ cao nhất toàn site. Cheryl Nguyen có năng lực thấp trong Mô hình Tài chính và Phân tích Hiệu quả Kinh doanh. Maya Nguyen có năng lực thấp trong Tư duy Lãnh đạo — kỹ năng cần thiết để tiến lên cấp Chuyên gia Cao cấp.' },
-      risk: { vi: 'Maya Nguyen là Rising Star với tiềm năng cao nhất bộ phận Tài chính — nếu các khoảng cách năng lực không được giải quyết trong 6 tháng, Maya có thể cảm thấy thiếu lộ trình phát triển rõ ràng và **tăng nguy cơ nghỉ việc** — Rising Stars thường rời đi khi không thấy cơ hội phát triển.' },
+      insight: { vi: 'Hồ sơ phát triển cá nhân của bộ phận Tài chính & Kế toán ghi nhận **43 nhiệm vụ** với 21% năng lực thấp và **23 Cơ hội Ưu tiên** — tỷ lệ 53% Cơ hội Ưu tiên trên tổng nhiệm vụ. Cheryl Nguyen có năng lực thấp trong Mô hình Tài chính và Phân tích Hiệu quả Kinh doanh. Maya Nguyen có năng lực thấp trong Tư duy Lãnh đạo — kỹ năng cần thiết để tiến lên cấp Chuyên gia Cao cấp.' },
+      risk: { vi: 'Maya Nguyen là Rising Star với tiềm năng phát triển rõ ràng trong bộ phận Tài chính — nếu các khoảng cách năng lực không được giải quyết trong 6 tháng, Maya có thể cảm thấy thiếu lộ trình phát triển rõ ràng và **tăng nguy cơ nghỉ việc** — Rising Stars thường rời đi khi không thấy cơ hội phát triển.' },
       nextStep: { vi: 'Ha Nguyen giao cho Maya **2 dự án thực chiến cụ thể trong quý 3**: (1) Tự lập Mô hình Tài chính cho 1 dự án mới, (2) Tham gia quy trình Khai báo Thuế cùng Ha Nguyen. Đào tạo tại chỗ trực tiếp — hiệu quả hơn đào tạo lý thuyết.' }
     },
     'ASH_INFORMATION SYSTEM': {
@@ -216,7 +216,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Rita Hoang phối hợp với bộ phận Nhân sự để **xây dựng kế hoạch phát triển cá nhân cho Julie Phung** trong quý 3 — tập trung vào Kỹ năng Chuyển giao Kiến thức và Kèm cặp để Julie có thể đào tạo người kế thừa (Tiny Nguyen) hiệu quả.' }
     },
     'WNK_ALL': {
-      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Wanek ghi nhận **803 hồ sơ từ 55 nhân sự** — trung bình 14,6 nhiệm vụ/người, phản ánh phạm vi công việc rộng trong giai đoạn mở rộng. Cơ hội Ưu tiên tập trung vào Kỹ thuật Số và Kèm cặp — phản ánh nhu cầu tự động hóa và phát triển năng lực đào tạo nội bộ. Bộ phận Hỗ trợ UPH WNK3 có tỷ lệ năng lực thấp cao nhất — cần ưu tiên can thiệp.' },
+      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Wanek ghi nhận **803 hồ sơ từ 55 nhân sự** — trung bình 14,6 nhiệm vụ/người, phản ánh phạm vi công việc rộng trong giai đoạn mở rộng. Cơ hội Ưu tiên tập trung vào Kỹ thuật Số và Kèm cặp — phản ánh nhu cầu tự động hóa và phát triển năng lực đào tạo nội bộ. Bộ phận Hỗ trợ UPH WNK3 có tỷ lệ năng lực thấp đáng chú ý — cần ưu tiên can thiệp.' },
       risk: { vi: 'Cơ hội Ưu tiên không được theo dõi → khoảng cách năng lực tích lũy → chỉ tiêu bộ phận không đạt trong 2 quý liên tiếp.' },
       nextStep: { vi: 'Trưởng bộ phận xác định 3 Cơ hội Ưu tiên (đánh dấu X) cho từng nhân viên → Chỉ định người chịu trách nhiệm → Rà soát trong cuộc họp 1-1 hàng tuần.' }
     },
