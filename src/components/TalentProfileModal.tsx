@@ -594,7 +594,7 @@ export default function TalentProfileModal({
                       {lang === 'VI' ? 'ĐÁNH GIÁ 9-BOX 2026 & HƯỚNG PHÁT TRIỂN' : '2026 9-BOX ASSESSMENT & GROWTH PATH'}
                     </span>
                   </div>
-                  <span className="text-[9px] font-mono font-black text-slate-400">Millennium HR Review</span>
+                  <span className="text-[9px] font-mono font-black text-slate-400">L&D AI Review</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
