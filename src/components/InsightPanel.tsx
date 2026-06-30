@@ -33,7 +33,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Ưu tiên xây dựng **chương trình phát triển tăng tốc cho 3 Rising Stars tiềm năng nhất** (Mi Nguyen/Dịch vụ khách hàng, Clara Chau/Kho vận, Maya Nguyen/Tài chính) thông qua giao việc thực chiến liên phòng ban trong quý 3. Đồng thời khởi động kế hoạch can thiệp cho Carlo Pham (Future Utility) và Amy Nguyen (Diamond in the Rough) trước ngày 31/7.' }
     },
     'ASH_CUSTOMER SERVICE': {
-      insight: { vi: 'Bộ phận Dịch vụ Khách hàng có **9 nhân sự** với cơ cấu **Growers 11% — Keepers 78% — Movers 11%** — tỷ lệ Growers thấp nhất toàn site. Dữ liệu cho thấy đây là bộ phận vận hành ổn định nhưng **thiếu hoàn toàn nhân tài cấp cao** (không có Superstar hay High Professional). Chỉ có Mi Nguyen (Rising Star) là nhân tài tăng trưởng duy nhất. Amy Nguyen (Diamond in the Rough) có tiềm năng cao nhưng hiệu suất chưa đạt — đây là tín hiệu của việc thiếu định hướng hoặc không phù hợp vai trò.' },
+      insight: { vi: 'Bộ phận Dịch vụ Khách hàng có **9 nhân sự** với cơ cấu **Growers 11% — Keepers 78% — Movers 11%** — tỷ lệ Growers thấp, cần được cải thiện. Dữ liệu cho thấy đây là bộ phận vận hành ổn định nhưng **thiếu hoàn toàn nhân tài cấp cao** (không có Superstar hay High Professional). Chỉ có Mi Nguyen (Rising Star) là nhân tài tăng trưởng duy nhất. Amy Nguyen (Diamond in the Rough) có tiềm năng cao nhưng hiệu suất chưa đạt — đây là tín hiệu của việc thiếu định hướng hoặc không phù hợp vai trò.' },
       risk: { vi: 'Bộ phận tiếp xúc khách hàng trực tiếp nhưng không có nhân sự cấp Superstar hay High Professional để xử lý các tình huống phức tạp và ra quyết định nhanh. Nếu Mi Nguyen (Rising Star duy nhất) rời đi, **bộ phận sẽ không có ai đủ năng lực kế thừa vị trí Trưởng nhóm trong 1-2 năm tới** — ảnh hưởng trực tiếp đến chất lượng phục vụ khách hàng.' },
       nextStep: { vi: 'Gặp 1-1 với Amy Nguyen để chẩn đoán nguyên nhân gốc rễ của hiệu suất thấp (phù hợp vai trò? khối lượng công việc? thiếu hướng dẫn?). Giao cho Mi Nguyen **1 dự án liên phòng ban** để kiểm tra và phát triển tư duy lãnh đạo — đây là bước chuẩn bị kế thừa vị trí Trưởng nhóm.' }
     },
@@ -68,12 +68,12 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Thinh Mai và Violet Nguyen lập ngay **Ma trận Đào tạo Chéo** cho 23 vị trí không có người kế thừa — ưu tiên chuỗi Bốc xếp (3 Giám sát) và Trưởng nhóm UPH (3 người) trước. Mục tiêu quý 3: mỗi vị trí có ít nhất 1 người được đào tạo làm dự phòng.' }
     },
     'WNK_ALL': {
-      insight: { vi: 'Dữ liệu 9-Box của Wanek ghi nhận **55 nhân sự** đang trong giai đoạn mở rộng nhà máy mạnh mẽ. Cơ cấu nhân tài đang được xây dựng song song với việc tăng quy mô sản xuất — đây là thách thức kép đặc thù của giai đoạn ramp-up. Điểm nóng cần chú ý: **Bộ phận Hỗ trợ UPH WNK3** có tỷ lệ năng lực thấp cao nhất (6/16 nhiệm vụ = 37,5%) — đây là khu vực cần can thiệp ưu tiên trước khi bước vào giai đoạn tăng tốc sản xuất quý 4.' },
+      insight: { vi: 'Dữ liệu 9-Box của Wanek ghi nhận **55 nhân sự** đang trong giai đoạn mở rộng nhà máy. Cơ cấu nhân tài đang được xây dựng song song với việc tăng quy mô sản xuất — đây là thách thức kép đặc thù của giai đoạn ramp-up. Điểm nóng cần chú ý: **Bộ phận Hỗ trợ UPH WNK3** có tỷ lệ năng lực thấp cao nhất (6/16 nhiệm vụ = 37,5%) — đây là khu vực cần can thiệp ưu tiên trước khi bước vào giai đoạn tăng tốc sản xuất quý 4.' },
       risk: { vi: 'Wanek đang mở rộng quy mô trong khi đồng thời phải phát triển nhân tài — đây là thách thức kép. Nếu chương trình Kèm cặp không được triển khai trong quý 3, **hệ thống Đào tạo Viên Nội bộ sẽ không có người thực hiện** và bộ phận Đào tạo & Phát triển sẽ phải đào tạo trực tiếp 100% nhân sự — không thể mở rộng quy mô khi nhà máy tiếp tục phát triển.' },
       nextStep: { vi: 'Xác định **10 Đào tạo Viên Nội bộ tiềm năng** từ nhóm Growers (ưu tiên bộ phận Đào tạo) → Triển khai chương trình Kèm cặp thí điểm trong quý 3 → Đào tạo Viên Nội bộ bắt đầu đào tạo lại nhóm của mình từ quý 4.' }
     },
     'MLN_ALL': {
-      insight: { vi: 'Dữ liệu 9-Box của Millennium phản ánh site có hệ thống đánh giá nhân tài trưởng thành nhất trong 3 site. Cơ cấu nhân tài cân bằng hơn, phản ánh tổ chức đang ở giai đoạn **củng cố năng lực** — đủ Growers để tạo động lực, đủ Keepers để ổn định vận hành. Thách thức chính: duy trì đà phát triển và tránh "bình nguyên hóa" ở nhóm Keepers lâu năm.' },
+      insight: { vi: 'Dữ liệu 9-Box của Millennium phản ánh tổ chức đang ở giai đoạn **củng cố năng lực** — đủ Growers để tạo động lực, đủ Keepers để ổn định vận hành. Hệ thống đánh giá nhân tài đã được vận hành ổn định. Thách thức chính: duy trì đà phát triển và tránh "bình nguyên hóa" ở nhóm Keepers lâu năm.' },
       risk: { vi: 'Nhóm Movers không được can thiệp kịp thời sẽ tự nghỉ việc hoặc phải cho thôi việc — **chi phí thay thế 1 nhân sự vận hành có kinh nghiệm tương đương 3-6 tháng lương cộng 2-3 tháng hội nhập**. Với quy mô Millennium, mỗi năm mất 5-10 Movers là khoản chi phí nhân sự đáng kể và ảnh hưởng đến năng suất vận hành.' },
       nextStep: { vi: 'Trưởng bộ phận xác nhận danh sách Movers → Phân loại: ai có thể phát triển (kế hoạch cải thiện hiệu suất) so với ai cần chuyển vị trí → Bộ phận Đào tạo & Phát triển thiết kế chương trình can thiệp phù hợp cho từng nhóm trong quý 3.' }
     },
@@ -84,7 +84,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
   // ══════════════════════════════════════════════════════════════════════════
   'pipeline': {
     'ASH_ALL': {
-      insight: { vi: 'Hệ thống kế thừa của Ashton ghi nhận **60 vị trí then chốt** với **tỷ lệ phủ tổng thể chỉ 30%** (18 Đã phủ / 13 Đang phát triển / 26 Có rủi ro / 3 Khủng hoảng). Đây là tỷ lệ thấp nhất trong 3 site. Phân tích theo bộ phận: Tài chính & Kế toán và Nhân sự đạt 100% phủ (điểm sáng), trong khi Kho vận chỉ đạt 9% (điểm tối nhất). Ba vị trí "Khủng hoảng" tại Kho vận là rủi ro vận hành cấp độ site cần xử lý ngay.' },
+      insight: { vi: 'Hệ thống kế thừa của Ashton ghi nhận **60 vị trí then chốt** với **tỷ lệ phủ tổng thể chỉ 30%** (18 Đã phủ / 13 Đang phát triển / 26 Có rủi ro / 3 Khủng hoảng). Đây là mức cần được cải thiện khẩn cấp. Phân tích theo bộ phận: Tài chính & Kế toán và Nhân sự đạt 100% phủ (điểm sáng), trong khi Kho vận chỉ đạt 9% (điểm tối nhất). Ba vị trí "Khủng hoảng" tại Kho vận là rủi ro vận hành cấp độ site cần xử lý ngay.' },
       risk: { vi: 'Ba vị trí Khủng hoảng tại Kho vận (Quản lý Kho x2, Giám đốc Kho) không có người kế thừa và không có người tạm quyền. Nếu bất kỳ 1 trong 3 người này nghỉ đột xuất, **toàn bộ hoạt động Kho vận Ashton sẽ tê liệt** — ảnh hưởng trực tiếp đến chuỗi xuất hàng và có thể vi phạm cam kết dịch vụ với khách hàng.' },
       nextStep: { vi: 'Ngay trong tuần này: Bộ phận Nhân sự Ashton lập danh sách ưu tiên 3 vị trí Khủng hoảng → Đề xuất ứng viên tạm quyền → Trình Giám đốc Nhân sự phê duyệt kế hoạch khẩn cấp. Đây là vấn đề vượt quá phạm vi của bộ phận Đào tạo & Phát triển và cần quyết định cấp cao hơn.' }
     },
@@ -129,7 +129,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Bộ phận Nhân sự Wanek xác định ứng viên kế thừa cho tất cả vị trí Giám sát tại khu vực Lắp ráp UPH và May Cắt WNK3 → Bắt đầu chương trình kèm cặp thực chiến trong quý 3.' }
     },
     'MLN_ALL': {
-      insight: { vi: 'Hệ thống kế thừa của Millennium là trưởng thành nhất trong 3 site. Tập trung vào việc nâng cấp các vị trí "Chỉ có người tạm quyền" và đảm bảo các ứng viên kế thừa đang được phát triển đúng tiến độ.' },
+      insight: { vi: 'Hệ thống kế thừa của Millennium đang vận hành ổn định. Tập trung vào việc nâng cấp các vị trí "Chỉ có người tạm quyền" và đảm bảo các ứng viên kế thừa đang được phát triển đúng tiến độ.' },
       risk: { vi: 'Các vị trí "Chỉ có người tạm quyền" kéo dài → người tạm quyền kiệt sức → chất lượng quyết định suy giảm và nguy cơ mất cả người tạm quyền.' },
       nextStep: { vi: 'Bộ phận Nhân sự Millennium rà soát tất cả vị trí "Chỉ có người tạm quyền" → Đề xuất ứng viên kế thừa cụ thể → Lập kế hoạch phát triển 6 tháng.' }
     },
@@ -160,12 +160,12 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Lisa và Ellie tham gia **Chương trình Kèm cặp** cùng với Trưởng bộ phận (quý 3) → Sau đó bộ phận Nhân sự có thể hỗ trợ Trưởng bộ phận trong việc rà soát kế hoạch phát triển cá nhân và phát triển nhân tài — giảm tải cho bộ phận Đào tạo & Phát triển.' }
     },
     'WNK_ALL': {
-      insight: { vi: 'Kế hoạch đào tạo của Wanek ghi nhận **10 chương trình** với **803 hồ sơ phát triển cá nhân**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (122 nhu cầu)** là nhu cầu lớn nhất — gấp đôi Kỹ năng Lãnh đạo (47 nhu cầu). Điều này phản ánh Wanek đang trong giai đoạn xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Kỹ thuật Số (34 nhu cầu) tập trung ở 5 bộ phận — Công nghệ Thông tin, Đào tạo, Nhân sự, Kế hoạch và Kiểm soát Chất lượng.' },
+      insight: { vi: 'Kế hoạch đào tạo của Wanek ghi nhận **10 chương trình** với **803 hồ sơ phát triển cá nhân**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (122 nhu cầu)** là nhu cầu lớn nhất trong kế hoạch — phản ánh nhu cầu xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Điều này phản ánh Wanek đang trong giai đoạn xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Kỹ thuật Số (34 nhu cầu) tập trung ở 5 bộ phận — Công nghệ Thông tin, Đào tạo, Nhân sự, Kế hoạch và Kiểm soát Chất lượng.' },
       risk: { vi: 'Kỹ năng Kèm cặp là nền tảng để hệ thống Đào tạo Viên Nội bộ hoạt động. Nếu không triển khai trong quý 3, **toàn bộ kế hoạch đào tạo nội bộ của Wanek sẽ bị trì hoãn** — bộ phận Đào tạo & Phát triển không thể đào tạo trực tiếp 55 người với 803 nhiệm vụ.' },
       nextStep: { vi: 'Xác định **10 Đào tạo Viên Nội bộ** từ bộ phận Đào tạo (Ashton Vo, Quach Le Du, Phan Thi Ha) → Chương trình Kèm cặp thí điểm 4 tuần → Đào tạo Viên bắt đầu đào tạo lại nhóm của mình.' }
     },
     'MLN_ALL': {
-      insight: { vi: 'Kế hoạch đào tạo của Millennium ghi nhận **14 chương trình** với Trí tuệ Nhân tạo & Tự động hóa (Ưu tiên 1) và Kỹ năng Lãnh đạo (Ưu tiên 2) là 2 ưu tiên hàng đầu — đây là 2 năng lực quyết định năng suất dài hạn của Millennium trong bối cảnh sản xuất hiện đại.' },
+      insight: { vi: 'Kế hoạch đào tạo của Millennium ghi nhận **14 chương trình** với Trí tuệ Nhân tạo & Tự động hóa (Ưu tiên 1) và Kỹ năng Lãnh đạo (Ưu tiên 2) là 2 ưu tiên hàng đầu — phản ánh định hướng nâng cao năng suất và năng lực lãnh đạo trong môi trường sản xuất.' },
       risk: { vi: 'Không triển khai Trí tuệ Nhân tạo & Tự động hóa → nhân sự tiếp tục làm báo cáo thủ công → lãng phí 2-4 giờ/người/tuần = hàng trăm giờ/năm toàn site.' },
       nextStep: { vi: 'Trưởng bộ phận xác nhận danh sách tham gia → Cam kết tỷ lệ tham gia tối thiểu 80% → Triển khai Trí tuệ Nhân tạo & Tự động hóa và Kỹ năng Lãnh đạo trong quý 3.' }
     },
@@ -216,12 +216,12 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
       nextStep: { vi: 'Rita Hoang phối hợp với bộ phận Nhân sự để **xây dựng kế hoạch phát triển cá nhân cho Julie Phung** trong quý 3 — tập trung vào Kỹ năng Chuyển giao Kiến thức và Kèm cặp để Julie có thể đào tạo người kế thừa (Tiny Nguyen) hiệu quả.' }
     },
     'WNK_ALL': {
-      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Wanek ghi nhận **803 hồ sơ từ 55 nhân sự** — trung bình 14,6 nhiệm vụ/người, cao hơn mức chuẩn. Cơ hội Ưu tiên tập trung vào Kỹ thuật Số và Kèm cặp — phản ánh nhu cầu tự động hóa và phát triển năng lực đào tạo nội bộ. Bộ phận Hỗ trợ UPH WNK3 có tỷ lệ năng lực thấp cao nhất — cần ưu tiên can thiệp.' },
+      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Wanek ghi nhận **803 hồ sơ từ 55 nhân sự** — trung bình 14,6 nhiệm vụ/người, phản ánh phạm vi công việc rộng trong giai đoạn mở rộng. Cơ hội Ưu tiên tập trung vào Kỹ thuật Số và Kèm cặp — phản ánh nhu cầu tự động hóa và phát triển năng lực đào tạo nội bộ. Bộ phận Hỗ trợ UPH WNK3 có tỷ lệ năng lực thấp cao nhất — cần ưu tiên can thiệp.' },
       risk: { vi: 'Cơ hội Ưu tiên không được theo dõi → khoảng cách năng lực tích lũy → chỉ tiêu bộ phận không đạt trong 2 quý liên tiếp.' },
       nextStep: { vi: 'Trưởng bộ phận xác định 3 Cơ hội Ưu tiên (đánh dấu X) cho từng nhân viên → Chỉ định người chịu trách nhiệm → Rà soát trong cuộc họp 1-1 hàng tuần.' }
     },
     'MLN_ALL': {
-      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Millennium là đầy đủ nhất trong 3 site. Các hồ sơ có đánh giá R1/R2 cần được Trưởng bộ phận rà soát và xác nhận kế hoạch can thiệp trong 30 ngày.' },
+      insight: { vi: 'Hệ thống kế hoạch phát triển cá nhân của Millennium đang vận hành đầy đủ. Các hồ sơ có đánh giá R1/R2 cần được Trưởng bộ phận rà soát và xác nhận kế hoạch can thiệp trong 30 ngày.' },
       risk: { vi: 'Hồ sơ R1/R2 không được theo dõi → nhân viên cảm thấy bị bỏ rơi → tăng nguy cơ nghỉ việc của nhóm có tiềm năng cao.' },
       nextStep: { vi: 'Trưởng bộ phận rà soát tất cả hồ sơ có R1/R2 → Xác nhận kế hoạch can thiệp trong 30 ngày → Tích hợp vào cuộc họp 1-1 hàng tuần.' }
     },
