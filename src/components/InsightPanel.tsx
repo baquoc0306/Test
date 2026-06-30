@@ -162,7 +162,7 @@ const DATA: Record<string, Record<string, InsightRecord>> = {
     'WNK_ALL': {
       insight: { vi: 'Kế hoạch đào tạo của Wanek ghi nhận **10 chương trình** với **803 hồ sơ phát triển cá nhân**. Dữ liệu cho thấy **Kỹ năng Kèm cặp (122 nhu cầu)** là nhu cầu đứng đầu trong kế hoạch — phản ánh nhu cầu xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Điều này phản ánh Wanek đang trong giai đoạn xây dựng năng lực đào tạo nội bộ để mở rộng quy mô. Kỹ thuật Số (34 nhu cầu) tập trung ở 5 bộ phận — Công nghệ Thông tin, Đào tạo, Nhân sự, Kế hoạch và Kiểm soát Chất lượng.' },
       risk: { vi: 'Kỹ năng Kèm cặp là nền tảng để hệ thống Đào tạo Viên Nội bộ hoạt động. Nếu không triển khai trong quý 3, **toàn bộ kế hoạch đào tạo nội bộ của Wanek sẽ bị trì hoãn** — bộ phận Đào tạo & Phát triển không thể đào tạo trực tiếp 55 người với 803 nhiệm vụ.' },
-      nextStep: { vi: 'Xác định **10 Đào tạo Viên Nội bộ** từ bộ phận Đào tạo (Vo, Quach Le Du, Phan Thi Ha) → Chương trình Kèm cặp thí điểm 4 tuần → Đào tạo Viên bắt đầu đào tạo lại nhóm của mình.' }
+      nextStep: { vi: 'Xác định **10 Đào tạo Viên Nội bộ** từ bộ phận Đào tạo (Ashton Vo, Quach Le Du, Phan Thi Ha) → Chương trình Kèm cặp thí điểm 4 tuần → Đào tạo Viên bắt đầu đào tạo lại nhóm của mình.' }
     },
     'MLN_ALL': {
       insight: { vi: 'Kế hoạch đào tạo của Millennium ghi nhận **14 chương trình** với Trí tuệ Nhân tạo & Tự động hóa (Ưu tiên 1) và Kỹ năng Lãnh đạo (Ưu tiên 2) là 2 ưu tiên hàng đầu — phản ánh định hướng nâng cao năng suất và năng lực lãnh đạo trong môi trường sản xuất.' },

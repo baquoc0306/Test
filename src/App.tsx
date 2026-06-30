@@ -306,6 +306,7 @@ export default function App() {
 
   const siteDepartments = useMemo(() => {
     if (selectedSite === 'WNK') return wnkDepartments;
+    if (selectedSite === 'ASH') return ashDepartments;
     return allDepartments;
   }, [selectedSite]);
 
