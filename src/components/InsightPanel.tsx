@@ -242,13 +242,12 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
   const entry: InsightRecord | undefined = featureData[lookupKey] || featureData[fallbackKey];
   if (!entry) return null;
 
-  // Use vi content (all content is in Vietnamese as per requirements)
-  // EN mode shows Vietnamese content - this is intentional for this platform
-  const insight = entry.insight.vi;
-  const risk = entry.risk.vi;
-  const nextStep = entry.nextStep.vi;
+  const isVi = lang === 'VI';
+  const insight = isVi ? entry.insight.vi : (entry.insight.en || entry.insight.vi);
+  const risk = isVi ? entry.risk.vi : (entry.risk.en || entry.risk.vi);
+  const nextStep = isVi ? entry.nextStep.vi : (entry.nextStep.en || entry.nextStep.vi);
 
-  const deptLabel = deptKey === 'ALL' ? 'Toàn Site' : deptKey;
+  const deptLabel = deptKey === 'ALL' ? (lang === 'VI' ? 'Toàn Site' : 'All Departments') : deptKey;
   const siteName = siteKey === 'MLN' ? 'MILLENNIUM' : siteKey === 'WNK' ? 'WANEK' : 'ASHTON';
   const siteAccent = siteKey === 'MLN' ? '#2dd4bf' : siteKey === 'WNK' ? '#818cf8' : '#f59e0b';
 
@@ -266,14 +265,14 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
           <div className="text-left">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-[11px] font-black uppercase tracking-widest font-mono" style={{ color: siteAccent }}>
-                PHÂN TÍCH & KHUYẾN NGHỊ
+                {lang === 'VI' ? 'PHÂN TÍCH & KHUYẾN NGHỊ' : 'ANALYSIS & RECOMMENDATIONS'}
               </span>
               <span className="text-[9px] font-bold px-2 py-0.5 rounded-full font-mono" style={{ background: `${siteAccent}18`, color: siteAccent, border: `1px solid ${siteAccent}35` }}>
                 {siteName} / {deptLabel}
               </span>
             </div>
             <p className="text-[10px] mt-0.5 font-mono" style={{ color: '#475569' }}>
-              Dựa trên dữ liệu thực tế — Cập nhật theo bộ phận được chọn
+              {lang === 'VI' ? 'Dựa trên dữ liệu thực tế — Cập nhật theo bộ phận được chọn' : 'Based on actual data — Updated per selected department'}
             </p>
           </div>
         </div>
@@ -292,7 +291,7 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
                 <TrendingUp className="w-3.5 h-3.5" style={{ color: '#2dd4bf' }} />
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest font-mono" style={{ color: '#2dd4bf' }}>
-                NHẬN ĐỊNH TỪ DATA
+                {lang === 'VI' ? 'NHẬN ĐỊNH TỪ DATA' : 'DATA INSIGHT'}
               </span>
             </div>
             <p className="text-[12px] leading-relaxed font-medium" style={{ color: '#cbd5e1' }}>
@@ -307,7 +306,7 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
                 <AlertTriangle className="w-3.5 h-3.5" style={{ color: '#fb7185' }} />
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest font-mono" style={{ color: '#fb7185' }}>
-                RỦI RO NẾU KHÔNG HÀNH ĐỘNG
+                {lang === 'VI' ? 'RỦI RO NẾU KHÔNG HÀNH ĐỘNG' : 'RISK IF NO ACTION'}
               </span>
             </div>
             <p className="text-[12px] leading-relaxed font-medium" style={{ color: '#cbd5e1' }}>
@@ -322,7 +321,7 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
                 <Zap className="w-3.5 h-3.5" style={{ color: '#fbbf24' }} />
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest font-mono" style={{ color: '#fbbf24' }}>
-                BƯỚC TIẾP THEO ĐỀ XUẤT
+                {lang === 'VI' ? 'BƯỚC TIẾP THEO ĐỀ XUẤT' : 'RECOMMENDED NEXT STEP'}
               </span>
             </div>
             <p className="text-[12px] leading-relaxed font-medium" style={{ color: '#cbd5e1' }}>
