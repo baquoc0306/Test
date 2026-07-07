@@ -242,6 +242,8 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
   const entry: InsightRecord | undefined = featureData[lookupKey] || featureData[fallbackKey];
   if (!entry) return null;
 
+  // Use vi content (all content is in Vietnamese as per requirements)
+  // EN mode shows Vietnamese content - this is intentional for this platform
   const insight = entry.insight.vi;
   const risk = entry.risk.vi;
   const nextStep = entry.nextStep.vi;
