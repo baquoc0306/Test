@@ -1498,24 +1498,14 @@ export default function DevelopmentPlanWorkspace({
                         </p>
                       </div>
 
-                      {/* Displaying detailed metrics: Highlights with larger visual blocks */}
-                      <div className="mt-4 pt-3.5 border-t border-dashed border-slate-200/80 grid grid-cols-2 gap-3.5 text-center select-none">
-                        <div className="bg-slate-50/70 border border-slate-100/50 rounded-xl py-2 px-1">
-                          <span className="block text-[8.5px] uppercase font-bold text-slate-400 tracking-wider">
-                            {lang === 'VI' ? 'Đề cập' : 'Demands'}
-                          </span>
-                          <span className="mt-1 block text-base font-black text-slate-800 leading-none font-sans">
-                            {item.needs}
-                          </span>
-                        </div>
-                        <div className="bg-indigo-50/45 border border-indigo-100/30 rounded-xl py-2 px-1">
-                          <span className="block text-[8.5px] uppercase font-bold text-indigo-500 tracking-wider">
-                            {lang === 'VI' ? 'Độ phủ' : 'Coverage'}
-                          </span>
-                          <span className="mt-1 block text-base font-black text-indigo-600 leading-none font-sans">
-                            {item.coverage}
-                          </span>
-                        </div>
+                      {/* Compact: chỉ hiển thị số nhu cầu */}
+                      <div className="mt-3 pt-2.5 border-t border-dashed border-slate-200/80 flex items-center justify-between select-none">
+                        <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
+                          {lang === 'VI' ? 'Nhu cầu' : 'Needs'}
+                        </span>
+                        <span className="text-sm font-black text-slate-800 font-sans bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-0.5">
+                          {item.needs}
+                        </span>
                       </div>
                     </div>
                   );
@@ -1814,70 +1804,23 @@ export default function DevelopmentPlanWorkspace({
                     </div>
                   </div>
 
-                  {/* Bottom Stats pod: Double column bento styled block with dashed top border */}
-                  <div className="mt-4">
-                    <div className="grid grid-cols-2 gap-3 text-center select-none pt-0.5">
-                      <div className={`border rounded-xl py-2 px-1 transition-colors duration-200 ${
-                        isActive 
-                          ? (card.tag === 'HIGH' ? 'bg-rose-50/30 border-rose-100 text-rose-700' : card.tag === 'MEDIUM' ? 'bg-amber-50/30 border-amber-100 text-amber-700' : 'bg-indigo-50/30 border-indigo-100 text-indigo-700')
-                          : 'bg-slate-50/50 border-slate-100/50 text-slate-400'
-                      }`}>
-                        <span className="block text-[8.5px] uppercase font-bold text-slate-400 tracking-wider">
-                          {lang === 'VI' ? 'Mức ưu tiên' : 'Priority'}
-                        </span>
-                        <span className={`mt-0.5 block text-xs font-black leading-none font-sans ${
-                          isActive 
-                            ? (card.tag === 'HIGH' ? 'text-rose-700 font-extrabold' : card.tag === 'MEDIUM' ? 'text-amber-700 font-extrabold' : 'text-indigo-700 font-extrabold') 
-                            : 'text-slate-400'
-                        }`}>
-                          {lang === 'VI' 
-                            ? (card.tag === 'HIGH' ? 'Ưu tiên Cao' : card.tag === 'MEDIUM' ? 'Trung bình' : 'Ưu tiên Thấp') 
-                            : (card.tag === 'HIGH' ? 'High' : card.tag === 'MEDIUM' ? 'Medium' : 'Low')}
-                        </span>
-                      </div>
-                      <div className={`border rounded-xl py-2 px-1 transition-colors duration-200 ${
-                        isActive 
-                          ? (card.tag === 'HIGH' ? 'bg-rose-50/30 border-rose-100 text-rose-700' : card.tag === 'MEDIUM' ? 'bg-amber-50/30 border-amber-100 text-amber-700' : 'bg-indigo-50/30 border-indigo-100 text-indigo-700')
-                          : 'bg-slate-50/50 border-slate-100/50 text-slate-400'
-                      }`}>
-                        <span className={`block text-[8.5px] uppercase font-bold tracking-wider ${
-                          isActive ? (card.tag === 'HIGH' ? 'text-rose-600 font-bold' : card.tag === 'MEDIUM' ? 'text-amber-600 font-bold' : 'text-indigo-600 font-bold') : 'text-slate-400'
-                        }`}>
-                          {lang === 'VI' ? 'Độ phủ' : 'Coverage'}
-                        </span>
-                        <span className={`mt-0.5 block text-sm font-black leading-none font-sans ${
-                          isActive ? (card.tag === 'HIGH' ? 'text-rose-700 font-black' : card.tag === 'MEDIUM' ? 'text-amber-700 font-black' : 'text-indigo-700 font-black') : 'text-slate-400'
-                        }`}>
-                          {coverageVal}
-                        </span>
-                      </div>
+                  {/* Bottom: priority badge + quarter, bỏ coverage và tick */}
+                  <div className="mt-3 pt-2.5 border-t border-dashed border-slate-200/60 flex items-center justify-between w-full shrink-0">
+                    <div className="flex items-center gap-1.5 select-none font-sans">
+                      <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span className="text-[11px] font-bold text-slate-600 font-sans tracking-tight">
+                        {lang === 'VI' ? card.quarter.replace(/Q/g, 'Quý ').replace(/-/g, ' - ') : card.quarter.replace(/-/g, ' - ')}
+                      </span>
                     </div>
-
-                    {/* Quarter timing & active tick selection row */}
-                    <div className="mt-4 pt-3 border-t border-dashed border-slate-200/60 flex items-center justify-between w-full shrink-0">
-                      <div className="flex items-center gap-1.5 select-none font-sans">
-                        <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
-                        <span className="text-[12px] font-bold text-slate-650 font-sans tracking-tight">
-                          {lang === 'VI' ? card.quarter.replace(/Q/g, 'Quý ').replace(/-/g, ' - ') : card.quarter.replace(/-/g, ' - ')}
-                        </span>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleCard(card.id);
-                        }}
-                        className={`checkbox-trigger w-8 h-8 rounded-lg border flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 duration-150 ${checkBoxClass}`}
-                        title={lang === 'VI' ? 'Click bật / tắt khóa học khỏi sơ đồ' : 'Toggle program inclusion'}
-                      >
-                        {isActive ? (
-                          <Check className="w-4 h-4 text-white stroke-[4px]" />
-                        ) : (
-                          <span className="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-indigo-400 transition-all" />
-                        )}
-                      </button>
-                    </div>
+                    <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                      isActive
+                        ? (card.tag === 'HIGH' ? 'bg-rose-50 border-rose-200 text-rose-700' : card.tag === 'MEDIUM' ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-indigo-50 border-indigo-200 text-indigo-700')
+                        : 'bg-slate-100 border-slate-200 text-slate-400'
+                    }`}>
+                      {lang === 'VI'
+                        ? (card.tag === 'HIGH' ? 'Ưu tiên Cao' : card.tag === 'MEDIUM' ? 'Trung bình' : 'Thấp')
+                        : (card.tag === 'HIGH' ? 'High' : card.tag === 'MEDIUM' ? 'Medium' : 'Low')}
+                    </span>
                   </div>
                 </div>
               );
@@ -2506,7 +2449,7 @@ export default function DevelopmentPlanWorkspace({
                   className="px-5 py-3.5 cursor-pointer hover:bg-indigo-900/50 transition-colors select-none text-center min-w-[145px]"
                 >
                   <div className="flex items-center justify-center gap-1">
-                    <span>{lang === 'VI' ? 'Tỉ lệ phủ' : 'Coverage Rate'}</span>
+                    <span>{lang === 'VI' ? 'Phạm vi áp dụng' : 'Scope'}</span>
                     <ArrowUpDown className={`w-3.5 h-3.5 ${proposalSortKey === 'coverage' ? 'text-indigo-200' : 'text-slate-400 opacity-65'}`} />
                   </div>
                 </th>

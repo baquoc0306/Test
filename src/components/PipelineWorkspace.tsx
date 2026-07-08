@@ -1713,7 +1713,7 @@ export default function PipelineWorkspace({
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-indigo-300 shrink-0 animate-pulse" />
               <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-indigo-200 font-display">
-                {lang === 'VI' ? 'ĐÁNH GIÁ CHUYÊN SÂU PIPELINE & KHUYẾN NGHỊ QUY HOẠCH CHIẾN LƯỢC 2026' : 'SUCCESSION PIPELINE DEEP ANALYSIS & RECOMMENDATIONS'}
+                {lang === 'VI' ? 'ĐÁNH GIÁ CHUYÊN SÂU KẾ THỪA & KHUYẾN NGHỊ QUY HOẠCH CHIẾN LƯỢC 2026' : 'SUCCESSION PIPELINE DEEP ANALYSIS & RECOMMENDATIONS'}
               </h4>
             </div>
             <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-bold uppercase tracking-wider">
@@ -1874,15 +1874,22 @@ export default function PipelineWorkspace({
             })()}
 
             {/* AI pipeline advisory disclaimer warning */}
-            <div id="ai-disclaimer-pipeline" className="mt-5 flex items-start gap-2 p-2.5 bg-rose-950/45 border border-rose-500/25 rounded-xl text-[10px] sm:text-[11px] leading-relaxed text-rose-200/90 select-none shadow-3xs">
-              <BellRing className="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5 animate-bounce" />
-              <div>
-                <span className="font-extrabold uppercase tracking-wider text-rose-300 mr-1.5 inline-block text-[9.5px] sm:text-[10.5px]">
-                  {lang === 'VI' ? '⚠️ ĐỀ XUẤT HỖ TRỢ TỪ AI:' : '⚠️ AI-DRIVEN ASSISTANT SUGGESTION:'}
+            <div id="ai-disclaimer-pipeline" className="mt-5 flex items-start gap-2 p-3 bg-amber-50 border border-amber-300 rounded-xl text-[10px] sm:text-[11px] leading-relaxed text-amber-900 select-none shadow-sm">
+              <BellRing className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className="font-extrabold uppercase tracking-wider text-amber-800 text-[9.5px] sm:text-[10.5px]">
+                    {lang === 'VI' ? '⚠️ ĐỀ XUẤT HỖ TRỢ TỪ AI:' : '⚠️ AI-DRIVEN ASSISTANT SUGGESTION:'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-amber-500 text-white text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
+                    📌 {lang === 'VI' ? 'THAM KHẢO' : 'REFERENCE ONLY'}
+                  </span>
+                </div>
+                <span className="text-amber-800">
+                  {lang === 'VI'
+                    ? 'Ý kiến chẩn đoán rủi ro và khuyến nghị lược đồ kế thừa trên được sinh tự động nhằm mục đích tham khảo. Các quyết định cuối cùng thuộc về các Bộ phận Chức năng/ Chuyên môn hoặc Trưởng bộ phận.'
+                    : 'Exposure warnings and pipeline guidelines act strictly as diagnostic templates. Final decisions belong to the Functional/Specialized Departments or Department Heads.'}
                 </span>
-                {lang === 'VI'
-                  ? 'Ý kiến chẩn đoán rủi ro và khuyến nghị lược đồ kế thừa trên được sinh tự động nhằm mục đích tham khảo. Các quyết định cuối cùng thuộc về các Bộ phận Chức năng/ Chuyên môn hoặc Trưởng bộ phận.'
-                  : 'Exposure warnings and pipeline guidelines act strictly as diagnostic templates. Final decisions belong to the Functional/Specialized Departments or Department Heads.'}
               </div>
             </div>
           </div>
