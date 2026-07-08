@@ -553,7 +553,7 @@ export default function DevelopmentPlanWorkspace({
 
   const [editingCourse, setEditingCourse] = useState<any>(null);
   // WNK courses based on DevP.xlsx data
-  const wnkCourses = useMemo(() => [
+  const [wnkCourses, setWnkCourses] = useState(() => [
     {
       id: 'wnk_leadership',
       name: 'Servant Leadership Program',
@@ -571,7 +571,7 @@ export default function DevelopmentPlanWorkspace({
       id: 'wnk_communication',
       name: 'Communication & Presentation Workshop',
       viName: 'Giao tiếp & Thuyết trình',
-      startMonth: 4,
+      startMonth: 7,
       duration: 4,
       color: 'from-sky-500 to-sky-600 border-sky-650 shadow-sky-100 text-white',
       active: true,
@@ -606,16 +606,16 @@ export default function DevelopmentPlanWorkspace({
       needs: 34,
       coverage: '20%',
     },
-  ], []);
+  ]);
 
   // ASH courses based on ASH_DevPlan_Master.xlsx
-  const ashCourses = useMemo(() => [
+  const [ashCourses, setAshCourses] = useState(() => [
     {
       id: 'ash_communication',
       name: 'Communication & Presentation Workshop',
       viName: 'Giao tiếp & Thuyết trình',
-      startMonth: 4,
-      duration: 3,
+      startMonth: 7,
+      duration: 4,
       color: 'from-sky-500 to-sky-600 border-sky-650 shadow-sky-100 text-white',
       active: true,
       competency: 'Communication Skills',
@@ -662,7 +662,7 @@ export default function DevelopmentPlanWorkspace({
       needs: 4,
       coverage: '14%',
     },
-  ], []);
+  ]);
 
   const siteActiveCourses = useMemo(() => {
     if (selectedSite === 'WNK') return wnkCourses;
@@ -776,6 +776,18 @@ export default function DevelopmentPlanWorkspace({
   };
 
   const toggleCard = (cardId: string) => {
+    // For WNK site: toggle active on wnkCourses directly
+    if (selectedSite === 'WNK') {
+      setWnkCourses(prev => prev.map(c => c.id === cardId ? { ...c, active: !c.active } : c));
+      return;
+    }
+    // For ASH site: toggle active on ashCourses directly
+    if (selectedSite === 'ASH') {
+      setAshCourses(prev => prev.map(c => c.id === cardId ? { ...c, active: !c.active } : c));
+      return;
+    }
+
+    // MLN: use activeCards state + courses sync
     setActiveCards(prev => {
       const updated = { ...prev, [cardId]: !prev[cardId] };
       try {
@@ -828,8 +840,42 @@ export default function DevelopmentPlanWorkspace({
   const handleMoveCourse = (courseId: string, monthIdx: number) => {
     // Map composite cards
     const targetId = (courseId === 'succession_pipeline' || courseId === 'idp_self_dev') ? 'succession_idp' : courseId;
-    
-    // Auto-activate the card if it was inactive
+
+    // Helper to update a course list
+    const updateCourseList = (prev: any[]) => prev.map(c => {
+      if (c.id === targetId) {
+        const maxStart = 12 - c.duration;
+        const startMonth = Math.max(3, Math.min(monthIdx, maxStart));
+        let dynamicName = c.name;
+        let dynamicViName = c.viName;
+        const nextActiveCardsState = { ...activeCards, [courseId]: true };
+        if (targetId === 'succession_idp') {
+          if (nextActiveCardsState.succession_pipeline && nextActiveCardsState.idp_self_dev) {
+            dynamicName = 'Succession Pipeline & IDP';
+            dynamicViName = 'Quy hoạch Kế thừa & Bản đồ IDP';
+          } else if (nextActiveCardsState.succession_pipeline) {
+            dynamicName = 'Succession Pipeline Plan';
+            dynamicViName = 'Chương trình Quy hoạch Kế thừa';
+          } else if (nextActiveCardsState.idp_self_dev) {
+            dynamicName = 'Talent IDP Development';
+            dynamicViName = 'Hoạch định IDP & Phát triển';
+          }
+        }
+        return { ...c, startMonth, active: true, name: dynamicName, viName: dynamicViName };
+      }
+      return c;
+    });
+
+    if (selectedSite === 'WNK') {
+      setWnkCourses(prev => updateCourseList(prev));
+      return;
+    }
+    if (selectedSite === 'ASH') {
+      setAshCourses(prev => updateCourseList(prev));
+      return;
+    }
+
+    // MLN: Auto-activate the card if it was inactive
     setActiveCards(prev => {
       const updated = { ...prev };
       if (!updated[courseId]) {
@@ -842,33 +888,7 @@ export default function DevelopmentPlanWorkspace({
     });
 
     setCourses(prev => {
-      const updated = prev.map(c => {
-        if (c.id === targetId) {
-          const maxStart = 12 - c.duration;
-          const startMonth = Math.max(3, Math.min(monthIdx, maxStart));
-          
-          let dynamicName = c.name;
-          let dynamicViName = c.viName;
-          
-          // Determine composite card dynamic titles
-          const nextActiveCardsState = { ...activeCards, [courseId]: true };
-          if (targetId === 'succession_idp') {
-            if (nextActiveCardsState.succession_pipeline && nextActiveCardsState.idp_self_dev) {
-              dynamicName = 'Succession Pipeline & IDP';
-              dynamicViName = 'Quy hoạch Kế thừa & Bản đồ IDP';
-            } else if (nextActiveCardsState.succession_pipeline) {
-              dynamicName = 'Succession Pipeline Plan';
-              dynamicViName = 'Chương trình Quy hoạch Kế thừa';
-            } else if (nextActiveCardsState.idp_self_dev) {
-              dynamicName = 'Talent IDP Development';
-              dynamicViName = 'Hoạch định IDP & Phát triển';
-            }
-          }
-          
-          return { ...c, startMonth, active: true, name: dynamicName, viName: dynamicViName };
-        }
-        return c;
-      });
+      const updated = updateCourseList(prev);
       try {
         localStorage.setItem('development_plan_millennium_courses', JSON.stringify(updated));
       } catch (e) {}
@@ -1543,6 +1563,74 @@ export default function DevelopmentPlanWorkspace({
             </h4>
           </div>
 
+          {/* WNK / ASH: Dynamic cards from siteActiveCourses */}
+          {(selectedSite === 'WNK' || selectedSite === 'ASH') ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {siteActiveCourses.map((course) => {
+                const isActive = course.active;
+                const cardBgClass = isActive
+                  ? 'bg-white border-2 border-indigo-400 duration-200'
+                  : 'bg-white border border-slate-200 duration-200';
+                const checkBoxClass = isActive
+                  ? 'bg-indigo-500 border-indigo-500 shadow-sm'
+                  : 'bg-white border-slate-300 group-hover:border-indigo-300';
+                return (
+                  <div
+                    key={course.id}
+                    draggable
+                    onDragStart={(e) => {
+                      e.dataTransfer.setData('text/plain', course.id);
+                      e.dataTransfer.effectAllowed = 'move';
+                      setDraggingCardId(course.id);
+                    }}
+                    onDragEnd={() => setDraggingCardId(null)}
+                    className={`border p-4.5 rounded-2xl transition-all duration-200 cursor-pointer select-none relative group flex flex-col justify-between min-h-[140px] h-auto ${cardBgClass} ${
+                      draggingCardId === course.id
+                        ? 'opacity-50 scale-95 shadow-lg'
+                        : 'hover:-translate-y-0.5 hover:shadow-sm duration-200'
+                    }`}
+                    title={lang === 'VI' ? 'Kéo thả để xếp lịch học, click để bật/tắt' : 'Drag to schedule, click to toggle'}
+                    onClick={() => toggleCard(course.id)}
+                  >
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-start justify-between gap-2">
+                        <h5 className={`text-[13px] font-extrabold tracking-tight leading-snug select-none ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                          {lang === 'VI' ? course.viName : course.name}
+                        </h5>
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); toggleCard(course.id); }}
+                          className={`w-7 h-7 rounded-lg border flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0 ${checkBoxClass}`}
+                        >
+                          {isActive ? (
+                            <Check className="w-3.5 h-3.5 text-white stroke-[4px]" />
+                          ) : (
+                            <span className="w-2 h-2 rounded-full bg-slate-300 group-hover:bg-indigo-400 transition-all" />
+                          )}
+                        </button>
+                      </div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">
+                          {course.competency}
+                        </span>
+                        <span className="text-[10px] font-bold text-slate-400">
+                          {lang === 'VI' ? `${course.needs} nhu cầu` : `${course.needs} needs`}
+                        </span>
+                        <span className="text-[10px] font-bold text-slate-400">
+                          {lang === 'VI' ? `Phủ ${course.coverage}` : `Coverage ${course.coverage}`}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="mt-2 text-[10px] text-slate-400 font-mono">
+                      {lang === 'VI'
+                        ? `Tháng ${course.startMonth + 1} — ${course.startMonth + course.duration} · ${course.duration} tháng`
+                        : `Month ${course.startMonth + 1}–${course.startMonth + course.duration} · ${course.duration} mo`}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
           <div id="onboarding-devplan-inputs" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {[
               {
@@ -1795,6 +1883,7 @@ export default function DevelopmentPlanWorkspace({
               );
             })}
           </div>
+          )} {/* end MLN cards ternary */}
         </div>
       </div>
 
@@ -1807,7 +1896,7 @@ export default function DevelopmentPlanWorkspace({
                 <Calendar className="w-5 h-5 animate-pulse" />
               </span>
               <h3 className="text-sm font-black font-sans tracking-tight text-slate-955 flex items-center gap-2 uppercase">
-                <span>{lang === 'VI' ? `SƠ ĐỒ TRÌNH TỰ ĐÀO TẠO KÉO THẢ — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026` : `DRAG-AND-DROP TRAINING PLAN CHRONOLOGY — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026`}</span>
+                <span>{lang === 'VI' ? `LỊCH ĐÀO TẠO TẬP TRUNG — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026` : `FOCUSED TRAINING SCHEDULE — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026`}</span>
                 <span className="bg-indigo-650 text-white font-mono text-[9px] font-black px-2 py-0.5 rounded-full tracking-wider animate-pulse select-none">
                   UPDATED
                 </span>
