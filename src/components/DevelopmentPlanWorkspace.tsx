@@ -1498,12 +1498,12 @@ export default function DevelopmentPlanWorkspace({
                         </p>
                       </div>
 
-                      {/* Compact: chỉ hiển thị số nhu cầu */}
+                      {/* Compact: số nhu cầu to nổi bật */}
                       <div className="mt-3 pt-2.5 border-t border-dashed border-slate-200/80 flex items-center justify-between select-none">
                         <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
                           {lang === 'VI' ? 'Nhu cầu' : 'Needs'}
                         </span>
-                        <span className="text-sm font-black text-slate-800 font-sans bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-0.5">
+                        <span className="text-2xl font-black text-indigo-600 font-sans leading-none">
                           {item.needs}
                         </span>
                       </div>
@@ -2196,53 +2196,32 @@ export default function DevelopmentPlanWorkspace({
               </span>
             </h4>
             
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               {(() => {
                 const summaryDataRaw = dbTrainingSummary[selectedDept] || dbTrainingSummary["ALL"] || [0, 0, 0, 0, 0];
-                return [
-                  { label: lang === 'VI' ? 'Lãnh đạo Phục vụ' : 'Servant Leadership', count: summaryDataRaw[0], color: 'indigo', icon: <Star className="w-3.5 h-3.5" /> },
-                  { label: lang === 'VI' ? 'AI & Tự động hóa' : 'AI & Automation', count: summaryDataRaw[1], color: 'amber', icon: <Settings className="w-3.5 h-3.5" /> },
-                  { label: lang === 'VI' ? 'Giao tiếp & Thuyết trình' : 'Communication Skill', count: summaryDataRaw[2], color: 'sky', icon: <MessageSquare className="w-3.5 h-3.5" /> },
-                  { label: lang === 'VI' ? 'Kèm cặp & Khai vấn' : 'Coaching & Mentoring', count: summaryDataRaw[3], color: 'violet', icon: <Compass className="w-3.5 h-3.5" /> },
-                  { label: lang === 'VI' ? 'Phát triển IDP' : 'Talent IDP Development', count: summaryDataRaw[4], color: 'emerald', icon: <Award className="w-3.5 h-3.5" /> },
-                ].map((item, idx) => {
-                  let colorClass = 'bg-linear-to-r from-indigo-500 to-indigo-600';
-                  let bgBadge = 'bg-indigo-50 text-indigo-750';
-                  if (item.color === 'amber') {
-                    colorClass = 'bg-linear-to-r from-amber-500 to-amber-600';
-                    bgBadge = 'bg-amber-50 text-amber-700';
-                  } else if (item.color === 'sky') {
-                    colorClass = 'bg-linear-to-r from-sky-500 to-sky-600';
-                    bgBadge = 'bg-sky-50 text-sky-700';
-                  } else if (item.color === 'violet') {
-                    colorClass = 'bg-linear-to-r from-violet-500 to-violet-600';
-                    bgBadge = 'bg-violet-50 text-violet-700';
-                  } else if (item.color === 'emerald') {
-                    colorClass = 'bg-linear-to-r from-emerald-500 to-emerald-600';
-                    bgBadge = 'bg-emerald-50 text-emerald-700';
-                  }
-
-                  // Standardized relative scaling based on max width range (All dept max values = 80, others max values = 40)
-                  const maxPctVal = selectedDept === 'ALL' ? 80 : 35;
-                  const pct = Math.min(100, Math.max(8, (item.count / maxPctVal) * 100));
-
+                const items = [
+                  { label: lang === 'VI' ? 'Lãnh đạo Phục vụ' : 'Servant Leadership', count: summaryDataRaw[0], color: 'indigo', icon: <Star className="w-4 h-4" />, borderColor: 'border-indigo-300', bgColor: 'bg-indigo-50', textColor: 'text-indigo-700', numColor: 'text-indigo-600', barColor: 'bg-indigo-500' },
+                  { label: lang === 'VI' ? 'AI & Tự động hóa' : 'AI & Automation', count: summaryDataRaw[1], color: 'amber', icon: <Settings className="w-4 h-4" />, borderColor: 'border-amber-300', bgColor: 'bg-amber-50', textColor: 'text-amber-700', numColor: 'text-amber-600', barColor: 'bg-amber-500' },
+                  { label: lang === 'VI' ? 'Giao tiếp & Thuyết trình' : 'Communication', count: summaryDataRaw[2], color: 'sky', icon: <MessageSquare className="w-4 h-4" />, borderColor: 'border-sky-300', bgColor: 'bg-sky-50', textColor: 'text-sky-700', numColor: 'text-sky-600', barColor: 'bg-sky-500' },
+                  { label: lang === 'VI' ? 'Kèm cặp & Khai vấn' : 'Coaching & Mentoring', count: summaryDataRaw[3], color: 'violet', icon: <Compass className="w-4 h-4" />, borderColor: 'border-violet-300', bgColor: 'bg-violet-50', textColor: 'text-violet-700', numColor: 'text-violet-600', barColor: 'bg-violet-500' },
+                  { label: lang === 'VI' ? 'Phát triển IDP' : 'Talent IDP Dev.', count: summaryDataRaw[4], color: 'emerald', icon: <Award className="w-4 h-4" />, borderColor: 'border-emerald-300', bgColor: 'bg-emerald-50', textColor: 'text-emerald-700', numColor: 'text-emerald-600', barColor: 'bg-emerald-500' },
+                ];
+                const maxCount = Math.max(...items.map(i => i.count), 1);
+                return items.map((item, idx) => {
+                  const pct = Math.min(100, Math.max(6, (item.count / maxCount) * 100));
                   return (
-                    <div key={idx} className="bg-slate-50 border border-slate-150 rounded-xl p-3 flex flex-col justify-between hover:border-indigo-300 hover:shadow-2xs transition-all duration-200">
-                      <div className="flex items-start justify-between gap-1.5">
-                        <span className="text-slate-400 p-0.5">
-                          {item.icon}
-                        </span>
-                        <span className={`px-2 py-0.5 rounded font-mono text-[10.5px] font-black ${bgBadge}`}>
-                          {item.count} {lang === 'VI' ? 'Lượt' : 'Qty'}
-                        </span>
+                    <div key={idx} className={`${item.bgColor} border-2 ${item.borderColor} rounded-2xl p-4 flex flex-col gap-2 hover:shadow-md transition-all duration-200 cursor-default`}>
+                      <div className={`p-2 rounded-xl ${item.bgColor} border ${item.borderColor} w-fit`}>
+                        <span className={item.textColor}>{item.icon}</span>
                       </div>
-                      <div className="mt-4">
-                        <div className="text-[10.5px] font-black leading-tight text-slate-800 line-clamp-2 h-7.5" title={item.label}>
-                          {item.label}
-                        </div>
-                        <div className="mt-2.5 w-full bg-slate-200 h-1.2 rounded-full overflow-hidden">
-                          <div className={`h-full rounded-full ${colorClass}`} style={{ width: `${pct}%` }} />
-                        </div>
+                      <div className={`text-4xl font-black ${item.numColor} leading-none mt-1`}>
+                        {item.count}
+                      </div>
+                      <div className={`text-[11px] font-black ${item.textColor} leading-tight`}>
+                        {item.label}
+                      </div>
+                      <div className="w-full bg-white/60 h-2 rounded-full overflow-hidden mt-auto">
+                        <div className={`h-full rounded-full ${item.barColor}`} style={{ width: `${pct}%` }} />
                       </div>
                     </div>
                   );

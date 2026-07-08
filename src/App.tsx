@@ -1100,7 +1100,7 @@ export default function App() {
         {/* ==================== TAB 1 Content: 9-BOX MATRIX & TALENT LIST ==================== */}
         {activeTab === 'tab-9box' && (
           <div className="space-y-8">
-            <WhyHowPlaybook featureKey="9box" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            
             
             {/* KPI grid counts */}
             <div id="onboarding-kpi-cards" className="grid grid-cols-2 lg:grid-cols-4 gap-6 select-none font-sans">
@@ -1259,6 +1259,7 @@ export default function App() {
 
             {/* Split layout: Matrix 9-Box Left, Charts Right */}
             <InsightPanel featureKey="9box" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
+            <WhyHowPlaybook featureKey="9box" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column: Interactive 9-Box Grid */}
@@ -2084,8 +2085,8 @@ export default function App() {
         {/* ==================== TAB 2 Content: SUCCESSION PIPELINE (72 Positions) ==================== */}
         {activeTab === 'tab-pipeline' && (
           <div className="space-y-6">
-            <WhyHowPlaybook featureKey="pipeline" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
             <InsightPanel featureKey="pipeline" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
+            <WhyHowPlaybook featureKey="pipeline" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
             <PipelineWorkspace
               pipelineData={siteFilteredPipeline}
               selectedDept={selectedDept}
@@ -2100,8 +2101,8 @@ export default function App() {
         {/* ==================== TAB 3 Content: DEVELOPMENT TRAINING PLANS ==================== */}
         {activeTab === 'tab-devplan' && (
           <div className="space-y-6">
-            <WhyHowPlaybook featureKey="devplan" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
             <InsightPanel featureKey="devplan" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
+            <WhyHowPlaybook featureKey="devplan" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
             <DevelopmentPlanWorkspace
               selectedDept={selectedDept}
               onDeptChange={handleDepartmentChange}
@@ -2115,8 +2116,8 @@ export default function App() {
         {/* ==================== TAB 4 Content: INDIVIDUAL DEVELOPMENT PLANS (IDP) ==================== */}
         {activeTab === 'tab-indiv-idp' && (
           <div className="space-y-6">
-            <WhyHowPlaybook featureKey="idp" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
             <InsightPanel featureKey="idp" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
+            <WhyHowPlaybook featureKey="idp" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
             <IndividualIDPWorkspace
               selectedDept={selectedDept}
               onDeptChange={handleDepartmentChange}
