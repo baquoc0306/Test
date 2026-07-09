@@ -974,15 +974,13 @@ export default function IndividualIDPWorkspace({
 
         {/* Skill/Will Matrix 2x2 */}
         <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <div>
-              <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-700">
-                {lang === 'VI' ? 'MA TRẬN NĂNG LỰC — SKILL / WILL' : 'SKILL / WILL MATRIX'}
-              </h3>
-              <p className="text-[9.5px] text-slate-400 font-medium mt-0.5">
-                {lang === 'VI' ? 'Phân bổ nhiệm vụ công việc theo mức độ sẵn sàng (Situational Leadership®)' : 'Task distribution by readiness level (Situational Leadership®)'}
-              </p>
-            </div>
+          <div className="mb-3">
+            <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-700">
+              {lang === 'VI' ? 'PHÂN BỔ NHIỆM VỤ THEO MỨC ĐỘ SẴN SÀNG' : 'TASK DISTRIBUTION BY READINESS'}
+            </h3>
+            <p className="text-[8.5px] text-slate-400 font-medium mt-0.5">
+              Situational Leadership® — Blanchard & Hersey
+            </p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {/* R2: Skill Low, Will High — top-left */}
@@ -1050,7 +1048,7 @@ export default function IndividualIDPWorkspace({
               </p>
             </div>
           </div>
-          <p className="text-center text-[9px] font-black text-slate-400 uppercase tracking-widest mt-3">← Ý CHÍ (WILL) →</p>
+
         </div>
       </div>
 

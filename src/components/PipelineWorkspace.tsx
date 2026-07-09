@@ -971,8 +971,8 @@ export default function PipelineWorkspace({
                   ? p.readiness === 'Ready Now' ? 'Nhận chức ngay'
                     : p.readiness === '< 1 Year' ? 'Dưới 1 năm'
                     : p.readiness === '1-2 Years' ? 'Từ 1-2 năm'
-                    : 'Chưa có'
-                  : p.readiness;
+                    : '—'
+                  : p.readiness === 'None' ? '—' : p.readiness;
 
                 return (
                   <tr
@@ -1022,7 +1022,7 @@ export default function PipelineWorkspace({
                     </td>
                     <td className="px-4 py-3">
                       {p.successor === 'None' ? (
-                        <span className="text-[11px] text-slate-300 italic">—</span>
+                        <span className="text-[11px] text-slate-500 font-medium">{lang === 'VI' ? 'Chưa có' : 'None'}</span>
                       ) : (
                         <span className="text-[12px] font-semibold text-indigo-700">{p.successor}</span>
                       )}
