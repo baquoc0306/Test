@@ -18,6 +18,10 @@ import { DeptTalentAnalysisPanel } from './components/DeptTalentAnalysisPanel';
 import OnboardingGuide from './components/OnboardingGuide';
 import { dbTalentPool, allDepartments, wnkDepartments, ashDepartments, getFullPipeline, initialPipelinePositions } from './data';
 import { validateData, logValidationResults, ValidationWarning } from './dataValidation';
+
+// DATA VERSION — bump this to force cache invalidation
+const DATA_VERSION = '2026-07-09-v3';
+console.log('%c🔖 App Data Version: ' + DATA_VERSION, 'color: #10b981; font-weight: bold;');
 import { Talent, NineBoxCell, NineBoxGroup } from './types';
 import {
   TrendingUp,
