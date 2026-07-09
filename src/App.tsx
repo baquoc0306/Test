@@ -284,16 +284,16 @@ export default function App() {
   };
 
   const [selectedDept, setSelectedDept] = useState<string>('ALL');
-  const [selectedSite, setSelectedSite] = useState<'MLN' | 'WNK'>(() => {
+  const [selectedSite, setSelectedSite] = useState<'MLN' | 'WNK' | 'ASH'>(() => {
     try {
       const saved = localStorage.getItem('app-site');
-      return (saved === 'MLN' || saved === 'WNK') ? saved : 'MLN';
+      return (saved === 'MLN' || saved === 'WNK' || saved === 'ASH') ? saved as 'MLN' | 'WNK' | 'ASH' : 'MLN';
     } catch {
       return 'MLN';
     }
   });
 
-  const handleSiteChange = (newSite: 'MLN' | 'WNK') => {
+  const handleSiteChange = (newSite: 'MLN' | 'WNK' | 'ASH') => {
     setSelectedSite(newSite);
     try {
       localStorage.setItem('app-site', newSite);

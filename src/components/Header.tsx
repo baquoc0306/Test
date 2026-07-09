@@ -8,7 +8,8 @@ interface HeaderProps {
   onStartOnboarding?: () => void;
   isLdMode?: boolean;
   onLdModeChange?: (isLdMode: boolean) => void;
-  
+  site?: 'MLN' | 'WNK' | 'ASH';
+  onSiteChange?: (site: 'MLN' | 'WNK' | 'ASH') => void;
 }
 
 export default function Header({ 
