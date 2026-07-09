@@ -911,130 +911,117 @@ export default function IndividualIDPWorkspace({
         </div>
       )}
 
-      <div id="onboarding-idp-metrics-block" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Metric 1 - Total People + extra stats */}
-        <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700 p-5 rounded-2xl relative flex flex-col justify-between shadow-md min-h-[145px]">
-          <div className="flex items-start justify-between">
-            <div>
-              <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest block">
-                {lang === 'VI' ? 'NHÂN SỰ ĐƯỢC ĐÁNH GIÁ' : 'ASSESSED PERSONNEL'}
-              </span>
-              <span className="text-slate-400 font-medium text-[9.5px] block mt-0.5">
-                {lang === 'VI' ? 'Theo bộ lọc hiện tại' : 'Current filter scope'}
-              </span>
-            </div>
-            <span className="inline-block px-2 py-0.5 rounded bg-slate-700 text-[9px] font-black text-slate-300 uppercase tracking-widest border border-slate-600">
+      <div id="onboarding-idp-metrics-block" className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        {/* Metric 1 - Total People — dark card */}
+        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-5 flex flex-col gap-4 shadow-md">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] text-slate-400 font-black uppercase tracking-widest">
+              {lang === 'VI' ? 'NHÂN SỰ ĐƯỢC ĐÁNH GIÁ' : 'ASSESSED PERSONNEL'}
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full bg-slate-700 text-[9px] font-black text-slate-300 uppercase tracking-widest border border-slate-600">
               IDP
             </span>
           </div>
-          <div className="mt-3">
-            <div className="flex items-baseline gap-2 select-none">
-              <span className="text-5xl font-black text-white tracking-tight leading-none">
-                {statistics.total}
-              </span>
-              <span className="text-slate-400 text-[11px] font-bold">{lang === 'VI' ? 'nhân sự' : 'people'}</span>
+          <div className="flex items-end gap-3">
+            <span className="text-6xl font-black text-white tracking-tight leading-none">{statistics.total}</span>
+            <span className="text-slate-400 text-sm font-bold pb-1">{lang === 'VI' ? 'nhân sự' : 'people'}</span>
+          </div>
+          <div className="grid grid-cols-3 gap-2 pt-1 border-t border-slate-700">
+            <div className="text-center">
+              <span className="block text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-1">{lang === 'VI' ? 'Tổng duties' : 'Total'}</span>
+              <span className="block text-xl font-black text-white">{filteredPlans.length}</span>
             </div>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              <div className="bg-slate-700/60 rounded-lg px-2 py-1.5 text-center">
-                <span className="block text-[9px] text-slate-400 font-bold uppercase">{lang === 'VI' ? 'Tổng duties' : 'Total duties'}</span>
-                <span className="block text-sm font-black text-white mt-0.5">{filteredPlans.length}</span>
-              </div>
-              <div className="bg-red-900/40 rounded-lg px-2 py-1.5 text-center border border-red-800/40">
-                <span className="block text-[9px] text-red-400 font-bold uppercase">R1+R2</span>
-                <span className="block text-sm font-black text-red-300 mt-0.5">{statistics.r1 + statistics.r2}</span>
-              </div>
-              <div className="bg-emerald-900/30 rounded-lg px-2 py-1.5 text-center border border-emerald-800/30">
-                <span className="block text-[9px] text-emerald-400 font-bold uppercase">R3+R4</span>
-                <span className="block text-sm font-black text-emerald-300 mt-0.5">{statistics.r3 + statistics.r4}</span>
-              </div>
+            <div className="text-center border-x border-slate-700">
+              <span className="block text-[9px] text-red-400 font-bold uppercase tracking-wider mb-1">R1+R2</span>
+              <span className="block text-xl font-black text-red-300">{statistics.r1 + statistics.r2}</span>
+            </div>
+            <div className="text-center">
+              <span className="block text-[9px] text-emerald-400 font-bold uppercase tracking-wider mb-1">R3+R4</span>
+              <span className="block text-xl font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
             </div>
           </div>
         </div>
 
         {/* Skill/Will Matrix 2x2 */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
-          <div className="flex items-center justify-between mb-3">
+        <div className="lg:col-span-2 bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-600 block">
+              <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-700">
                 {lang === 'VI' ? 'MA TRẬN NĂNG LỰC — SKILL / WILL' : 'SKILL / WILL MATRIX'}
-              </span>
-              <span className="text-[9px] text-slate-400 font-medium">
-                {lang === 'VI' ? 'Phân bổ nhiệm vụ theo mức độ sẵn sàng' : 'Task distribution by readiness level'}
-              </span>
+              </h3>
+              <p className="text-[9.5px] text-slate-400 font-medium mt-0.5">
+                {lang === 'VI' ? 'Phân bổ nhiệm vụ công việc theo mức độ sẵn sàng (Situational Leadership®)' : 'Task distribution by readiness level (Situational Leadership®)'}
+              </p>
             </div>
-            <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider border border-slate-200 px-2 py-0.5 rounded-full">
-              Situational Leadership®
-            </span>
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             {/* R2: Skill Low, Will High — top-left */}
-            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-3.5 flex flex-col gap-1.5 min-h-[110px]">
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black text-amber-700 uppercase tracking-wider">R2</span>
-                <span className="text-[8.5px] bg-amber-100 text-amber-700 border border-amber-200 px-1.5 py-0.5 rounded-full font-bold">
+                <span className="text-base font-black text-amber-700 uppercase">R2</span>
+                <span className="text-[10px] bg-amber-100 text-amber-700 border border-amber-300 px-2.5 py-0.5 rounded-full font-bold">
                   {lang === 'VI' ? 'Kèm cặp' : 'Coaching'}
                 </span>
               </div>
-              <div className="flex items-baseline gap-1.5 mt-0.5">
-                <span className="text-4xl font-black text-amber-600 leading-none">{statistics.r2}</span>
-                <span className="text-[10px] text-amber-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-black text-amber-600 leading-none">{statistics.r2}</span>
+                <span className="text-[11px] text-amber-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
               </div>
-              <div className="text-[9px] text-amber-600 font-semibold leading-tight">
+              <p className="text-[9.5px] text-amber-600 font-semibold">
                 {lang === 'VI' ? '↓ Kỹ năng thấp · ↑ Ý chí cao' : '↓ Low Skill · ↑ High Will'}
-              </div>
+              </p>
             </div>
             {/* R4: Skill High, Will High — top-right */}
-            <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-3.5 flex flex-col gap-1.5 min-h-[110px]">
+            <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black text-emerald-700 uppercase tracking-wider">R4</span>
-                <span className="text-[8.5px] bg-emerald-100 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded-full font-bold">
+                <span className="text-base font-black text-emerald-700 uppercase">R4</span>
+                <span className="text-[10px] bg-emerald-100 text-emerald-700 border border-emerald-300 px-2.5 py-0.5 rounded-full font-bold">
                   {lang === 'VI' ? 'Ủy quyền' : 'Delegating'}
                 </span>
               </div>
-              <div className="flex items-baseline gap-1.5 mt-0.5">
-                <span className="text-4xl font-black text-emerald-600 leading-none">{statistics.r4}</span>
-                <span className="text-[10px] text-emerald-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-black text-emerald-600 leading-none">{statistics.r4}</span>
+                <span className="text-[11px] text-emerald-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
               </div>
-              <div className="text-[9px] text-emerald-600 font-semibold leading-tight">
+              <p className="text-[9.5px] text-emerald-600 font-semibold">
                 {lang === 'VI' ? '↑ Kỹ năng cao · ↑ Ý chí cao' : '↑ High Skill · ↑ High Will'}
-              </div>
+              </p>
             </div>
             {/* R1: Skill Low, Will Low — bottom-left */}
-            <div className="bg-red-50 border-2 border-red-200 rounded-xl p-3.5 flex flex-col gap-1.5 min-h-[110px]">
+            <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black text-red-700 uppercase tracking-wider">R1</span>
-                <span className="text-[8.5px] bg-red-100 text-red-700 border border-red-200 px-1.5 py-0.5 rounded-full font-bold">
+                <span className="text-base font-black text-red-700 uppercase">R1</span>
+                <span className="text-[10px] bg-red-100 text-red-700 border border-red-300 px-2.5 py-0.5 rounded-full font-bold">
                   {lang === 'VI' ? 'Chỉ đạo' : 'Directing'}
                 </span>
               </div>
-              <div className="flex items-baseline gap-1.5 mt-0.5">
-                <span className="text-4xl font-black text-red-600 leading-none">{statistics.r1}</span>
-                <span className="text-[10px] text-red-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-black text-red-600 leading-none">{statistics.r1}</span>
+                <span className="text-[11px] text-red-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
               </div>
-              <div className="text-[9px] text-red-600 font-semibold leading-tight">
+              <p className="text-[9.5px] text-red-600 font-semibold">
                 {lang === 'VI' ? '↓ Kỹ năng thấp · ↓ Ý chí thấp' : '↓ Low Skill · ↓ Low Will'}
-              </div>
+              </p>
             </div>
             {/* R3: Skill High, Will Low — bottom-right */}
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3.5 flex flex-col gap-1.5 min-h-[110px]">
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black text-blue-700 uppercase tracking-wider">R3</span>
-                <span className="text-[8.5px] bg-blue-100 text-blue-700 border border-blue-200 px-1.5 py-0.5 rounded-full font-bold">
+                <span className="text-base font-black text-blue-700 uppercase">R3</span>
+                <span className="text-[10px] bg-blue-100 text-blue-700 border border-blue-300 px-2.5 py-0.5 rounded-full font-bold">
                   {lang === 'VI' ? 'Hỗ trợ' : 'Supporting'}
                 </span>
               </div>
-              <div className="flex items-baseline gap-1.5 mt-0.5">
-                <span className="text-4xl font-black text-blue-600 leading-none">{statistics.r3}</span>
-                <span className="text-[10px] text-blue-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-black text-blue-600 leading-none">{statistics.r3}</span>
+                <span className="text-[11px] text-blue-500 font-bold">{lang === 'VI' ? 'Nhiệm vụ công việc' : 'tasks'}</span>
               </div>
-              <div className="text-[9px] text-blue-600 font-semibold leading-tight">
+              <p className="text-[9.5px] text-blue-600 font-semibold">
                 {lang === 'VI' ? '↑ Kỹ năng cao · ↓ Ý chí thấp' : '↑ High Skill · ↓ Low Will'}
-              </div>
+              </p>
             </div>
           </div>
-          <div className="text-center text-[9px] font-black text-slate-400 uppercase tracking-widest select-none mt-2">
-            ← Ý CHÍ (WILL) →
-          </div>
+          <p className="text-center text-[9px] font-black text-slate-400 uppercase tracking-widest mt-3">← Ý CHÍ (WILL) →</p>
         </div>
       </div>
 

@@ -15,7 +15,7 @@ function bold(text: string) {
   const parts = text.split(/(\*\*.*?\*\*)/g);
   return parts.map((p, i) =>
     p.startsWith('**') && p.endsWith('**')
-      ? <strong key={i} style={{ color: '#fbbf24', fontWeight: 800 }}>{p.slice(2, -2)}</strong>
+      ? <strong key={i} style={{ color: '#b45309', fontWeight: 800 }}>{p.slice(2, -2)}</strong>
       : p
   );
 }
@@ -252,14 +252,17 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
   const siteAccent = siteKey === 'MLN' ? '#2dd4bf' : siteKey === 'WNK' ? '#818cf8' : '#f59e0b';
 
   return (
-    <div className="rounded-2xl overflow-hidden shadow-xl" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%)', border: '1px solid rgba(255,255,255,0.07)' }}>
+    <div className="bg-white border-2 rounded-2xl overflow-hidden shadow-sm" style={{ borderColor: siteAccent + '60' }}>
+      {/* Top accent bar */}
+      <div style={{ height: '3px', background: `linear-gradient(90deg, ${siteAccent}, ${siteAccent}80, transparent)` }} />
       {/* Header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-6 py-4 hover:bg-white/5 transition-colors"
+        className="w-full flex items-center justify-between px-5 py-3.5 transition-colors"
+        style={{ background: `${siteAccent}08` }}
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl" style={{ background: `${siteAccent}20`, border: `1px solid ${siteAccent}35` }}>
+          <div className="p-2 rounded-xl" style={{ background: `${siteAccent}15`, border: `1px solid ${siteAccent}40` }}>
             <BarChart2 className="w-4 h-4" style={{ color: siteAccent }} />
           </div>
           <div className="text-left">
@@ -267,64 +270,64 @@ export default function InsightPanel({ featureKey, lang, selectedSite, selectedD
               <span className="text-[11px] font-black uppercase tracking-widest font-mono" style={{ color: siteAccent }}>
                 {lang === 'VI' ? 'PHÂN TÍCH & KHUYẾN NGHỊ' : 'ANALYSIS & RECOMMENDATIONS'}
               </span>
-              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full font-mono" style={{ background: `${siteAccent}18`, color: siteAccent, border: `1px solid ${siteAccent}35` }}>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full font-mono" style={{ background: `${siteAccent}15`, color: siteAccent, border: `1px solid ${siteAccent}40` }}>
                 {siteName} / {deptLabel}
               </span>
             </div>
-            <p className="text-[10px] mt-0.5 font-mono" style={{ color: '#475569' }}>
+            <p className="text-[10px] mt-0.5 font-mono text-slate-500">
               {lang === 'VI' ? 'Dựa trên dữ liệu thực tế — Cập nhật theo bộ phận được chọn' : 'Based on actual data — Updated per selected department'}
             </p>
           </div>
         </div>
-        <div style={{ color: '#475569' }}>
+        <div className="text-slate-400">
           {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
         </div>
       </button>
 
       {isOpen && (
-        <div className="px-6 pb-6 grid grid-cols-1 md:grid-cols-3 gap-4 animate-in fade-in duration-200">
+        <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-3 gap-3 animate-in fade-in duration-200 border-t border-slate-100">
 
           {/* NHẬN ĐỊNH - Teal */}
-          <div className="rounded-xl p-5 flex flex-col gap-3" style={{ background: 'rgba(20,184,166,0.07)', border: '1px solid rgba(20,184,166,0.22)' }}>
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg" style={{ background: 'rgba(20,184,166,0.14)' }}>
-                <TrendingUp className="w-3.5 h-3.5" style={{ color: '#2dd4bf' }} />
+          <div className="bg-teal-50 rounded-xl p-4 flex flex-col gap-2.5 border border-teal-200">
+            <div className="flex items-center gap-2 pb-2 border-b border-teal-200">
+              <div className="p-1.5 rounded-lg bg-teal-100 border border-teal-200">
+                <TrendingUp className="w-3.5 h-3.5 text-teal-600" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest font-mono" style={{ color: '#2dd4bf' }}>
+              <span className="text-[10px] font-black uppercase tracking-widest font-mono text-teal-700">
                 {lang === 'VI' ? 'NHẬN ĐỊNH TỪ DATA' : 'DATA INSIGHT'}
               </span>
             </div>
-            <p className="text-[12px] leading-relaxed font-medium" style={{ color: '#cbd5e1' }}>
+            <p className="text-[11.5px] leading-relaxed font-medium text-slate-700">
               {bold(insight)}
             </p>
           </div>
 
           {/* RỦI RO - Rose */}
-          <div className="rounded-xl p-5 flex flex-col gap-3" style={{ background: 'rgba(244,63,94,0.07)', border: '1px solid rgba(244,63,94,0.22)' }}>
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg" style={{ background: 'rgba(244,63,94,0.14)' }}>
-                <AlertTriangle className="w-3.5 h-3.5" style={{ color: '#fb7185' }} />
+          <div className="bg-rose-50 rounded-xl p-4 flex flex-col gap-2.5 border border-rose-200">
+            <div className="flex items-center gap-2 pb-2 border-b border-rose-200">
+              <div className="p-1.5 rounded-lg bg-rose-100 border border-rose-200">
+                <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest font-mono" style={{ color: '#fb7185' }}>
+              <span className="text-[10px] font-black uppercase tracking-widest font-mono text-rose-700">
                 {lang === 'VI' ? 'RỦI RO NẾU KHÔNG HÀNH ĐỘNG' : 'RISK IF NO ACTION'}
               </span>
             </div>
-            <p className="text-[12px] leading-relaxed font-medium" style={{ color: '#cbd5e1' }}>
+            <p className="text-[11.5px] leading-relaxed font-medium text-slate-700">
               {bold(risk)}
             </p>
           </div>
 
           {/* BƯỚC TIẾP THEO - Amber */}
-          <div className="rounded-xl p-5 flex flex-col gap-3" style={{ background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.22)' }}>
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg" style={{ background: 'rgba(245,158,11,0.14)' }}>
-                <Zap className="w-3.5 h-3.5" style={{ color: '#fbbf24' }} />
+          <div className="bg-amber-50 rounded-xl p-4 flex flex-col gap-2.5 border border-amber-200">
+            <div className="flex items-center gap-2 pb-2 border-b border-amber-200">
+              <div className="p-1.5 rounded-lg bg-amber-100 border border-amber-200">
+                <Zap className="w-3.5 h-3.5 text-amber-600" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest font-mono" style={{ color: '#fbbf24' }}>
+              <span className="text-[10px] font-black uppercase tracking-widest font-mono text-amber-700">
                 {lang === 'VI' ? 'BƯỚC TIẾP THEO ĐỀ XUẤT' : 'RECOMMENDED NEXT STEP'}
               </span>
             </div>
-            <p className="text-[12px] leading-relaxed font-medium" style={{ color: '#cbd5e1' }}>
+            <p className="text-[11.5px] leading-relaxed font-medium text-slate-700">
               {bold(nextStep)}
             </p>
           </div>

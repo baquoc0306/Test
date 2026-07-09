@@ -1258,8 +1258,8 @@ export default function App() {
             </div>
 
             {/* Split layout: Matrix 9-Box Left, Charts Right */}
-            <InsightPanel featureKey="9box" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <WhyHowPlaybook featureKey="9box" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="9box" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column: Interactive 9-Box Grid */}
@@ -1504,74 +1504,92 @@ export default function App() {
                 <DeptTalentAnalysisPanel talents={siteFilteredTalents} lang={lang} selectedDept={selectedDept} onDeptChange={setSelectedDept} isLdMode={isLdMode} />
               </div>
 
-              {/* Right Column: Mini Recharts charts for structure representation */}
-              <div id="onboarding-right-charts" className="flex flex-col gap-6">
-                {/* Chart 1: Ratio Doughnut */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex-1 flex flex-col">
-                  <h4 className="text-[13px] font-bold text-slate-700 uppercase tracking-wider font-['Courier_New',_Courier,_monospace] mb-3.5 flex items-center gap-1">
-                    {lang === 'VI' ? '🟢 Cơ cấu tỉ lệ nhóm tài năng' : '🟢 Talent Group Breakdown'}
+              {/* Right Column: Redesigned Summary Panel */}
+              <div id="onboarding-right-charts" className="flex flex-col gap-4">
+
+                {/* Tổng quan 3 nhóm — nổi bật */}
+                <div className="bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm">
+                  <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
+                    {lang === 'VI' ? 'TỔNG QUAN & PHÂN TÍCH NHÓM' : 'GROUP OVERVIEW & ANALYSIS'}
                   </h4>
-                  <div className="h-44 w-full relative flex-1 text-[10px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={pieChartData}
-                          innerRadius={45}
-                          outerRadius={65}
-                          paddingAngle={3}
-                          dataKey="value"
-                          label={({ name, value }) => `${value}`}
-                        >
-                          {pieChartData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
-                        <Legend wrapperStyle={{ fontSize: '9px', marginTop: '10px' }} layout="horizontal" verticalAlign="bottom" />
-                      </PieChart>
-                    </ResponsiveContainer>
+                  <div className="flex flex-col gap-3">
+                    {/* Growers */}
+                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 flex items-center gap-4">
+                      <div className="text-center shrink-0 w-14">
+                        <span className="block text-3xl font-black text-emerald-600 leading-none">{kpis9Box.growers}</span>
+                        <span className="block text-[8.5px] text-emerald-500 font-bold uppercase mt-0.5">{lang === 'VI' ? 'người' : 'people'}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[11px] font-black text-emerald-700 uppercase tracking-wide">Growers</span>
+                          <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
+                            {kpis9Box.total > 0 ? Math.round(kpis9Box.growers / kpis9Box.total * 100) : 0}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-emerald-100 rounded-full h-2">
+                          <div className="bg-emerald-500 h-2 rounded-full transition-all" style={{ width: `${kpis9Box.total > 0 ? Math.round(kpis9Box.growers / kpis9Box.total * 100) : 0}%` }} />
+                        </div>
+                        <p className="text-[9px] text-emerald-600 mt-1">{lang === 'VI' ? 'Tiềm năng cao — Ưu tiên phát triển' : 'High potential — Priority development'}</p>
+                      </div>
+                    </div>
+                    {/* Keepers */}
+                    <div className="bg-amber-50 border border-amber-200 rounded-xl p-3.5 flex items-center gap-4">
+                      <div className="text-center shrink-0 w-14">
+                        <span className="block text-3xl font-black text-amber-600 leading-none">{kpis9Box.keepers}</span>
+                        <span className="block text-[8.5px] text-amber-500 font-bold uppercase mt-0.5">{lang === 'VI' ? 'người' : 'people'}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[11px] font-black text-amber-700 uppercase tracking-wide">Keepers</span>
+                          <span className="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200">
+                            {kpis9Box.total > 0 ? Math.round(kpis9Box.keepers / kpis9Box.total * 100) : 0}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-amber-100 rounded-full h-2">
+                          <div className="bg-amber-500 h-2 rounded-full transition-all" style={{ width: `${kpis9Box.total > 0 ? Math.round(kpis9Box.keepers / kpis9Box.total * 100) : 0}%` }} />
+                        </div>
+                        <p className="text-[9px] text-amber-600 mt-1">{lang === 'VI' ? 'Vững hiệu suất — Trụ cột vận hành' : 'Solid performers — Operational backbone'}</p>
+                      </div>
+                    </div>
+                    {/* Movers */}
+                    <div className="bg-rose-50 border border-rose-200 rounded-xl p-3.5 flex items-center gap-4">
+                      <div className="text-center shrink-0 w-14">
+                        <span className="block text-3xl font-black text-rose-600 leading-none">{kpis9Box.movers}</span>
+                        <span className="block text-[8.5px] text-rose-500 font-bold uppercase mt-0.5">{lang === 'VI' ? 'người' : 'people'}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[11px] font-black text-rose-700 uppercase tracking-wide">Movers</span>
+                          <span className="text-[10px] font-bold text-rose-600 bg-rose-100 px-2 py-0.5 rounded-full border border-rose-200">
+                            {kpis9Box.total > 0 ? Math.round(kpis9Box.movers / kpis9Box.total * 100) : 0}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-rose-100 rounded-full h-2">
+                          <div className="bg-rose-500 h-2 rounded-full transition-all" style={{ width: `${kpis9Box.total > 0 ? Math.round(kpis9Box.movers / kpis9Box.total * 100) : 0}%` }} />
+                        </div>
+                        <p className="text-[9px] text-rose-600 mt-1">{lang === 'VI' ? 'Cần can thiệp — Ưu tiên bồi dưỡng' : 'Action required — Priority intervention'}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Chart 2: Density Bar */}
+                {/* Phân bổ theo phòng ban */}
                 <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex-1 flex flex-col">
-                  <h4 className="text-[13px] font-bold text-slate-700 uppercase tracking-wider font-['Courier_New',_Courier,_monospace] mb-3.5 flex items-center gap-1.5">
-                    <TrendingUp className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>{lang === 'VI' ? 'Mật độ chi tiết từng phân vị' : '9-Box Cell Specific Density'}</span>
+                  <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
+                    {lang === 'VI' ? 'CƠ CẤU NHÓM THEO BỘ PHẬN' : 'GROUP STRUCTURE BY DEPT'}
                   </h4>
-                  <div className="h-44 w-full flex-1 text-[9px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={densityChartData} margin={{ top: 15, right: 10, left: -25, bottom: 0 }}>
-                        <XAxis dataKey="name" stroke="#94a3b8" fontSize={8} tickLine={false} />
-                        <YAxis stroke="#94a3b8" fontSize={8} tickLine={false} />
-                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
-                        <Bar dataKey="value" radius={[3, 3, 0, 0]}>
-                          {densityChartData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                          <LabelList dataKey="value" position="top" style={{ fill: '#475569', fontSize: 9, fontWeight: 'bold' }} />
-                        </Bar>
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-
-                {/* Chart 3: Talent Group Distribution by Department */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex-1 flex flex-col">
-                  <h4 className="text-[13px] font-bold text-slate-700 uppercase tracking-wider font-['Courier_New',_Courier,_monospace] mb-3.5 flex items-center gap-1.5">
-                    <TrendingUp className="w-4 h-4 text-indigo-500 shrink-0" />
-                    <span>{lang === 'VI' ? 'Cơ cấu Nhóm Nhân tài theo Bộ phận' : 'Talent Group Structure by BU'}</span>
-                  </h4>
-                  <div className="h-44 w-full flex-1 text-[8.5px]">
-                    <ResponsiveContainer width="100%" height="100%">
+                  <div className="flex-1 text-[8.5px]">
+                    <ResponsiveContainer width="100%" height={180}>
                       <BarChart data={deptGroupChartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                         <XAxis dataKey="name" stroke="#94a3b8" fontSize={8} tickLine={false} />
                         <YAxis stroke="#94a3b8" fontSize={8} tickLine={false} allowDecimals={false} />
                         <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
                         <Legend iconSize={7} wrapperStyle={{ fontSize: '7.5px', bottom: -10 }} />
-                        <Bar name={lang === 'VI' ? "Nhóm phát triển" : "Growers"} dataKey="growers" stackId="a" fill="#10b981" />
-                        <Bar name={lang === 'VI' ? "Nhóm duy trì" : "Keepers"} dataKey="keepers" stackId="a" fill="#d97706" />
-                        <Bar name={lang === 'VI' ? "Nhóm cần bồi dưỡng" : "Movers"} dataKey="movers" stackId="a" fill="#dc2626" />
+                        <Bar name={lang === 'VI' ? "Growers" : "Growers"} dataKey="growers" stackId="a" fill="#10b981" radius={[0,0,0,0]} />
+                        <Bar name={lang === 'VI' ? "Keepers" : "Keepers"} dataKey="keepers" stackId="a" fill="#d97706" />
+                        <Bar name={lang === 'VI' ? "Movers" : "Movers"} dataKey="movers" stackId="a" fill="#dc2626" radius={[3,3,0,0]} />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -2085,8 +2103,8 @@ export default function App() {
         {/* ==================== TAB 2 Content: SUCCESSION PIPELINE (72 Positions) ==================== */}
         {activeTab === 'tab-pipeline' && (
           <div className="space-y-6">
-            <InsightPanel featureKey="pipeline" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <WhyHowPlaybook featureKey="pipeline" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="pipeline" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <PipelineWorkspace
               pipelineData={siteFilteredPipeline}
               selectedDept={selectedDept}
@@ -2101,8 +2119,8 @@ export default function App() {
         {/* ==================== TAB 3 Content: DEVELOPMENT TRAINING PLANS ==================== */}
         {activeTab === 'tab-devplan' && (
           <div className="space-y-6">
-            <InsightPanel featureKey="devplan" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <WhyHowPlaybook featureKey="devplan" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="devplan" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <DevelopmentPlanWorkspace
               selectedDept={selectedDept}
               onDeptChange={handleDepartmentChange}
@@ -2116,8 +2134,8 @@ export default function App() {
         {/* ==================== TAB 4 Content: INDIVIDUAL DEVELOPMENT PLANS (IDP) ==================== */}
         {activeTab === 'tab-indiv-idp' && (
           <div className="space-y-6">
-            <InsightPanel featureKey="idp" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <WhyHowPlaybook featureKey="idp" lang={lang} isLdMode={isLdMode} selectedSite={selectedSite} />
+            <InsightPanel featureKey="idp" lang={lang} selectedSite={selectedSite} selectedDept={selectedDept} />
             <IndividualIDPWorkspace
               selectedDept={selectedDept}
               onDeptChange={handleDepartmentChange}
