@@ -442,7 +442,14 @@ export default function App() {
 
   // 1. FILTERED TALENT DATA FOR THE DYNAMIC DASHBOARD
   const siteFilteredTalents = useMemo(() => {
-    return talents.filter(t => (t.site || 'MLN') === selectedSite);
+    const filtered = talents.filter(t => (t.site || 'MLN') === selectedSite);
+    const hrCount = filtered.filter(t => t.dept === 'Human Resources').length;
+    const cswnk2Count = filtered.filter(t => t.dept === 'Cut&Sew WNK2').length;
+    console.log(`[DEBUG] selectedSite=${selectedSite} total=${filtered.length} HR=${hrCount} CutSewWNK2=${cswnk2Count}`);
+    // Log all unique depts
+    const depts = [...new Set(filtered.map(t => t.dept))].sort();
+    console.log('[DEBUG] Depts in siteFilteredTalents:', depts);
+    return filtered;
   }, [talents, selectedSite]);
 
   const deptFilteredTalents = useMemo(() => {
