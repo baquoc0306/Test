@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Talent } from '../types';
-import { ShieldAlert, Users, TrendingUp, HelpCircle, CheckCircle2, ChevronDown, ChevronUp, AlertCircle, Info, RefreshCw, Briefcase, Award, BellRing } from 'lucide-react';
+import { ShieldAlert, Users, TrendingUp, HelpCircle, CheckCircle2, ChevronDown, ChevronUp, AlertCircle, Info, RefreshCw, Briefcase, Award, BellRing, X } from 'lucide-react';
 import Markdown from 'react-markdown';
 
 interface Props {
@@ -295,6 +295,7 @@ const getPersonalizedActions = (item: any, phase: 'FAST_GROWTH' | 'STABLE_SCALE'
 
 export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, selectedDept, onDeptChange, isLdMode = false }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'insights'>('overview');
+  const [selectedDeptDetail, setSelectedDeptDetail] = useState<any>(null);
   const [expandedDept, setExpandedDept] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [businessPhase, setBusinessPhase] = useState<'FAST_GROWTH' | 'STABLE_SCALE'>('STABLE_SCALE');
@@ -382,6 +383,11 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
         growerMembers: localGrowers.map(t => t.name),
         keeperMembers: localKeepers.map(t => t.name),
         moverMembers: localMovers.map(t => t.name),
+        members: [
+          ...localGrowers.map(t => ({ name: t.name, group: 'Growers', cell: t.cell })),
+          ...localKeepers.map(t => ({ name: t.name, group: 'Keepers', cell: t.cell })),
+          ...localMovers.map(t => ({ name: t.name, group: 'Movers', cell: t.cell })),
+        ],
         highRisk,
         growersPct,
         keepersPct,
@@ -530,29 +536,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
               </div>
             </div>
 
-            {/* Tabs Controllers */}
-            <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
-              <button
-                type="button"
-                id="onboarding-dept-tab-overview"
-                onClick={() => setActiveTab('overview')}
-                className={`text-[10px] px-2.5 py-1 rounded-md font-bold transition-all ${
-                  activeTab === 'overview' ? 'bg-white text-indigo-700 shadow-3xs' : 'text-slate-500 hover:text-slate-700'
-                }`}
-              >
-                📊 {lang === 'VI' ? 'Tổng Quan' : 'Overview'}
-              </button>
-              <button
-                type="button"
-                id="onboarding-dept-tab-insights"
-                onClick={() => setActiveTab('insights')}
-                className={`text-[10px] px-2.5 py-1 rounded-md font-bold transition-all ${
-                  activeTab === 'insights' ? 'bg-white text-indigo-700 shadow-3xs' : 'text-slate-500 hover:text-slate-700'
-                }`}
-              >
-                💡 {lang === 'VI' ? 'Phân Tích Chi Tiết' : 'Diagnostics'}
-              </button>
-            </div>
+
           </div>
         </div>
 
@@ -563,664 +547,139 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
               <span className="inline-flex items-center gap-1.5 bg-indigo-50/70 border border-indigo-100 px-2 py-0.5 rounded-md text-indigo-800 font-bold font-sans">
                 🔍 {lang === 'VI' ? `Đang phân tích bộ phận: ${selectedDept}` : `Analyzing Department: ${selectedDept}`}
               </span>
-            ) : (
-              <span>
-                {lang === 'VI' 
-                  ? 'Công cụ chẩn đoán nhân sự: Đánh giá tỉ lệ Keeper & Grower từ ma trận 9-Box để tối ưu hoá văn hoá & thăng tiến.'
-                  : 'HR diagnostics: Evaluating Keeper & Grower ratios from 9-Box mapping to balance stability vs advancement.'}
-              </span>
-            )}
+            ) : null}
           </p>
         </div>
-      </div>
 
-      <div className="flex-1 pr-1">
-        {selectedDept && selectedDept !== 'ALL' && (
-          <div className="mb-4 bg-indigo-50/40 border border-indigo-200/60 rounded-xl p-4.5 text-left shadow-2xs hover:border-indigo-300 transition-all duration-200">
-            <div className="flex items-start justify-between gap-3 border-b border-indigo-200 pb-2 mb-3">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-indigo-100/85 rounded-lg text-indigo-700 font-bold text-sm">
-                  🧠
-                </div>
-                <div>
-                  <h4 className="text-xs font-black uppercase tracking-wider text-indigo-900 font-display">
-                    {lang === 'VI' ? 'Chẩn Đoán Chiến Lược Doanh Nghiệp (Bộ Phận)' : 'Strategic Business BU Talent Diagnostic (AI)'}
-                  </h4>
-                  <div className="flex items-center gap-1.5">
-                    <p className="text-[9.5px] text-indigo-600 font-black font-mono">
-                      L&D AI
-                    </p>
-                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/30 rounded-md text-[8.5px] font-extrabold text-amber-700 font-sans uppercase tracking-wider select-none">
-                      ⚠️ {lang === 'VI' ? 'Đề xuất hỗ trợ bởi AI' : 'AI-Assisted Suggestion'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {isAiLoading && (
-                <div className="flex items-center gap-1 bg-white border border-indigo-100 px-2.5 py-1 rounded-full text-[9.5px] text-indigo-700 font-extrabold shadow-3xs">
-                  <RefreshCw className="w-3 h-3 animate-spin text-indigo-600" />
-                  <span>{lang === 'VI' ? 'Đang phân tích...' : 'Analyzing...'}</span>
-                </div>
-              )}
+        {/* Overview Table */}
+        <div className="mt-3">
+          {filteredAnalysisData.length === 0 ? (
+            <div className="py-8 text-center text-slate-400 font-bold text-sm">
+              {lang === 'VI' ? 'Chưa có dữ liệu bộ phận.' : 'No department data available.'}
             </div>
-
-            {isAiLoading ? (
-              <div className="space-y-2.5 animate-pulse py-2">
-                <div className="h-3 w-3/4 bg-indigo-100/70 rounded-full" />
-                <div className="h-3 w-5/6 bg-indigo-100/70 rounded-full" />
-                <div className="h-3 w-2/3 bg-indigo-100/70 rounded-full" />
-                <div className="h-3 w-1/2 bg-indigo-100/70 rounded-full" />
-              </div>
-            ) : aiInsight ? (
-              <div className="space-y-4">
-                <div className="prose prose-slate max-w-none text-[11px] text-slate-700 leading-relaxed font-sans space-y-3.5 markdown-body [&_h4]:text-xs [&_h4]:font-black [&_h4]:text-indigo-950 [&_h4]:mt-4 [&_h4]:first:mt-0 [&_h4]:mb-1.5 [&_ul]:list-disc [&_ul]:pl-4 [&_ul]:space-y-1 [&_li]:font-semibold [&_p]:font-medium">
-                  <Markdown>{aiInsight}</Markdown>
-                </div>
-                
-                {/* AI Advice warning disclaimer */}
-                <div id="ai-disclaimer-diag" className="mt-3.5 flex items-start gap-2 p-2.5 bg-rose-50/70 border border-rose-200/60 rounded-xl text-[10px] sm:text-[11px] leading-relaxed text-rose-800 shadow-3xs select-none">
-                  <BellRing className="w-3.5 h-3.5 text-rose-500 shrink-0 mt-0.5 animate-bounce" />
-                  <div>
-                    <span className="font-extrabold uppercase tracking-wider text-rose-900 mr-1.5 inline-block text-[9.5px] sm:text-[10.5px]">
-                      {lang === 'VI' ? '⚠️ ĐỀ XUẤT HỖ TRỢ TỪ AI:' : '⚠️ AI-DRIVEN ASSISTANT SUGGESTION:'}
-                    </span>
-                    {lang === 'VI'
-                      ? 'Ý kiến chẩn đoán này là đề xuất hỗ trợ từ AI phục vụ công tác tham khảo, không phải là quyết định chính thức. Các quyết định cuối cùng thuộc về các Bộ phận Chức năng/ Chuyên môn hoặc Trưởng bộ phận.'
-                      : 'This advisory diagnostic is an AI suggestion for planning reference. Final decisions belong to the Functional/Specialized Departments or Department Heads.'}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="py-3 text-center flex flex-col items-center justify-center gap-2.5">
-                <p className="text-[10.5px] text-slate-500 font-semibold max-w-[420px] mx-auto">
-                  {lang === 'VI'
-                    ? 'Bấm nút bên dưới để Trợ lý AI phân tích và đưa ra đánh giá, lưu ý thực tế kèm gợi ý hành động bằng ngôn ngữ đời thường cho bộ phận này.'
-                    : 'Click the button below to have the AI Advisor analyze the team and draft easy-to-understand guidance for this department.'}
-                </p>
-                <button
-                  type="button"
-                  onClick={handleTriggerAiAnalysis}
-                  className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[10.5px] px-4 py-1.5 rounded-lg shadow-sm transition-all active:scale-95 cursor-pointer border-none"
-                >
-                  ✨ {lang === 'VI' ? 'Kích hoạt AI Phân tích' : 'Activate AI Analysis'}
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
-        {activeTab === 'overview' ? (
-          <div>
-            {/* Redesigned: Clean table layout */}
-            {filteredAnalysisData.length === 0 ? (
-              <div className="py-8 text-center text-slate-400 font-bold text-sm">
-                {lang === 'VI' ? 'Chưa có dữ liệu bộ phận.' : 'No department data available.'}
-              </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="border-b-2 border-slate-200">
-                      <th className="text-left py-2 px-3 text-[10px] font-black text-slate-500 uppercase tracking-wider w-[30%]">{lang === 'VI' ? 'Bộ phận' : 'Department'}</th>
-                      <th className="text-center py-2 px-2 text-[10px] font-black text-slate-400 uppercase tracking-wider w-[6%]">NS</th>
-                      <th className="text-left py-2 px-3 text-[10px] font-black text-emerald-600 uppercase tracking-wider w-[18%]">Growers</th>
-                      <th className="text-left py-2 px-3 text-[10px] font-black text-amber-600 uppercase tracking-wider w-[18%]">Keepers</th>
-                      <th className="text-left py-2 px-3 text-[10px] font-black text-rose-500 uppercase tracking-wider w-[18%]">Movers</th>
-                      <th className="text-right py-2 px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider w-[10%]">{lang === 'VI' ? 'Hồ sơ' : 'Profile'}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredAnalysisData.map((item, rowIdx) => (
-                      <tr key={item.dept} className={`border-b border-slate-100 hover:bg-slate-50/60 transition-colors cursor-pointer ${rowIdx % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`}>
-                        {/* Bộ phận */}
-                        <td className="py-2.5 px-3">
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-slate-200">
+                    <th className="text-left py-2 px-3 text-[10px] font-black text-slate-500 uppercase tracking-wider w-[28%]">{lang === 'VI' ? 'Bộ phận' : 'Department'}</th>
+                    <th className="text-center py-2 px-2 text-[10px] font-black text-slate-400 uppercase tracking-wider w-[8%]">{lang === 'VI' ? 'Nhân sự' : 'Headcount'}</th>
+                    <th className="text-left py-2 px-3 text-[10px] font-black text-emerald-600 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Phát triển' : 'Growers'}</th>
+                    <th className="text-left py-2 px-3 text-[10px] font-black text-amber-600 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Duy trì' : 'Keepers'}</th>
+                    <th className="text-left py-2 px-3 text-[10px] font-black text-rose-500 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Cần bồi dưỡng' : 'Movers'}</th>
+                    <th className="text-right py-2 px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider w-[10%]">{lang === 'VI' ? 'Hồ sơ' : 'Profile'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredAnalysisData.map((item, rowIdx) => (
+                    <tr
+                      key={item.dept}
+                      onClick={() => setSelectedDeptDetail(item)}
+                      className={`border-b border-slate-100 hover:bg-indigo-50/40 hover:border-indigo-200 transition-colors cursor-pointer ${rowIdx % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`}
+                      title={lang === 'VI' ? 'Bấm để xem phân tích chi tiết' : 'Click for detailed analysis'}
+                    >
+                      <td className="py-2.5 px-3">
+                        <div className="flex items-center gap-1.5">
                           <span className="text-[12px] font-bold text-slate-900 leading-tight">{item.dept}</span>
-                        </td>
-                        {/* Nhân sự */}
-                        <td className="py-2.5 px-2 text-center">
-                          <span className="text-[12px] font-black text-slate-600">{item.total}</span>
-                        </td>
-                        {/* Growers */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[11px] font-black text-emerald-600 w-8 shrink-0">{item.growersPct}%</span>
-                            <div className="flex-1 bg-emerald-100 rounded-full h-2">
-                              <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${item.growersPct}%` }} />
-                            </div>
-                            <span className="text-[9px] text-slate-400 w-4 text-right shrink-0">{item.growers}</span>
-                          </div>
-                        </td>
-                        {/* Keepers */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[11px] font-black text-amber-600 w-8 shrink-0">{item.keepersPct}%</span>
-                            <div className="flex-1 bg-amber-100 rounded-full h-2">
-                              <div className="bg-amber-500 h-2 rounded-full" style={{ width: `${item.keepersPct}%` }} />
-                            </div>
-                            <span className="text-[9px] text-slate-400 w-4 text-right shrink-0">{item.keepers}</span>
-                          </div>
-                        </td>
-                        {/* Movers */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[11px] font-black text-rose-500 w-8 shrink-0">{item.moversPct}%</span>
-                            <div className="flex-1 bg-rose-100 rounded-full h-2">
-                              <div className="bg-rose-500 h-2 rounded-full" style={{ width: `${item.moversPct}%` }} />
-                            </div>
-                            <span className="text-[9px] text-slate-400 w-4 text-right shrink-0">{item.movers}</span>
-                          </div>
-                        </td>
-                        {/* Profile badge */}
-                        <td className="py-2.5 px-3 text-right">
-                          <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); setShowExplanation(true); }}
-                            className={`text-[9px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap cursor-pointer ${item.profileBg}`}
-                          >
-                            {lang === 'VI' ? item.profileVi : item.profileEn}
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            {/* EXPANDABLE LOGIC CRITERIA & EXPLANATION LEGEND */}
-            <div id="explanation-legend-card" className="bg-slate-50 rounded-2xl border border-slate-200/90 p-4.5 text-xs text-left transition-all duration-500">
-              <button 
-                type="button"
-                onClick={() => setShowExplanation(!showExplanation)}
-                className="w-full flex items-center justify-between text-[11.5px] font-black text-indigo-950 cursor-pointer hover:text-indigo-800 select-none pb-0.5"
-              >
-                <span className="flex items-center gap-2">
-                  <Info className="w-4.5 h-4.5 text-indigo-600 shrink-0" />
-                  <span>{lang === 'VI' ? 'HỌC THUẬT: ĐỊNH NGHĨA KHOA HỌC & HƯỚNG DẪN HÀNH ĐỘNG CHI TIẾT' : 'ACADEMIC THEORY: SCIENTIFIC TERMS & STRATEGIC ACTION GUIDE'}</span>
-                </span>
-                {showExplanation ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </button>
-              
-              {showExplanation && (
-                <div className="mt-4 space-y-6">
-                  {/* Part 0: Academic Origin Citation */}
-                  <div className="bg-indigo-950 text-indigo-100 rounded-2xl p-5 border border-indigo-900 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 border-b border-indigo-900 pb-2">
-                      <h5 className="text-[11px] font-black uppercase tracking-widest text-indigo-300 flex items-center gap-2">
-                        🎓 {lang === 'VI' ? 'CƠ SỞ KHOA HỌC & LÝ THUYẾT QUẢN TRỊ' : 'ACADEMIC FOUNDATION & MANAGEMENT THEORY'}
-                      </h5>
-                      <span className="text-[8.5px] bg-indigo-500/20 text-indigo-300 px-2.5 py-0.5 rounded-full font-mono font-black uppercase tracking-wider">
-                        {lang === 'VI' ? 'Chuẩn Quốc Tế' : 'Global Standards'}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                      <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-[10.5px] leading-relaxed relative hover:bg-white/10 transition-colors">
-                        <span className="absolute -top-1.5 -right-1.5 px-2 py-0.5 text-[8.5px] font-black bg-indigo-500 text-slate-950 rounded-full font-mono uppercase tracking-widest scale-90">1970s</span>
-                        <span className="block font-bold text-indigo-300 mb-1">🏛️ {lang === 'VI' ? 'Lý thuyết Gốc' : 'Historical Root'}</span>
-                        <p className="text-indigo-200/90 font-medium">
-                          {lang === 'VI' ? (
-                            <>Kế thừa trực tiếp từ <strong>Ma trận GE-McKinsey 9-Box</strong> cổ điển do McKinsey & Company phát triển vào những năm 1970.</>
-                          ) : (
-                            <>Directly inherited from the classic <strong>GE-McKinsey 9-Box Grid</strong>, pioneered by McKinsey & Company and General Electric.</>
-                          )}
-                        </p>
-                      </div>
-
-                      <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-[10.5px] leading-relaxed relative hover:bg-white/10 transition-colors">
-                        <span className="absolute -top-1.5 -right-1.5 px-2 py-0.5 text-[8.5px] font-black bg-teal-500 text-slate-950 rounded-full font-mono uppercase tracking-widest scale-90">Lean</span>
-                        <span className="block font-bold text-indigo-300 mb-1">📐 {lang === 'VI' ? 'Cải tiến Tinh gọn' : 'Lean Optimization'}</span>
-                        <p className="text-indigo-200/90 font-medium">
-                          {lang === 'VI' ? (
-                            <>Gộp 9 ô phức tạp thành <strong>3 phân khúc cốt lõi</strong> để tránh gây rối mắt và lãng phí nguồn lực trong thực tế sản xuất.</>
-                          ) : (
-                            <>Consolidates 9 complex coordinates into <strong>3 core strategic cohorts</strong> to avoid visual overload on the shopfloor.</>
-                          )}
-                        </p>
-                      </div>
-
-                      <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-[10.5px] leading-relaxed relative hover:bg-white/10 transition-colors">
-                        <span className="absolute -top-1.5 -right-1.5 px-2 py-0.5 text-[8.5px] font-black bg-amber-500 text-slate-950 rounded-full font-mono uppercase tracking-widest scale-90">Impact</span>
-                        <span className="block font-bold text-indigo-300 mb-1">🎯 {lang === 'VI' ? 'Tính Thực Tiễn' : 'Direct Impact'}</span>
-                        <p className="text-indigo-200/90 font-medium">
-                          {lang === 'VI' ? (
-                            <>Được khuyên dùng bởi <strong>CIPD, Korn Ferry, SHL</strong> nhằm giúp HOD và L&D đưa ra quyết định hành động ngay lập tức.</>
-                          ) : (
-                            <>Validated by <strong>CIPD, Korn Ferry, and SHL</strong> to help supervisors and L&D launch instant targeted interventions.</>
-                          )}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Part 1: 3 Talent Cohorts */}
-                  <div>
-                    <h6 className="text-[10px] uppercase tracking-widest font-black text-slate-400 mb-2.5 border-b border-slate-200 pb-1">
-                      {lang === 'VI' ? '1. ĐỊNH NGHĨA 3 PHÂN KHÚC NHÂN SỰ CHIẾN LƯỢC' : '1. STRATEGIC DEFINITIONS OF THE 3 COHORTS'}
-                    </h6>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                      {/* Growers */}
-                      <div className="bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/80 text-[11px] space-y-1.5">
-                        <h5 className="font-extrabold text-emerald-950 flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
-                          <span>{lang === 'VI' ? 'Nhóm phát triển (Growers)' : 'Growers (Talent Pipeline)'}</span>
-                        </h5>
-                        <p className="text-slate-650 leading-relaxed">
-                          {lang === 'VI'
-                            ? 'Thuộc các ô (1, 2, 4) trên 9-Box có tiềm năng phát triển và học hỏi rất nhanh. Đây là nguồn nhân tài kế thừa trực tiếp để dẫn dắt các dự án cải tiến và sẵn sàng bứt phá lên các cấp quản lý.'
-                            : 'Mapped to cells (1, 2, 4) in the 9-Box. Characterized by high learning agility and drive. They represent the immediate succession pipeline ready to steer complex future projects.'}
-                        </p>
-                        <div className="text-[10px] font-mono text-emerald-700 bg-white/80 px-2 py-0.5 rounded border border-emerald-100 font-bold inline-block">
-                          {lang === 'VI' ? 'Mục tiêu: Tăng tốc & Thử thách' : 'Focus: Accelerate & Challenge'}
+                          <span className="text-[8px] text-indigo-400 font-bold opacity-0 group-hover:opacity-100">→</span>
                         </div>
-                      </div>
-
-                      {/* Keepers */}
-                      <div className="bg-amber-50/60 p-3 rounded-xl border border-amber-200/80 text-[11px] space-y-1.5">
-                        <h5 className="font-extrabold text-amber-950 flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
-                          <span>{lang === 'VI' ? 'Nhóm duy trì (Keepers)' : 'Keepers (Core Backbone)'}</span>
-                        </h5>
-                        <p className="text-slate-655 leading-relaxed">
-                          {lang === 'VI'
-                            ? 'Thuộc các ô (3, 5, 6) làm việc với hiệu suất rất vững vàng, có chuyên môn nghiệp vụ sâu sắc. Họ là "xương sống" bảo đảm các mảng vận hành của nhà máy luôn ổn định và đạt chỉ tiêu.'
-                            : 'Mapped to cells (3, 5, 6). Highly reliable performers with deep institutional knowledge. They are the backbone of daily operations, ensuring consistent factory output and stable processes.'}
-                        </p>
-                        <div className="text-[10px] font-mono text-amber-700 bg-white/80 px-2 py-0.5 rounded border border-amber-100 font-bold inline-block">
-                          {lang === 'VI' ? 'Mục tiêu: Ghi nhận & Giữ chân' : 'Focus: Recognize & Retain'}
-                        </div>
-                      </div>
-
-                      {/* Movers */}
-                      <div className="bg-rose-50/60 p-3 rounded-xl border border-rose-200/80 text-[11px] space-y-1.5">
-                        <h5 className="font-extrabold text-rose-950 flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0" />
-                          <span>{lang === 'VI' ? 'Nhóm cần bồi dưỡng (Movers)' : 'Movers (Support Cohort)'}</span>
-                        </h5>
-                        <p className="text-slate-650 leading-relaxed">
-                          {lang === 'VI'
-                            ? 'Thuộc các ô (7, 8, 9) gồm nhân sự mới học việc, người vừa nhận việc chưa quen tay, hoặc đang hụt hiệu suất. Cần có sự đồng hành rèn rũa nghiêm túc từ cấp trên và buddy.'
-                            : 'Mapped to cells (7, 8, 9). Represents new joiners, recently promoted individuals still in training, or underperformers. They require targeted OJT and active mentorship to bridge gaps.'}
-                        </p>
-                        <div className="text-[10px] font-mono text-rose-700 bg-white/80 px-2 py-0.5 rounded border border-rose-100 font-bold inline-block">
-                          {lang === 'VI' ? 'Mục tiêu: Kèm cặp & Đào tạo lại' : 'Focus: Mentor & Re-skill'}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Part 2: 5 Health Statuses with actionable plans */}
-                  <div>
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5 border-b border-slate-200 pb-1.5">
-                      <h6 className="text-[10px] uppercase tracking-widest font-black text-slate-400">
-                        {lang === 'VI' ? '2. CHI TIẾT Ý NGHĨA BIỂU ĐỒ & KHUYẾN NGHỊ HÀNH ĐỘNG HOD / HRBP' : '2. DETAILED STATUS INTERPRETATION & HOD / HRBP ACTION GUIDE'}
-                      </h6>
-                      <div className="text-[9px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md font-semibold font-sans">
-                        {isLdMode ? (
-                          <span>✨ {lang === 'VI' ? 'Chế độ L&D đang Bật: Hiển thị Đề xuất L&D' : 'L&D Mode Active: Showing L&D Action Plans'}</span>
-                        ) : (
-                          <span>💡 {lang === 'VI' ? 'Bật chế độ L&D trên thanh công cụ để xem thêm đề xuất cho L&D' : 'Toggle L&D Specialist mode on top header to show L&D actions'}</span>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      {/* Balanced */}
-                      <div className="bg-white p-3 rounded-xl border-l-4 border-l-indigo-500 border-slate-200/80 shadow-2xs">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-slate-100 mb-2">
-                          <span className="font-extrabold text-indigo-950 text-[11.5px] flex items-center gap-1">
-                            <span>🟢 {lang === 'VI' ? 'Cơ cấu Cân đối - Đủ Kế thừa' : 'Balanced - Ready Pipeline'}</span>
-                            <span className="text-[9.5px] text-slate-400 font-mono font-bold">(Keepers ≥ 40%, Growers ≥ 20%, Movers ≤ 20%)</span>
-                          </span>
-                          <span className="text-[9px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-bold uppercase tracking-wider">{lang === 'VI' ? 'Tối Ưu' : 'Optimal'}</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed">
-                          <div>
-                            <span className="font-bold text-slate-700 block">{lang === 'VI' ? '🔍 Ý nghĩa chỉ số:' : '🔍 Meaning:'}</span>
-                            <p className="text-slate-500 mt-0.5">
-                              {lang === 'VI' ? 'Đội ngũ có độ ổn định cực cao nhờ lực lượng nòng cốt (Keepers) vững vàng, đồng thời có đủ hạt giống kế thừa (Growers) để sẵn sàng thay thế khi có thay đổi nhân sự chủ chốt.' : 'The team boasts extreme stability due to solid core experts (Keepers), backed by a healthy pool of high-potential leaders (Growers) ready for seamless transition.'}
-                            </p>
+                      </td>
+                      <td className="py-2.5 px-2 text-center">
+                        <span className="text-[12px] font-black text-slate-600">{item.total}</span>
+                      </td>
+                      <td className="py-2.5 px-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-black text-emerald-600 w-8 shrink-0">{item.growersPct}%</span>
+                          <div className="flex-1 bg-emerald-100 rounded-full h-2">
+                            <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${item.growersPct}%` }} />
                           </div>
-                          <div>
-                            <span className="font-black text-indigo-950 block">{lang === 'VI' ? '🚀 Việc cần làm ngay (Action Plan):' : '🚀 Immediate Next Steps:'}</span>
-                            <ul className="list-disc list-inside text-slate-650 mt-0.5 space-y-1">
-                              {lang === 'VI' ? (
-                                <>
-                                  <li>🌱 <strong>Đề xuất cân nhắc:</strong> Tạo điều kiện cho nhóm Growers tham gia chương trình Thử thách tạm quyền (Shadowing) các vị trí quản lý để tích lũy kinh nghiệm thực tế.</li>
-                                  {isLdMode && (
-                                    <li className="text-indigo-950 font-medium">📚 <strong>Lập kế hoạch L&D:</strong> Triển khai các hoạt động ghi nhận đóng góp và vinh danh lực lượng Keepers cốt cán, tránh bỏ quên họ do quá tập trung vào nhóm Growers tiềm năng.</li>
-                                  )}
-                                </>
-                              ) : (
-                                <>
-                                  <li>🌱 <strong>Suggested Action:</strong> Consider involving Growers in executive shadowing or minor operational leadership roles to build practical headroom.</li>
-                                  {isLdMode && (
-                                    <li className="text-indigo-950 font-medium">📚 <strong>L&D Engagement:</strong> Design recognition schemes specifically for core Keepers to secure long-term operational loyalty.</li>
-                                  )}
-                                </>
-                              )}
-                            </ul>
-                          </div>
+                          <span className="text-[9px] text-slate-400 w-4 text-right shrink-0">{item.growers}</span>
                         </div>
-                      </div>
-
-                      {/* Growth Nucleus */}
-                      <div className="bg-white p-3 rounded-xl border-l-4 border-l-emerald-500 border-slate-200/80 shadow-2xs">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-slate-100 mb-2">
-                          <span className="font-extrabold text-emerald-950 text-[11.5px] flex items-center gap-1">
-                            <span>⚡ {lang === 'VI' ? 'Nhiều Tiềm năng (Growers)' : 'High Potential (Growers)'}</span>
-                            <span className="text-[9.5px] text-slate-400 font-mono font-bold">(Growers ≥ 35%)</span>
-                          </span>
-                          <span className="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold uppercase tracking-wider">{lang === 'VI' ? 'Cơ Hội & Rủi Ro Rời Bỏ Cao' : 'High Opportunity & Retention Risk'}</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed">
-                          <div>
-                            <span className="font-bold text-slate-700 block">{lang === 'VI' ? '🔍 Ý nghĩa chỉ số:' : '🔍 Meaning:'}</span>
-                            <p className="text-slate-500 mt-0.5">
-                              {lang === 'VI' ? 'Bộ phận có năng lực học hỏi, đổi mới sáng tạo xuất sắc. Tuy nhiên, nếu không có đủ không gian để họ thăng tiến hoặc cọ xát thực tế, nhóm này sẽ rất nhanh chán và rời bỏ tổ chức.' : 'Highly innovative and agile team profile. However, if there are insufficient promotion avenues or lack of dynamic work, this talent group will quickly disengage and look for external offers.'}
-                            </p>
+                      </td>
+                      <td className="py-2.5 px-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-black text-amber-600 w-8 shrink-0">{item.keepersPct}%</span>
+                          <div className="flex-1 bg-amber-100 rounded-full h-2">
+                            <div className="bg-amber-500 h-2 rounded-full" style={{ width: `${item.keepersPct}%` }} />
                           </div>
-                          <div>
-                            <span className="font-black text-emerald-950 block">{lang === 'VI' ? '🚀 Việc cần làm ngay (Action Plan):' : '🚀 Immediate Next Steps:'}</span>
-                            <ul className="list-disc list-inside text-slate-650 mt-0.5 space-y-1">
-                              {lang === 'VI' ? (
-                                <>
-                                  <li>🌱 <strong>Đề xuất cân nhắc:</strong> Ưu tiên giao các dự án cải tiến thực tiễn (Kaizen/Six Sigma) hoặc áp dụng luân chuyển công việc (Job Rotation) linh hoạt để thử sức nhân sự.</li>
-                                  {isLdMode && (
-                                    <li className="text-emerald-950 font-medium">📚 <strong>Lập kế hoạch L&D:</strong> Chủ động làm việc với HRBP để thiết lập cơ chế lộ trình thăng tiến nhanh (Fast-track) và rà soát các chính sách giữ chân tài năng xuất sắc.</li>
-                                  )}
-                                </>
-                              ) : (
-                                <>
-                                  <li>🌱 <strong>Suggested Action:</strong> Consider assigning ambitious Kaizen/Six Sigma improvement projects or initiating structured job rotations to expand capabilities.</li>
-                                  {isLdMode && (
-                                    <li className="text-emerald-950 font-medium">📚 <strong>L&D Engagement:</strong> Partner with HRBPs to co-design fast-track progression programs and evaluate retention packages for critical growth talent.</li>
-                                  )}
-                                </>
-                              )}
-                            </ul>
-                          </div>
+                          <span className="text-[9px] text-slate-400 w-4 text-right shrink-0">{item.keepers}</span>
                         </div>
-                      </div>
-
-                      {/* Core Backbone */}
-                      <div className="bg-white p-3 rounded-xl border-l-4 border-l-amber-500 border-slate-200/80 shadow-2xs">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-slate-100 mb-2">
-                          <span className="font-extrabold text-amber-950 text-[11.5px] flex items-center gap-1">
-                            <span>🧱 {lang === 'VI' ? 'Nòng cốt Vững chắc (Keepers)' : 'Solid Backbone (Keepers)'}</span>
-                            <span className="text-[9.5px] text-slate-400 font-mono font-bold">(Keepers ≥ 65%)</span>
-                          </span>
-                          <span className="text-[9px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold uppercase tracking-wider">{lang === 'VI' ? 'Bền Bỉ & Nguy Cơ Trì Trệ' : 'Highly Stable & Complacency Risk'}</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed">
-                          <div>
-                            <span className="font-bold text-slate-700 block">{lang === 'VI' ? '🔍 Ý nghĩa chỉ số:' : '🔍 Meaning:'}</span>
-                            <p className="text-slate-500 mt-0.5">
-                              {lang === 'VI' ? 'Đội ngũ cực kỳ lành nghề, vận hành trơn tru hàng ngày. Tuy vậy, điểm yếu là thiếu tính đột phá, ít người có thể đứng ra kế thừa các vị trí quản lý cốt cán nếu có biến động đột ngột.' : 'Superior operational execution and day-to-day throughput. The main risk is a lack of leadership successors and reduced agility toward strategic changes.'}
-                            </p>
+                      </td>
+                      <td className="py-2.5 px-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-black text-rose-500 w-8 shrink-0">{item.moversPct}%</span>
+                          <div className="flex-1 bg-rose-100 rounded-full h-2">
+                            <div className="bg-rose-500 h-2 rounded-full" style={{ width: `${item.moversPct}%` }} />
                           </div>
-                          <div>
-                            <span className="font-black text-amber-950 block">{lang === 'VI' ? '🚀 Việc cần làm ngay (Action Plan):' : '🚀 Immediate Next Steps:'}</span>
-                            <ul className="list-disc list-inside text-slate-650 mt-0.5 space-y-1">
-                              {lang === 'VI' ? (
-                                <>
-                                  <li>🌱 <strong>Đề xuất cân nhắc:</strong> Khích lệ và tạo cơ chế cho các Keepers đứng lớp chia sẻ kinh nghiệm nội bộ (Knowledge Sharing) hoặc làm Mentor kèm cặp nhân sự mới.</li>
-                                  {isLdMode && (
-                                    <li className="text-amber-950 font-medium">📚 <strong>Lập kế hoạch L&D:</strong> Thiết kế và đề xuất các chương trình Đào tạo Chuyên sâu (Subject Matter Expert) để nâng cao tầm chuyên môn kỹ thuật xuất sắc bậc cao cho tổ chức.</li>
-                                  )}
-                                </>
-                              ) : (
-                                <>
-                                  <li>🌱 <strong>Suggested Action:</strong> Encourage Keepers to act as internal trainers, subject mentors, or key buddies to systematically transfer plant skills.</li>
-                                  {isLdMode && (
-                                    <li className="text-amber-950 font-medium">📚 <strong>L&D Engagement:</strong> Develop specialist training pathways and professional certifications to build a solid network of Subject Matter Experts (SMEs).</li>
-                                  )}
-                                </>
-                              )}
-                            </ul>
-                          </div>
+                          <span className="text-[9px] text-slate-400 w-4 text-right shrink-0">{item.movers}</span>
                         </div>
-                      </div>
-
-                      {/* Performance Deficit */}
-                      <div className="bg-white p-3 rounded-xl border-l-4 border-l-rose-500 border-slate-200/80 shadow-2xs">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-slate-100 mb-2">
-                          <span className="font-extrabold text-rose-950 text-[11.5px] flex items-center gap-1">
-                            <span>⚠️ {lang === 'VI' ? 'Cần Hỗ trợ Đào tạo (Movers)' : 'Needs Training (Movers)'}</span>
-                            <span className="text-[9.5px] text-slate-400 font-mono font-bold">(Movers ≥ 20%)</span>
-                          </span>
-                          <span className="text-[9px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-bold uppercase tracking-wider">{lang === 'VI' ? 'Báo Động Hiệu Suất' : 'Performance Alert'}</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed">
-                          <div>
-                            <span className="font-bold text-slate-700 block">{lang === 'VI' ? '🔍 Ý nghĩa chỉ số:' : '🔍 Meaning:'}</span>
-                            <p className="text-slate-500 mt-0.5">
-                              {lang === 'VI' ? 'Mật độ nhân sự học việc hoặc tay nghề yếu vượt ngưỡng an toàn. Hiệu suất đầu ra của cả bộ phận đang gánh rủi ro lớn, dễ xảy ra lỗi quy trình, phế phẩm hoặc đình trệ công việc.' : 'Apprentice density has exceeded safe thresholds. The department output is under severe strain, threatening quality metrics and overall throughput goals.'}
-                            </p>
-                          </div>
-                          <div>
-                            <span className="font-black text-rose-950 block">{lang === 'VI' ? '🚀 Việc cần làm ngay (Action Plan):' : '🚀 Immediate Next Steps:'}</span>
-                            <ul className="list-disc list-inside text-slate-650 mt-0.5 space-y-1">
-                              {lang === 'VI' ? (
-                                <>
-                                  <li>🌱 <strong>Đề xuất cân nhắc:</strong> Phối hợp sắp xếp lộ trình Kèm cặp 1-kèm-1 (Buddy System) với nhân sự lành nghề hỗ trợ trong vòng 60 ngày.</li>
-                                  {isLdMode && (
-                                    <li className="text-rose-950 font-medium">📚 <strong>Lập kế hoạch L&D:</strong> Hỗ trợ thiết kế bộ tài liệu huấn luyện thực hành (On-the-Job Training) và đồng hành kiểm tra sát sao định kỳ tay nghề của nhân sự.</li>
-                                  )}
-                                </>
-                              ) : (
-                                <>
-                                  <li>🌱 <strong>Suggested Action:</strong> Recommend pairing learners/new staff with a senior buddy in a structured 1-on-1 development plan for 60 days.</li>
-                                  {isLdMode && (
-                                    <li className="text-rose-950 font-medium">📚 <strong>L&D Engagement:</strong> Launch targeted skill-gap refresher interventions and supply structured tracking templates for weekly capability audits.</li>
-                                  )}
-                                </>
-                              )}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Standard */}
-                      <div className="bg-white p-3 rounded-xl border-l-4 border-l-slate-400 border-slate-200/80 shadow-2xs">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-slate-100 mb-2">
-                          <span className="font-extrabold text-slate-950 text-[11.5px] flex items-center gap-1">
-                            <span>⚖️ {lang === 'VI' ? 'Phân bổ Tiêu chuẩn' : 'Standard Distribution'}</span>
-                            <span className="text-[9.5px] text-slate-400 font-mono font-bold">({lang === 'VI' ? 'Phân bổ đều' : 'Standard balance'})</span>
-                          </span>
-                          <span className="text-[9px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold uppercase tracking-wider">{lang === 'VI' ? 'Ổn Định Thường Nhật' : 'Business As Usual'}</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed">
-                          <div>
-                            <span className="font-bold text-slate-700 block">{lang === 'VI' ? '🔍 Ý nghĩa chỉ số:' : '🔍 Meaning:'}</span>
-                            <p className="text-slate-500 mt-0.5">
-                              {lang === 'VI' ? 'Tỷ lệ phân bổ nằm ở mức trung bình ổn định của nhà máy. Chưa có nguy cơ bùng phát rủi ro nhưng cũng chưa bộc lộ điểm bứt phá nhân lực vượt trội.' : 'Metrics sit within general plant averages. The team has no active talent crises but is also missing clear catalysts for high-velocity breakthrough growth.'}
-                            </p>
-                          </div>
-                          <div>
-                            <span className="font-black text-slate-950 block">{lang === 'VI' ? '🚀 Việc cần làm ngay (Action Plan):' : '🚀 Immediate Next Steps:'}</span>
-                            <ul className="list-disc list-inside text-slate-650 mt-0.5 space-y-1">
-                              {lang === 'VI' ? (
-                                <>
-                                  <li>🌱 <strong>Đề xuất cân nhắc:</strong> Khuyến khích nhân viên tự rà soát lỗ hổng kỹ năng và chủ động đề xuất các chuyên đề học tập tự chọn phù hợp với nguyện vọng cá nhân.</li>
-                                  {isLdMode && (
-                                    <li className="text-slate-650 font-medium">📚 <strong>Lập kế hoạch L&D:</strong> Định kỳ theo dõi sự chuyển dịch hiệu suất/tiềm năng qua các đợt đánh giá 9-Box tiếp theo để phát hiện sớm hạt giống tiềm năng mới nổi lên.</li>
-                                  )}
-                                </>
-                              ) : (
-                                <>
-                                  <li>🌱 <strong>Suggested Action:</strong> Encourage employees to self-audit their skill gaps and request customized credentials or elective courses.</li>
-                                  {isLdMode && (
-                                    <li className="text-slate-650 font-medium">📚 <strong>L&D Engagement:</strong> Track micro-performance and potential changes over the next formal assessment cycles to catch newly emerging talent sparks early.</li>
-                                  )}
-                                </>
-                              )}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="text-[9.5px] text-slate-500 italic bg-white p-3 rounded-xl border border-slate-200 leading-relaxed shadow-3xs">
-                    💡 {lang === 'VI' 
-                      ? 'Lưu ý vận hành: Đây là cẩm nang chiến lược chuyển dịch lý thuyết nhân sự 9-Box kinh điển thành hành động cụ thể tại Wanek & Millennium. HOD và L&D nên ngồi lại định kỳ mỗi quý một lần để rà soát danh sách và điều chỉnh các biện pháp rèn rũa nhân lực kịp thời.' 
-                      : 'Operational Note: This framework is a practical guide mapping academic 9-Box theory into factory-floor actions at Wanek & Millennium. HODs and L&D partners should review this list quarterly to ensure correct resource allocation.'}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-4 font-sans text-left pb-2">
-            {/* Top Warning disclaimer for AI output */}
-            <div className="bg-indigo-50/50 border border-indigo-150/70 text-indigo-900 rounded-2xl p-3.5 text-[10.5px] leading-relaxed font-semibold flex items-start gap-2.5 shadow-3xs select-none">
-              <span className="p-1 bg-indigo-100 rounded-lg text-indigo-700 font-bold text-xs">✨</span>
-              <div>
-                <span className="font-extrabold text-indigo-950 uppercase tracking-wider block mb-0.5">
-                  {lang === 'VI' ? '🤖 NHẬN ĐỊNH & KHUYẾN NGHỊ ĐƯỢC ĐỀ XUẤT BỞI AI' : '🤖 AI-GENERATED ASSESSMENTS & RETENTION WARNINGS'}
-                </span>
-                {lang === 'VI' 
-                  ? 'Toàn bộ các rà soát cấu trúc phòng ban, dự đoán rủi ro nghỉ việc và kế hoạch hoạt động dưới đây được xử lý tự động, cung cấp góc nhìn và cảnh báo chiến lược tối ưu cho nhà quản lý.'
-                  : 'All departmental structure checks, attrition warning thresholds, and operational checklists below are generated automatically by AI to assist supervisors and HODs.'}
-              </div>
-            </div>
-
-            {filteredAnalysisData.map((item, idx) => {
-              const isOptimal = item.keepersPct >= 40 && item.growersPct >= 20 && item.moversPct <= 20;
-              
-              return (
-                <div key={item.dept} className="border border-slate-200 rounded-2xl overflow-hidden shadow-2xs bg-slate-50/30 interactive-hover-lift" id={idx === 0 ? "onboarding-dept-detail-card" : `detail-acc-${item?.dept}`}>
-                  {/* Item Header */}
-                  <div className="bg-slate-50 px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 gap-2">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-black text-xs md:text-[13px] text-slate-800 tracking-tight">{item.dept}</span>
-                        <span className="text-[10px] bg-indigo-50 border border-indigo-200 text-indigo-800 px-2 py-0.5 rounded-full font-bold">
-                          {item.total} {lang === 'VI' ? 'nhân sự' : 'heads'}
-                        </span>
-                        {/* AI suggest tag */}
-                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-800 text-[8.5px] font-extrabold rounded-md uppercase tracking-wider select-none">
-                          ⚠️ {lang === 'VI' ? 'AI Đề xuất & Cảnh báo' : 'AI Suggested & Warned'}
-                        </span>
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-semibold mt-0.5 flex items-center gap-1">
-                        <span>{lang === 'VI' ? 'Kiểu cơ cấu:' : 'Structure Profile:'}</span>
-                        <span className={`font-extrabold uppercase ${item.profileText}`}>
+                      </td>
+                      <td className="py-2.5 px-3 text-right">
+                        <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${item.profileBg}`}>
                           {lang === 'VI' ? item.profileVi : item.profileEn}
                         </span>
-                      </div>
-                    </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
 
-                    <div className="text-[10.5px] font-mono text-slate-500 bg-white border border-slate-250/55 rounded-lg px-2.5 py-1 flex items-center gap-3">
-                      <span>🟢 Growers: <strong className="text-emerald-700">{item.growersPct}%</strong></span>
-                      <span className="text-slate-300">|</span>
-                      <span>🟡 Keepers: <strong className="text-amber-700">{item.keepersPct}%</strong></span>
-                    </div>
+        {/* Popup Modal: Phân tích chi tiết từng bộ phận */}
+        {selectedDeptDetail && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4" onClick={() => setSelectedDeptDetail(null)}>
+            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="bg-slate-900 text-white px-5 py-4 flex items-center justify-between rounded-t-2xl sticky top-0 z-10">
+                <div>
+                  <h3 className="font-black text-sm uppercase tracking-wide">{selectedDeptDetail.dept}</h3>
+                  <p className="text-slate-400 text-[10px] mt-0.5">
+                    {selectedDeptDetail.total} {lang === 'VI' ? 'nhân sự' : 'people'} · {lang === 'VI' ? selectedDeptDetail.profileVi : selectedDeptDetail.profileEn}
+                  </p>
+                </div>
+                <button onClick={() => setSelectedDeptDetail(null)} className="text-slate-400 hover:text-white p-1.5 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="p-5 space-y-4">
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center">
+                    <span className="block text-2xl font-black text-emerald-600">{selectedDeptDetail.growersPct}%</span>
+                    <span className="block text-[9px] font-bold text-emerald-600 uppercase mt-0.5">{lang === 'VI' ? 'Nhóm Phát triển' : 'Growers'}</span>
+                    <span className="block text-[9px] text-slate-400 mt-0.5">{selectedDeptDetail.growers} {lang === 'VI' ? 'người' : 'people'}</span>
                   </div>
-                  
-                  <div className="p-4 bg-white space-y-4 text-xs">
-                    {/* FACTUAL REAL-TIME BINDING OF MEMBERS */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 bg-slate-50/50 p-3 rounded-xl border border-slate-200/60 shadow-3xs">
-                      <div>
-                        <span className="text-[10.5px] uppercase tracking-wider font-extrabold text-amber-800 block mb-1.5 flex items-center gap-1">
-                          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                          {lang === 'VI' ? `Lực lượng Keepers (${item.keepers} nhân sự):` : `Keeper Core Personnel (${item.keepers}):`}
-                        </span>
-                        {item.keeperMembers.length > 0 ? (
-                          <div className="flex flex-wrap gap-1">
-                            {item.keeperMembers.map(name => {
-                              return (
-                                <span 
-                                  key={name} 
-                                  className="px-2 py-0.5 rounded border text-[10px] font-extrabold transition-all shadow-3xs bg-white border-slate-200 text-slate-700"
-                                >
-                                  👤 {name}
-                                </span>
-                              );
-                            })}
-                          </div>
-                        ) : (
-                          <span className="text-[10.5px] text-slate-400 italic font-medium block">
-                            {lang === 'VI' ? 'Không có nhân viên nhóm này.' : 'Zero Keeper personnel in this BU.'}
-                          </span>
-                        )}
-                      </div>
-
-                      <div>
-                        <span className="text-[10.5px] uppercase tracking-wider font-extrabold text-emerald-800 block mb-1.5 flex items-center gap-1">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                          {lang === 'VI' ? `Lực lượng Growers (${item.growers} nhân sự):` : `Grower Core Personnel (${item.growers}):`}
-                        </span>
-                        {item.growerMembers.length > 0 ? (
-                          <div className="flex flex-wrap gap-1">
-                            {item.growerMembers.map(name => {
-                              return (
-                                <span 
-                                  key={name} 
-                                  className="px-2 py-0.5 rounded border text-[10px] font-extrabold transition-all shadow-3xs bg-white border-slate-200 text-slate-700"
-                                >
-                                  👤 {name}
-                                </span>
-                              );
-                            })}
-                          </div>
-                        ) : (
-                          <span className="text-[10.5px] text-slate-400 italic font-medium block">
-                            {lang === 'VI' ? 'Không có nhân viên nhóm này.' : 'Zero Grower personnel in this BU.'}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* DYNAMIC METRIC-BASED CORP HEALTH ASSESSMENT */}
-                    <div className="space-y-3.5 pt-0.5">
-                      <div className="p-3 bg-indigo-50/50 rounded-xl border border-indigo-200/50 space-y-2" id={idx === 0 ? "onboarding-dept-strengths" : `strengths-${item?.dept}`}>
-                        <span className="text-[11px] uppercase tracking-wider font-extrabold text-indigo-950 flex items-center gap-1.5 border-b border-indigo-100/80 pb-1.5">
-                          🛡️ {lang === 'VI' ? 'ĐÁNH GIÁ CẤU TRÚC VÀ ĐIỂM MẠNH ĐỘI NGŨ:' : 'STRUCTURAL STRENGTHS & ALIGNMENT ASSESSMENT:'}
-                        </span>
-
-                        <div className="prose prose-slate max-w-none text-slate-700 text-[11px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
-                          <Markdown>{getPersonalizedStrengths(item, lang)}</Markdown>
-                        </div>
-                      </div>
-
-                      {/* RISKS AND STRATEGIC THREATS */}
-                      <div className="p-3 bg-rose-50/50 rounded-xl border border-rose-200/50 space-y-2" id={idx === 0 ? "onboarding-dept-risks" : `risks-${item?.dept}`}>
-                        <span className="text-[11px] uppercase tracking-wider font-extrabold text-rose-950 flex items-center gap-1.5 border-b border-rose-100 pb-1.5">
-                          ⚠️ {lang === 'VI' ? 'RỦI RO THÁCH THỨC QUẢN TRỊ CHIẾN LƯỢC:' : 'CRITICAL RETENTION RISKS & DIAGNOSTIC WARNINGS:'}
-                        </span>
-
-                        <div className="prose prose-slate max-w-none text-slate-700 text-[11px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
-                          <Markdown>{getPersonalizedRisks(item, lang)}</Markdown>
-                        </div>
-                      </div>
-
-                      {/* TAILORED ACTIONS BASED ON CHOSEN BUSINESS STAGE */}
-                      <div className="p-4 bg-indigo-950 text-indigo-50 rounded-xl space-y-2 border border-slate-900 shadow-md" id={idx === 0 ? "onboarding-dept-actions" : `actions-${item?.dept}`}>
-                        <span className="text-[11px] uppercase tracking-wider font-extrabold text-indigo-300 flex items-center justify-between border-b border-indigo-900/80 pb-2">
-                          <span className="flex items-center gap-1.5">
-                            <Briefcase className="w-4 h-4 text-emerald-400" />
-                            {lang === 'VI' ? 'KHUYẾN NGHỊ HÀNH ĐỘNG CHO MANAGER (MÁP THEO GIAI ĐOẠN HOẠT ĐỘNG):' : 'DECISIONAL ROADMAPS FOR MANAGERS BASED ON ACTIVITY STAGE:'}
-                          </span>
-                          <span className="font-mono text-[9px] bg-indigo-900 px-2 py-0.5 rounded-full text-indigo-200">
-                            {businessPhase === 'FAST_GROWTH' 
-                              ? (lang === 'VI' ? 'Giai đoạn: TĂNG TRƯỞNG NHANH' : 'Phase: FAST EXPANSION')
-                              : (lang === 'VI' ? 'Giai đoạn: QUY MÔ ỔN ĐỊNH' : 'Phase: LARGE-STABLE SCALE')}
-                          </span>
-                        </span>
-
-                        <div className="prose prose-indigo max-w-none text-slate-100 text-[11px] leading-relaxed font-sans space-y-2.5 markdown-body [&_strong]:font-bold [&_p]:font-medium [&_li]:text-slate-200">
-                          <Markdown>{getPersonalizedActions(item, businessPhase, lang)}</Markdown>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
+                    <span className="block text-2xl font-black text-amber-600">{selectedDeptDetail.keepersPct}%</span>
+                    <span className="block text-[9px] font-bold text-amber-600 uppercase mt-0.5">{lang === 'VI' ? 'Nhóm Duy trì' : 'Keepers'}</span>
+                    <span className="block text-[9px] text-slate-400 mt-0.5">{selectedDeptDetail.keepers} {lang === 'VI' ? 'người' : 'people'}</span>
+                  </div>
+                  <div className="bg-rose-50 border border-rose-200 rounded-xl p-3 text-center">
+                    <span className="block text-2xl font-black text-rose-600">{selectedDeptDetail.moversPct}%</span>
+                    <span className="block text-[9px] font-bold text-rose-600 uppercase mt-0.5">{lang === 'VI' ? 'Cần bồi dưỡng' : 'Movers'}</span>
+                    <span className="block text-[9px] text-slate-400 mt-0.5">{selectedDeptDetail.movers} {lang === 'VI' ? 'người' : 'people'}</span>
                   </div>
                 </div>
-              );
-            })}
+                {selectedDeptDetail.members && selectedDeptDetail.members.length > 0 && (
+                  <div>
+                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-wider mb-2">{lang === 'VI' ? 'THÀNH VIÊN BỘ PHẬN' : 'DEPARTMENT MEMBERS'}</h4>
+                    <div className="grid grid-cols-2 gap-1.5 max-h-52 overflow-y-auto pr-1">
+                      {selectedDeptDetail.members.map((m: any, i: number) => (
+                        <div key={i} className={`flex items-center gap-2 rounded-lg px-3 py-1.5 border ${m.group === 'Growers' ? 'bg-emerald-50 border-emerald-100' : m.group === 'Keepers' ? 'bg-amber-50 border-amber-100' : 'bg-rose-50 border-rose-100'}`}>
+                          <span className={`w-2 h-2 rounded-full shrink-0 ${m.group === 'Growers' ? 'bg-emerald-500' : m.group === 'Keepers' ? 'bg-amber-500' : 'bg-rose-500'}`} />
+                          <span className="text-[11px] font-semibold text-slate-800 truncate">{m.name}</span>
+                          <span className={`text-[8.5px] ml-auto shrink-0 font-bold ${m.group === 'Growers' ? 'text-emerald-600' : m.group === 'Keepers' ? 'text-amber-600' : 'text-rose-600'}`}>{m.group === 'Growers' ? 'G' : m.group === 'Keepers' ? 'K' : 'M'}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div className={`rounded-xl p-4 border ${selectedDeptDetail.profileBg}`}>
+                  <h4 className="text-[10px] font-black uppercase tracking-wider mb-1.5">{lang === 'VI' ? 'HỒ SƠ NHÂN TÀI' : 'TALENT PROFILE'}</h4>
+                  <p className="text-[11px] font-bold">{lang === 'VI' ? selectedDeptDetail.profileVi : selectedDeptDetail.profileEn}</p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
