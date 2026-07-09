@@ -1051,7 +1051,7 @@ export const dbTalentPool: Talent[] = [
   { name: "Pham Hung Minh", cell: "Seasoned Professional", results: "High Effective", potential: "Low", group: "Keepers", dept: "Components", site: "WNK" },
   { name: "Nguyen Dang Viet", cell: "Solid Professional", results: "Effective", potential: "Low", group: "Keepers", dept: "Components", site: "WNK" },
   { name: "Nguyen Trong Thuy", cell: "Solid Professional", results: "Effective", potential: "Low", group: "Keepers", dept: "Components", site: "WNK" },
-  { name: "Chivas Cao", cell: "High Professional", results: "High Effective", potential: "Mid", group: "Growers", dept: "Cut&Sew WNK3", site: "WNK" },
+  { name: "Chivas Cao", cell: "High Professional", results: "High Effective", potential: "Mid", group: "Growers", dept: "IT", site: "WNK" },
   { name: "Danny Cao", cell: "High Professional", results: "High Effective", potential: "Mid", group: "Growers", dept: "IT", site: "WNK" },
   { name: "Leo Le", cell: "Valued Contributor", results: "Effective", potential: "Mid", group: "Keepers", dept: "IT", site: "WNK" },
   { name: "Lucian Nguyen", cell: "Rising Star", results: "Effective", potential: "High", group: "Growers", dept: "IT", site: "WNK" },

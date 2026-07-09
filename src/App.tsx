@@ -17,6 +17,7 @@ import { SearchableDeptDropdown } from './components/SearchableDeptDropdown';
 import { DeptTalentAnalysisPanel } from './components/DeptTalentAnalysisPanel';
 import OnboardingGuide from './components/OnboardingGuide';
 import { dbTalentPool, allDepartments, wnkDepartments, ashDepartments, getFullPipeline, initialPipelinePositions } from './data';
+import { validateData, logValidationResults, ValidationWarning } from './dataValidation';
 import { Talent, NineBoxCell, NineBoxGroup } from './types';
 import {
   TrendingUp,
@@ -321,6 +322,14 @@ export default function App() {
 
   // React state for the databases to allow real-time simulation/edits
   const [talents, setTalents] = useState<Talent[]>(augmentedTalentPool);
+
+  // Run data validation on mount
+  useEffect(() => {
+    const allPipeline = getFullPipeline();
+    const warnings = validateData(augmentedTalentPool, allPipeline);
+    logValidationResults(warnings);
+    setDataWarnings(warnings);
+  }, []);
   const [pipelineData, setPipelineData] = useState(() => getFullPipeline());
 
   // Drag and Drop notification toast banner
@@ -328,6 +337,8 @@ export default function App() {
   const [showFrameworkModal, setShowFrameworkModal] = useState<boolean>(false);
   const [undoingId, setUndoingId] = useState<string | null>(null);
   const [historyCollapsed, setHistoryCollapsed] = useState(true);
+  const [dataWarnings, setDataWarnings] = useState<ValidationWarning[]>([]);
+  const [showDataWarnings, setShowDataWarnings] = useState(false);
   const [reclassHistory, setReclassHistory] = useState<{ id: string; talentName: string; fromCell: NineBoxCell; toCell: NineBoxCell; timestamp: Date }[]>(() => {
     return [
       {
@@ -1679,6 +1690,42 @@ export default function App() {
 
             {/* DeptTalentAnalysisPanel — full width bên dưới grid */}
             <DeptTalentAnalysisPanel talents={siteFilteredTalents} lang={lang} selectedDept={selectedDept} onDeptChange={setSelectedDept} isLdMode={isLdMode} />
+
+            {/* ── DATA VALIDATION INDICATOR ── */}
+            {dataWarnings.filter(w => w.level === 'error').length > 0 && (
+              <div className="bg-rose-50 border border-rose-200 rounded-xl px-4 py-2.5 flex items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                  <span className="font-bold text-rose-800">
+                    {lang === 'VI' ? 'Phát hiện' : 'Detected'} {dataWarnings.filter(w => w.level === 'error').length} {lang === 'VI' ? 'lỗi data' : 'data errors'}
+                    {dataWarnings.filter(w => w.level === 'warn').length > 0 && ` + ${dataWarnings.filter(w => w.level === 'warn').length} ${lang === 'VI' ? 'cảnh báo' : 'warnings'}`}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowDataWarnings(!showDataWarnings)}
+                  className="text-[10px] font-bold text-rose-600 hover:text-rose-800 underline cursor-pointer"
+                >
+                  {showDataWarnings ? (lang === 'VI' ? 'Ẩn chi tiết' : 'Hide') : (lang === 'VI' ? 'Xem chi tiết' : 'View details')}
+                </button>
+              </div>
+            )}
+            {showDataWarnings && dataWarnings.length > 0 && (
+              <div className="bg-white border border-slate-200 rounded-xl p-4 text-xs space-y-1.5 max-h-48 overflow-y-auto">
+                <div className="font-black text-slate-700 uppercase tracking-wider text-[10px] mb-2">
+                  🔍 {lang === 'VI' ? 'BÁO CÁO KIỂM TRA DATA' : 'DATA VALIDATION REPORT'}
+                </div>
+                {dataWarnings.map((w, i) => (
+                  <div key={i} className={`flex items-start gap-2 px-2 py-1 rounded ${w.level === 'error' ? 'bg-rose-50 text-rose-800' : 'bg-amber-50 text-amber-800'}`}>
+                    <span className="shrink-0">{w.level === 'error' ? '❌' : '⚠️'}</span>
+                    <div>
+                      <span className="font-bold">[{w.category}]</span> {w.message}
+                      {w.details && <div className="text-[10px] opacity-70 mt-0.5">→ {w.details}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Movers Alert Banner Center */}
             {moversAlerts.length > 0 && (
