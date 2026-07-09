@@ -941,35 +941,7 @@ export default function IndividualIDPWorkspace({
               <span className="block text-lg font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
             </div>
           </div>
-          {/* Progress bar + action breakdown */}
-          <div className="pt-1 flex flex-col gap-2">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-[8.5px] text-slate-500 font-bold uppercase">{lang === 'VI' ? 'Tỷ lệ cần phát triển (R1+R2)' : 'Needs development'}</span>
-                <span className="text-[9px] font-black text-red-400">
-                  {filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%
-                </span>
-              </div>
-              <div className="w-full bg-slate-700 rounded-full h-1.5">
-                <div className="bg-gradient-to-r from-red-500 to-amber-500 h-1.5 rounded-full transition-all"
-                  style={{ width: `${filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%` }} />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              <div className="bg-emerald-900/30 rounded-lg px-2 py-1.5 border border-emerald-800/30">
-                <span className="block text-[8px] text-emerald-400 font-bold uppercase">{lang === 'VI' ? 'Đưa vào KH ĐT' : 'Add to Plan'}</span>
-                <span className="block text-sm font-black text-emerald-300 mt-0.5">
-                  {filteredPlans.filter(p => p.action === 'Add to Training Plan').length}
-                </span>
-              </div>
-              <div className="bg-amber-900/30 rounded-lg px-2 py-1.5 border border-amber-800/30">
-                <span className="block text-[8px] text-amber-400 font-bold uppercase">{lang === 'VI' ? 'Cần thẩm định' : 'Validation'}</span>
-                <span className="block text-sm font-black text-amber-300 mt-0.5">
-                  {filteredPlans.filter(p => p.action === 'Need Validation').length}
-                </span>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Skill/Will Matrix 2x2 */}
@@ -2080,51 +2052,34 @@ export default function IndividualIDPWorkspace({
                       {/* Progress Bar Column */}
                       <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs flex flex-col justify-between">
                         <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] uppercase font-black text-slate-500 tracking-wider">
-                              {lang === 'VI' ? 'Tiến độ Đào tạo & Thiết lập' : 'TRAINING & SETUP PROGRESS'}
-                            </span>
-                            <span className="text-[11px] font-mono font-black text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-150">
-                              {activeModalProgress}%
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-[10px] uppercase font-black text-slate-600 tracking-wider">
+                              {lang === 'VI' ? 'MỨC ĐỘ SẴN SÀNG NĂNG LỰC' : 'COMPETENCY READINESS'}
                             </span>
                           </div>
 
-                          <div className="space-y-4">
-                            {/* Linear/Progress Indicator Bar */}
-                            <div className="relative w-full h-3 bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
-                              <div 
-                                className="h-full bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full transition-all duration-500" 
-                                style={{
-                                  width: `${activeModalProgress}%`
-                                }}
-                              />
-                            </div>
-
-                            {/* Summary description */}
-                            <p className="text-[10.5px] text-slate-500 leading-normal">
-                              {lang === 'VI' 
-                                ? 'Phần trăm hoàn thành phản ánh mức sẵn sàng phát triển trên tất cả năng lực (R1-Directing = 25%, R2-Coaching = 50%, R3-Supporting = 75%, R4-Delegating = 100%).'
-                                : 'Completion rate calculates cumulative developmental progress across competency readiness (R1 = 25%, R2 = 50%, R3 = 75%, R4 = 100%).'}
-                            </p>
+                          {/* R-Rating legend - clear criteria */}
+                          <div className="space-y-2">
+                            {[
+                              { level: 'R1', label: lang === 'VI' ? 'Cần hướng dẫn trực tiếp' : 'Needs direct instruction', color: 'bg-red-100 border-red-200 text-red-700', dot: 'bg-red-500' },
+                              { level: 'R2', label: lang === 'VI' ? 'Cần kèm cặp thường xuyên' : 'Needs regular coaching', color: 'bg-amber-100 border-amber-200 text-amber-700', dot: 'bg-amber-500' },
+                              { level: 'R3', label: lang === 'VI' ? 'Tự thực hiện, cần hỗ trợ khi cần' : 'Self-sufficient, support when needed', color: 'bg-blue-100 border-blue-200 text-blue-700', dot: 'bg-blue-500' },
+                              { level: 'R4', label: lang === 'VI' ? 'Thành thạo, có thể kèm người khác' : 'Proficient, can coach others', color: 'bg-emerald-100 border-emerald-200 text-emerald-700', dot: 'bg-emerald-500' },
+                            ].map(({ level, label, color, dot }) => {
+                              const count = activeModalLevelCounts[level as 'R1' | 'R2' | 'R3' | 'R4'] || 0;
+                              return (
+                                <div key={level} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl border ${color}`}>
+                                  <span className={`w-2 h-2 rounded-full shrink-0 ${dot}`} />
+                                  <span className="text-[10px] font-black w-5 shrink-0">{level}</span>
+                                  <span className="text-[10px] font-medium flex-1">{label}</span>
+                                  <span className="text-[11px] font-black">{count}</span>
+                                </div>
+                              );
+                            })}
                           </div>
                         </div>
 
-                        {/* Stats breakdown by readiness level */}
-                        <div className="grid grid-cols-4 gap-2 pt-4 border-t border-slate-100 mt-4">
-                          {['R1', 'R2', 'R3', 'R4'].map((lvl) => {
-                            const count = activeModalLevelCounts[lvl as 'R1' | 'R2' | 'R3' | 'R4'] || 0;
-                            const colors = lvl === 'R1' ? 'text-red-650 bg-red-50/50 border-red-100' :
-                                           lvl === 'R2' ? 'text-amber-705 bg-amber-50/50 border-amber-100' :
-                                           lvl === 'R3' ? 'text-blue-600 bg-blue-50/50 border-blue-100' :
-                                           'text-emerald-700 bg-emerald-50/50 border-emerald-100';
-                            return (
-                              <div key={lvl} className={`text-center border rounded-xl py-1 px-1.5 ${colors}`}>
-                                <span className="block text-[8px] font-black">{lvl}</span>
-                                <span className="block text-xs font-black mt-0.5">{count}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
+
                       </div>
 
                       {/* AI recommendations Column - Spans 2 */}
