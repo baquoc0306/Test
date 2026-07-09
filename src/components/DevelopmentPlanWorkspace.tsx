@@ -1576,7 +1576,7 @@ export default function DevelopmentPlanWorkspace({
                       setDraggingCardId(course.id);
                     }}
                     onDragEnd={() => setDraggingCardId(null)}
-                    className={`border p-4.5 rounded-2xl transition-all duration-200 cursor-pointer select-none relative group flex flex-col justify-between min-h-[140px] h-auto ${cardBgClass} ${
+                    className={`border p-4 rounded-xl transition-all duration-200 cursor-pointer select-none relative group flex flex-col gap-2 ${cardBgClass} ${
                       draggingCardId === course.id
                         ? 'opacity-50 scale-95 shadow-lg'
                         : 'hover:-translate-y-0.5 hover:shadow-sm duration-200'
@@ -1780,49 +1780,36 @@ export default function DevelopmentPlanWorkspace({
                     setDraggingCardId(null);
                   }}
                   onClick={handleCardClick}
-                  className={`border p-4.5 rounded-2xl transition-all duration-200 cursor-pointer select-none relative group flex flex-col justify-between min-h-[175px] h-auto ${cardBgClass} ${
+                  className={`border p-4 rounded-xl transition-all duration-200 cursor-pointer select-none relative group flex flex-col gap-2 ${cardBgClass} ${
                     draggingCardId === card.id 
                       ? 'opacity-40 border-dashed border-indigo-400' 
                       : 'hover:-translate-y-0.5 hover:shadow-sm duration-200'
                   }`}
                   title={lang === 'VI' ? 'Kéo thả để xếp lịch học, click để xem nội dung chi tiết' : 'Drag to schedule starting month, click to view details'}
                 >
-                  {/* Top status info row - Category & Action status pill inside right combo */}
-                  <div>
-                    <div className="flex items-center justify-between mb-2 shrink-0 w-full gap-2">
-                      <span className={`p-1.5 rounded-lg border flex items-center justify-center transition-transform select-none ${iconWrapperClass} shrink-0`}>
-                        {inputIcon}
-                      </span>
-                      <span className={`text-[9px] font-bold tracking-tight uppercase border px-2 py-0.5 rounded-md truncate select-none shrink-0 ${isActive ? getCompetencyBadgeClasses(compText) : 'bg-slate-200/50 text-slate-400 border-slate-300/40'}`}>
-                        {compText}
-                      </span>
-                    </div>
+                  {/* Tên khóa học */}
+                  <h5 className={`text-[13px] font-extrabold tracking-tight leading-snug select-none ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                    {cardTitle}
+                  </h5>
 
-                    {/* Middle Core Title Name */}
-                    <div className="text-left flex flex-col mt-1">
-                      <h5 className={`text-[13.5px] font-extrabold tracking-tight leading-snug line-clamp-2 select-none duration-150 ${isActive ? 'text-slate-900 group-hover:text-indigo-955' : 'text-slate-400'}`}>
-                        {cardTitle}
-                      </h5>
-                    </div>
-                  </div>
+                  {/* Tag năng lực */}
+                  <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full w-fit border ${isActive ? getCompetencyBadgeClasses(compText) : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
+                    {compText}
+                  </span>
 
-                  {/* Bottom: priority badge + quarter, bỏ coverage và tick */}
-                  <div className="mt-3 pt-2.5 border-t border-dashed border-slate-200/60 flex items-center justify-between w-full shrink-0">
-                    <div className="flex items-center gap-1.5 select-none font-sans">
-                      <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      <span className="text-[11px] font-bold text-slate-600 font-sans tracking-tight">
+                  {/* Bottom: thời gian + nhu cầu cao */}
+                  <div className="mt-auto pt-2 border-t border-dashed border-slate-200/60 flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-slate-500">
+                      <Calendar className="w-3 h-3 shrink-0" />
+                      <span className="text-[10px] font-medium">
                         {lang === 'VI' ? card.quarter.replace(/Q/g, 'Quý ').replace(/-/g, ' - ') : card.quarter.replace(/-/g, ' - ')}
                       </span>
                     </div>
-                    <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${
-                      isActive
-                        ? (card.tag === 'HIGH' ? 'bg-rose-50 border-rose-200 text-rose-700' : card.tag === 'MEDIUM' ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-indigo-50 border-indigo-200 text-indigo-700')
-                        : 'bg-slate-100 border-slate-200 text-slate-400'
-                    }`}>
-                      {lang === 'VI'
-                        ? (card.tag === 'HIGH' ? 'Ưu tiên Cao' : card.tag === 'MEDIUM' ? 'Trung bình' : 'Thấp')
-                        : (card.tag === 'HIGH' ? 'High' : card.tag === 'MEDIUM' ? 'Medium' : 'Low')}
-                    </span>
+                    {card.tag === 'HIGH' && isActive && (
+                      <span className="text-[8.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700">
+                        {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
+                      </span>
+                    )}
                   </div>
                 </div>
               );

@@ -941,17 +941,33 @@ export default function IndividualIDPWorkspace({
               <span className="block text-lg font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
             </div>
           </div>
-          {/* Thêm progress bar tỷ lệ R1+R2 */}
-          <div className="pt-1">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[8.5px] text-slate-500 font-bold uppercase">{lang === 'VI' ? 'Tỷ lệ cần phát triển (R1+R2)' : 'Development needed (R1+R2)'}</span>
-              <span className="text-[9px] font-black text-red-400">
-                {filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%
-              </span>
+          {/* Progress bar + action breakdown */}
+          <div className="pt-1 flex flex-col gap-2">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[8.5px] text-slate-500 font-bold uppercase">{lang === 'VI' ? 'Tỷ lệ cần phát triển (R1+R2)' : 'Needs development'}</span>
+                <span className="text-[9px] font-black text-red-400">
+                  {filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%
+                </span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-1.5">
+                <div className="bg-gradient-to-r from-red-500 to-amber-500 h-1.5 rounded-full transition-all"
+                  style={{ width: `${filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%` }} />
+              </div>
             </div>
-            <div className="w-full bg-slate-700 rounded-full h-1.5">
-              <div className="bg-gradient-to-r from-red-500 to-amber-500 h-1.5 rounded-full transition-all"
-                style={{ width: `${filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%` }} />
+            <div className="grid grid-cols-2 gap-1.5">
+              <div className="bg-emerald-900/30 rounded-lg px-2 py-1.5 border border-emerald-800/30">
+                <span className="block text-[8px] text-emerald-400 font-bold uppercase">{lang === 'VI' ? 'Đưa vào KH ĐT' : 'Add to Plan'}</span>
+                <span className="block text-sm font-black text-emerald-300 mt-0.5">
+                  {filteredPlans.filter(p => p.action === 'Add to Training Plan').length}
+                </span>
+              </div>
+              <div className="bg-amber-900/30 rounded-lg px-2 py-1.5 border border-amber-800/30">
+                <span className="block text-[8px] text-amber-400 font-bold uppercase">{lang === 'VI' ? 'Cần thẩm định' : 'Validation'}</span>
+                <span className="block text-sm font-black text-amber-300 mt-0.5">
+                  {filteredPlans.filter(p => p.action === 'Need Validation').length}
+                </span>
+              </div>
             </div>
           </div>
         </div>

@@ -976,69 +976,72 @@ export default function PipelineWorkspace({
                     key={p.id}
                     id={idx === 0 ? "onboarding-pipeline-row-0" : undefined}
                     onClick={isLdMode ? () => handleStartEdit(p) : undefined}
-                    className={`transition-colors group ${
+                    className={`transition-colors group border-b border-slate-100 ${
                       isLdMode 
-                        ? 'hover:bg-indigo-50/20 active:bg-slate-100 cursor-pointer' 
-                        : 'hover:bg-slate-50'
+                        ? 'hover:bg-indigo-50/30 active:bg-slate-100 cursor-pointer' 
+                        : 'hover:bg-slate-50/60'
                     }`}
-                    title={isLdMode 
-                      ? (lang === 'VI' ? 'Bấm vào bất kỳ đâu trên dòng này để quy hoạch kế thừa' : 'Click anywhere on this row to plan succession')
-                      : undefined
-                    }
                   >
-                    <td className="px-5 py-3.5 text-slate-700 font-semibold whitespace-nowrap">
+                    {/* Nhân sự — đậm, to */}
+                    <td className="px-4 py-3">
                       {p.incumbent === 'Open' ? (
-                        <span className="bg-rose-100 text-rose-800 font-extrabold px-1.5 py-0.5 rounded text-[10px] whitespace-nowrap">
-                          {lang === 'VI' ? 'VỊ TRÍ TRỐNG' : 'OPEN POSITION'}
+                        <span className="bg-rose-100 text-rose-800 font-black px-2 py-0.5 rounded text-[10px]">
+                          {lang === 'VI' ? 'VỊ TRÍ TRỐNG' : 'OPEN'}
                         </span>
                       ) : (
-                        p.incumbent
+                        <span className="text-[13px] font-bold text-slate-900">{p.incumbent}</span>
                       )}
                     </td>
-                    <td className="px-5 py-3.5 text-slate-600 font-mono text-[10px] uppercase whitespace-nowrap">
-                      {p.dept}
+                    {/* Bộ phận — nhạt, nhỏ */}
+                    <td className="px-4 py-3">
+                      <span className="text-[11px] text-slate-500 font-medium">{p.dept}</span>
                     </td>
-                    <td className="px-5 py-3.5">
-                      <div className="font-semibold text-slate-800 font-sans">
-                        {p.role}
-                      </div>
+                    {/* Vị trí — đậm */}
+                    <td className="px-4 py-3">
+                      <span className="text-[12px] font-semibold text-slate-800">{p.role}</span>
                     </td>
-                    <td className="px-5 py-3.5">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold whitespace-nowrap inline-block ${riskBadge}`}>
+                    {/* Rủi ro — badge nhỏ gọn */}
+                    <td className="px-4 py-3">
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-bold whitespace-nowrap ${riskBadge}`}>
                         {displayRisk}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-center">
-                      <span className={`text-[10px] px-2.5 py-1 rounded-full whitespace-nowrap inline-block ${pipelineStyle}`}>
+                    {/* Tình trạng — badge */}
+                    <td className="px-4 py-3">
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-medium whitespace-nowrap ${pipelineStyle}`}>
                         {displayStatus}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-slate-600 font-mono">
+                    {/* Tạm quyền — nhạt */}
+                    <td className="px-4 py-3">
                       {p.interim === 'None' ? (
-                        <span className="text-slate-350 italic">{lang === 'VI' ? 'Trống' : 'None'}</span>
+                        <span className="text-[11px] text-slate-300 italic">—</span>
                       ) : (
-                        p.interim
+                        <span className="text-[11px] text-slate-600">{p.interim}</span>
                       )}
                     </td>
-                    <td className="px-5 py-3.5">
+                    {/* Người kế thừa — nổi bật nếu có */}
+                    <td className="px-4 py-3">
                       {p.successor === 'None' ? (
-                        <span className="text-slate-400 italic font-light">{lang === 'VI' ? 'Chưa thiết lập' : 'Unmapped'}</span>
+                        <span className="text-[11px] text-slate-300 italic">—</span>
                       ) : (
-                        <span className="font-semibold text-slate-800">{p.successor}</span>
+                        <span className="text-[12px] font-semibold text-indigo-700">{p.successor}</span>
                       )}
                     </td>
-                    <td className="px-5 py-3.5 text-center">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap inline-block ${readyBadge}`}>
+                    {/* Sẵn sàng — badge */}
+                    <td className="px-4 py-3">
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-medium whitespace-nowrap ${readyBadge}`}>
                         {displayReadiness}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-right">
+                    {/* Edit */}
+                    <td className="px-4 py-3 text-center">
                       {isLdMode && (
                         <button
-                          onClick={() => handleStartEdit(p)}
-                          className="p-1 px-2.2 bg-slate-100 group-hover:bg-brand-blue group-hover:text-white text-slate-600 hover:text-white rounded transition-colors text-[10px] font-semibold flex items-center gap-1 inline-flex cursor-pointer"
+                          onClick={(e) => { e.stopPropagation(); handleStartEdit(p); }}
+                          className="text-[10px] text-slate-500 hover:text-indigo-600 font-medium transition-colors cursor-pointer"
                         >
-                          <Edit2 className="w-3 h-3" /> {lang === 'VI' ? 'Quy hoạch' : 'Plan'}
+                          <Edit2 className="w-3.5 h-3.5" />
                         </button>
                       )}
                     </td>
