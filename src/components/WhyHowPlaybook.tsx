@@ -40,99 +40,122 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
 
   const content = {
     '9box': {
-      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — MA TRẬN PHÁT TRIỂN TÀI NĂNG 9-BOX',
-      titleEn: 'MANAGEMENT PLAYBOOK — 9-BOX TALENT ALIGNMENT',
+      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — MA TRẬN ĐÁNH GIÁ NHÂN TÀI 9 Ô',
+      titleEn: 'MANAGEMENT GUIDE — 9-BOX TALENT REVIEW MATRIX',
+
       whyTitleVi: 'Tầm nhìn & Ý nghĩa',
       whyTitleEn: 'Vision & Purpose',
-      whyVi: 'Đưa ra **bức tranh khách quan, khoa học** về sức mạnh thực tế của đội ngũ.\nĐánh giá toàn diện dựa trên hai chiều cốt lõi: **Tiêu điểm Tiềm năng học tập** (Learning Agility) và **Hiệu quả Đóng góp thực tế** (Performance).',
-      whyEn: 'Provides an **objective, data-driven assessment** of workforce strength.\nEvaluates capabilities along two primary axes: **Learning Agility** (potential) and **Actual Contribution** (performance).',
+      whyVi: 'Ma trận 9 ô là **công cụ Quản lý Nhân tài** được sử dụng để đánh giá và phân loại nhân viên dựa trên hai tiêu chí: **Hiệu suất** và **Tiềm năng**.\nGiúp Quản lý đưa ra các quyết định **đầu tư và phát triển nhân tài** một cách chiến lược, đảm bảo có lộ trình đào tạo và phát triển hiệu quả cho đội ngũ kế thừa.',
+      whyEn: 'The 9-Box Matrix is a **Talent Management tool** used to assess and categorize employees based on two criteria: **Performance** and **Potential**.\nHelps leaders make **strategic talent investment and development decisions**, ensuring a robust leadership pipeline for the future.',
+
       goalTitleVi: 'Mục tiêu chiến lược',
       goalTitleEn: 'Strategic Target',
-      goalVi: 'Định vị rõ nét **3 nhóm chiến lược hạt nhân**: **Growers** (Hạt giống bồi dưỡng), **Keepers** (Trụ cột vận hành), và **Movers** (Nhóm cần cơ cấu lại).\nTối ưu hóa việc phân bổ nguồn lực bồi dưỡng và quy hoạch phát triển nhân tài chính xác.',
-      goalEn: 'Clearly isolate **3 critical talent cohorts**: **Growers** (High potential), **Keepers** (Operational anchors), and **Movers** (Transitioning candidates).\nDeploy corporate developmental efforts effectively to secure high-performance delivery.',
+      goalVi: 'Xác định rõ **3 nhóm chiến lược**: **Growers** (Tiềm năng phát triển), **Keepers** (Nhân sự chủ lực ổn định), **Movers** (Nhân sự cần bố trí lại vị trí).\nTạo bức tranh tổng thể về trạng thái nhân tài và rủi ro, từ đó có **hành động theo dõi và can thiệp kịp thời** tránh "khoảng trống" ở các vị trí Then chốt.',
+      goalEn: 'Clearly identify **3 strategic groups**: **Growers** (High potential), **Keepers** (Stable core performers), **Movers** (Needs repositioning).\nCreate a comprehensive overview of talent and risk status, enabling **timely monitoring and intervention** to prevent gaps in critical positions.',
+
       howTitleVi: 'Các bước hành động của Quản lý',
       howTitleEn: 'Actionable Steps',
       howVi: [
-        'Quan sát tỷ lệ phân bổ trên **Ma trận 9 Ô** để kiểm tra ngay "sức khỏe" nhân sự phòng ban.',
-        '**Nhấp chuột trực tiếp** vào các thẻ ô 9-box hoặc chỉ số để xem danh sách nhân sự tương ứng.',
-        'Phân tích **hồ sơ năng lực chuyên sâu** của từng thành viên để có quyết định giao việc & quy hoạch kế thừa chính xác.'
+        '**Thu thập dữ liệu**: Xem xét kết quả KPIs và đánh giá năng lực của từng nhân viên trong phòng ban.',
+        '**Xếp loại**: Đặt nhân viên vào ô tương ứng trên ma trận dựa trên Hiệu suất (trục X) và Tiềm năng (trục Y).',
+        '**Hiệu chuẩn**: Thảo luận giữa các Quản lý để đảm bảo công bằng và thống nhất trong đánh giá.',
+        '**Hành động**: Nhóm Ngôi sao → Quy hoạch kế nhiệm, giao trọng trách. Nhóm Cốt lõi → Phát triển kỹ năng, duy trì động lực. Nhóm Cần cải thiện → Kế hoạch cải thiện (PIP) hoặc điều chuyển.'
       ],
       howEn: [
-        'Study density distribution across the **9-Cell Grid** to verify overall talent pipeline health.',
-        '**Click directly** on any 9-box card or summary indicator to filter the matching employee list.',
-        'Review **detailed competence profiles** and comments to optimize workload distribution and mentorship.'
+        '**Data Collection**: Review KPIs and competency ratings for each team member.',
+        '**Plotting**: Place employees into the appropriate grid cell based on Performance (X-axis) and Potential (Y-axis).',
+        '**Calibration**: Discuss among managers to ensure fairness and consistency in ratings.',
+        '**Action**: Top Right → Succession planning, stretch assignments. Middle → Skill development, engagement. Bottom Left → Performance Improvement Plan (PIP) or transfer.'
       ]
     },
+
     'pipeline': {
-      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — QUY HOẠCH KẾ THỪA NHÂN SỰ',
-      titleEn: 'MANAGEMENT PLAYBOOK — CRITICAL SUCCESSION PLANNING',
+      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — QUY HOẠCH KẾ THỪA VỊ TRÍ THEN CHỐT',
+      titleEn: 'MANAGEMENT GUIDE — CRITICAL ROLE SUCCESSION PLANNING',
+
       whyTitleVi: 'Tầm nhìn & Ý nghĩa',
       whyTitleEn: 'Vision & Purpose',
-      whyVi: 'Sự biến động đột xuất của nhân sự cốt cán là rủi ro vận hành lớn nhất cho tổ chức.\nQuy hoạch kế thừa đảm bảo **tính liên tục kinh doanh (Business Continuity)** và bảo vệ tài sản tri thức phòng ban.',
-      whyEn: 'Unexpected attrition in key roles is a major operating risk.\nSuccession planning safeguards **Business Continuity** and retains invaluable department knowledge.',
+      whyVi: 'Xây dựng và Phát triển Đội ngũ Kế thừa là một hoạt động tiếp cận **có hệ thống**, nhằm đảm bảo **hiệu quả hoạt động liên tục** và sự phát triển bền vững của tổ chức.\nGiúp xác định lộ trình thăng tiến cá nhân, **tăng cường sự gắn kết và giữ chân nhân tài** — đặc biệt quan trọng trong bối cảnh cạnh tranh nhân tài ngày càng gay gắt.',
+      whyEn: 'Building and developing a succession pipeline is a **systematic approach** to ensure **business continuity** and sustainable organizational growth.\nHelps define career development paths, **increase engagement and retain talent** — especially critical in an increasingly competitive talent market.',
+
       goalTitleVi: 'Mục tiêu chiến lược',
       goalTitleEn: 'Strategic Target',
-      goalVi: 'Bảo vệ và củng cố vững chắc **72 vị trí lãnh đạo then chốt** của doanh nghiệp.\nXây dựng tuyến **Successor Bench** (bể dự bị kế thừa) chất lượng cao ở cả ngắn, trung và dài hạn.',
-      goalEn: 'Shield and fortify **72 key leadership roles** with high-quality candidates.\nConstruct robust **Successor Benches** across short, medium, and long-term readiness milestones.',
+      goalVi: 'Bảo vệ và củng cố vững chắc các **Vị trí Then chốt** của doanh nghiệp — những vị trí nếu bị bỏ trống sẽ gây rủi ro lớn hoặc ảnh hưởng nghiêm trọng ngay lập tức.\nXây dựng tuyến **Successor Bench** (bể dự bị kế thừa) chất lượng cao: mỗi vị trí Then chốt có **1-3 ứng viên** với mức độ sẵn sàng rõ ràng (Sẵn sàng ngay / 1-2 năm / 2+ năm).',
+      goalEn: 'Protect and fortify **Critical Roles** — positions whose vacancy would significantly disrupt operational continuity.\nBuild a quality **Successor Bench**: each critical role has **1-3 candidates** with clear readiness levels (Ready Now / 1-2 Years / 2+ Years).',
+
       howTitleVi: 'Các bước hành động của Quản lý',
       howTitleEn: 'Actionable Steps',
       howVi: [
-        'Duyệt **Sơ đồ kế thừa bộ phận** để nhận diện ngay các vị trí cốt lõi đang "trống" hoặc "thiếu người thay thế".',
-        'Theo dõi **chỉ số tiến độ sẵn sàng** để giao thêm các dự án thử thách hoặc chương trình shadowing.',
-        'Phối hợp với HRBP xây dựng **kế hoạch giữ chân khẩn cấp** đối với nhân sự có rủi ro rời bỏ cao.'
+        '**Rà soát Sơ đồ tổ chức**: Xem xét các vị trí báo cáo trực tiếp và xác định Vị trí Then chốt dựa trên mức độ ảnh hưởng chiến lược, rủi ro trống vị trí và độ khó thay thế.',
+        '**Xác định Ứng viên Kế thừa**: Tập trung vào nhóm Lãnh đạo tương lai, Tiềm năng cao, Hiệu suất vượt trội từ kết quả Ma trận 9 ô.',
+        '**Đánh giá Mức độ Sẵn sàng**: Sẵn sàng ngay (<6 tháng), 1-2 năm (cần thêm trải nghiệm), 2+ năm (tiềm năng dài hạn).',
+        '**Đánh giá Rủi ro Giữ chân**: Ứng viên "Sẵn sàng ngay" + "Rủi ro cao" = Cần kế hoạch giữ chân ngay lập tức.'
       ],
       howEn: [
-        'Review the **Departmental succession chart** to spot critical roles currently "vacant" or "at risk".',
-        'Monitor **readiness progress scores** to assign stretch assignments or shadowing opportunities.',
-        'Partner with HRBP to initiate **proactive retention strategies** for key flight-risk talents.'
+        '**Review Org Chart**: Examine direct-reporting roles and identify Critical Roles based on strategic impact, vacancy risk, and difficulty to fill.',
+        '**Identify Successors**: Focus on Future Leaders, High Potentials, Top Performers identified from the 9-Box Matrix.',
+        '**Assess Readiness**: Ready Now (<6 months), 1-2 Years (needs more experience), 2+ Years (long-term potential).',
+        '**Retention Risk Assessment**: "Ready Now" + "High Risk" = Retention plan needed immediately.'
       ]
     },
+
     'devplan': {
-      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — KẾ HOẠCH BỒI DƯỠNG TIÊU ĐIỂM',
-      titleEn: 'MANAGEMENT PLAYBOOK — TARGETED LEARNING CURRICULUMS',
+      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — KẾ HOẠCH PHÁT TRIỂN NĂNG LỰC',
+      titleEn: 'MANAGEMENT GUIDE — CAPABILITY DEVELOPMENT PLAN',
+
       whyTitleVi: 'Tầm nhìn & Ý nghĩa',
       whyTitleEn: 'Vision & Purpose',
-      whyVi: 'Xóa bỏ hoàn toàn việc cử đi học dàn trải, không sát thực tế gây lãng phí nguồn lực.\nBiến chương trình đào tạo nội bộ thành **vũ khí gia tăng năng suất trực tiếp** cho đội ngũ.',
-      whyEn: 'Eliminate generalized, low-impact training that wastes resources.\nTransform corporate learning into a **direct driver of team performance**.',
+      whyVi: 'Kế hoạch Phát triển nhằm **lấp đầy khoảng trống năng lực**: trang bị kiến thức, kỹ năng còn thiếu để ứng viên đủ khả năng đảm nhiệm vị trí mục tiêu.\nÁp dụng nguyên tắc cốt lõi **mô hình 70-20-10**: 70% Trải nghiệm thực tế, 20% Tiếp xúc & Kèm cặp, 10% Đào tạo chính thức.',
+      whyEn: 'Development Plans aim to **close competency gaps**: equip successors with missing skills to meet target role requirements.\nApply the core principle of the **70-20-10 Model**: 70% On-the-job Experience, 20% Exposure & Coaching, 10% Formal Training.',
+
       goalTitleVi: 'Mục tiêu chiến lược',
       goalTitleEn: 'Strategic Target',
-      goalVi: 'Tổng hợp các khoảng hụt năng lực cốt lõi từ kết quả đánh giá 9-Box thực tế.\nTập trung nguồn lực bồi dưỡng tổ chức các **chương trình đào tạo tập trung có độ ưu tiên cao nhất**.',
-      goalEn: 'Aggregate shared competency gaps from 9-box evaluations to allocate resources.\nOrganize **centralized, high-priority learning curriculums** that solve immediate bottlenecks.',
+      goalVi: 'Cung cấp nội dung đào tạo **phù hợp, đúng người, đúng thời điểm** — nhất quán với nhu cầu phát triển của tổ chức/phòng ban/đội nhóm.\n**Tăng tốc độ sẵn sàng**: Rút ngắn thời gian chuẩn bị (từ R3 lên R2, từ R2 lên R1) thông qua lộ trình bài bản và có mục tiêu rõ ràng.',
+      goalEn: 'Provide **right learning, right person, right time** — aligned to business needs of the organization/department/team.\n**Accelerate Readiness**: Shorten the preparation timeline (R3→R2→R1) through a structured and goal-oriented roadmap.',
+
       howTitleVi: 'Các bước hành động của Quản lý',
       howTitleEn: 'Actionable Steps',
       howVi: [
-        'Đọc **Biểu đồ nhu cầu** để thấy kỹ năng nào đang thiếu hụt lớn nhất tại bộ phận mình phụ trách.',
-        'Xem xét giáo trình, thời lượng, và lịch học dự kiến để **sắp xếp phân bổ ca kíp hợp lý** cho nhân viên.',
-        'Phối hợp chặt chẽ cùng ban L&D để **thúc đẩy tỷ lệ hoàn thành đào tạo** đúng hạn theo từng quý.'
+        '**Phân tích Nhu cầu**: Dựa trên kết quả đánh giá 9 ô, xác định 2-3 kỹ năng ưu tiên cần cải thiện nhất cho từng ứng viên.',
+        '**Áp dụng 70-20-10**: 70% giao việc khó/luân chuyển/dẫn dắt dự án; 20% kèm cặp bởi lãnh đạo cấp cao/coaching; 10% khóa học chuyên môn/hội thảo.',
+        '**Thống nhất & Cam kết**: Tổ chức buổi họp IDP giữa Nhân viên - Quản lý trực tiếp - HR để thống nhất mục tiêu, hành động, thời gian hoàn thành.',
+        '**Rà soát định kỳ**: Theo dõi tiến độ hàng quý và điều chỉnh kế hoạch phát triển khi cần thiết.'
       ],
       howEn: [
-        'Study the **Demand Chart** to immediately detect the most severe skill gaps in your business unit.',
-        'Inspect course syllabi, duration, and schedules to **optimize shift layouts** and workload.',
-        'Collaborate with L&D team to **drive and monitor quarterly completion rates**.'
+        '**Needs Analysis**: Based on 9-Box assessment results, identify top 2-3 priority skills for improvement for each candidate.',
+        '**Apply 70-20-10**: 70% stretch assignments/job rotation/project leading; 20% mentoring by senior leaders/coaching; 10% professional courses/workshops.',
+        '**Align & Commit**: Conduct IDP meeting (Employee - Manager - HR) to align on goals, actions, timeline, and resources.',
+        '**Periodic Review**: Monitor progress quarterly and adjust the development plan as needed.'
       ]
     },
+
     'idp': {
-      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — KẾ HOẠCH HÀNH ĐỘNG CÁ NHÂN (IDP)',
-      titleEn: 'MANAGEMENT PLAYBOOK — INDIVIDUAL DEVELOPMENT PLANS',
+      titleVi: 'HƯỚNG DẪN DÀNH CHO QUẢN LÝ — KẾ HOẠCH PHÁT TRIỂN CÁ NHÂN (IDP)',
+      titleEn: 'MANAGEMENT GUIDE — INDIVIDUAL DEVELOPMENT PLAN (IDP)',
+
       whyTitleVi: 'Tầm nhìn & Ý nghĩa',
       whyTitleEn: 'Vision & Purpose',
-      whyVi: 'Kế hoạch phát triển nhân tài chỉ thành công khi được cụ thể hóa thành hành động.\nThiết lập **cam kết hành động riêng biệt** kết nối năng lực thiếu hụt với nhiệm vụ thực chiến của từng người.',
-      whyEn: 'Talent development succeeds only when translated into actionable commitments.\nEstablish **individualized action plans** linking competency gaps with practical stretch duties.',
+      whyVi: 'Kế hoạch Phát triển Cá nhân (IDP) là công cụ giúp **xác định mức độ sẵn sàng** (R1-R4) của từng nhân viên đối với các nhiệm vụ công việc trọng tâm trong vai trò hiện tại.\nLà cơ sở để **lập Kế hoạch Phát triển** phù hợp và **hỗ trợ quyết định kế nhiệm** minh bạch, nhất quán.',
+      whyEn: 'The Individual Development Plan (IDP) is a tool to **determine readiness levels** (R1-R4) of each employee for key job duties in their current role.\nProvides the foundation for **appropriate Development Plans** and supports **fair and consistent succession decisions**.',
+
       goalTitleVi: 'Mục tiêu chiến lược',
       goalTitleEn: 'Strategic Target',
-      goalVi: 'Xây dựng lộ trình bồi dưỡng cá nhân hóa chất lượng cao cho nhân sự kế nhiệm.\nKết hợp chặt chẽ giữa **Nhiệm vụ thực tế** (Job Duty), **Mentor/Coach đồng hành**, và **lịch kèm cặp 1-1**.',
-      goalEn: 'Establish highly personalized progress tracks for successor benches.\nTightly couple **Practical Job Duties**, **Assigned Mentors/Coaches**, and **1-to-1 feedback loops**.',
+      goalVi: 'Xây dựng lộ trình bồi dưỡng **cá nhân hóa** chất lượng cao cho nhân sự kế nhiệm — dựa trên khoảng cách năng lực thực tế.\nKết hợp chặt chẽ giữa **Nhiệm vụ thực tế** (Job Duty), **Mentor/Coach đồng hành**, và **lịch kèm cặp 1-1** để tối đa hóa hiệu quả phát triển.',
+      goalEn: 'Build **personalized** high-quality development roadmaps for successor candidates — based on actual competency gaps.\nTightly couple **Practical Job Duties**, **Assigned Mentors/Coaches**, and **1-to-1 coaching schedules** to maximize development effectiveness.',
+
       howTitleVi: 'Các bước hành động của Quản lý',
       howTitleEn: 'Actionable Steps',
       howVi: [
-        'Tìm kiếm và xem chi tiết **lộ trình IDP cá nhân** của từng nhân sự kế nhiệm trong bộ phận.',
-        'Đánh giá tính phù hợp của các **nhiệm vụ được gán**, thời hạn sẵn sàng và vai trò người cố vấn.',
-        'Lồng ghép trao đổi tiến độ IDP vào **các buổi trò chuyện 1-1 hàng tuần** để tháo gỡ khó khăn kịp thời.'
+        '**Nhân viên tự đánh giá**: Xem xét tất cả các nhiệm vụ trong Readiness Matrix và tự đánh giá theo thang R1-R4 trước buổi thảo luận.',
+        '**Quản lý đánh giá độc lập**: Hoàn thành đánh giá R1-R4 và ghi chú trước buổi họp 1:1 — không tham khảo đánh giá của nhân viên trước.',
+        '**Thảo luận 1:1**: Hai bên trao đổi để so sánh đánh giá, làm rõ chênh lệch và thống nhất mức độ sẵn sàng cuối cùng cho từng nhiệm vụ.',
+        '**Thống nhất Hướng thực hiện**: Xác định hành động cụ thể, hỗ trợ cần thiết và mốc thời gian cải thiện — rà soát định kỳ hàng quý.'
       ],
       howEn: [
-        'Search and explore the **individualized IDP roadmap** of each successor in your department.',
-        'Review the appropriateness of **assigned job duties**, readiness timelines, and mentor guidance.',
-        'Incorporate IDP milestones into **weekly 1-to-1 alignment chats** to eliminate obstacles.'
+        '**Employee Self-Assessment**: Review all job duties in the Readiness Matrix and rate each one (R1-R4) independently before the discussion.',
+        '**Manager Independent Review**: Complete the same R1-R4 rating and comments before the 1:1 meeting — without referencing the employee\'s ratings first.',
+        '**1:1 Discussion**: Both parties compare ratings, clarify gaps, and agree on the final readiness level for each key duty.',
+        '**Agree on Way Forward**: Define concrete actions, support needed, and target milestones — review quarterly.'
       ]
     }
   };
@@ -140,7 +163,7 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
   const item = content[featureKey];
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 border border-indigo-900/60 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 text-white">
+    <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 border border-indigo-900/60 rounded-2xl shadow-md overflow-hidden transition-all duration-300 text-white">
       {/* Header and Toggle */}
       <button
         type="button"
@@ -152,11 +175,11 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
             <BookOpen className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-[11px] md:text-xs font-black tracking-widest text-white uppercase font-mono">
+            <h4 className="text-[11px] md:text-xs font-black tracking-widest text-white uppercase font-display">
               {lang === 'VI' ? item.titleVi : item.titleEn}
             </h4>
             <p className="text-[9.5px] text-indigo-400/90 uppercase tracking-wider font-bold mt-0.5">
-              🚀 {lang === 'VI' ? 'Khung hành động & Định hướng chiến lược của Quản lý' : 'Management Framework & Strategic Alignment'}
+              📋 {lang === 'VI' ? 'Khung hành động & Định hướng chiến lược của Quản lý' : 'Management Framework & Strategic Alignment'}
             </p>
           </div>
         </div>
@@ -196,10 +219,7 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
               </h5>
             </div>
             <div className="space-y-1.5">
-              {renderFormattedParagraphs(
-                (lang === 'VI' ? item.goalVi : item.goalEn).replace('72', selectedSite === 'WNK' ? '56' : '72'),
-                "text-indigo-400"
-              )}
+              {renderFormattedParagraphs(lang === 'VI' ? item.goalVi : item.goalEn, "text-indigo-400")}
             </div>
           </div>
 
