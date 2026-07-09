@@ -982,64 +982,59 @@ export default function PipelineWorkspace({
                         : 'hover:bg-slate-50/60'
                     }`}
                   >
-                    {/* Nhân sự — đậm, to */}
-                    <td className="px-4 py-3">
+                    {/* GROUP 1: Thông tin vị trí — nền trắng, chữ đậm */}
+                    <td className="px-4 py-3 bg-white">
                       {p.incumbent === 'Open' ? (
                         <span className="bg-rose-100 text-rose-800 font-black px-2 py-0.5 rounded text-[10px]">
                           {lang === 'VI' ? 'VỊ TRÍ TRỐNG' : 'OPEN'}
                         </span>
                       ) : (
-                        <span className="text-[13px] font-bold text-slate-900">{p.incumbent}</span>
+                        <span className="text-[13px] font-bold text-slate-900 leading-tight">{p.incumbent}</span>
                       )}
                     </td>
-                    {/* Bộ phận — nhạt, nhỏ */}
-                    <td className="px-4 py-3">
-                      <span className="text-[11px] text-slate-500 font-medium">{p.dept}</span>
+                    <td className="px-4 py-3 bg-white">
+                      <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wide">{p.dept}</span>
                     </td>
-                    {/* Vị trí — đậm */}
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 bg-white border-r-2 border-slate-200">
                       <span className="text-[12px] font-semibold text-slate-800">{p.role}</span>
                     </td>
-                    {/* Rủi ro — badge nhỏ gọn */}
-                    <td className="px-4 py-3">
+                    {/* GROUP 2: Rủi ro — nền rose nhạt */}
+                    <td className="px-4 py-3 bg-rose-50/40">
                       <span className={`text-[10px] px-2 py-0.5 rounded font-bold whitespace-nowrap ${riskBadge}`}>
                         {displayRisk}
                       </span>
                     </td>
-                    {/* Tình trạng — badge */}
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 bg-rose-50/40 border-r-2 border-slate-200">
                       <span className={`text-[10px] px-2 py-0.5 rounded font-medium whitespace-nowrap ${pipelineStyle}`}>
                         {displayStatus}
                       </span>
                     </td>
-                    {/* Tạm quyền — nhạt */}
-                    <td className="px-4 py-3">
+                    {/* GROUP 3: Kế thừa — nền indigo nhạt */}
+                    <td className="px-4 py-3 bg-indigo-50/30">
                       {p.interim === 'None' ? (
                         <span className="text-[11px] text-slate-300 italic">—</span>
                       ) : (
                         <span className="text-[11px] text-slate-600">{p.interim}</span>
                       )}
                     </td>
-                    {/* Người kế thừa — nổi bật nếu có */}
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 bg-indigo-50/30">
                       {p.successor === 'None' ? (
                         <span className="text-[11px] text-slate-300 italic">—</span>
                       ) : (
                         <span className="text-[12px] font-semibold text-indigo-700">{p.successor}</span>
                       )}
                     </td>
-                    {/* Sẵn sàng — badge */}
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 bg-indigo-50/30 border-r-2 border-slate-200">
                       <span className={`text-[10px] px-2 py-0.5 rounded font-medium whitespace-nowrap ${readyBadge}`}>
                         {displayReadiness}
                       </span>
                     </td>
                     {/* Edit */}
-                    <td className="px-4 py-3 text-center">
+                    <td className="px-4 py-3 bg-white text-center">
                       {isLdMode && (
                         <button
                           onClick={(e) => { e.stopPropagation(); handleStartEdit(p); }}
-                          className="text-[10px] text-slate-500 hover:text-indigo-600 font-medium transition-colors cursor-pointer"
+                          className="text-[10px] text-slate-400 hover:text-indigo-600 transition-colors cursor-pointer"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>

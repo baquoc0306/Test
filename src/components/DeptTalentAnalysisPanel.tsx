@@ -651,97 +651,80 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
         )}
 
         {activeTab === 'overview' ? (
-          <div className="space-y-4">
-            <div className="overflow-x-auto rounded-xl border border-slate-200 shadow-3xs">
-              <table className="w-full text-left text-xs text-slate-700 font-sans border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-200 text-slate-500 font-bold bg-slate-50">
-                    <th className="py-2.5 px-3 min-w-[120px]">{lang === 'VI' ? 'Bộ Phận' : 'BU'}</th>
-                    <th className="py-2.5 px-2 text-center">{lang === 'VI' ? 'Nhân sự' : 'Heads'}</th>
-                    <th className="py-2.5 px-2 text-center text-emerald-650 font-black">
-                      <span className="inline-flex items-center gap-1">
-                        <span className="w-2.5 h-2.5 rounded bg-emerald-500 shrink-0" />
-                        <span>{lang === 'VI' ? '% Nhóm phát triển' : 'Growers %'}</span>
-                      </span>
-                    </th>
-                    <th className="py-2.5 px-2 text-center text-amber-650 font-black">
-                      <span className="inline-flex items-center gap-1">
-                        <span className="w-2.5 h-2.5 rounded bg-amber-500 shrink-0" />
-                        <span>{lang === 'VI' ? '% Nhóm duy trì' : 'Keepers %'}</span>
-                      </span>
-                    </th>
-                    <th className="py-2.5 px-2 text-center text-slate-600 font-black">
-                      <span className="inline-flex items-center gap-1">
-                        <span className="w-2.5 h-2.5 rounded bg-rose-500 shrink-0" />
-                        <span>{lang === 'VI' ? '% Nhóm cần bồi dưỡng' : 'Movers %'}</span>
-                      </span>
-                    </th>
-                    <th className="py-2.5 px-3 text-right whitespace-nowrap">{lang === 'VI' ? 'Hiện trạng' : 'Status'}</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {filteredAnalysisData.length === 0 ? (
-                    <tr>
-                      <td colSpan={6} className="py-8 text-center text-slate-400 font-bold">
-                        {lang === 'VI' ? 'Chưa có dữ liệu bộ phận cho Wanek.' : 'No department data available for Wanek.'}
-                      </td>
-                    </tr>
-                  ) : (
-                    filteredAnalysisData.map(item => {
-                      return (
-                        <tr key={item.dept} className="interactive-table-row hover:bg-slate-50/80 transition-all cursor-pointer">
-                          <td className="py-2.5 px-3 font-extrabold text-slate-900 truncate max-w-[125px]" title={item.dept}>
-                            {item.dept}
-                          </td>
-                          <td className="py-2.5 px-2 text-center font-bold font-mono text-slate-600">
-                            {item.total}
-                          </td>
-                          <td className="py-2.5 px-2 text-center font-mono">
-                            <span className="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded-full font-black text-[10px]" title={`${item.growers} Growers`}>
-                              {item.growersPct}%
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-2 text-center font-mono">
-                            <span className="bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded-full font-black text-[10px]" title={`${item.keepers} Keepers`}>
-                              {item.keepersPct}%
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-2 text-center font-mono">
-                            <span className="bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded-full font-bold text-[10px]" title={`${item.movers} Movers`}>
-                              {item.moversPct}%
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3 text-right whitespace-nowrap">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setShowExplanation(true);
-                                setTimeout(() => {
-                                  const el = document.getElementById('explanation-legend-card');
-                                  if (el) {
-                                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                    el.classList.add('ring-4', 'ring-indigo-500/40');
-                                    setTimeout(() => {
-                                      el.classList.remove('ring-4', 'ring-indigo-500/40');
-                                    }, 1500);
-                                  }
-                                }, 100);
-                              }}
-                              className={`text-[10px] font-black px-2.5 py-1 rounded-xl border whitespace-nowrap cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 shadow-3xs hover:shadow-2xs flex items-center gap-1.5 ml-auto ${item.profileBg}`}
-                              title={lang === 'VI' ? 'Bấm xem lý thuyết học thuật & gợi ý hành động cụ thể' : 'Click to view academic theory & concrete action guidelines'}
-                            >
-                              <span>{lang === 'VI' ? item.profileVi : item.profileEn}</span>
-                              <span className="text-[9px] bg-white/40 px-1 py-0.5 rounded-full">ℹ️</span>
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
+          <div className="space-y-3">
+            {/* Redesigned: Card-based dept breakdown */}
+            {filteredAnalysisData.length === 0 ? (
+              <div className="py-8 text-center text-slate-400 font-bold text-sm">
+                {lang === 'VI' ? 'Chưa có dữ liệu bộ phận.' : 'No department data available.'}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2">
+                {/* Header row */}
+                <div className="grid grid-cols-12 gap-2 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200">
+                  <div className="col-span-4 text-[9.5px] font-black text-slate-500 uppercase tracking-wider">{lang === 'VI' ? 'Bộ phận' : 'Department'}</div>
+                  <div className="col-span-1 text-[9.5px] font-black text-slate-500 uppercase tracking-wider text-center">{lang === 'VI' ? 'NS' : 'HC'}</div>
+                  <div className="col-span-2 text-[9.5px] font-black text-emerald-600 uppercase tracking-wider text-center">Growers</div>
+                  <div className="col-span-2 text-[9.5px] font-black text-amber-600 uppercase tracking-wider text-center">Keepers</div>
+                  <div className="col-span-2 text-[9.5px] font-black text-rose-600 uppercase tracking-wider text-center">Movers</div>
+                  <div className="col-span-1 text-[9.5px] font-black text-slate-500 uppercase tracking-wider text-center">{lang === 'VI' ? 'Hồ sơ' : 'Profile'}</div>
+                </div>
+                {filteredAnalysisData.map((item, rowIdx) => (
+                  <div key={item.dept} className="grid grid-cols-12 gap-2 px-3 py-2.5 bg-white rounded-xl border border-slate-150 hover:border-indigo-200 hover:bg-indigo-50/20 transition-all cursor-pointer group">
+                    {/* Bộ phận — đậm */}
+                    <div className="col-span-4 flex items-center">
+                      <span className="text-[12px] font-bold text-slate-900 truncate" title={item.dept}>{item.dept}</span>
+                    </div>
+                    {/* Nhân sự */}
+                    <div className="col-span-1 flex items-center justify-center">
+                      <span className="text-[12px] font-black text-slate-700">{item.total}</span>
+                    </div>
+                    {/* Growers — bar + % */}
+                    <div className="col-span-2 flex flex-col justify-center gap-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-black text-emerald-600">{item.growersPct}%</span>
+                        <span className="text-[9px] text-emerald-500">{item.growers}</span>
+                      </div>
+                      <div className="w-full bg-emerald-100 rounded-full h-1.5">
+                        <div className="bg-emerald-500 h-1.5 rounded-full" style={{ width: `${item.growersPct}%` }} />
+                      </div>
+                    </div>
+                    {/* Keepers */}
+                    <div className="col-span-2 flex flex-col justify-center gap-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-black text-amber-600">{item.keepersPct}%</span>
+                        <span className="text-[9px] text-amber-500">{item.keepers}</span>
+                      </div>
+                      <div className="w-full bg-amber-100 rounded-full h-1.5">
+                        <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: `${item.keepersPct}%` }} />
+                      </div>
+                    </div>
+                    {/* Movers */}
+                    <div className="col-span-2 flex flex-col justify-center gap-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-black text-rose-600">{item.moversPct}%</span>
+                        <span className="text-[9px] text-rose-500">{item.movers}</span>
+                      </div>
+                      <div className="w-full bg-rose-100 rounded-full h-1.5">
+                        <div className="bg-rose-500 h-1.5 rounded-full" style={{ width: `${item.moversPct}%` }} />
+                      </div>
+                    </div>
+                    {/* Profile badge */}
+                    <div className="col-span-1 flex items-center justify-center">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowExplanation(true);
+                        }}
+                        className={`text-[8.5px] font-black px-1.5 py-0.5 rounded border whitespace-nowrap cursor-pointer ${item.profileBg}`}
+                      >
+                        {lang === 'VI' ? item.profileVi : item.profileEn}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* EXPANDABLE LOGIC CRITERIA & EXPLANATION LEGEND */}
             <div id="explanation-legend-card" className="bg-slate-50 rounded-2xl border border-slate-200/90 p-4.5 text-xs text-left transition-all duration-500">

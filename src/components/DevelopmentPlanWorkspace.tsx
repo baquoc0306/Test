@@ -1557,7 +1557,7 @@ export default function DevelopmentPlanWorkspace({
 
           {/* WNK / ASH: Dynamic cards from siteActiveCourses */}
           {(selectedSite === 'WNK' || selectedSite === 'ASH') ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            <div className="grid grid-cols-2 gap-3">
               {siteActiveCourses.map((course) => {
                 const isActive = course.active;
                 const cardBgClass = isActive
@@ -1623,12 +1623,12 @@ export default function DevelopmentPlanWorkspace({
               })}
             </div>
           ) : (
-          <div id="onboarding-devplan-inputs" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div id="onboarding-devplan-inputs" className="grid grid-cols-2 gap-3">
             {[
               {
                 id: 'ai_automation',
                 title: 'AI / Automation Q2-Q3',
-                viTitle: 'AI Automation ứng dụng',
+                viTitle: 'AI & Tự động hóa ứng dụng',
                 quarter: 'Q2-Q3',
                 tag: 'HIGH',
                 icon: 'settings'
@@ -1652,26 +1652,10 @@ export default function DevelopmentPlanWorkspace({
               {
                 id: 'train_trainer',
                 title: 'Train the Trainer Q4',
-                viTitle: 'Giảng viên nội bộ',
+                viTitle: 'Đào tạo Giảng viên Nội bộ',
                 quarter: 'Q4',
                 tag: 'HIGH',
                 icon: 'compass'
-              },
-              {
-                id: 'succession_pipeline',
-                title: 'Succession Pipeline Q4',
-                viTitle: 'Quy hoạch Nhân sự kế thừa',
-                quarter: 'Q4',
-                tag: 'MEDIUM',
-                icon: 'puzzle'
-              },
-              {
-                id: 'idp_self_dev',
-                title: 'IDP / Self-Dev Q4',
-                viTitle: 'Phát triển Kế hoạch IDP',
-                quarter: 'Q4',
-                tag: 'MEDIUM',
-                icon: 'pencil'
               }
             ].map((card) => {
               const isActive = activeCards[card.id];
@@ -1860,7 +1844,7 @@ export default function DevelopmentPlanWorkspace({
         {/* Scrollable scheduler timeline wrapper */}
         <div 
           ref={schedulerScrollContainerRef}
-          className="overflow-x-auto min-w-0 max-w-full scrollbar-thin pb-4"
+          className="overflow-x-auto scrollbar-thin pb-2"
           onDragOver={(e) => {
             // Allow drop
             e.preventDefault();
@@ -1888,9 +1872,9 @@ export default function DevelopmentPlanWorkspace({
             }
           }}
         >
-          <div className="min-w-[1140px] flex flex-col gap-4 pr-12 pl-2">
+          <div className="min-w-[520px] flex flex-col gap-3 pr-4 pl-1">
             {/* Calendar Months Drop Headers - April to December */}
-            <div className="grid grid-cols-9 gap-2 mt-1 select-none">
+            <div className="grid grid-cols-9 gap-1 mt-1 select-none">
               {['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, idx) => {
                 const isOdd = idx % 2 === 0;
                 const actualMonthIndex = idx + 3; // index 3 to 11 (April to December)
@@ -1908,14 +1892,14 @@ export default function DevelopmentPlanWorkspace({
                         handleMoveCourse(courseId, actualMonthIndex);
                       }
                     }}
-                    className={`text-center py-2 rounded-xl border relative group transition-all duration-250 cursor-pointer min-h-[42px] flex flex-col items-center justify-center ${
+                    className={`text-center py-1.5 rounded-lg border relative group transition-all duration-250 cursor-pointer min-h-[34px] flex flex-col items-center justify-center ${
                       isOdd 
                         ? 'bg-indigo-50/40 border-indigo-100/70 text-indigo-700 shadow-3xs' 
                         : 'bg-slate-50/50 border-slate-150 text-slate-500'
                     }`}
                     title={lang === 'VI' ? `Thả vào đây để xếp lịch sang tháng ${actualMonthIndex + 1}` : `Drop here to schedule starting month to ${m}`}
                   >
-                    <span className="text-[12.5px] font-extrabold tracking-tight block">
+                    <span className="text-[10px] font-bold tracking-tight block">
                       {lang === 'VI' ? `Tháng ${actualMonthIndex + 1}` : m}
                     </span>
                     
