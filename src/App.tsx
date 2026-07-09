@@ -184,6 +184,10 @@ const factualHighRiskNames = [
 
 // augmentedTalentPool is computed lazily inside the component to avoid circular import issues
 function buildAugmentedTalentPool(): Talent[] {
+  const wnkHRBefore = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
+  const wnkCS2Before = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
+  console.log('%c[BUILD_AUG] dbTalentPool total=' + dbTalentPool.length + ' WNK_HR=' + wnkHRBefore.length + ' WNK_CS2=' + wnkCS2Before.length, 'color: #ef4444; font-weight: bold; font-size: 14px;');
+  console.log('[BUILD_AUG] WNK HR names:', wnkHRBefore.map(t => t.name));
   return dbTalentPool.map((t, idx) => {
   let newTransition = false;
   let highRisk = false;
