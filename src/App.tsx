@@ -186,8 +186,14 @@ const factualHighRiskNames = [
 function buildAugmentedTalentPool(): Talent[] {
   const wnkHRBefore = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
   const wnkCS2Before = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
-  console.log('%c[BUILD_AUG] dbTalentPool total=' + dbTalentPool.length + ' WNK_HR=' + wnkHRBefore.length + ' WNK_CS2=' + wnkCS2Before.length, 'color: #ef4444; font-weight: bold; font-size: 14px;');
-  console.log('[BUILD_AUG] WNK HR names:', wnkHRBefore.map(t => t.name));
+  const wnkAll = dbTalentPool.filter(t => t.site === 'WNK');
+  const deptMap: Record<string, string[]> = {};
+  wnkAll.forEach(t => { deptMap[t.dept] = deptMap[t.dept] || []; deptMap[t.dept].push(t.name); });
+  console.log('%c[BUILD_AUG] dbTalentPool total=' + dbTalentPool.length + ' WNK_total=' + wnkAll.length, 'color: #ef4444; font-weight: bold; font-size: 14px;');
+  console.log('[BUILD_AUG] WNK dept breakdown:', JSON.stringify(Object.fromEntries(Object.entries(deptMap).map(([k,v]) => [k, v.length]))));
+  console.log('[BUILD_AUG] WNK HR names:', (deptMap['Human Resources'] || []));
+  console.log('[BUILD_AUG] WNK IT names:', (deptMap['IT'] || []));
+  console.log('[BUILD_AUG] WNK CutSewWNK2 names:', (deptMap['Cut&Sew WNK2'] || []));
   return dbTalentPool.map((t, idx) => {
   let newTransition = false;
   let highRisk = false;
