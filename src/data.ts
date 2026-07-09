@@ -1099,6 +1099,15 @@ export const dbTalentPool: Talent[] = [
   ...ashTalentPool,
 ];
 
+// DEBUG: Count WNK HR at module load
+if (typeof window !== 'undefined') {
+  const wnkHR = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
+  const wnkCS2 = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
+  const wnkTotal = dbTalentPool.filter(t => t.site === 'WNK');
+  console.log('%c[DATA.TS DEBUG] WNK HR=' + wnkHR.length + ' CutSewWNK2=' + wnkCS2.length + ' WNK_TOTAL=' + wnkTotal.length + ' POOL_TOTAL=' + dbTalentPool.length, 'color: #f59e0b; font-weight: bold;');
+  console.log('[DATA.TS DEBUG] WNK HR names:', wnkHR.map(t => t.name));
+}
+
 export const dbTrainingSummary: Record<string, number[]> = {
   "ALL": [79, 44, 30, 29, 25],
   "Cut&Sew": [34, 12, 10, 8, 9],
