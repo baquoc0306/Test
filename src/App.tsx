@@ -182,7 +182,9 @@ const factualHighRiskNames = [
   'Tyson Thai', 'Hugo Dao', 'Pham Duoc', 'Tran Kieu', 'NGUYEN, AKINA', 'KAI NGUYEN (NS)', 'ANGELA TRAN'
 ].map(n => n.toLowerCase().trim());
 
-const augmentedTalentPool: Talent[] = dbTalentPool.map((t, idx) => {
+// augmentedTalentPool is computed lazily inside the component to avoid circular import issues
+function buildAugmentedTalentPool(): Talent[] {
+  return dbTalentPool.map((t, idx) => {
   let newTransition = false;
   let highRisk = false;
   let idpExpiryDays: number | undefined = undefined;
@@ -242,7 +244,9 @@ const augmentedTalentPool: Talent[] = dbTalentPool.map((t, idx) => {
     idpExpiryDays,
     needsNewIDP
   };
-});
+
+  });
+}
 
 export default function App() {
   const [lang, setLang] = useState<'VI' | 'EN'>(() => {
@@ -325,19 +329,19 @@ export default function App() {
   };
 
   // React state for the databases to allow real-time simulation/edits
-  const [talents, setTalents] = useState<Talent[]>(augmentedTalentPool);
+  const [talents, setTalents] = useState<Talent[]>(() => buildAugmentedTalentPool());
   // DEBUG: log talents on mount
   useEffect(() => {
-    const wnkHR = augmentedTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
-    const wnkCS2 = augmentedTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
-    console.log('%c[APP DEBUG] augmentedTalentPool WNK HR=' + wnkHR.length + ' CS2=' + wnkCS2.length + ' total=' + augmentedTalentPool.length, 'color: #10b981; font-weight: bold;');
-    console.log('[APP DEBUG] WNK HR names in augmented:', wnkHR.map(t => t.name));
+    const wnkHR2 = talents.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
+    const wnkCS2 = talents.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
+    console.log('%c[APP DEBUG] talents WNK HR=' + wnkHR2.length + ' CS2=' + wnkCS2.length + ' total=' + talents.length, 'color: #10b981; font-weight: bold;');
+    console.log('[APP DEBUG] WNK HR names:', wnkHR2.map(t => t.name));
   }, []);
 
   // Run data validation on mount
   useEffect(() => {
     const allPipeline = getFullPipeline();
-    const warnings = validateData(augmentedTalentPool, allPipeline);
+    const warnings = validateData(talents, allPipeline);
     logValidationResults(warnings);
     setDataWarnings(warnings);
   }, []);
