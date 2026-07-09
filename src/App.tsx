@@ -452,9 +452,10 @@ export default function App() {
     const filtered = talents.filter(t => (t.site || 'MLN') === selectedSite);
     const hrCount = filtered.filter(t => t.dept === 'Human Resources').length;
     const cswnk2Count = filtered.filter(t => t.dept === 'Cut&Sew WNK2').length;
-    console.log(`[DEBUG] selectedSite=${selectedSite} total=${filtered.length} HR=${hrCount} CutSewWNK2=${cswnk2Count}`);
+    console.log(`[DEBUG] selectedSite=${selectedSite} total=${filtered.length} HR=${hrCount} CutSewWNK2=${cswnk2Count} talentsTotal=${talents.length}`);
     // Log all unique depts
     const depts = [...new Set(filtered.map(t => t.dept))].sort();
+    console.log('[DEBUG] All depts:', depts.join(', '));
     console.log('[DEBUG] Depts in siteFilteredTalents:', depts);
     return filtered;
   }, [talents, selectedSite]);
