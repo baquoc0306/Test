@@ -1486,7 +1486,7 @@ const overrideWankDepts = () => {
     "annienguyen": "Human Resources",
     "amberdinh": "Human Resources",
     "dinhthihoangyen": "Human Resources",
-    "vuvanxuan": "Procurement",
+    "vuvanxuan": "UPH Assembly WNK3",
     "giapquanghuy": "UPH Support WNK3",
     "trinhngocphien": "IT",
     "dinhthihongvan": "Cut&Sew WNK3"
