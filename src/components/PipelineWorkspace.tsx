@@ -762,24 +762,24 @@ export default function PipelineWorkspace({
         <div className="overflow-x-auto max-h-[500px] overflow-y-auto scrollbar-thin">
           <table className="w-full text-left text-xs border-collapse">
             <thead className="sticky top-0 z-10 select-none shadow-sm">
-              {/* Group label row */}
-              <tr className="text-[8.5px] font-black uppercase tracking-widest">
-                <th colSpan={3} className="px-4 pt-2.5 pb-1 bg-slate-700 text-slate-300 text-center border-r border-slate-600">
+              {/* Group label row — ĐẬM, TO, nổi bật */}
+              <tr className="text-[11px] font-black uppercase tracking-wide">
+                <th colSpan={3} className="px-4 py-2 bg-slate-800 text-white text-center border-r-2 border-slate-600">
                   {lang === 'VI' ? '📋 THÔNG TIN VỊ TRÍ' : '📋 POSITION INFO'}
                 </th>
-                <th colSpan={2} className="px-4 pt-2.5 pb-1 bg-rose-800 text-rose-200 text-center border-r border-rose-700">
+                <th colSpan={2} className="px-4 py-2 bg-rose-700 text-white text-center border-r-2 border-rose-600">
                   {lang === 'VI' ? '⚠️ ĐÁNH GIÁ RỦI RO' : '⚠️ RISK ASSESSMENT'}
                 </th>
-                <th colSpan={3} className="px-4 pt-2.5 pb-1 bg-indigo-800 text-indigo-200 text-center border-r border-indigo-700">
+                <th colSpan={3} className="px-4 py-2 bg-indigo-700 text-white text-center border-r-2 border-indigo-600">
                   {lang === 'VI' ? '🔗 KẾ HOẠCH KẾ THỪA' : '🔗 SUCCESSION PLAN'}
                 </th>
-                <th className="px-4 pt-2.5 pb-1 bg-slate-700 text-slate-300 text-center">
-                  {lang === 'VI' ? '⚙️' : '⚙️'}
+                <th className="px-4 py-2 bg-slate-800 text-slate-400 text-center text-[10px]">
+                  ⚙️
                 </th>
               </tr>
-              {/* Column header row */}
-              <tr className="border-b border-slate-900 font-sans text-[11px]">
-                {/* Group 1: Thông tin — slate */}
+              {/* Column header row — NHẠ HƠN, nhỏ hơn */}
+              <tr className="border-b border-slate-900 font-sans text-[10px]">
+                {/* Group 1: Thông tin — slate nhạt */}
                 <th 
                   id="onboarding-pipeline-th-incumbent"
                   onClick={() => {
@@ -790,11 +790,12 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-white cursor-pointer hover:bg-slate-600 transition-colors bg-slate-700 border-r border-slate-600"
+                  className="px-4 py-2 font-semibold text-slate-400 cursor-pointer hover:bg-slate-700 transition-colors bg-slate-750 border-r border-slate-600"
+                  style={{ backgroundColor: '#2d3748' }}
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Nhân sự hiện tại' : 'Incumbent'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'incumbent' ? 'text-white' : 'text-slate-400'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'incumbent' ? 'text-white' : 'text-slate-500'}`} />
                   </div>
                 </th>
                 <th 
@@ -807,11 +808,12 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-white cursor-pointer hover:bg-slate-600 transition-colors bg-slate-700 border-r border-slate-600"
+                  className="px-4 py-2 font-semibold text-slate-400 cursor-pointer hover:bg-slate-700 transition-colors border-r border-slate-600"
+                  style={{ backgroundColor: '#2d3748' }}
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Bộ phận' : 'Dept'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'dept' ? 'text-white' : 'text-slate-400'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'dept' ? 'text-white' : 'text-slate-500'}`} />
                   </div>
                 </th>
                 <th 
@@ -824,14 +826,15 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-white cursor-pointer hover:bg-slate-600 transition-colors bg-slate-700 border-r border-rose-800"
+                  className="px-4 py-2 font-semibold text-slate-400 cursor-pointer hover:bg-slate-700 transition-colors border-r-2 border-rose-700"
+                  style={{ backgroundColor: '#2d3748' }}
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Vị trí trọng yếu' : 'Key Role'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'role' ? 'text-white' : 'text-slate-400'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'role' ? 'text-white' : 'text-slate-500'}`} />
                   </div>
                 </th>
-                {/* Group 2: Rủi ro — rose */}
+                {/* Group 2: Rủi ro — rose nhạt */}
                 <th 
                   id="onboarding-pipeline-th-risk"
                   onClick={() => {
@@ -842,11 +845,11 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-rose-100 cursor-pointer hover:bg-rose-700 transition-colors bg-rose-800 border-r border-rose-700"
+                  className="px-4 py-2 font-semibold text-rose-300 cursor-pointer hover:bg-rose-800 transition-colors bg-rose-900 border-r border-rose-700"
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Mức Rủi Ro' : 'Risk'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'risk' ? 'text-white' : 'text-rose-300'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'risk' ? 'text-white' : 'text-rose-500'}`} />
                   </div>
                 </th>
                 <th 
@@ -859,14 +862,14 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-rose-100 cursor-pointer hover:bg-rose-700 transition-colors bg-rose-800 border-r border-indigo-800"
+                  className="px-4 py-2 font-semibold text-rose-300 cursor-pointer hover:bg-rose-800 transition-colors bg-rose-900 border-r-2 border-indigo-700"
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Tình Trạng' : 'Status'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'status' ? 'text-white' : 'text-rose-300'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'status' ? 'text-white' : 'text-rose-500'}`} />
                   </div>
                 </th>
-                {/* Group 3: Kế thừa — indigo */}
+                {/* Group 3: Kế thừa — indigo nhạt */}
                 <th 
                   id="onboarding-pipeline-th-interim"
                   onClick={() => {
@@ -877,11 +880,11 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-indigo-100 cursor-pointer hover:bg-indigo-700 transition-colors bg-indigo-800 border-r border-indigo-700"
+                  className="px-4 py-2 font-semibold text-indigo-300 cursor-pointer hover:bg-indigo-800 transition-colors bg-indigo-900 border-r border-indigo-700"
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Tạm quyền' : 'Interim'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'interim' ? 'text-white' : 'text-indigo-300'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'interim' ? 'text-white' : 'text-indigo-500'}`} />
                   </div>
                 </th>
                 <th 
@@ -894,11 +897,11 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-indigo-100 cursor-pointer hover:bg-indigo-700 transition-colors bg-indigo-800 border-r border-indigo-700"
+                  className="px-4 py-2 font-semibold text-indigo-300 cursor-pointer hover:bg-indigo-800 transition-colors bg-indigo-900 border-r border-indigo-700"
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Người kế thừa' : 'Successor'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'successor' ? 'text-white' : 'text-indigo-300'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'successor' ? 'text-white' : 'text-indigo-500'}`} />
                   </div>
                 </th>
                 <th 
@@ -911,14 +914,14 @@ export default function PipelineWorkspace({
                       setSortMainDir('asc');
                     }
                   }}
-                  className="px-4 py-2.5 font-bold text-indigo-100 cursor-pointer hover:bg-indigo-700 transition-colors bg-indigo-800 border-r border-slate-700"
+                  className="px-4 py-2 font-semibold text-indigo-300 cursor-pointer hover:bg-indigo-800 transition-colors bg-indigo-900 border-r-2 border-slate-700"
                 >
                   <div className="flex items-center gap-1">
                     <span>{lang === 'VI' ? 'Sẵn sàng' : 'Readiness'}</span>
-                    <ArrowUpDown className={`w-3 h-3 ${sortMainKey === 'readiness' ? 'text-white' : 'text-indigo-300'}`} />
+                    <ArrowUpDown className={`w-2.5 h-2.5 ${sortMainKey === 'readiness' ? 'text-white' : 'text-indigo-500'}`} />
                   </div>
                 </th>
-                <th className="px-4 py-2.5 font-bold text-slate-300 bg-slate-700 text-center">
+                <th className="px-4 py-2 font-semibold text-slate-500 bg-slate-800 text-center">
                   {lang === 'VI' ? 'Sửa' : 'Edit'}
                 </th>
               </tr>
@@ -982,8 +985,8 @@ export default function PipelineWorkspace({
                         : 'hover:bg-slate-50/60'
                     }`}
                   >
-                    {/* GROUP 1: Thông tin vị trí — nền trắng, chữ đậm */}
-                    <td className="px-4 py-3 bg-white">
+                    {/* GROUP 1: Thông tin vị trí */}
+                    <td className="px-4 py-3">
                       {p.incumbent === 'Open' ? (
                         <span className="bg-rose-100 text-rose-800 font-black px-2 py-0.5 rounded text-[10px]">
                           {lang === 'VI' ? 'VỊ TRÍ TRỐNG' : 'OPEN'}
@@ -995,42 +998,42 @@ export default function PipelineWorkspace({
                     <td className="px-4 py-3 bg-white">
                       <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wide">{p.dept}</span>
                     </td>
-                    <td className="px-4 py-3 bg-white border-r-2 border-slate-200">
+                    <td className="px-4 py-3 border-r-2 border-slate-100">
                       <span className="text-[12px] font-semibold text-slate-800">{p.role}</span>
                     </td>
                     {/* GROUP 2: Rủi ro — nền rose nhạt */}
-                    <td className="px-4 py-3 bg-rose-50/40">
+                    <td className="px-4 py-3">
                       <span className={`text-[10px] px-2 py-0.5 rounded font-bold whitespace-nowrap ${riskBadge}`}>
                         {displayRisk}
                       </span>
                     </td>
-                    <td className="px-4 py-3 bg-rose-50/40 border-r-2 border-slate-200">
+                    <td className="px-4 py-3 border-r-2 border-slate-100">
                       <span className={`text-[10px] px-2 py-0.5 rounded font-medium whitespace-nowrap ${pipelineStyle}`}>
                         {displayStatus}
                       </span>
                     </td>
                     {/* GROUP 3: Kế thừa — nền indigo nhạt */}
-                    <td className="px-4 py-3 bg-indigo-50/30">
+                    <td className="px-4 py-3">
                       {p.interim === 'None' ? (
                         <span className="text-[11px] text-slate-300 italic">—</span>
                       ) : (
                         <span className="text-[11px] text-slate-600">{p.interim}</span>
                       )}
                     </td>
-                    <td className="px-4 py-3 bg-indigo-50/30">
+                    <td className="px-4 py-3">
                       {p.successor === 'None' ? (
                         <span className="text-[11px] text-slate-300 italic">—</span>
                       ) : (
                         <span className="text-[12px] font-semibold text-indigo-700">{p.successor}</span>
                       )}
                     </td>
-                    <td className="px-4 py-3 bg-indigo-50/30 border-r-2 border-slate-200">
+                    <td className="px-4 py-3 border-r-2 border-slate-100">
                       <span className={`text-[10px] px-2 py-0.5 rounded font-medium whitespace-nowrap ${readyBadge}`}>
                         {displayReadiness}
                       </span>
                     </td>
                     {/* Edit */}
-                    <td className="px-4 py-3 bg-white text-center">
+                    <td className="px-4 py-3 text-center">
                       {isLdMode && (
                         <button
                           onClick={(e) => { e.stopPropagation(); handleStartEdit(p); }}

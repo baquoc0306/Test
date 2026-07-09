@@ -1611,22 +1611,43 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Phân bổ theo phòng ban — compact */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-                  <h4 className="text-[9.5px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-                    {lang === 'VI' ? 'CƠ CẤU THEO BỘ PHẬN' : 'BY DEPARTMENT'}
-                  </h4>
-                  <ResponsiveContainer width="100%" height={130}>
-                    <BarChart data={deptGroupChartData} margin={{ top: 5, right: 5, left: -28, bottom: 0 }}>
-                      <XAxis dataKey="name" stroke="#94a3b8" fontSize={7} tickLine={false} />
-                      <YAxis stroke="#94a3b8" fontSize={7} tickLine={false} allowDecimals={false} />
-                      <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
-                      <Bar dataKey="growers" stackId="a" fill="#10b981" radius={[0,0,0,0]} />
-                      <Bar dataKey="keepers" stackId="a" fill="#d97706" />
-                      <Bar dataKey="movers" stackId="a" fill="#dc2626" radius={[2,2,0,0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                {/* Phân bổ theo phòng ban + mật độ 9-Box */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col gap-4 flex-1">
+                  <div>
+                    <h4 className="text-[9.5px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+                      {lang === 'VI' ? 'CƠ CẤU THEO BỘ PHẬN' : 'BY DEPARTMENT'}
+                    </h4>
+                    <ResponsiveContainer width="100%" height={120}>
+                      <BarChart data={deptGroupChartData} margin={{ top: 5, right: 5, left: -28, bottom: 0 }}>
+                        <XAxis dataKey="name" stroke="#94a3b8" fontSize={7} tickLine={false} />
+                        <YAxis stroke="#94a3b8" fontSize={7} tickLine={false} allowDecimals={false} />
+                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
+                        <Bar dataKey="growers" stackId="a" fill="#10b981" radius={[0,0,0,0]} />
+                        <Bar dataKey="keepers" stackId="a" fill="#d97706" />
+                        <Bar dataKey="movers" stackId="a" fill="#dc2626" radius={[2,2,0,0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div>
+                    <h4 className="text-[9.5px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                      {lang === 'VI' ? 'MẬT ĐỘ TỪNG PHÂN VỊ 9-BOX' : '9-BOX CELL DENSITY'}
+                    </h4>
+                    <ResponsiveContainer width="100%" height={110}>
+                      <BarChart data={densityChartData} margin={{ top: 5, right: 5, left: -28, bottom: 0 }}>
+                        <XAxis dataKey="name" stroke="#94a3b8" fontSize={6} tickLine={false} />
+                        <YAxis stroke="#94a3b8" fontSize={7} tickLine={false} allowDecimals={false} />
+                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
+                        <Bar dataKey="value" radius={[3, 3, 0, 0]}>
+                          {densityChartData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                          <LabelList dataKey="value" position="top" style={{ fill: '#475569', fontSize: 8, fontWeight: 'bold' }} />
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
                 </div>
 
               </div>

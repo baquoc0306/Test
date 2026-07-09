@@ -1517,9 +1517,9 @@ export default function DevelopmentPlanWorkspace({
       </div>
 
       {/* Merged: Kế hoạch Đào tạo (left) + Lịch Đào tạo (right) */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 items-start">
-      {/* LEFT: Kế hoạch & Đề xuất */}
-      <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-xs text-slate-800 flex flex-col gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-5 items-stretch">
+      {/* LEFT: Kế hoạch & Đề xuất — 2/5 */}
+      <div className="xl:col-span-2 bg-white border border-slate-200 p-5 rounded-2xl shadow-xs text-slate-800 flex flex-col gap-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
@@ -1803,8 +1803,8 @@ export default function DevelopmentPlanWorkspace({
         </div>
       </div>
 
-      {/* RIGHT: Lịch Đào tạo */}
-      <div id="onboarding-devplan-chronology" className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm text-slate-850 relative overflow-hidden flex flex-col gap-4">
+      {/* RIGHT: Lịch Đào tạo — 3/5 */}
+      <div id="onboarding-devplan-chronology" className="xl:col-span-3 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm text-slate-850 relative overflow-hidden flex flex-col gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
           <div>
             <div className="flex items-center gap-2">
