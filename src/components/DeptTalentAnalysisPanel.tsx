@@ -643,6 +643,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                 </button>
               </div>
               <div className="p-5 space-y-4">
+                {/* Tỷ lệ 3 nhóm */}
                 <div className="grid grid-cols-3 gap-3">
                   <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center">
                     <span className="block text-2xl font-black text-emerald-600">{selectedDeptDetail.growersPct}%</span>
@@ -660,23 +661,69 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                     <span className="block text-[9px] text-slate-400 mt-0.5">{selectedDeptDetail.movers} {lang === 'VI' ? 'người' : 'people'}</span>
                   </div>
                 </div>
-                {selectedDeptDetail.members && selectedDeptDetail.members.length > 0 && (
+
+                {/* Danh sách thành viên theo nhóm */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
                   <div>
-                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-wider mb-2">{lang === 'VI' ? 'THÀNH VIÊN BỘ PHẬN' : 'DEPARTMENT MEMBERS'}</h4>
-                    <div className="grid grid-cols-2 gap-1.5 max-h-52 overflow-y-auto pr-1">
-                      {selectedDeptDetail.members.map((m: any, i: number) => (
-                        <div key={i} className={`flex items-center gap-2 rounded-lg px-3 py-1.5 border ${m.group === 'Growers' ? 'bg-emerald-50 border-emerald-100' : m.group === 'Keepers' ? 'bg-amber-50 border-amber-100' : 'bg-rose-50 border-rose-100'}`}>
-                          <span className={`w-2 h-2 rounded-full shrink-0 ${m.group === 'Growers' ? 'bg-emerald-500' : m.group === 'Keepers' ? 'bg-amber-500' : 'bg-rose-500'}`} />
-                          <span className="text-[11px] font-semibold text-slate-800 truncate">{m.name}</span>
-                          <span className={`text-[8.5px] ml-auto shrink-0 font-bold ${m.group === 'Growers' ? 'text-emerald-600' : m.group === 'Keepers' ? 'text-amber-600' : 'text-rose-600'}`}>{m.group === 'Growers' ? 'G' : m.group === 'Keepers' ? 'K' : 'M'}</span>
-                        </div>
-                      ))}
+                    <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-800 block mb-1.5 flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-amber-500" />
+                      {lang === 'VI' ? `Nhóm Duy trì (${selectedDeptDetail.keepers}):` : `Keepers (${selectedDeptDetail.keepers}):`}
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedDeptDetail.keeperMembers?.length > 0 ? selectedDeptDetail.keeperMembers.map((name: string) => (
+                        <span key={name} className="px-2 py-0.5 rounded border text-[10px] font-semibold bg-white border-amber-200 text-amber-800">👤 {name}</span>
+                      )) : <span className="text-[10px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
                     </div>
                   </div>
-                )}
-                <div className={`rounded-xl p-4 border ${selectedDeptDetail.profileBg}`}>
-                  <h4 className="text-[10px] font-black uppercase tracking-wider mb-1.5">{lang === 'VI' ? 'HỒ SƠ NHÂN TÀI' : 'TALENT PROFILE'}</h4>
-                  <p className="text-[11px] font-bold">{lang === 'VI' ? selectedDeptDetail.profileVi : selectedDeptDetail.profileEn}</p>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 block mb-1.5 flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                      {lang === 'VI' ? `Nhóm Phát triển (${selectedDeptDetail.growers}):` : `Growers (${selectedDeptDetail.growers}):`}
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedDeptDetail.growerMembers?.length > 0 ? selectedDeptDetail.growerMembers.map((name: string) => (
+                        <span key={name} className="px-2 py-0.5 rounded border text-[10px] font-semibold bg-white border-emerald-200 text-emerald-800">👤 {name}</span>
+                      )) : <span className="text-[10px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Đánh giá cấu trúc & Điểm mạnh */}
+                <div className="p-3 bg-indigo-50/50 rounded-xl border border-indigo-200/50 space-y-2">
+                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-indigo-950 flex items-center gap-1.5 border-b border-indigo-100 pb-1.5">
+                    🛡️ {lang === 'VI' ? 'ĐÁNH GIÁ CẤU TRÚC & ĐIỂM MẠNH ĐỘI NGŨ:' : 'STRUCTURAL STRENGTHS & ALIGNMENT ASSESSMENT:'}
+                  </span>
+                  <div className="prose prose-slate max-w-none text-slate-700 text-[11px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
+                    <Markdown>{getPersonalizedStrengths(selectedDeptDetail, lang)}</Markdown>
+                  </div>
+                </div>
+
+                {/* Rủi ro & Cảnh báo */}
+                <div className="p-3 bg-rose-50/50 rounded-xl border border-rose-200/50 space-y-2">
+                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-rose-950 flex items-center gap-1.5 border-b border-rose-100 pb-1.5">
+                    ⚠️ {lang === 'VI' ? 'RỦI RO THÁCH THỨC QUẢN TRỊ CHIẾN LƯỢC:' : 'CRITICAL RETENTION RISKS & DIAGNOSTIC WARNINGS:'}
+                  </span>
+                  <div className="prose prose-slate max-w-none text-slate-700 text-[11px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
+                    <Markdown>{getPersonalizedRisks(selectedDeptDetail, lang)}</Markdown>
+                  </div>
+                </div>
+
+                {/* Khuyến nghị hành động */}
+                <div className="p-4 bg-indigo-950 text-indigo-50 rounded-xl space-y-2 border border-slate-900 shadow-md">
+                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-indigo-300 flex items-center justify-between border-b border-indigo-900/80 pb-2">
+                    <span className="flex items-center gap-1.5">
+                      <Briefcase className="w-4 h-4 text-emerald-400" />
+                      {lang === 'VI' ? 'KHUYẾN NGHỊ HÀNH ĐỘNG CHO MANAGER:' : 'DECISIONAL ROADMAPS FOR MANAGERS:'}
+                    </span>
+                    <span className="font-mono text-[9px] bg-indigo-900 px-2 py-0.5 rounded-full text-indigo-200">
+                      {businessPhase === 'FAST_GROWTH'
+                        ? (lang === 'VI' ? 'Tăng trưởng nhanh' : 'Fast Expansion')
+                        : (lang === 'VI' ? 'Quy mô ổn định' : 'Stable Scale')}
+                    </span>
+                  </span>
+                  <div className="prose prose-indigo max-w-none text-slate-100 text-[11px] leading-relaxed font-sans space-y-2.5 markdown-body [&_strong]:font-bold [&_p]:font-medium [&_li]:text-slate-200">
+                    <Markdown>{getPersonalizedActions(selectedDeptDetail, businessPhase, lang)}</Markdown>
+                  </div>
                 </div>
               </div>
             </div>
