@@ -1503,7 +1503,7 @@ export default function DevelopmentPlanWorkspace({
                         <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
                           {lang === 'VI' ? 'Nhu cầu' : 'Needs'}
                         </span>
-                        <span className="text-2xl font-black text-indigo-600 font-sans leading-none">
+                        <span className="text-3xl font-black text-indigo-600 font-sans leading-none">
                           {item.needs}
                         </span>
                       </div>
@@ -1516,16 +1516,18 @@ export default function DevelopmentPlanWorkspace({
         </div>
       </div>
 
-      {/* Hero Header Area */}
-      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-xs text-slate-800">
+      {/* Merged: Kế hoạch Đào tạo (left) + Lịch Đào tạo (right) */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 items-start">
+      {/* LEFT: Kế hoạch & Đề xuất */}
+      <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-xs text-slate-800 flex flex-col gap-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <span className="p-1.5 bg-indigo-50 border border-indigo-150 rounded-lg text-indigo-650 shrink-0">
-                <Compass className="w-5 h-5 animate-pulse" />
+                <Compass className="w-4 h-4" />
               </span>
-              <h2 className="text-base md:text-lg font-black font-sans leading-tight text-slate-900 uppercase tracking-tight">
-                {lang === 'VI' ? 'Kế hoạch & Đề xuất Đào tạo Toàn Công ty' : 'Company-wide Suggested Training framework'}
+              <h2 className="text-sm font-black font-sans leading-tight text-slate-900 uppercase tracking-tight">
+                {lang === 'VI' ? 'Kế hoạch & Đề xuất Đào tạo' : 'Training Plan & Proposals'}
               </h2>
             </div>
             <p className="text-[11px] md:text-xs text-slate-500 mt-1.5 max-w-2xl leading-relaxed">
@@ -1830,18 +1832,18 @@ export default function DevelopmentPlanWorkspace({
         </div>
       </div>
 
-      {/* SƠ ĐỒ KẾ HOẠCH ĐÀO TẠO (HTML5 Drag & Drop Workspace) */}
-      <div id="onboarding-devplan-chronology" className="bg-white border border-slate-200 rounded-2xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] text-slate-850 relative overflow-hidden flex flex-col gap-5">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      {/* RIGHT: Lịch Đào tạo */}
+      <div id="onboarding-devplan-chronology" className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm text-slate-850 relative overflow-hidden flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
           <div>
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <span className="p-1.5 bg-indigo-50 border border-indigo-150 rounded-lg text-indigo-650">
-                <Calendar className="w-5 h-5 animate-pulse" />
+                <Calendar className="w-4 h-4" />
               </span>
-              <h3 className="text-sm font-black font-sans tracking-tight text-slate-955 flex items-center gap-2 uppercase">
+              <h3 className="text-xs font-black font-sans tracking-tight text-slate-900 flex items-center gap-2 uppercase">
                 <span>{lang === 'VI' ? `LỊCH ĐÀO TẠO TẬP TRUNG — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026` : `FOCUSED TRAINING SCHEDULE — ${selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} 2026`}</span>
-                <span className="bg-indigo-650 text-white font-mono text-[9px] font-black px-2 py-0.5 rounded-full tracking-wider animate-pulse select-none">
-                  UPDATED
+                <span className="bg-indigo-600 text-white font-mono text-[8px] font-black px-1.5 py-0.5 rounded-full tracking-wider select-none">
+                  LIVE
                 </span>
               </h3>
             </div>
@@ -2232,6 +2234,7 @@ export default function DevelopmentPlanWorkspace({
         </div>
 
       </div>
+      </div> {/* end 2-col grid */}
 
       {/* Primary Section: The Matrix Table showing recommendations */}
       <div id="onboarding-devplan-matrix" className="bg-white border border-slate-200 rounded-2xl shadow-3xs overflow-hidden flex flex-col">

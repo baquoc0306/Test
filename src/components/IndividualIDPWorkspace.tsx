@@ -914,31 +914,44 @@ export default function IndividualIDPWorkspace({
       <div id="onboarding-idp-metrics-block" className="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
         {/* Metric 1 - Total People — dark card */}
-        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-5 flex flex-col gap-4 shadow-md">
+        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-md">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] text-slate-400 font-black uppercase tracking-widest">
+            <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">
               {lang === 'VI' ? 'NHÂN SỰ ĐƯỢC ĐÁNH GIÁ' : 'ASSESSED PERSONNEL'}
             </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-slate-700 text-[9px] font-black text-slate-300 uppercase tracking-widest border border-slate-600">
+            <span className="px-2 py-0.5 rounded-full bg-slate-700 text-[9px] font-black text-slate-300 uppercase tracking-widest border border-slate-600">
               IDP
             </span>
           </div>
-          <div className="flex items-end gap-3">
-            <span className="text-6xl font-black text-white tracking-tight leading-none">{statistics.total}</span>
-            <span className="text-slate-400 text-sm font-bold pb-1">{lang === 'VI' ? 'nhân sự' : 'people'}</span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-5xl font-black text-white tracking-tight leading-none">{statistics.total}</span>
+            <span className="text-slate-400 text-[11px] font-bold">{lang === 'VI' ? 'nhân sự' : 'people'}</span>
           </div>
-          <div className="grid grid-cols-3 gap-2 pt-1 border-t border-slate-700">
-            <div className="text-center">
-              <span className="block text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-1">{lang === 'VI' ? 'Tổng duties' : 'Total'}</span>
-              <span className="block text-xl font-black text-white">{filteredPlans.length}</span>
+          <div className="grid grid-cols-3 gap-1.5 pt-2 border-t border-slate-700">
+            <div className="bg-slate-800 rounded-lg p-2 text-center">
+              <span className="block text-[8px] text-slate-500 font-bold uppercase mb-0.5">{lang === 'VI' ? 'Tổng duties' : 'Total'}</span>
+              <span className="block text-lg font-black text-white">{filteredPlans.length}</span>
             </div>
-            <div className="text-center border-x border-slate-700">
-              <span className="block text-[9px] text-red-400 font-bold uppercase tracking-wider mb-1">R1+R2</span>
-              <span className="block text-xl font-black text-red-300">{statistics.r1 + statistics.r2}</span>
+            <div className="bg-red-900/40 rounded-lg p-2 text-center border border-red-800/40">
+              <span className="block text-[8px] text-red-400 font-bold uppercase mb-0.5">R1+R2</span>
+              <span className="block text-lg font-black text-red-300">{statistics.r1 + statistics.r2}</span>
             </div>
-            <div className="text-center">
-              <span className="block text-[9px] text-emerald-400 font-bold uppercase tracking-wider mb-1">R3+R4</span>
-              <span className="block text-xl font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
+            <div className="bg-emerald-900/30 rounded-lg p-2 text-center border border-emerald-800/30">
+              <span className="block text-[8px] text-emerald-400 font-bold uppercase mb-0.5">R3+R4</span>
+              <span className="block text-lg font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
+            </div>
+          </div>
+          {/* Thêm progress bar tỷ lệ R1+R2 */}
+          <div className="pt-1">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[8.5px] text-slate-500 font-bold uppercase">{lang === 'VI' ? 'Tỷ lệ cần phát triển (R1+R2)' : 'Development needed (R1+R2)'}</span>
+              <span className="text-[9px] font-black text-red-400">
+                {filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%
+              </span>
+            </div>
+            <div className="w-full bg-slate-700 rounded-full h-1.5">
+              <div className="bg-gradient-to-r from-red-500 to-amber-500 h-1.5 rounded-full transition-all"
+                style={{ width: `${filteredPlans.length > 0 ? Math.round((statistics.r1 + statistics.r2) / filteredPlans.length * 100) : 0}%` }} />
             </div>
           </div>
         </div>

@@ -1502,101 +1502,9 @@ export default function App() {
 
                 {/* Advanced Departmental Talent Structure & Retention Analytics Module */}
                 <DeptTalentAnalysisPanel talents={siteFilteredTalents} lang={lang} selectedDept={selectedDept} onDeptChange={setSelectedDept} isLdMode={isLdMode} />
-              </div>
 
-              {/* Right Column: Redesigned Summary Panel */}
-              <div id="onboarding-right-charts" className="flex flex-col gap-4">
-
-                {/* Tổng quan 3 nhóm — nổi bật */}
-                <div className="bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm">
-                  <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
-                    {lang === 'VI' ? 'TỔNG QUAN & PHÂN TÍCH NHÓM' : 'GROUP OVERVIEW & ANALYSIS'}
-                  </h4>
-                  <div className="flex flex-col gap-3">
-                    {/* Growers */}
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 flex items-center gap-4">
-                      <div className="text-center shrink-0 w-14">
-                        <span className="block text-3xl font-black text-emerald-600 leading-none">{kpis9Box.growers}</span>
-                        <span className="block text-[8.5px] text-emerald-500 font-bold uppercase mt-0.5">{lang === 'VI' ? 'người' : 'people'}</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[11px] font-black text-emerald-700 uppercase tracking-wide">Growers</span>
-                          <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
-                            {kpis9Box.total > 0 ? Math.round(kpis9Box.growers / kpis9Box.total * 100) : 0}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-emerald-100 rounded-full h-2">
-                          <div className="bg-emerald-500 h-2 rounded-full transition-all" style={{ width: `${kpis9Box.total > 0 ? Math.round(kpis9Box.growers / kpis9Box.total * 100) : 0}%` }} />
-                        </div>
-                        <p className="text-[9px] text-emerald-600 mt-1">{lang === 'VI' ? 'Tiềm năng cao — Ưu tiên phát triển' : 'High potential — Priority development'}</p>
-                      </div>
-                    </div>
-                    {/* Keepers */}
-                    <div className="bg-amber-50 border border-amber-200 rounded-xl p-3.5 flex items-center gap-4">
-                      <div className="text-center shrink-0 w-14">
-                        <span className="block text-3xl font-black text-amber-600 leading-none">{kpis9Box.keepers}</span>
-                        <span className="block text-[8.5px] text-amber-500 font-bold uppercase mt-0.5">{lang === 'VI' ? 'người' : 'people'}</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[11px] font-black text-amber-700 uppercase tracking-wide">Keepers</span>
-                          <span className="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200">
-                            {kpis9Box.total > 0 ? Math.round(kpis9Box.keepers / kpis9Box.total * 100) : 0}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-amber-100 rounded-full h-2">
-                          <div className="bg-amber-500 h-2 rounded-full transition-all" style={{ width: `${kpis9Box.total > 0 ? Math.round(kpis9Box.keepers / kpis9Box.total * 100) : 0}%` }} />
-                        </div>
-                        <p className="text-[9px] text-amber-600 mt-1">{lang === 'VI' ? 'Vững hiệu suất — Trụ cột vận hành' : 'Solid performers — Operational backbone'}</p>
-                      </div>
-                    </div>
-                    {/* Movers */}
-                    <div className="bg-rose-50 border border-rose-200 rounded-xl p-3.5 flex items-center gap-4">
-                      <div className="text-center shrink-0 w-14">
-                        <span className="block text-3xl font-black text-rose-600 leading-none">{kpis9Box.movers}</span>
-                        <span className="block text-[8.5px] text-rose-500 font-bold uppercase mt-0.5">{lang === 'VI' ? 'người' : 'people'}</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[11px] font-black text-rose-700 uppercase tracking-wide">Movers</span>
-                          <span className="text-[10px] font-bold text-rose-600 bg-rose-100 px-2 py-0.5 rounded-full border border-rose-200">
-                            {kpis9Box.total > 0 ? Math.round(kpis9Box.movers / kpis9Box.total * 100) : 0}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-rose-100 rounded-full h-2">
-                          <div className="bg-rose-500 h-2 rounded-full transition-all" style={{ width: `${kpis9Box.total > 0 ? Math.round(kpis9Box.movers / kpis9Box.total * 100) : 0}%` }} />
-                        </div>
-                        <p className="text-[9px] text-rose-600 mt-1">{lang === 'VI' ? 'Cần can thiệp — Ưu tiên bồi dưỡng' : 'Action required — Priority intervention'}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Phân bổ theo phòng ban */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex-1 flex flex-col">
-                  <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
-                    {lang === 'VI' ? 'CƠ CẤU NHÓM THEO BỘ PHẬN' : 'GROUP STRUCTURE BY DEPT'}
-                  </h4>
-                  <div className="flex-1 text-[8.5px]">
-                    <ResponsiveContainer width="100%" height={180}>
-                      <BarChart data={deptGroupChartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                        <XAxis dataKey="name" stroke="#94a3b8" fontSize={8} tickLine={false} />
-                        <YAxis stroke="#94a3b8" fontSize={8} tickLine={false} allowDecimals={false} />
-                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
-                        <Legend iconSize={7} wrapperStyle={{ fontSize: '7.5px', bottom: -10 }} />
-                        <Bar name={lang === 'VI' ? "Growers" : "Growers"} dataKey="growers" stackId="a" fill="#10b981" radius={[0,0,0,0]} />
-                        <Bar name={lang === 'VI' ? "Keepers" : "Keepers"} dataKey="keepers" stackId="a" fill="#d97706" />
-                        <Bar name={lang === 'VI' ? "Movers" : "Movers"} dataKey="movers" stackId="a" fill="#dc2626" radius={[3,3,0,0]} />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-
-                {/* Lịch sử thay đổi 9-Box — auto-collapse */}
-                <div className="bg-slate-50 border border-slate-200/80 rounded-2xl shadow-2xs animate-fade-in mt-4 text-left overflow-hidden">
+                {/* Lịch sử thay đổi 9-Box — ngang với 9-Box */}
+                <div className="bg-slate-50 border border-slate-200/80 rounded-2xl shadow-2xs text-left overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setHistoryCollapsed(prev => !prev)}
@@ -1660,6 +1568,67 @@ export default function App() {
                     </div>
                   )}
                 </div>
+              </div>
+
+              {/* Right Column: Compact Summary */}
+              <div id="onboarding-right-charts" className="flex flex-col gap-4">
+
+                {/* 3 nhóm compact */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+                  <h4 className="text-[9.5px] font-black text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+                    {lang === 'VI' ? 'PHÂN BỔ NHÓM NHÂN TÀI' : 'TALENT GROUP BREAKDOWN'}
+                  </h4>
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { label: 'Growers', count: kpis9Box.growers, color: 'emerald', desc: lang === 'VI' ? 'Tiềm năng cao' : 'High potential' },
+                      { label: 'Keepers', count: kpis9Box.keepers, color: 'amber', desc: lang === 'VI' ? 'Trụ cột vận hành' : 'Operational backbone' },
+                      { label: 'Movers', count: kpis9Box.movers, color: 'rose', desc: lang === 'VI' ? 'Cần can thiệp' : 'Action required' },
+                    ].map(g => {
+                      const pct = kpis9Box.total > 0 ? Math.round(g.count / kpis9Box.total * 100) : 0;
+                      const colors: Record<string, {bg: string, border: string, text: string, bar: string, light: string}> = {
+                        emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', bar: 'bg-emerald-500', light: 'bg-emerald-100' },
+                        amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', bar: 'bg-amber-500', light: 'bg-amber-100' },
+                        rose: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-700', bar: 'bg-rose-500', light: 'bg-rose-100' },
+                      };
+                      const c = colors[g.color];
+                      return (
+                        <div key={g.label} className={`${c.bg} border ${c.border} rounded-lg px-3 py-2 flex items-center gap-3`}>
+                          <span className={`text-2xl font-black ${c.text} w-8 text-center shrink-0 leading-none`}>{g.count}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between">
+                              <span className={`text-[10px] font-black ${c.text} uppercase`}>{g.label}</span>
+                              <span className={`text-[9px] font-bold ${c.text}`}>{pct}%</span>
+                            </div>
+                            <div className={`w-full ${c.light} rounded-full h-1.5 mt-1`}>
+                              <div className={`${c.bar} h-1.5 rounded-full`} style={{ width: `${pct}%` }} />
+                            </div>
+                            <p className={`text-[8.5px] ${c.text} mt-0.5 opacity-80`}>{g.desc}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Phân bổ theo phòng ban — compact */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+                  <h4 className="text-[9.5px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+                    {lang === 'VI' ? 'CƠ CẤU THEO BỘ PHẬN' : 'BY DEPARTMENT'}
+                  </h4>
+                  <ResponsiveContainer width="100%" height={130}>
+                    <BarChart data={deptGroupChartData} margin={{ top: 5, right: 5, left: -28, bottom: 0 }}>
+                      <XAxis dataKey="name" stroke="#94a3b8" fontSize={7} tickLine={false} />
+                      <YAxis stroke="#94a3b8" fontSize={7} tickLine={false} allowDecimals={false} />
+                      <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '4px', color: '#fff', fontSize: '10px' }} />
+                      <Bar dataKey="growers" stackId="a" fill="#10b981" radius={[0,0,0,0]} />
+                      <Bar dataKey="keepers" stackId="a" fill="#d97706" />
+                      <Bar dataKey="movers" stackId="a" fill="#dc2626" radius={[2,2,0,0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+
               </div>
             </div>
 
