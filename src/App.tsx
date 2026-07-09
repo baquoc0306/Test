@@ -326,6 +326,13 @@ export default function App() {
 
   // React state for the databases to allow real-time simulation/edits
   const [talents, setTalents] = useState<Talent[]>(augmentedTalentPool);
+  // DEBUG: log talents on mount
+  useEffect(() => {
+    const wnkHR = augmentedTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
+    const wnkCS2 = augmentedTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
+    console.log('%c[APP DEBUG] augmentedTalentPool WNK HR=' + wnkHR.length + ' CS2=' + wnkCS2.length + ' total=' + augmentedTalentPool.length, 'color: #10b981; font-weight: bold;');
+    console.log('[APP DEBUG] WNK HR names in augmented:', wnkHR.map(t => t.name));
+  }, []);
 
   // Run data validation on mount
   useEffect(() => {
