@@ -184,12 +184,10 @@ const factualHighRiskNames = [
 
 // augmentedTalentPool is computed lazily inside the component to avoid circular import issues
 function buildAugmentedTalentPool(): Talent[] {
-  const wnkHRBefore = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Human Resources');
-  const wnkCS2Before = dbTalentPool.filter(t => t.site === 'WNK' && t.dept === 'Cut&Sew WNK2');
-  const wnkAll = dbTalentPool.filter(t => t.site === 'WNK');
+
   const deptMap: Record<string, string[]> = {};
   wnkAll.forEach(t => { deptMap[t.dept] = deptMap[t.dept] || []; deptMap[t.dept].push(t.name); });
-  console.log('%c[BUILD_AUG] dbTalentPool total=' + dbTalentPool.length + ' WNK_total=' + wnkAll.length, 'color: #ef4444; font-weight: bold; font-size: 14px;');
+
   console.log('[BUILD_AUG] WNK dept breakdown:', JSON.stringify(Object.fromEntries(Object.entries(deptMap).map(([k,v]) => [k, v.length]))));
   console.log('[BUILD_AUG] WNK HR names:', (deptMap['Human Resources'] || []));
   console.log('[BUILD_AUG] WNK IT names:', (deptMap['IT'] || []));
