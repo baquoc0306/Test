@@ -16,7 +16,7 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
         return (
-          <strong key={index} className="text-amber-600 font-extrabold">
+          <strong key={index} className="text-amber-400 font-extrabold">
             {part.slice(2, -2)}
           </strong>
         );
@@ -25,12 +25,12 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
     });
   };
 
-  const renderFormattedParagraphs = (text: string, dotColorClass: string = "text-amber-500") => {
+  const renderFormattedParagraphs = (text: string, dotColorClass: string = "text-amber-400") => {
     return text.split('\n').map((line, lineIdx) => {
       if (!line.trim()) return null;
       const cleanedLine = line.replace(/^[•\-\*✦]\s*/, '');
       return (
-        <div key={lineIdx} className="flex items-start gap-2 text-[11.5px] leading-relaxed text-slate-700 mt-1.5 first:mt-0">
+        <div key={lineIdx} className="flex items-start gap-2 text-[11.5px] leading-relaxed text-slate-200 mt-1.5 first:mt-0">
           <span className={`${dotColorClass} mt-1 font-sans text-xs select-none shrink-0`}>✦</span>
           <span className="flex-1 font-medium">{renderFormattedText(cleanedLine)}</span>
         </div>
@@ -140,86 +140,83 @@ export default function WhyHowPlaybook({ featureKey, lang, isLdMode = false, sel
   const item = content[featureKey];
 
   return (
-    <div className="bg-white border-2 border-indigo-200 rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
-      {/* Top accent bar */}
-      <div className="h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-400" />
-
+    <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 border border-indigo-900/60 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 text-white">
       {/* Header and Toggle */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-4 px-5 py-4 hover:bg-indigo-50/50 transition-colors cursor-pointer text-left"
+        className="w-full flex items-center justify-between gap-4 px-5 py-4 hover:bg-white/5 transition-colors cursor-pointer text-left"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-indigo-100 rounded-xl border border-indigo-200 text-indigo-600 shrink-0">
+          <div className="p-2 bg-indigo-500/15 rounded-xl border border-indigo-500/30 text-indigo-300 shrink-0">
             <BookOpen className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-[11px] md:text-xs font-black tracking-widest text-indigo-800 uppercase font-mono">
+            <h4 className="text-[11px] md:text-xs font-black tracking-widest text-white uppercase font-mono">
               {lang === 'VI' ? item.titleVi : item.titleEn}
             </h4>
-            <p className="text-[9.5px] text-indigo-500 uppercase tracking-wider font-bold mt-0.5">
+            <p className="text-[9.5px] text-indigo-400/90 uppercase tracking-wider font-bold mt-0.5">
               🚀 {lang === 'VI' ? 'Khung hành động & Định hướng chiến lược của Quản lý' : 'Management Framework & Strategic Alignment'}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-wider hidden sm:block">
+          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider hidden sm:block">
             {isOpen ? (lang === 'VI' ? 'Thu gọn' : 'Collapse') : (lang === 'VI' ? 'Xem hướng dẫn' : 'View guide')}
           </span>
-          {isOpen ? <ChevronUp className="w-4 h-4 text-indigo-400" /> : <ChevronDown className="w-4 h-4 text-indigo-400" />}
+          {isOpen ? <ChevronUp className="w-4 h-4 text-slate-300" /> : <ChevronDown className="w-4 h-4 text-slate-300" />}
         </div>
       </button>
 
       {isOpen && (
-        <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-left animate-in fade-in duration-200 border-t border-indigo-100">
+        <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-left animate-in fade-in duration-200 border-t border-indigo-900/40">
           {/* Tầm nhìn & Ý nghĩa Card */}
-          <div className="bg-amber-50 rounded-xl p-4 border border-amber-200 flex flex-col gap-2 mt-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-amber-200">
-              <div className="p-1.5 bg-amber-100 rounded-lg text-amber-600 border border-amber-200 shrink-0">
+          <div className="bg-slate-950/40 rounded-xl p-4 border border-amber-900/30 hover:border-amber-500/30 flex flex-col gap-2 mt-4 transition-all">
+            <div className="flex items-center gap-2 pb-2 border-b border-amber-900/40">
+              <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-400 border border-amber-500/20 shrink-0">
                 <Sparkles className="w-3.5 h-3.5" />
               </div>
-              <h5 className="text-[10px] font-black uppercase text-amber-700 tracking-widest font-mono">
+              <h5 className="text-[10px] font-black uppercase text-amber-400 tracking-widest font-mono">
                 {lang === 'VI' ? item.whyTitleVi : item.whyTitleEn}
               </h5>
             </div>
             <div className="space-y-1.5">
-              {renderFormattedParagraphs(lang === 'VI' ? item.whyVi : item.whyEn, "text-amber-500")}
+              {renderFormattedParagraphs(lang === 'VI' ? item.whyVi : item.whyEn, "text-amber-400")}
             </div>
           </div>
 
           {/* Mục tiêu chiến lược Card */}
-          <div className="bg-indigo-50 rounded-xl p-4 border border-indigo-200 flex flex-col gap-2 mt-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-indigo-200">
-              <div className="p-1.5 bg-indigo-100 rounded-lg text-indigo-600 border border-indigo-200 shrink-0">
+          <div className="bg-slate-950/40 rounded-xl p-4 border border-indigo-900/40 hover:border-indigo-500/30 flex flex-col gap-2 mt-4 transition-all">
+            <div className="flex items-center gap-2 pb-2 border-b border-indigo-900/50">
+              <div className="p-1.5 bg-indigo-500/10 rounded-lg text-indigo-400 border border-indigo-500/20 shrink-0">
                 <Target className="w-3.5 h-3.5" />
               </div>
-              <h5 className="text-[10px] font-black uppercase text-indigo-700 tracking-widest font-mono">
+              <h5 className="text-[10px] font-black uppercase text-indigo-300 tracking-widest font-mono">
                 {lang === 'VI' ? item.goalTitleVi : item.goalTitleEn}
               </h5>
             </div>
             <div className="space-y-1.5">
               {renderFormattedParagraphs(
                 (lang === 'VI' ? item.goalVi : item.goalEn).replace('72', selectedSite === 'WNK' ? '56' : '72'),
-                "text-indigo-500"
+                "text-indigo-400"
               )}
             </div>
           </div>
 
           {/* Các bước hành động Card */}
-          <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-200 flex flex-col gap-2 mt-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-emerald-200">
-              <div className="p-1.5 bg-emerald-100 rounded-lg text-emerald-600 border border-emerald-200 shrink-0">
+          <div className="bg-slate-950/40 rounded-xl p-4 border border-emerald-900/30 hover:border-emerald-500/30 flex flex-col gap-2 mt-4 transition-all">
+            <div className="flex items-center gap-2 pb-2 border-b border-emerald-900/40">
+              <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-400 border border-emerald-500/20 shrink-0">
                 <Lightbulb className="w-3.5 h-3.5" />
               </div>
-              <h5 className="text-[10px] font-black uppercase text-emerald-700 tracking-widest font-mono">
+              <h5 className="text-[10px] font-black uppercase text-emerald-400 tracking-widest font-mono">
                 {lang === 'VI' ? item.howTitleVi : item.howTitleEn}
               </h5>
             </div>
             <ul className="space-y-2">
               {(lang === 'VI' ? item.howVi : item.howEn).map((step, index) => (
-                <li key={index} className="flex items-start gap-2 text-[11.5px] leading-relaxed text-slate-700">
-                  <span className="w-5 h-5 rounded-md bg-emerald-100 text-emerald-700 font-black font-mono text-[9px] flex items-center justify-center shrink-0 border border-emerald-200 mt-0.5">
+                <li key={index} className="flex items-start gap-2 text-[11.5px] leading-relaxed text-slate-200">
+                  <span className="w-5 h-5 rounded-md bg-emerald-500/10 text-emerald-400 font-black font-mono text-[9px] flex items-center justify-center shrink-0 border border-emerald-500/20 mt-0.5">
                     {index + 1}
                   </span>
                   <span className="flex-1 font-medium">{renderFormattedText(step)}</span>
