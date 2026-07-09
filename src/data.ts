@@ -322,7 +322,7 @@ export const dbTalentPool: Talent[] = [
   {
     "name": "Adeline",
     "cell": "Future Utility",
-    "group": "Mover",
+    "group": "Movers",
     "results": "Less Effective",
     "potential": "Mid",
     "dept": "TAT"
@@ -386,7 +386,7 @@ export const dbTalentPool: Talent[] = [
   {
     "name": "KARIN VO",
     "cell": "Diamond in the Rough",
-    "group": "Mover",
+    "group": "Movers",
     "results": "Less Effective",
     "potential": "High",
     "dept": "EHS"
@@ -394,7 +394,7 @@ export const dbTalentPool: Talent[] = [
   {
     "name": "LUKE NGUYEN",
     "cell": "Diamond in the Rough",
-    "group": "Mover",
+    "group": "Movers",
     "results": "Less Effective",
     "potential": "High",
     "dept": "EHS"
@@ -474,7 +474,7 @@ export const dbTalentPool: Talent[] = [
   {
     "name": "TYSON THAI",
     "cell": "Diamond in the Rough",
-    "group": "Mover",
+    "group": "Movers",
     "results": "Less Effective",
     "potential": "High",
     "dept": "Logistics"

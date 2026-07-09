@@ -68,7 +68,7 @@ export function validateData(
     if (site === 'ASH' || site === 'WNK') {
       const growers = siteTalents.filter(t => t.group === 'Growers').length;
       const keepers = siteTalents.filter(t => t.group === 'Keepers').length;
-      const movers = siteTalents.filter(t => t.group === 'Movers' || t.group === 'Mover').length;
+      const movers = siteTalents.filter(t => t.group === 'Movers' || t.group === ('Mover' as any)).length;
       const exp = expected as typeof EXPECTED_COUNTS.ASH;
 
       if (exp.growers !== undefined && growers !== exp.growers) {

@@ -8,7 +8,7 @@ interface InsightPanelProps {
   selectedDept: string;
 }
 
-type InsightEntry = { vi: string };
+type InsightEntry = { vi: string; en?: string };
 type InsightRecord = { insight: InsightEntry; risk: InsightEntry; nextStep: InsightEntry };
 
 function bold(text: string) {
