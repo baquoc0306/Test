@@ -574,7 +574,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto max-h-[410px] pr-1 scrollbar-thin">
+      <div className="flex-1 pr-1">
         {selectedDept && selectedDept !== 'ALL' && (
           <div className="mb-4 bg-indigo-50/40 border border-indigo-200/60 rounded-xl p-4.5 text-left shadow-2xs hover:border-indigo-300 transition-all duration-200">
             <div className="flex items-start justify-between gap-3 border-b border-indigo-200 pb-2 mb-3">
@@ -651,7 +651,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
         )}
 
         {activeTab === 'overview' ? (
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {/* Redesigned: Card-based dept breakdown */}
             {filteredAnalysisData.length === 0 ? (
               <div className="py-8 text-center text-slate-400 font-bold text-sm">
@@ -669,14 +669,14 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                   <div className="col-span-1 text-[9.5px] font-black text-slate-500 uppercase tracking-wider text-center">{lang === 'VI' ? 'Hồ sơ' : 'Profile'}</div>
                 </div>
                 {filteredAnalysisData.map((item, rowIdx) => (
-                  <div key={item.dept} className="grid grid-cols-12 gap-2 px-3 py-2 bg-white rounded-lg border border-slate-150 hover:border-indigo-200 hover:bg-indigo-50/20 transition-all cursor-pointer group">
+                  <div key={item.dept} className="grid grid-cols-12 gap-2 px-3 py-1.5 bg-white rounded-lg border border-slate-150 hover:border-indigo-200 hover:bg-indigo-50/20 transition-all cursor-pointer group">
                     {/* Bộ phận — đậm */}
                     <div className="col-span-4 flex items-center">
                       <span className="text-[11px] font-bold text-slate-900 truncate leading-tight" title={item.dept}>{item.dept}</span>
                     </div>
                     {/* Nhân sự */}
                     <div className="col-span-1 flex items-center justify-center">
-                      <span className="text-[11px] font-black text-slate-700">{item.total}</span>
+                      <span className="text-[10px] font-black text-slate-700">{item.total}</span>
                     </div>
                     {/* Growers — bar + % */}
                     <div className="col-span-2 flex flex-col justify-center gap-0.5">
@@ -684,8 +684,8 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                         <span className="text-[10px] font-black text-emerald-600">{item.growersPct}%</span>
                         <span className="text-[9px] text-emerald-500">{item.growers}</span>
                       </div>
-                      <div className="w-full bg-emerald-100 rounded-full h-1.5">
-                        <div className="bg-emerald-500 h-1.5 rounded-full" style={{ width: `${item.growersPct}%` }} />
+                      <div className="w-full bg-emerald-100 rounded-full h-1">
+                        <div className="bg-emerald-500 h-1 rounded-full" style={{ width: `${item.growersPct}%` }} />
                       </div>
                     </div>
                     {/* Keepers */}
@@ -694,8 +694,8 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                         <span className="text-[10px] font-black text-amber-600">{item.keepersPct}%</span>
                         <span className="text-[9px] text-amber-500">{item.keepers}</span>
                       </div>
-                      <div className="w-full bg-amber-100 rounded-full h-1.5">
-                        <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: `${item.keepersPct}%` }} />
+                      <div className="w-full bg-amber-100 rounded-full h-1">
+                        <div className="bg-amber-500 h-1 rounded-full" style={{ width: `${item.keepersPct}%` }} />
                       </div>
                     </div>
                     {/* Movers */}
@@ -704,8 +704,8 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                         <span className="text-[10px] font-black text-rose-600">{item.moversPct}%</span>
                         <span className="text-[9px] text-rose-500">{item.movers}</span>
                       </div>
-                      <div className="w-full bg-rose-100 rounded-full h-1.5">
-                        <div className="bg-rose-500 h-1.5 rounded-full" style={{ width: `${item.moversPct}%` }} />
+                      <div className="w-full bg-rose-100 rounded-full h-1">
+                        <div className="bg-rose-500 h-1 rounded-full" style={{ width: `${item.moversPct}%` }} />
                       </div>
                     </div>
                     {/* Profile badge */}
@@ -716,7 +716,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                           e.stopPropagation();
                           setShowExplanation(true);
                         }}
-                        className={`text-[8.5px] font-black px-1.5 py-0.5 rounded border whitespace-nowrap cursor-pointer ${item.profileBg}`}
+                        className={`text-[7.5px] font-black px-1 py-0.5 rounded border whitespace-nowrap cursor-pointer leading-tight ${item.profileBg}`}
                       >
                         {lang === 'VI' ? item.profileVi : item.profileEn}
                       </button>
