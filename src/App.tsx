@@ -1500,74 +1500,6 @@ export default function App() {
                 })()}
                 </div>
 
-                {/* Advanced Departmental Talent Structure & Retention Analytics Module */}
-                <DeptTalentAnalysisPanel talents={siteFilteredTalents} lang={lang} selectedDept={selectedDept} onDeptChange={setSelectedDept} isLdMode={isLdMode} />
-
-                {/* Lịch sử thay đổi 9-Box — ngang với 9-Box */}
-                <div className="bg-slate-50 border border-slate-200/80 rounded-2xl shadow-2xs text-left overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => setHistoryCollapsed(prev => !prev)}
-                    className="w-full flex items-center justify-between px-4.5 py-3 hover:bg-slate-100/60 transition-colors cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="flex h-2.5 w-2.5 rounded-full bg-slate-400 shrink-0" />
-                      <h4 className="text-xs font-black uppercase tracking-wider text-slate-700 font-display flex items-center gap-1.5">
-                        🔄 <span>{lang === 'VI' ? 'Lịch sử điều chỉnh ma trận (Hoàn tác nhanh)' : 'Adjustment Logs (Quick Undo)'}</span>
-                      </h4>
-                      {reclassHistory.length > 0 && (
-                        <span className="text-[10px] bg-slate-200/80 text-slate-700 px-2 py-0.5 rounded-full font-mono font-bold select-none border border-slate-300/40">
-                          {reclassHistory.length}
-                        </span>
-                      )}
-                    </div>
-                    <span className="text-slate-400 text-xs font-bold select-none">
-                      {historyCollapsed ? '▼' : '▲'}
-                    </span>
-                  </button>
-                  {!historyCollapsed && (
-                    <div className="px-4.5 pb-4 border-t border-slate-200/50">
-                      {reclassHistory.length === 0 ? (
-                        <div className="py-6 text-center text-[10.5px] text-slate-400 italic">
-                          {lang === 'VI' ? 'Chưa ghi nhận điều chỉnh nhân sự nào trong phiên làm việc.' : 'No manual adjustments in this session.'}
-                        </div>
-                      ) : (
-                        <div className="max-h-40 overflow-y-auto space-y-2 pr-1 scrollbar-thin mt-3">
-                          {reclassHistory.map((item) => {
-                            const isUndoing = undoingId === item.id;
-                            return (
-                              <div 
-                                key={item.id} 
-                                className={`flex flex-col bg-white px-3.5 py-2.5 rounded-xl border text-[11px] gap-2 hover:border-slate-350 transition-all duration-400 text-left ${
-                                  isUndoing 
-                                    ? 'opacity-0 translate-x-12 bg-rose-50/40 border-rose-250 select-none scale-95 pointer-events-none' 
-                                    : 'border-slate-200'
-                                }`}
-                              >
-                                <div className="flex items-center gap-1.5 flex-wrap">
-                                  <span className="font-extrabold text-slate-900">{item.talentName}</span>
-                                  <span className="text-slate-450">&rarr;</span>
-                                  <span className="text-slate-500">{lang === 'VI' ? 'Từ' : 'From'}</span>
-                                  <span className="font-bold text-slate-600 px-2 py-0.5 rounded bg-slate-50 text-[10px] border border-slate-205">{item.fromCell}</span>
-                                  <span className="text-slate-500">{lang === 'VI' ? 'sang' : 'to'}</span>
-                                  <span className="font-bold text-indigo-700 px-2 py-0.5 rounded bg-indigo-50 text-[10px] border border-indigo-150/60">{item.toCell}</span>
-                                </div>
-                                <button
-                                  onClick={() => handleUndoReclassify(item.id)}
-                                  disabled={isUndoing}
-                                  className="w-full shrink-0 flex items-center justify-center gap-1 text-[11px] text-rose-700 hover:text-rose-800 font-bold transition-all cursor-pointer bg-rose-50 hover:bg-rose-100/80 border border-rose-201 rounded-lg px-2.5 py-1 shadow-3xs disabled:opacity-50"
-                                >
-                                  <span className="text-xs">&#8630;</span>
-                                  <span>{lang === 'VI' ? 'Hoàn tác' : 'Undo'}</span>
-                                </button>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
               </div>
 
               {/* Right Column: Compact Summary */}
@@ -1651,8 +1583,62 @@ export default function App() {
                   </ResponsiveContainer>
                 </div>
 
+
+                {/* Lịch sử điều chỉnh — bên dưới MẬT ĐỘ */}
+                <div className="bg-slate-50 border border-slate-200/80 rounded-2xl shadow-2xs text-left overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setHistoryCollapsed(prev => !prev)}
+                    className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-slate-100/60 transition-colors cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-2 w-2 rounded-full bg-slate-400 shrink-0" />
+                      <h4 className="text-[10px] font-black uppercase tracking-wider text-slate-600 flex items-center gap-1">
+                        🔄 <span>{lang === 'VI' ? 'Lịch sử điều chỉnh (Hoàn tác)' : 'Adjustment Logs (Undo)'}</span>
+                      </h4>
+                      {reclassHistory.length > 0 && (
+                        <span className="text-[9px] bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded-full font-mono font-bold">
+                          {reclassHistory.length}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-slate-400 text-[10px] font-bold">{historyCollapsed ? '▼' : '▲'}</span>
+                  </button>
+                  {!historyCollapsed && (
+                    <div className="px-4 pb-3 border-t border-slate-200/50">
+                      {reclassHistory.length === 0 ? (
+                        <div className="py-4 text-center text-[10px] text-slate-400 italic">
+                          {lang === 'VI' ? 'Chưa ghi nhận điều chỉnh nào.' : 'No adjustments yet.'}
+                        </div>
+                      ) : (
+                        <div className="max-h-32 overflow-y-auto space-y-1.5 pr-1 mt-2">
+                          {reclassHistory.map((item) => {
+                            const isUndoing = undoingId === item.id;
+                            return (
+                              <div key={item.id} className={`flex flex-col bg-white px-3 py-2 rounded-lg border text-[10px] gap-1.5 ${isUndoing ? 'opacity-0 scale-95 pointer-events-none' : 'border-slate-200'}`}>
+                                <div className="flex items-center gap-1 flex-wrap">
+                                  <span className="font-bold text-slate-800">{item.talentName}</span>
+                                  <span className="text-slate-400">→</span>
+                                  <span className="font-bold text-slate-500 px-1.5 py-0.5 rounded bg-slate-50 border border-slate-200">{item.fromCell}</span>
+                                  <span className="text-slate-400">→</span>
+                                  <span className="font-bold text-indigo-600 px-1.5 py-0.5 rounded bg-indigo-50 border border-indigo-150">{item.toCell}</span>
+                                </div>
+                                <button onClick={() => handleUndoReclassify(item.id)} disabled={isUndoing} className="text-[9px] text-rose-600 hover:text-rose-700 font-bold cursor-pointer bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded px-2 py-0.5 w-fit">
+                                  ↩ {lang === 'VI' ? 'Hoàn tác' : 'Undo'}
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
+
+            {/* DeptTalentAnalysisPanel — full width bên dưới grid */}
+            <DeptTalentAnalysisPanel talents={siteFilteredTalents} lang={lang} selectedDept={selectedDept} onDeptChange={setSelectedDept} isLdMode={isLdMode} />
 
             {/* Movers Alert Banner Center */}
             {moversAlerts.length > 0 && (
