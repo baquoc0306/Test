@@ -1097,6 +1097,46 @@ export default function App() {
           </div>
         </section>
 
+
+        {/* ── QUICK-JUMP NAVIGATION ── sticky, hiển thị trong mọi tab ── */}
+        <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm -mx-4 px-4 py-2 mb-4">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin">
+            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest shrink-0 mr-1">
+              {lang === 'VI' ? 'Chuyển nhanh:' : 'Jump to:'}
+            </span>
+            {[
+              { id: 'tab-9box', labelVi: '① Ma trận 9-Box', labelEn: '① 9-Box Matrix', icon: '⊞' },
+              { id: 'tab-pipeline', labelVi: '② Kế hoạch Kế thừa', labelEn: '② Succession Pipeline', icon: '🔗' },
+              { id: 'tab-devplan', labelVi: '③ Kế hoạch Đào tạo', labelEn: '③ Training Plan', icon: '📚' },
+              { id: 'tab-indiv-idp', labelVi: '④ Kế hoạch Cá nhân', labelEn: '④ Individual IDP', icon: '👤' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  setActiveTab(tab.id as any);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10.5px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                  activeTab === tab.id
+                    ? selectedSite === 'MLN'
+                      ? 'bg-emerald-600 text-white shadow-sm'
+                      : selectedSite === 'WNK'
+                        ? 'bg-indigo-600 text-white shadow-sm'
+                        : 'bg-amber-500 text-white shadow-sm'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800'
+                }`}
+              >
+                <span>{tab.icon}</span>
+                <span>{lang === 'VI' ? tab.labelVi : tab.labelEn}</span>
+                {activeTab === tab.id && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 shrink-0" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* ==================== TAB 1 Content: 9-BOX MATRIX & TALENT LIST ==================== */}
         {activeTab === 'tab-9box' && (
           <div className="space-y-8">
