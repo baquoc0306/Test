@@ -1816,7 +1816,7 @@ export default function PipelineWorkspace({
                   itemStyle: 'bg-indigo-950/40 hover:bg-indigo-900/35 border-indigo-500/35 hover:border-indigo-400 text-indigo-100 hover:shadow-[0_4px_14px_rgba(99,102,241,0.2)] shadow-xs',
                   numStyle: 'bg-indigo-500 text-white font-mono shadow-[0_0_12px_rgba(99,102,241,0.45)]',
                   actionsVi: [
-                    'Sử dụng bảng 9-box quét toàn bộ nhân sự nhóm "Ngôi sao đang lên" toàn công ty để bồi dưỡng quy hoạch dài hạn.',
+                    'Sử dụng bảng 9-box quét toàn bộ nhân sự nhóm "Ngôi sao đang lên" toàn site để bồi dưỡng quy hoạch dài hạn.',
                     'Tổ chức Chiến dịch Đăng tuyển Cơ hội Nội bộ (Internal Job Posting Campaign) định kỳ 6 tháng hỗ trợ nhân viên xin thử sức.',
                     'Xây dựng Ngân hàng tài liệu Kỹ năng số ứng dụng nội bộ (Internal SME Tutorial Wiki) gồm các video hướng dẫn tự phục vụ.',
                     'Chuẩn hóa bộ Khung năng lực kỹ năng chuyên môn tự đào tạo chuẩn tại các bộ phận trọng yếu.'
@@ -1858,7 +1858,7 @@ export default function PipelineWorkspace({
 
                     <div className="mt-6 pt-3.5 border-t border-white/5 flex items-center justify-between text-[10px] text-indigo-300/80 font-mono">
                       <span>MONITORING PRIORITY</span>
-                      <span className="font-bold">MILLENNIUM L&D 2026</span>
+                      <span className="font-bold">{selectedSite === 'MLN' ? 'MILLENNIUM' : selectedSite === 'WNK' ? 'WANEK' : 'ASHTON'} L&D 2026</span>
                     </div>
                   </div>
 

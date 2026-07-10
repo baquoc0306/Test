@@ -1824,10 +1824,10 @@ export default function App() {
                   <p className="text-xs text-slate-550 leading-normal">
                     {lang === 'VI'
                       ? selectedDept === 'ALL'
-                        ? 'Đang theo dõi toàn Site Millennium'
+                        ? `Đang theo dõi toàn Site ${selectedSite === 'MLN' ? 'Millennium' : selectedSite === 'WNK' ? 'Wanek' : 'Ashton'}`
                         : `Bộ phận tuyển lựa: ${selectedDept}`
                       : selectedDept === 'ALL'
-                        ? 'Monitoring All Site Millennium'
+                        ? `Monitoring All Site ${selectedSite === 'MLN' ? 'Millennium' : selectedSite === 'WNK' ? 'Wanek' : 'Ashton'}`
                         : `Filtered Department: ${selectedDept}`}
                     {selectedBox !== 'ALL' ? (lang === 'VI' ? ` | Ô phân vị ma trận: ${
                       selectedBox === 'Superstar' ? 'Siêu sao' :
