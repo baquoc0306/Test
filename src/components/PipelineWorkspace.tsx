@@ -1152,7 +1152,7 @@ export default function PipelineWorkspace({
           {/* HIGH_RISK Table */}
           {hotspotTab === 'HIGH_RISK' && (
             <table className="w-full text-left text-xs border-collapse font-sans">
-              <thead className="sticky top-0 bg-[#1e1b4b] text-[#f1f5f9] font-bold border-b border-[#0f172a] z-10 select-none">
+              <thead className="sticky top-0 bg-[#1e1b4b] text-[#f1f5f9] font-bold border-b border-[#0f172a] z-20 select-none">
                 <tr className="font-sans text-xs font-semibold text-[#f1f5f9]">
                   <th 
                     id="onboarding-pipeline-hr-th-incumbent"
@@ -1343,7 +1343,7 @@ export default function PipelineWorkspace({
           {/* CRITICAL Table */}
           {hotspotTab === 'CRITICAL' && (
             <table className="w-full text-left text-xs border-collapse font-sans">
-              <thead className="sticky top-0 bg-[#1e1b4b] text-[#f1f5f9] font-bold border-b border-[#0f172a] z-10 select-none">
+              <thead className="sticky top-0 bg-[#1e1b4b] text-[#f1f5f9] font-bold border-b border-[#0f172a] z-20 select-none">
                 <tr className="font-sans text-xs font-semibold text-[#f1f5f9]">
                   <th 
                     onClick={() => {
@@ -1465,7 +1465,7 @@ export default function PipelineWorkspace({
                       <td className="px-4 py-3 text-slate-800 font-extrabold whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
                           <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping inline-block shrink-0"></span>
-                          <span className="w-2 h-2 rounded-full bg-rose-600 inline-block shrink-0 -ml-3.5 relative z-10"></span>
+                          <span className="w-2 h-2 rounded-full bg-rose-600 inline-block shrink-0 -ml-3.5 relative"></span>
                           {p.incumbent === 'Open' ? (
                             <span className="bg-rose-100 text-rose-800 font-extrabold px-1.5 py-0.5 rounded text-[10px] whitespace-nowrap">
                               {lang === 'VI' ? 'VỊ TRÍ TRỐNG' : 'OPEN POSITION'}
@@ -1536,7 +1536,7 @@ export default function PipelineWorkspace({
           {/* FAILED_PIPELINE Table */}
           {hotspotTab === 'FAILED_PIPELINE' && (
             <table className="w-full text-left text-xs border-collapse font-sans">
-              <thead className="sticky top-0 bg-[#1e1b4b] text-[#f1f5f9] font-bold border-b border-[#0f172a] z-10 select-none">
+              <thead className="sticky top-0 bg-[#1e1b4b] text-[#f1f5f9] font-bold border-b border-[#0f172a] z-20 select-none">
                 <tr className="font-sans text-xs font-semibold text-[#f1f5f9]">
                   <th 
                     id="onboarding-pipeline-fail-th-incumbent"

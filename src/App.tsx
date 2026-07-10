@@ -892,21 +892,22 @@ export default function App() {
               activeTab === 'tab-9box'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
-                : 'bg-white border-slate-200 hover:border-slate-300'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
+                : 'bg-white border-slate-200 hover:border-slate-400 hover:bg-slate-50/50 hover:shadow-sm'
             }`}
           >
             <div className="flex items-start justify-between w-full font-mono text-[16px]">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-9box' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Sơ đồ Ma trận 9-Box' : 'Interactive 9-Box Grid'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-9box' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <Grid className="w-4 h-4" />
@@ -920,12 +921,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-9box' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-9box' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-9box' 
@@ -943,21 +944,22 @@ export default function App() {
               activeTab === 'tab-pipeline'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
-                : 'bg-white border-slate-200 hover:border-slate-300'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
+                : 'bg-white border-slate-200 hover:border-slate-400 hover:bg-slate-50/50 hover:shadow-sm'
             }`}
           >
             <div className="flex items-start justify-between w-full">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-pipeline' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Mạng lưới nhân tài' : 'Talent Pipeline'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-pipeline' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <TrendingUp className="w-4 h-4" />
@@ -971,12 +973,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-pipeline' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-pipeline' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-pipeline' 
@@ -994,21 +996,22 @@ export default function App() {
               activeTab === 'tab-devplan'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
-                : 'bg-white border-slate-200 hover:border-slate-300'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
+                : 'bg-white border-slate-200 hover:border-slate-400 hover:bg-slate-50/50 hover:shadow-sm'
             }`}
           >
             <div className="flex items-start justify-between w-full">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-devplan' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Kế hoạch Đào tạo' : 'Training Plan'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-devplan' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <BookOpen className="w-4 h-4" />
@@ -1022,12 +1025,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-devplan' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-devplan' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-devplan' 
@@ -1045,21 +1048,22 @@ export default function App() {
               activeTab === 'tab-indiv-idp'
                 ? selectedSite === 'MLN'
                   ? 'bg-white border-emerald-500 shadow-md ring-2 ring-emerald-500/10'
-                  : 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
-                : 'bg-white border-slate-200 hover:border-slate-300'
+                  : selectedSite === 'WNK' ? 'bg-white border-indigo-500 shadow-md ring-2 ring-indigo-500/10'
+                  : 'bg-white border-amber-500 shadow-md ring-2 ring-amber-500/10'
+                : 'bg-white border-slate-200 hover:border-slate-400 hover:bg-slate-50/50 hover:shadow-sm'
             }`}
           >
             <div className="flex items-start justify-between w-full">
               <h2 style={{ fontFamily: 'system-ui' }} className={`font-sans font-extrabold text-[19px] md:text-[21px] text-center w-full tracking-tight transition-all ${
                 activeTab === 'tab-indiv-idp' 
-                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : 'text-indigo-700 translate-y-0.5 font-black'
+                  ? selectedSite === 'MLN' ? 'text-emerald-700 translate-y-0.5 font-black' : selectedSite === 'WNK' ? 'text-indigo-700 translate-y-0.5 font-black' : 'text-amber-700 translate-y-0.5 font-black'
                   : 'text-slate-550'
               }`}>
                 {lang === 'VI' ? 'Kế hoạch cá nhân (IDP)' : 'Individual IDPs'}
               </h2>
               <span className={`p-1.5 rounded-lg transition-colors ${
                 activeTab === 'tab-indiv-idp' 
-                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                  ? selectedSite === 'MLN' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : selectedSite === 'WNK' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-amber-50 text-amber-600 border border-amber-200'
                   : 'bg-slate-50 text-slate-400 border border-slate-100'
               }`}>
                 <UserCheck className="w-4 h-4" />
@@ -1073,12 +1077,12 @@ export default function App() {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${
                   activeTab === 'tab-indiv-idp' 
-                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : 'bg-indigo-600 animate-pulse' 
+                    ? selectedSite === 'MLN' ? 'bg-emerald-500 animate-pulse' : selectedSite === 'WNK' ? 'bg-indigo-600 animate-pulse' : 'bg-amber-500 animate-pulse' 
                     : 'bg-slate-300'
                 }`} />
                 <span className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wide font-display ${
                   activeTab === 'tab-indiv-idp' 
-                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'
+                    ? selectedSite === 'MLN' ? 'text-emerald-600 font-bold' : selectedSite === 'WNK' ? 'text-indigo-600 font-bold' : 'text-amber-600 font-bold'
                     : 'text-slate-400'
                 }`}>
                   {activeTab === 'tab-indiv-idp' 

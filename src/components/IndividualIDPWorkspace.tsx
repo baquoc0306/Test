@@ -1965,7 +1965,7 @@ export default function IndividualIDPWorkspace({
                     <span className="text-slate-200 text-xs px-1">|</span>
                     <div className="flex items-center gap-2">
                       <span className="text-[9.5px] font-black text-slate-400 uppercase tracking-wider">
-                        {lang === 'VI' ? 'TIẾN ĐỘ:' : 'RATE:'}
+                        {lang === 'VI' ? 'MỨC SẴN SÀNG:' : 'READINESS:'}
                       </span>
                       <span className="text-[11px] font-mono font-black text-emerald-600">
                         {activeModalProgress}%
@@ -1973,6 +1973,12 @@ export default function IndividualIDPWorkspace({
                       <div className="relative w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/30">
                         <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${activeModalProgress}%` }} />
                       </div>
+                      <span
+                        title={lang === 'VI'
+                          ? 'Cách tính: R1=25đ, R2=50đ, R3=75đ, R4=100đ. Tỷ lệ = Tổng điểm ÷ (Số nhiệm vụ × 100). Ví dụ: 4 nhiệm vụ R2+R3+R3+R4 = (50+75+75+100) ÷ 400 = 75%'
+                          : 'How: R1=25pts, R2=50pts, R3=75pts, R4=100pts. Score = Total ÷ (Duties × 100). E.g. 4 duties R2+R3+R3+R4 = (50+75+75+100) ÷ 400 = 75%'}
+                        className="text-[9px] text-slate-400 cursor-help border border-slate-200 rounded-full w-3.5 h-3.5 flex items-center justify-center font-black hover:bg-slate-100 transition-colors select-none"
+                      >?</span>
                     </div>
                   </div>
 
