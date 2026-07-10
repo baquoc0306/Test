@@ -24,6 +24,7 @@ interface PipelineWorkspaceProps {
   onDeptChange?: (dept: string) => void;
   lang?: 'VI' | 'EN';
   isLdMode?: boolean;
+  selectedSite?: 'MLN' | 'WNK' | 'ASH';
 }
 
 const getProposedAction = (p: PipelinePosition, lang: 'VI' | 'EN' = 'VI'): string => {
@@ -85,6 +86,7 @@ export default function PipelineWorkspace({
   onDeptChange,
   lang = 'VI',
   isLdMode = false,
+  selectedSite = 'MLN',
 }: PipelineWorkspaceProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentFilter, setCurrentFilter] = useState<'ALL' | 'GAP'>('ALL'); // GAP lists High Risk / Critical / No Successor / Interim

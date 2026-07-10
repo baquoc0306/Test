@@ -2203,6 +2203,7 @@ export default function App() {
               onUpdatePosition={handleUpdatePipelinePosition}
               lang={lang}
               isLdMode={isLdMode}
+              selectedSite={selectedSite}
             />
           </div>
         )}
