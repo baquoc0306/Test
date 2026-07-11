@@ -206,8 +206,8 @@ function parseTSV(tsvString: string): IndividualIDP[] {
     const proposedProgram = cleanCols[21] || '';
     const owner = cleanCols[22] || '';
     
-    // Resolve clean official department name
-    const department = findDeptFromTalentPool(engName, viName, rawDept, section);
+    // Use department directly from source file (Book1.xlsx has correct departments)
+    const department = rawDept || originalDept || '(blank)';
     
     idps.push({
       id: `idp-${index++}`,
