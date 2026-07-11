@@ -1560,16 +1560,16 @@ export default function DevelopmentPlanWorkspace({
             <div className="grid grid-cols-2 gap-3">
               {siteActiveCourses.map((course) => {
                 const isActive = course.active;
-                // Per-course color palette (shared with scheduler bar)
-                const courseColors: Record<string, { bg: string; border: string; text: string; badgeBg: string; badgeText: string }> = {
-                  servant_leadership: { bg: '#eef2ff', border: '#a5b4fc', text: '#4338ca', badgeBg: '#6366f1', badgeText: '#fff' },
-                  communication:      { bg: '#e0f2fe', border: '#7dd3fc', text: '#0369a1', badgeBg: '#0ea5e9', badgeText: '#fff' },
-                  succession_idp:     { bg: '#d1fae5', border: '#6ee7b7', text: '#065f46', badgeBg: '#10b981', badgeText: '#fff' },
-                  train_trainer:      { bg: '#ede9fe', border: '#c4b5fd', text: '#5b21b6', badgeBg: '#8b5cf6', badgeText: '#fff' },
-                  ai_automation:      { bg: '#fef3c7', border: '#fcd34d', text: '#92400e', badgeBg: '#f59e0b', badgeText: '#fff' },
-                  coaching:           { bg: '#fce7f3', border: '#f9a8d4', text: '#9d174d', badgeBg: '#ec4899', badgeText: '#fff' },
+                // Per-course color palette — matched to competency badge colors
+                const courseColors: Record<string, { bg: string; border: string; text: string; badgeBg: string }> = {
+                  servant_leadership: { bg: '#fffbeb', border: '#fcd34d', text: '#92400e', badgeBg: '#d97706' }, // amber = Leadership
+                  communication:      { bg: '#faf5ff', border: '#d8b4fe', text: '#6b21a8', badgeBg: '#9333ea' }, // purple = Soft Skill
+                  succession_idp:     { bg: '#fdf2f8', border: '#f9a8d4', text: '#9d174d', badgeBg: '#db2777' }, // pink = Talent/Succession
+                  train_trainer:      { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' }, // indigo = Coaching
+                  ai_automation:      { bg: '#eff6ff', border: '#93c5fd', text: '#1e40af', badgeBg: '#2563eb' }, // blue = Digital/AI
+                  coaching:           { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' }, // indigo = People Dev
                 };
-                const cc = courseColors[course.id] || { bg: '#f8fafc', border: '#e2e8f0', text: '#475569', badgeBg: '#64748b', badgeText: '#fff' };
+                const cc = courseColors[course.id] || { bg: '#f0fdf4', border: '#86efac', text: '#166534', badgeBg: '#16a34a' };
                 const timeLabel = lang === 'VI'
                   ? `Tháng ${course.startMonth + 1}–${course.startMonth + course.duration}`
                   : `Month ${course.startMonth + 1}–${course.startMonth + course.duration}`;
@@ -1584,9 +1584,9 @@ export default function DevelopmentPlanWorkspace({
                       setDraggingCardId(course.id);
                     }}
                     onDragEnd={() => setDraggingCardId(null)}
-                    style={isActive ? { background: cc.bg, borderColor: cc.border } : {}}
+                    style={isActive ? { background: cc.bg, borderColor: cc.border, borderLeftWidth: '4px', borderLeftColor: cc.badgeBg } : {}}
                     className={`border p-3.5 rounded-xl transition-all duration-200 cursor-grab active:cursor-grabbing select-none group flex flex-col gap-2 ${
-                      isActive ? 'border-2 shadow-sm' : 'bg-white border border-slate-200 opacity-60'
+                      isActive ? 'border-2 shadow-sm' : 'bg-white border border-slate-200 opacity-55'
                     } ${draggingCardId === course.id ? 'opacity-40 scale-95' : 'hover:-translate-y-0.5 hover:shadow-md'}`}
                     title={lang === 'VI' ? 'Kéo thả để xếp lịch, click để bật/tắt' : 'Drag to schedule, click to toggle'}
                     onClick={() => toggleCard(course.id)}
@@ -1597,7 +1597,7 @@ export default function DevelopmentPlanWorkspace({
                     </h5>
                     {/* Row 2: Tag năng lực */}
                     <span className="text-[9px] font-bold px-2 py-0.5 rounded-full border w-fit"
-                      style={isActive ? { background: cc.bg, color: cc.text, borderColor: cc.border } : { background: '#f1f5f9', color: '#94a3b8', borderColor: '#e2e8f0' }}>
+                      style={isActive ? { background: cc.bg, color: cc.badgeBg, borderColor: cc.border, fontWeight: 800 } : { background: '#f1f5f9', color: '#94a3b8', borderColor: '#e2e8f0' }}>
                       {lang === 'VI' ? (course.viCompetency || course.competency) : course.competency}
                     </span>
                     {/* Row 3: Mốc thời gian + badge nhu cầu cao */}
@@ -1606,8 +1606,7 @@ export default function DevelopmentPlanWorkspace({
                         {timeLabel}
                       </span>
                       {isActive && (
-                        <span className="ml-auto text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full text-white"
-                          style={{ background: cc.badgeBg }}>
+                        <span className="ml-auto text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-rose-500 text-white">
                           {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
                         </span>
                       )}
@@ -1936,17 +1935,17 @@ export default function DevelopmentPlanWorkspace({
                   let themeColor = 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-3xs';
                   let leftBorderColor = 'border-l-4 border-l-slate-400';
 
-                  // Shared color palette — matches card colors exactly
+                  // Shared color palette — matched to competency badge colors
                   type CourseStyle = { bg: string; text: string; dot: string; iconColor: string; border: string };
                   const courseStyleMap: Record<string, CourseStyle> = {
-                    servant_leadership: { bg: '#eef2ff', text: '#4338ca', dot: '#6366f1', iconColor: 'text-indigo-500', border: '#a5b4fc' },
-                    communication:      { bg: '#e0f2fe', text: '#0369a1', dot: '#0ea5e9', iconColor: 'text-sky-500',    border: '#7dd3fc' },
-                    succession_idp:     { bg: '#d1fae5', text: '#065f46', dot: '#10b981', iconColor: 'text-emerald-600', border: '#6ee7b7' },
-                    train_trainer:      { bg: '#ede9fe', text: '#5b21b6', dot: '#8b5cf6', iconColor: 'text-violet-500', border: '#c4b5fd' },
-                    ai_automation:      { bg: '#fef3c7', text: '#92400e', dot: '#f59e0b', iconColor: 'text-amber-600',  border: '#fcd34d' },
-                    coaching:           { bg: '#fce7f3', text: '#9d174d', dot: '#ec4899', iconColor: 'text-pink-500',   border: '#f9a8d4' },
+                    servant_leadership: { bg: '#fffbeb', text: '#92400e', dot: '#d97706', iconColor: 'text-amber-700',  border: '#fcd34d' }, // amber = Leadership
+                    communication:      { bg: '#faf5ff', text: '#6b21a8', dot: '#9333ea', iconColor: 'text-purple-600', border: '#d8b4fe' }, // purple = Soft Skill
+                    succession_idp:     { bg: '#fdf2f8', text: '#9d174d', dot: '#db2777', iconColor: 'text-pink-600',   border: '#f9a8d4' }, // pink = Talent
+                    train_trainer:      { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' }, // indigo = Coaching
+                    ai_automation:      { bg: '#eff6ff', text: '#1e40af', dot: '#2563eb', iconColor: 'text-blue-600',   border: '#93c5fd' }, // blue = Digital/AI
+                    coaching:           { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' }, // indigo = People Dev
                   };
-                  const cStyle = courseStyleMap[course.id] || { bg: '#f8fafc', text: '#475569', dot: '#94a3b8', iconColor: 'text-slate-500', border: '#e2e8f0' };
+                  const cStyle = courseStyleMap[course.id] || { bg: '#f0fdf4', text: '#166534', dot: '#16a34a', iconColor: 'text-green-600', border: '#86efac' };
 
                   if (course.id === 'servant_leadership') {
                     leadIcon = <Star className={`w-3.5 h-3.5 shrink-0 ${cStyle.iconColor}`} />;
