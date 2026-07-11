@@ -207,7 +207,7 @@ function parseTSV(tsvString: string): IndividualIDP[] {
     const owner = cleanCols[22] || '';
     
     // Use department directly from source file (Book1.xlsx has correct departments)
-    const department = rawDept || originalDept || '(blank)';
+    const department = rawDept || '(blank)';
     
     idps.push({
       id: `idp-${index++}`,
