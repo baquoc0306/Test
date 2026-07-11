@@ -854,7 +854,7 @@ export default function App() {
             : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <div className={`${siteActiveBg} shadow-xl border-b-2 ${siteActiveBorder}`}>
+        <div className={`${siteActiveBg} border-b-4 ${siteActiveBorder}`} style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.28)' }}>
           <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center gap-3 py-2">
             {/* Site badge */}
             <div className="flex items-center gap-2 shrink-0 border-r border-white/30 pr-3 mr-1">
@@ -872,8 +872,8 @@ export default function App() {
                   onClick={() => handleSiteChange(s)}
                   className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase transition-all duration-150 ${
                     selectedSite === s
-                      ? 'bg-white/25 text-white border border-white/50'
-                      : 'text-white/60 hover:text-white hover:bg-white/15 border border-transparent'
+                      ? 'bg-white text-slate-800 border border-white shadow-sm'
+                      : 'text-white/80 hover:text-white hover:bg-white/25 border border-white/30'
                   }`}
                 >
                   {s}
@@ -892,15 +892,15 @@ export default function App() {
                   <button
                     key={tab}
                     onClick={() => { setActiveTab(tab); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold whitespace-nowrap transition-all shrink-0 border ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold whitespace-nowrap transition-all shrink-0 border ${
                       isActive
-                        ? 'bg-white/25 text-white border-white/50 shadow-inner'
-                        : 'text-white/70 border-white/20 hover:bg-white/15 hover:text-white'
+                        ? 'bg-white text-slate-800 border-white shadow-md font-black'
+                        : 'bg-white/15 text-white border-white/30 hover:bg-white/30 hover:text-white hover:border-white/60'
                     }`}
                   >
                     <span className="text-[12px]">{icon}</span>
                     <span>{lang === 'VI' ? labelVI : labelEN}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse" />}
+                    {isActive && <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${siteActiveBg}`} />}
                   </button>
                 );
               })}
@@ -981,102 +981,6 @@ export default function App() {
           </div>
         )}
         
-        {/* ═══════════════════════════════════════════════════════════
-             UNIFIED COMMAND BAR — Site Switcher + Quick-Jump Tabs
-             ═══════════════════════════════════════════════════════════ */}
-        <div className={`rounded-2xl border-2 overflow-hidden shadow-md transition-all duration-300 ${
-          selectedSite === 'MLN' ? 'border-emerald-400' 
-          : selectedSite === 'WNK' ? 'border-indigo-400' 
-          : 'border-amber-400'
-        }`}>
-          {/* ── Row 1: Site identity + switcher ── */}
-          <div className={`flex items-center justify-between gap-3 px-5 py-3 ${
-            selectedSite === 'MLN' ? 'bg-emerald-500' 
-            : selectedSite === 'WNK' ? 'bg-indigo-500' 
-            : 'bg-amber-500'
-          }`}>
-            {/* Left: site name */}
-            <div className="flex items-center gap-3">
-              <div className="w-2.5 h-2.5 rounded-full bg-white/60 animate-pulse shrink-0" />
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-widest font-mono text-white/70">
-                  {lang === 'VI' ? 'Đang xem site' : 'Current site'}
-                </p>
-                <p className="text-[16px] font-black tracking-tight leading-none text-white mt-0.5">
-                  {selectedSite === 'MLN' ? '🏭 MILLENNIUM (MLN)' 
-                  : selectedSite === 'WNK' ? '🏭 WANEK (WNK)' 
-                  : '🏢 ASHTON (ASH)'}
-                </p>
-              </div>
-            </div>
-
-            {/* Right: site switcher */}
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 hidden sm:block mr-1">
-                {lang === 'VI' ? 'Chuyển site:' : 'Switch:'}
-              </span>
-              {(['MLN', 'WNK', 'ASH'] as const).map(s => (
-                <button
-                  key={s}
-                  onClick={() => handleSiteChange(s)}
-                  className={`px-3.5 py-1.5 rounded-xl text-[11px] font-black tracking-wider uppercase transition-all duration-200 ${
-                    selectedSite === s
-                      ? 'bg-white/25 text-white border-2 border-white/50 shadow-inner'
-                      : 'bg-white/10 text-white/70 border-2 border-white/20 hover:bg-white/20 hover:text-white'
-                  }`}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Row 2: Quick-jump tab buttons ── */}
-          <div className={`flex items-center gap-0 px-4 py-2 ${
-            selectedSite === 'MLN' ? 'bg-emerald-50' 
-            : selectedSite === 'WNK' ? 'bg-indigo-50' 
-            : 'bg-amber-50'
-          }`}>
-            <span className={`text-[9px] font-black uppercase tracking-widest font-mono mr-3 shrink-0 ${
-              selectedSite === 'MLN' ? 'text-emerald-600' 
-              : selectedSite === 'WNK' ? 'text-indigo-600' 
-              : 'text-amber-600'
-            }`}>
-              {lang === 'VI' ? 'CHUYỂN NHANH:' : 'JUMP TO:'}
-            </span>
-            <div className="flex items-center gap-2 flex-wrap">
-              {[
-                { tab: 'tab-9box', icon: '⊞', labelVI: 'Ma trận 9-Box', labelEN: '9-Box Matrix' },
-                { tab: 'tab-pipeline', icon: '⛓', labelVI: 'Kế hoạch Kế thừa', labelEN: 'Succession Plan' },
-                { tab: 'tab-devplan', icon: '📚', labelVI: 'Kế hoạch Đào tạo', labelEN: 'Training Plan' },
-                { tab: 'tab-idp', icon: '👤', labelVI: 'Kế hoạch Cá nhân', labelEN: 'Individual Plan' },
-              ].map(({ tab, icon, labelVI, labelEN }) => {
-                const isActive = activeTab === tab;
-                const activeColor = selectedSite === 'MLN' 
-                  ? 'bg-emerald-500 text-white border-emerald-500 shadow-sm' 
-                  : selectedSite === 'WNK' 
-                  ? 'bg-indigo-500 text-white border-indigo-500 shadow-sm' 
-                  : 'bg-amber-500 text-white border-amber-500 shadow-sm';
-                const inactiveColor = selectedSite === 'MLN'
-                  ? 'bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-100 hover:border-emerald-400'
-                  : selectedSite === 'WNK'
-                  ? 'bg-white text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-400'
-                  : 'bg-white text-amber-700 border-amber-200 hover:bg-amber-100 hover:border-amber-400';
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab as typeof activeTab)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold border transition-all duration-200 ${isActive ? activeColor : inactiveColor}`}
-                  >
-                    <span className="text-[12px] leading-none">{icon}</span>
-                    <span>{lang === 'VI' ? labelVI : labelEN}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse ml-0.5" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
 
         {/* HERO NAVIGATION TAB SELECTORS */}
         <section id="onboarding-tab-bar" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-6">
