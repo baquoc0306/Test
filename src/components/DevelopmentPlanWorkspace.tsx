@@ -1581,23 +1581,21 @@ export default function DevelopmentPlanWorkspace({
                     title={lang === 'VI' ? 'Kéo thả để xếp lịch học, click để bật/tắt' : 'Drag to schedule, click to toggle'}
                     onClick={() => toggleCard(course.id)}
                   >
-                    {/* Active indicator dot */}
-                    <div className="flex items-start justify-between gap-2">
-                      <h5 className={`text-[12px] font-extrabold tracking-tight leading-snug select-none flex-1 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
-                        {lang === 'VI' ? course.viName : course.name}
-                      </h5>
-                      <div className={`w-2.5 h-2.5 rounded-full shrink-0 mt-0.5 transition-all ${isActive ? 'bg-indigo-500 shadow-sm shadow-indigo-300' : 'bg-slate-200'}`} />
-                    </div>
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${isActive ? 'bg-indigo-50 text-indigo-600 border-indigo-100' : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
-                        {course.competency}
-                      </span>
+                    {/* Badge góc trên phải + tên */}
+                    <div className="relative">
                       {isActive && (
-                        <span className="text-[8.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700">
+                        <span className="absolute -top-1 -right-1 text-[7.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-rose-500 text-white shadow-sm z-10">
                           {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
                         </span>
                       )}
+                      <h5 className={`text-[12px] font-extrabold tracking-tight leading-snug select-none pr-2 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                        {lang === 'VI' ? course.viName : course.name}
+                      </h5>
                     </div>
+                    {/* Tag năng lực tiếng Việt — luôn ở dưới tên */}
+                    <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border w-fit mt-auto ${isActive ? 'bg-indigo-50 text-indigo-600 border-indigo-100' : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
+                      {lang === 'VI' ? (course.viCompetency || course.competency) : course.competency}
+                    </span>
                   </div>
                 );
               })}
@@ -1751,17 +1749,28 @@ export default function DevelopmentPlanWorkspace({
                   }`}
                   title={lang === 'VI' ? 'Kéo thả để xếp lịch học, click để xem nội dung chi tiết' : 'Drag to schedule starting month, click to view details'}
                 >
-                  {/* Tên khóa học + dot indicator */}
-                  <div className="flex items-start justify-between gap-2">
-                    <h5 className={`text-[12px] font-extrabold tracking-tight leading-snug select-none flex-1 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                  {/* Badge góc trên phải + tên */}
+                  <div className="relative">
+                    {card.tag === 'HIGH' && isActive && (
+                      <span className="absolute -top-1 -right-1 text-[7.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-rose-500 text-white shadow-sm z-10">
+                        {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
+                      </span>
+                    )}
+                    <h5 className={`text-[12px] font-extrabold tracking-tight leading-snug select-none pr-2 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
                       {cardTitle}
                     </h5>
-                    <div className={`w-2.5 h-2.5 rounded-full shrink-0 mt-0.5 transition-all ${isActive ? 'bg-rose-500 shadow-sm shadow-rose-300' : 'bg-slate-200'}`} />
                   </div>
 
-                  {/* Tag năng lực */}
-                  <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full w-fit border ${isActive ? getCompetencyBadgeClasses(compText) : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
-                    {compText}
+                  {/* Tag năng lực tiếng Việt — luôn ở dưới tên */}
+                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full w-fit border ${isActive ? getCompetencyBadgeClasses(compText) : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
+                    {lang === 'VI' ? (
+                      compText === 'Technology Skills' ? 'Kỹ năng Công nghệ' :
+                      compText === 'Leadership Development' ? 'Phát triển Lãnh đạo' :
+                      compText === 'Soft Skills' ? 'Kỹ năng Mềm' :
+                      compText === 'People Development' ? 'Phát triển Con người' :
+                      compText === 'Talent Management' ? 'Quản lý Nhân tài' :
+                      compText
+                    ) : compText}
                   </span>
 
                   {/* Bottom: quarter + high need tag */}
@@ -1769,11 +1778,7 @@ export default function DevelopmentPlanWorkspace({
                     <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded font-mono ${isActive ? 'bg-slate-100 text-slate-500' : 'bg-slate-50 text-slate-300'}`}>
                       {lang === 'VI' ? card.quarter.replace(/Q/g, 'Q').replace(/-/g, '–') : card.quarter.replace(/-/g, '–')}
                     </span>
-                    {card.tag === 'HIGH' && isActive && (
-                      <span className="text-[8.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700">
-                        {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
-                      </span>
-                    )}
+
                   </div>
                 </div>
               );
@@ -1918,17 +1923,17 @@ export default function DevelopmentPlanWorkspace({
                   let themeColor = 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-3xs';
                   let leftBorderColor = 'border-l-4 border-l-slate-400';
 
-                  // Color palette per course — clean solid colors
+                  // Color palette per course — light pastel with colored text
                   type CourseStyle = { bg: string; text: string; dot: string; iconColor: string; border: string };
                   const courseStyleMap: Record<string, CourseStyle> = {
-                    servant_leadership: { bg: '#6366f1', text: '#fff', dot: '#e0e7ff', iconColor: 'text-indigo-100', border: '#4f46e5' },
-                    communication:      { bg: '#0284c7', text: '#fff', dot: '#e0f2fe', iconColor: 'text-sky-100',    border: '#0369a1' },
-                    succession_idp:     { bg: '#059669', text: '#fff', dot: '#d1fae5', iconColor: 'text-emerald-100', border: '#047857' },
-                    train_trainer:      { bg: '#7c3aed', text: '#fff', dot: '#ede9fe', iconColor: 'text-violet-100', border: '#6d28d9' },
-                    ai_automation:      { bg: '#d97706', text: '#fff', dot: '#fef3c7', iconColor: 'text-amber-100',  border: '#b45309' },
-                    coaching:           { bg: '#db2777', text: '#fff', dot: '#fce7f3', iconColor: 'text-pink-100',   border: '#be185d' },
+                    servant_leadership: { bg: '#eef2ff', text: '#4338ca', dot: '#6366f1', iconColor: 'text-indigo-500', border: '#a5b4fc' },
+                    communication:      { bg: '#e0f2fe', text: '#0369a1', dot: '#0ea5e9', iconColor: 'text-sky-500',    border: '#7dd3fc' },
+                    succession_idp:     { bg: '#d1fae5', text: '#065f46', dot: '#10b981', iconColor: 'text-emerald-600', border: '#6ee7b7' },
+                    train_trainer:      { bg: '#ede9fe', text: '#5b21b6', dot: '#8b5cf6', iconColor: 'text-violet-500', border: '#c4b5fd' },
+                    ai_automation:      { bg: '#fef3c7', text: '#92400e', dot: '#f59e0b', iconColor: 'text-amber-600',  border: '#fcd34d' },
+                    coaching:           { bg: '#fce7f3', text: '#9d174d', dot: '#ec4899', iconColor: 'text-pink-500',   border: '#f9a8d4' },
                   };
-                  const cStyle = courseStyleMap[course.id] || { bg: '#475569', text: '#fff', dot: '#f1f5f9', iconColor: 'text-slate-200', border: '#334155' };
+                  const cStyle = courseStyleMap[course.id] || { bg: '#f1f5f9', text: '#334155', dot: '#94a3b8', iconColor: 'text-slate-500', border: '#cbd5e1' };
 
                   if (course.id === 'servant_leadership') {
                     leadIcon = <Star className={`w-3.5 h-3.5 shrink-0 ${cStyle.iconColor}`} />;
@@ -1980,8 +1985,9 @@ export default function DevelopmentPlanWorkspace({
                           gridRowStart: 1,
                           zIndex: 10,
                           backgroundColor: cStyle.bg,
-                          borderLeft: `3px solid ${cStyle.border}`,
-                          boxShadow: `0 1px 4px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)`,
+                          borderLeft: `3px solid ${cStyle.dot}`,
+                          border: `1px solid ${cStyle.border}`,
+                          boxShadow: `0 1px 3px rgba(0,0,0,0.08)`,
                         }}
                         className="rounded-lg cursor-grab active:cursor-grabbing hover:opacity-90 hover:scale-[1.01] active:scale-[0.98] transition-all duration-150 flex items-center gap-2 px-3 py-2 group select-none overflow-hidden"
                         title={lang === 'VI' ? 'Kéo để dời lịch, Click để xem chi tiết' : 'Drag to adjust schedule, Click to view details'}
