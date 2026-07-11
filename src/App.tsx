@@ -345,6 +345,15 @@ export default function App() {
     logValidationResults(warnings);
     setDataWarnings(warnings);
   }, []);
+
+  // Scroll listener — show sticky bar after scrolling past Command Bar (~200px)
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowStickyBar(window.scrollY > 220);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [pipelineData, setPipelineData] = useState(() => getFullPipeline());
 
   // Drag and Drop notification toast banner
@@ -352,6 +361,7 @@ export default function App() {
   const [showFrameworkModal, setShowFrameworkModal] = useState<boolean>(false);
   const [undoingId, setUndoingId] = useState<string | null>(null);
   const [historyCollapsed, setHistoryCollapsed] = useState(true);
+  const [showStickyBar, setShowStickyBar] = useState(false);
   const [dataWarnings, setDataWarnings] = useState<ValidationWarning[]>([]);
   const [showDataWarnings, setShowDataWarnings] = useState(false);
   const [reclassHistory, setReclassHistory] = useState<{ id: string; talentName: string; fromCell: NineBoxCell; toCell: NineBoxCell; timestamp: Date }[]>(() => {
@@ -820,8 +830,96 @@ export default function App() {
     return Object.values(deptTotals).sort((a, b) => (b.growers + b.keepers + b.movers) - (a.growers + a.keepers + a.movers));
   }, [siteFilteredTalents]);
 
+  // Shared tab items for both inline and sticky bar
+  const quickTabItems = [
+    { tab: 'tab-9box' as const, icon: '⊞', labelVI: 'Ma trận 9-Box', labelEN: '9-Box Matrix' },
+    { tab: 'tab-pipeline' as const, icon: '⛓', labelVI: 'Kế hoạch Kế thừa', labelEN: 'Succession Plan' },
+    { tab: 'tab-devplan' as const, icon: '📚', labelVI: 'Kế hoạch Đào tạo', labelEN: 'Training Plan' },
+    { tab: 'tab-indiv-idp' as const, icon: '👤', labelVI: 'Kế hoạch Cá nhân', labelEN: 'Individual Plan' },
+  ];
+
+  const siteColor = selectedSite === 'MLN' ? 'emerald' : selectedSite === 'WNK' ? 'indigo' : 'amber';
+  const siteActiveBg = selectedSite === 'MLN' ? 'bg-emerald-500' : selectedSite === 'WNK' ? 'bg-indigo-500' : 'bg-amber-500';
+  const siteActiveBorder = selectedSite === 'MLN' ? 'border-emerald-500' : selectedSite === 'WNK' ? 'border-indigo-500' : 'border-amber-500';
+  const siteActiveText = selectedSite === 'MLN' ? 'text-emerald-700' : selectedSite === 'WNK' ? 'text-indigo-700' : 'text-amber-700';
+  const siteActiveBg2 = selectedSite === 'MLN' ? 'bg-emerald-100 hover:bg-emerald-200 border-emerald-300' : selectedSite === 'WNK' ? 'bg-indigo-100 hover:bg-indigo-200 border-indigo-300' : 'bg-amber-100 hover:bg-amber-200 border-amber-300';
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col">
+      {/* ═══ FLOATING STICKY COMMAND BAR — appears on scroll ═══ */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
+          showStickyBar
+            ? 'translate-y-0 opacity-100 pointer-events-auto'
+            : '-translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className={`${siteActiveBg} shadow-xl border-b-2 ${siteActiveBorder}`}>
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center gap-3 py-2">
+            {/* Site badge */}
+            <div className="flex items-center gap-2 shrink-0 border-r border-white/30 pr-3 mr-1">
+              <div className="w-2 h-2 rounded-full bg-white/60 animate-pulse" />
+              <span className="text-white font-black text-[13px] tracking-tight">
+                {selectedSite === 'MLN' ? '🏭 MLN' : selectedSite === 'WNK' ? '🏭 WNK' : '🏢 ASH'}
+              </span>
+            </div>
+
+            {/* Site switcher mini */}
+            <div className="flex items-center gap-1.5 shrink-0 border-r border-white/30 pr-3 mr-1">
+              {(['MLN', 'WNK', 'ASH'] as const).map(s => (
+                <button
+                  key={s}
+                  onClick={() => handleSiteChange(s)}
+                  className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase transition-all duration-150 ${
+                    selectedSite === s
+                      ? 'bg-white/25 text-white border border-white/50'
+                      : 'text-white/60 hover:text-white hover:bg-white/15 border border-transparent'
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+
+            {/* Quick-jump tabs */}
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin flex-1">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-white/60 shrink-0 hidden sm:block">
+                {lang === 'VI' ? 'CHUYỂN NHANH:' : 'JUMP TO:'}
+              </span>
+              {quickTabItems.map(({ tab, icon, labelVI, labelEN }) => {
+                const isActive = activeTab === tab;
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => { setActiveTab(tab); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold whitespace-nowrap transition-all shrink-0 border ${
+                      isActive
+                        ? 'bg-white/25 text-white border-white/50 shadow-inner'
+                        : 'text-white/70 border-white/20 hover:bg-white/15 hover:text-white'
+                    }`}
+                  >
+                    <span className="text-[12px]">{icon}</span>
+                    <span>{lang === 'VI' ? labelVI : labelEN}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse" />}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Scroll-to-top button */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="shrink-0 p-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white/80 hover:text-white transition-all border border-white/20"
+              title={lang === 'VI' ? 'Lên đầu trang' : 'Back to top'}
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* 1. BRAND GLOBAL HEADER */}
       <Header 
         lang={lang} 
@@ -1232,45 +1330,6 @@ export default function App() {
           </div>
         </section>
 
-
-        {/* ── QUICK-JUMP NAVIGATION ── sticky, hiển thị trong mọi tab ── */}
-        <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm -mx-4 px-4 py-2 mb-4">
-          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin">
-            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest shrink-0 mr-1">
-              {lang === 'VI' ? 'Chuyển nhanh:' : 'Jump to:'}
-            </span>
-            {[
-              { id: 'tab-9box', labelVi: '① Ma trận 9-Box', labelEn: '① 9-Box Matrix', icon: '⊞' },
-              { id: 'tab-pipeline', labelVi: '② Kế hoạch Kế thừa', labelEn: '② Succession Pipeline', icon: '🔗' },
-              { id: 'tab-devplan', labelVi: '③ Kế hoạch Đào tạo', labelEn: '③ Training Plan', icon: '📚' },
-              { id: 'tab-indiv-idp', labelVi: '④ Kế hoạch Cá nhân', labelEn: '④ Individual IDP', icon: '👤' },
-            ].map(tab => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => {
-                  setActiveTab(tab.id as any);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10.5px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
-                  activeTab === tab.id
-                    ? selectedSite === 'MLN'
-                      ? 'bg-emerald-600 text-white shadow-sm'
-                      : selectedSite === 'WNK'
-                        ? 'bg-indigo-600 text-white shadow-sm'
-                        : 'bg-amber-500 text-white shadow-sm'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800'
-                }`}
-              >
-                <span>{tab.icon}</span>
-                <span>{lang === 'VI' ? tab.labelVi : tab.labelEn}</span>
-                {activeTab === tab.id && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 shrink-0" />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* ==================== TAB 1 Content: 9-BOX MATRIX & TALENT LIST ==================== */}
         {activeTab === 'tab-9box' && (
