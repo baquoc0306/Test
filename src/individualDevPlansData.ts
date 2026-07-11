@@ -207,7 +207,8 @@ function parseTSV(tsvString: string): IndividualIDP[] {
     const owner = cleanCols[22] || '';
     
     // Use department directly from source file (Book1.xlsx has correct departments)
-    const department = rawDept || '(blank)';
+    // Fallback: if col5 is blank, use col6 (section) as department — some rows have dept in col6
+    const department = rawDept || section || '(blank)';
     
     idps.push({
       id: `idp-${index++}`,
@@ -268,20 +269,30 @@ const allowedEmployeeNames = [
   'DOMINIC DUONG', 'DƯƠNG QUỐC OAI', 'DƯƠNG SƠN DƯƠNG',
   'LILY PHAM', 'PHẠM THỊ HOÀI THANH', 'PHẠM THỊ THẢO',
   'Lee Nguyen', 'LEE NGUYEN',
-  'Hạnh',
-  'Hòa',
-  'Hội_Huỳnh',
-  'Khiêm',
-  'Lệ',
-  'Liễu',
-  'Nhung',
-  'Quân',
-  'Sương',
-  'Thảo_Lê',
-  'Thúy',
-  'Trang',
+  'NGUYEN THI HONG HANH', 'NGUYỄN THỊ HỒNG HẠNH',
+  'PHAN THI MY HOA', 'PHAN THỊ MỸ HÒA',
+  'TRAN HUYNH HUY HOI', 'TRẦN HUỲNH HUY HỘI',
+  'TRAN QUANG KHIEM', 'TRẦN QUANG KHIÊM',
+  'NGUYEN THI MY LE', 'NGUYỄN THỊ MỸ LỆ',
+  'PHAM THI LIEU', 'PHẠM THỊ LIỄU',
+  'TRUONG THI NHUNG', 'TRƯƠNG THỊ NHUNG',
+  'VO DINH QUAN', 'VÕ ĐÌNH QUÂN',
+  'TONG THI SUONG', 'TỐNG THỊ SƯƠNG',
+  'LE THI THU THAO', 'LÊ THỊ THU THẢO',
+  'TRAN THI THU THUY', 'TRẦN THỊ THU THÚY',
   'VERA BUI', 'Vera Bui',
-  'Will',
+  'WILL NGUYEN', 'will nguyen', 'Will',
+  'LE THI THU THAO', 'le thi thu thao',
+  'NGUYEN THI HONG HANH', 'nguyen thi hong hanh',
+  'PHAN THI MY HOA', 'phan thi my hoa',
+  'TRAN HUYNH HUY HOI', 'tran huynh huy hoi',
+  'TRAN QUANG KHIEM', 'tran quang khiem',
+  'NGUYEN THI MY LE', 'nguyen thi my le',
+  'PHAM THI LIEU', 'pham thi lieu',
+  'TRUONG THI NHUNG', 'truong thi nhung',
+  'VO DINH QUAN', 'vo dinh quan',
+  'TONG THI SUONG', 'tong thi suong',
+  'TRAN THI THU THUY', 'tran thi thu thuy',
   'ĐỔ VĂN THUẬN', 'DO VAN THUAN',
   'NGUYỄN CHÍ LÂM', 'NGUYEN CHI LAM',
   'HUỲNH CHÍ THƯỢNG', 'HUYNH CHI THUONG',
