@@ -1561,15 +1561,29 @@ export default function DevelopmentPlanWorkspace({
               {siteActiveCourses.map((course) => {
                 const isActive = course.active;
                 // Per-course color palette — matched to competency badge colors
+                // Covers both MLN IDs and WNK/ASH prefixed IDs
                 const courseColors: Record<string, { bg: string; border: string; text: string; badgeBg: string }> = {
-                  servant_leadership: { bg: '#fffbeb', border: '#fcd34d', text: '#92400e', badgeBg: '#d97706' }, // amber = Leadership
-                  communication:      { bg: '#faf5ff', border: '#d8b4fe', text: '#6b21a8', badgeBg: '#9333ea' }, // purple = Soft Skill
-                  succession_idp:     { bg: '#fdf2f8', border: '#f9a8d4', text: '#9d174d', badgeBg: '#db2777' }, // pink = Talent/Succession
-                  train_trainer:      { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' }, // indigo = Coaching
-                  ai_automation:      { bg: '#eff6ff', border: '#93c5fd', text: '#1e40af', badgeBg: '#2563eb' }, // blue = Digital/AI
-                  coaching:           { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' }, // indigo = People Dev
+                  // Leadership → amber
+                  servant_leadership:  { bg: '#fffbeb', border: '#fcd34d', text: '#92400e', badgeBg: '#d97706' },
+                  wnk_leadership:      { bg: '#fffbeb', border: '#fcd34d', text: '#92400e', badgeBg: '#d97706' },
+                  ash_leadership:      { bg: '#fffbeb', border: '#fcd34d', text: '#92400e', badgeBg: '#d97706' },
+                  // Communication / Soft Skill → purple
+                  communication:       { bg: '#faf5ff', border: '#d8b4fe', text: '#6b21a8', badgeBg: '#9333ea' },
+                  wnk_communication:   { bg: '#faf5ff', border: '#d8b4fe', text: '#6b21a8', badgeBg: '#9333ea' },
+                  ash_communication:   { bg: '#faf5ff', border: '#d8b4fe', text: '#6b21a8', badgeBg: '#9333ea' },
+                  // Coaching / Train Trainer → indigo
+                  train_trainer:       { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' },
+                  wnk_coaching:        { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' },
+                  ash_coaching:        { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' },
+                  coaching:            { bg: '#eef2ff', border: '#a5b4fc', text: '#3730a3', badgeBg: '#4f46e5' },
+                  // Digital / AI → blue
+                  ai_automation:       { bg: '#eff6ff', border: '#93c5fd', text: '#1e40af', badgeBg: '#2563eb' },
+                  wnk_digital:         { bg: '#eff6ff', border: '#93c5fd', text: '#1e40af', badgeBg: '#2563eb' },
+                  ash_digital:         { bg: '#eff6ff', border: '#93c5fd', text: '#1e40af', badgeBg: '#2563eb' },
+                  // Succession / Talent → pink
+                  succession_idp:      { bg: '#fdf2f8', border: '#f9a8d4', text: '#9d174d', badgeBg: '#db2777' },
                 };
-                const cc = courseColors[course.id] || { bg: '#f0fdf4', border: '#86efac', text: '#166534', badgeBg: '#16a34a' };
+                const cc = courseColors[course.id] || { bg: '#faf5ff', border: '#d8b4fe', text: '#6b21a8', badgeBg: '#9333ea' };
                 const timeLabel = lang === 'VI'
                   ? `Tháng ${course.startMonth + 1}–${course.startMonth + course.duration}`
                   : `Month ${course.startMonth + 1}–${course.startMonth + course.duration}`;
@@ -1935,17 +1949,30 @@ export default function DevelopmentPlanWorkspace({
                   let themeColor = 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-3xs';
                   let leftBorderColor = 'border-l-4 border-l-slate-400';
 
-                  // Shared color palette — matched to competency badge colors
+                  // Shared color palette — matched to competency badge colors (with WNK/ASH prefixed IDs)
                   type CourseStyle = { bg: string; text: string; dot: string; iconColor: string; border: string };
                   const courseStyleMap: Record<string, CourseStyle> = {
-                    servant_leadership: { bg: '#fffbeb', text: '#92400e', dot: '#d97706', iconColor: 'text-amber-700',  border: '#fcd34d' }, // amber = Leadership
-                    communication:      { bg: '#faf5ff', text: '#6b21a8', dot: '#9333ea', iconColor: 'text-purple-600', border: '#d8b4fe' }, // purple = Soft Skill
-                    succession_idp:     { bg: '#fdf2f8', text: '#9d174d', dot: '#db2777', iconColor: 'text-pink-600',   border: '#f9a8d4' }, // pink = Talent
-                    train_trainer:      { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' }, // indigo = Coaching
-                    ai_automation:      { bg: '#eff6ff', text: '#1e40af', dot: '#2563eb', iconColor: 'text-blue-600',   border: '#93c5fd' }, // blue = Digital/AI
-                    coaching:           { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' }, // indigo = People Dev
+                    // Leadership → amber
+                    servant_leadership: { bg: '#fffbeb', text: '#92400e', dot: '#d97706', iconColor: 'text-amber-700',  border: '#fcd34d' },
+                    wnk_leadership:     { bg: '#fffbeb', text: '#92400e', dot: '#d97706', iconColor: 'text-amber-700',  border: '#fcd34d' },
+                    ash_leadership:     { bg: '#fffbeb', text: '#92400e', dot: '#d97706', iconColor: 'text-amber-700',  border: '#fcd34d' },
+                    // Communication → purple
+                    communication:      { bg: '#faf5ff', text: '#6b21a8', dot: '#9333ea', iconColor: 'text-purple-600', border: '#d8b4fe' },
+                    wnk_communication:  { bg: '#faf5ff', text: '#6b21a8', dot: '#9333ea', iconColor: 'text-purple-600', border: '#d8b4fe' },
+                    ash_communication:  { bg: '#faf5ff', text: '#6b21a8', dot: '#9333ea', iconColor: 'text-purple-600', border: '#d8b4fe' },
+                    // Coaching → indigo
+                    train_trainer:      { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' },
+                    wnk_coaching:       { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' },
+                    ash_coaching:       { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' },
+                    coaching:           { bg: '#eef2ff', text: '#3730a3', dot: '#4f46e5', iconColor: 'text-indigo-600', border: '#a5b4fc' },
+                    // Digital/AI → blue
+                    ai_automation:      { bg: '#eff6ff', text: '#1e40af', dot: '#2563eb', iconColor: 'text-blue-600',   border: '#93c5fd' },
+                    wnk_digital:        { bg: '#eff6ff', text: '#1e40af', dot: '#2563eb', iconColor: 'text-blue-600',   border: '#93c5fd' },
+                    ash_digital:        { bg: '#eff6ff', text: '#1e40af', dot: '#2563eb', iconColor: 'text-blue-600',   border: '#93c5fd' },
+                    // Succession → pink
+                    succession_idp:     { bg: '#fdf2f8', text: '#9d174d', dot: '#db2777', iconColor: 'text-pink-600',   border: '#f9a8d4' },
                   };
-                  const cStyle = courseStyleMap[course.id] || { bg: '#f0fdf4', text: '#166534', dot: '#16a34a', iconColor: 'text-green-600', border: '#86efac' };
+                  const cStyle = courseStyleMap[course.id] || { bg: '#faf5ff', text: '#6b21a8', dot: '#9333ea', iconColor: 'text-purple-600', border: '#d8b4fe' };
 
                   if (course.id === 'servant_leadership') {
                     leadIcon = <Star className={`w-3.5 h-3.5 shrink-0 ${cStyle.iconColor}`} />;
