@@ -883,6 +883,62 @@ export default function App() {
           </div>
         )}
         
+        {/* SITE INDICATOR BAR — always visible above tabs */}
+        <div className={`flex items-center justify-between gap-3 px-5 py-3 rounded-2xl border transition-all duration-300 ${
+          selectedSite === 'MLN' ? 'bg-emerald-50 border-emerald-200' 
+          : selectedSite === 'WNK' ? 'bg-indigo-50 border-indigo-200' 
+          : 'bg-amber-50 border-amber-200'
+        }`}>
+          {/* Left: current site label */}
+          <div className="flex items-center gap-3 min-w-0">
+            <div className={`w-2.5 h-2.5 rounded-full shrink-0 animate-pulse ${
+              selectedSite === 'MLN' ? 'bg-emerald-500' 
+              : selectedSite === 'WNK' ? 'bg-indigo-500' 
+              : 'bg-amber-500'
+            }`} />
+            <div className="min-w-0">
+              <p className={`text-[9px] font-bold uppercase tracking-widest font-mono ${
+                selectedSite === 'MLN' ? 'text-emerald-600' 
+                : selectedSite === 'WNK' ? 'text-indigo-600' 
+                : 'text-amber-600'
+              }`}>
+                {lang === 'VI' ? 'Đang xem site' : 'Current site'}
+              </p>
+              <p className={`text-[15px] font-black tracking-tight leading-none mt-0.5 ${
+                selectedSite === 'MLN' ? 'text-emerald-800' 
+                : selectedSite === 'WNK' ? 'text-indigo-800' 
+                : 'text-amber-800'
+              }`}>
+                {selectedSite === 'MLN' ? '🏭 MILLENNIUM (MLN)' 
+                : selectedSite === 'WNK' ? '🏭 WANEK (WNK)' 
+                : '🏢 ASHTON (ASH)'}
+              </p>
+            </div>
+          </div>
+
+          {/* Right: site switcher buttons */}
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 hidden sm:block mr-1">
+              {lang === 'VI' ? 'Chuyển site:' : 'Switch:'}
+            </span>
+            {(['MLN', 'WNK', 'ASH'] as const).map(s => (
+              <button
+                key={s}
+                onClick={() => handleSiteChange(s)}
+                className={`px-3 py-1.5 rounded-xl text-[11px] font-black tracking-wider uppercase transition-all duration-200 border ${
+                  selectedSite === s
+                    ? s === 'MLN' ? 'bg-emerald-500 text-white border-emerald-500 shadow-sm'
+                      : s === 'WNK' ? 'bg-indigo-500 text-white border-indigo-500 shadow-sm'
+                      : 'bg-amber-500 text-white border-amber-500 shadow-sm'
+                    : 'bg-white text-slate-500 border-slate-200 hover:border-slate-400 hover:text-slate-700'
+                }`}
+              >
+                {s === 'MLN' ? 'MLN' : s === 'WNK' ? 'WNK' : 'ASH'}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* HERO NAVIGATION TAB SELECTORS */}
         <section id="onboarding-tab-bar" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {/* TAB 1 */}
