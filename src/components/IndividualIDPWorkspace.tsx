@@ -1281,16 +1281,16 @@ export default function IndividualIDPWorkspace({
                         {/* Name - No vertical line borders */}
                         <td className="px-5 py-3">
                            <div className="font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors w-max flex items-center gap-1.5">
-                            <span>{emp.viName}</span>
+                            <span>{emp.engName && emp.engName !== emp.viName ? emp.engName : emp.viName}</span>
                             {expandedKey === empKey ? (
                               <ChevronUp className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
                             ) : (
                               <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-500 shrink-0 transition-colors" />
                             )}
                           </div>
-                          {emp.engName && emp.engName !== emp.viName && (
+                          {emp.engName && emp.engName !== emp.viName && emp.viName && (
                             <div className="text-[10px] text-slate-400 font-medium leading-none mt-0.5">
-                              {emp.engName}
+                              {emp.viName}
                             </div>
                           )}
                         </td>
