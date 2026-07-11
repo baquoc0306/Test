@@ -1563,9 +1563,6 @@ export default function DevelopmentPlanWorkspace({
                 const cardBgClass = isActive
                   ? 'bg-white border-2 border-indigo-400 duration-200'
                   : 'bg-white border border-slate-200 duration-200';
-                const checkBoxClass = isActive
-                  ? 'bg-indigo-500 border-indigo-500 shadow-sm'
-                  : 'bg-white border-slate-300 group-hover:border-indigo-300';
                 return (
                   <div
                     key={course.id}
@@ -1576,33 +1573,31 @@ export default function DevelopmentPlanWorkspace({
                       setDraggingCardId(course.id);
                     }}
                     onDragEnd={() => setDraggingCardId(null)}
-                    className={`border p-4 rounded-xl transition-all duration-200 cursor-pointer select-none relative group flex flex-col gap-2 ${cardBgClass} ${
+                    className={`border p-3.5 rounded-xl transition-all duration-200 cursor-grab active:cursor-grabbing select-none relative group flex flex-col gap-2 ${cardBgClass} ${
                       draggingCardId === course.id
                         ? 'opacity-50 scale-95 shadow-lg'
-                        : 'hover:-translate-y-0.5 hover:shadow-sm duration-200'
+                        : 'hover:-translate-y-0.5 hover:shadow-md duration-200'
                     }`}
                     title={lang === 'VI' ? 'Kéo thả để xếp lịch học, click để bật/tắt' : 'Drag to schedule, click to toggle'}
                     onClick={() => toggleCard(course.id)}
                   >
+                    {/* Active indicator dot */}
                     <div className="flex items-start justify-between gap-2">
                       <h5 className={`text-[12px] font-extrabold tracking-tight leading-snug select-none flex-1 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
                         {lang === 'VI' ? course.viName : course.name}
                       </h5>
-                      <button
-                        type="button"
-                        onClick={(e) => { e.stopPropagation(); toggleCard(course.id); }}
-                        className={`w-6 h-6 rounded-lg border flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 shrink-0 ${checkBoxClass}`}
-                      >
-                        {isActive ? (
-                          <Check className="w-3 h-3 text-white stroke-[4px]" />
-                        ) : (
-                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-indigo-400 transition-all" />
-                        )}
-                      </button>
+                      <div className={`w-2.5 h-2.5 rounded-full shrink-0 mt-0.5 transition-all ${isActive ? 'bg-indigo-500 shadow-sm shadow-indigo-300' : 'bg-slate-200'}`} />
                     </div>
-                    <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full w-fit border mt-1 ${isActive ? 'bg-indigo-50 text-indigo-600 border-indigo-100' : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
-                      {course.competency}
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${isActive ? 'bg-indigo-50 text-indigo-600 border-indigo-100' : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
+                        {course.competency}
+                      </span>
+                      {isActive && (
+                        <span className="text-[8.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700">
+                          {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 );
               })}
@@ -1756,24 +1751,27 @@ export default function DevelopmentPlanWorkspace({
                   }`}
                   title={lang === 'VI' ? 'Kéo thả để xếp lịch học, click để xem nội dung chi tiết' : 'Drag to schedule starting month, click to view details'}
                 >
-                  {/* Tên khóa học */}
-                  <h5 className={`text-[13px] font-extrabold tracking-tight leading-snug select-none ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
-                    {cardTitle}
-                  </h5>
+                  {/* Tên khóa học + dot indicator */}
+                  <div className="flex items-start justify-between gap-2">
+                    <h5 className={`text-[12px] font-extrabold tracking-tight leading-snug select-none flex-1 ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+                      {cardTitle}
+                    </h5>
+                    <div className={`w-2.5 h-2.5 rounded-full shrink-0 mt-0.5 transition-all ${isActive ? 'bg-rose-500 shadow-sm shadow-rose-300' : 'bg-slate-200'}`} />
+                  </div>
 
                   {/* Tag năng lực */}
                   <span className={`text-[9.5px] font-bold px-2 py-0.5 rounded-full w-fit border ${isActive ? getCompetencyBadgeClasses(compText) : 'bg-slate-100 text-slate-400 border-slate-200'}`}>
                     {compText}
                   </span>
 
-                  {/* Bottom: quarter tag only */}
-                  <div className="mt-auto pt-1.5 flex items-center gap-1.5">
+                  {/* Bottom: quarter + high need tag */}
+                  <div className="mt-auto pt-1.5 flex items-center gap-1.5 flex-wrap">
                     <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded font-mono ${isActive ? 'bg-slate-100 text-slate-500' : 'bg-slate-50 text-slate-300'}`}>
                       {lang === 'VI' ? card.quarter.replace(/Q/g, 'Q').replace(/-/g, '–') : card.quarter.replace(/-/g, '–')}
                     </span>
                     {card.tag === 'HIGH' && isActive && (
                       <span className="text-[8.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700">
-                        {lang === 'VI' ? 'Ưu tiên cao' : 'High Priority'}
+                        {lang === 'VI' ? 'Nhu cầu cao' : 'High Need'}
                       </span>
                     )}
                   </div>
@@ -1920,17 +1918,17 @@ export default function DevelopmentPlanWorkspace({
                   let themeColor = 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-3xs';
                   let leftBorderColor = 'border-l-4 border-l-slate-400';
 
-                  // Color palette per course — gradient pill style
-                  type CourseStyle = { bg: string; text: string; dot: string; iconColor: string };
+                  // Color palette per course — clean solid colors
+                  type CourseStyle = { bg: string; text: string; dot: string; iconColor: string; border: string };
                   const courseStyleMap: Record<string, CourseStyle> = {
-                    servant_leadership: { bg: 'linear-gradient(90deg,#6366f1,#818cf8)', text: '#fff', dot: '#c7d2fe', iconColor: 'text-indigo-200' },
-                    communication:      { bg: 'linear-gradient(90deg,#0ea5e9,#38bdf8)', text: '#fff', dot: '#bae6fd', iconColor: 'text-sky-200' },
-                    succession_idp:     { bg: 'linear-gradient(90deg,#10b981,#34d399)', text: '#fff', dot: '#a7f3d0', iconColor: 'text-emerald-200' },
-                    train_trainer:      { bg: 'linear-gradient(90deg,#8b5cf6,#a78bfa)', text: '#fff', dot: '#ddd6fe', iconColor: 'text-violet-200' },
-                    ai_automation:      { bg: 'linear-gradient(90deg,#f59e0b,#fbbf24)', text: '#fff', dot: '#fde68a', iconColor: 'text-amber-100' },
-                    coaching:           { bg: 'linear-gradient(90deg,#ec4899,#f472b6)', text: '#fff', dot: '#fbcfe8', iconColor: 'text-pink-200' },
+                    servant_leadership: { bg: '#6366f1', text: '#fff', dot: '#e0e7ff', iconColor: 'text-indigo-100', border: '#4f46e5' },
+                    communication:      { bg: '#0284c7', text: '#fff', dot: '#e0f2fe', iconColor: 'text-sky-100',    border: '#0369a1' },
+                    succession_idp:     { bg: '#059669', text: '#fff', dot: '#d1fae5', iconColor: 'text-emerald-100', border: '#047857' },
+                    train_trainer:      { bg: '#7c3aed', text: '#fff', dot: '#ede9fe', iconColor: 'text-violet-100', border: '#6d28d9' },
+                    ai_automation:      { bg: '#d97706', text: '#fff', dot: '#fef3c7', iconColor: 'text-amber-100',  border: '#b45309' },
+                    coaching:           { bg: '#db2777', text: '#fff', dot: '#fce7f3', iconColor: 'text-pink-100',   border: '#be185d' },
                   };
-                  const cStyle = courseStyleMap[course.id] || { bg: 'linear-gradient(90deg,#64748b,#94a3b8)', text: '#fff', dot: '#e2e8f0', iconColor: 'text-slate-200' };
+                  const cStyle = courseStyleMap[course.id] || { bg: '#475569', text: '#fff', dot: '#f1f5f9', iconColor: 'text-slate-200', border: '#334155' };
 
                   if (course.id === 'servant_leadership') {
                     leadIcon = <Star className={`w-3.5 h-3.5 shrink-0 ${cStyle.iconColor}`} />;
@@ -1981,18 +1979,19 @@ export default function DevelopmentPlanWorkspace({
                           gridColumnEnd: `span ${colSpan}`,
                           gridRowStart: 1,
                           zIndex: 10,
-                          background: cStyle.bg,
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                          backgroundColor: cStyle.bg,
+                          borderLeft: `3px solid ${cStyle.border}`,
+                          boxShadow: `0 1px 4px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)`,
                         }}
-                        className="rounded-xl cursor-grab active:cursor-grabbing hover:brightness-110 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 flex items-center gap-2 px-3 py-2 group select-none overflow-hidden"
+                        className="rounded-lg cursor-grab active:cursor-grabbing hover:opacity-90 hover:scale-[1.01] active:scale-[0.98] transition-all duration-150 flex items-center gap-2 px-3 py-2 group select-none overflow-hidden"
                         title={lang === 'VI' ? 'Kéo để dời lịch, Click để xem chi tiết' : 'Drag to adjust schedule, Click to view details'}
                         onClick={() => setEditingCourse(course)}
                       >
-                        <span className="shrink-0 opacity-90">{leadIcon}</span>
-                        <span className="font-bold truncate select-none text-[11px] tracking-tight" style={{ color: cStyle.text }}>
+                        <span className="shrink-0 opacity-80">{leadIcon}</span>
+                        <span className="font-bold truncate select-none text-[11px] tracking-tight flex-1" style={{ color: cStyle.text }}>
                           {courseLabel}
                         </span>
-                        <span className="ml-auto shrink-0 w-1.5 h-1.5 rounded-full opacity-60" style={{ background: cStyle.dot }} />
+                        <span className="shrink-0 w-1.5 h-1.5 rounded-full opacity-50" style={{ background: cStyle.dot }} />
                       </div>
                     </div>
                   );
