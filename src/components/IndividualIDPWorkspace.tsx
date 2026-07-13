@@ -1278,21 +1278,35 @@ export default function IndividualIDPWorkspace({
                            {emp.empCode || '—'}
                         </td>
 
-                        {/* Name - No vertical line borders */}
+                        {/* Name - engName on top, viName below */}
                         <td className="px-5 py-3">
-                           <div className="font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors w-max flex items-center gap-1.5">
-                            <span>{emp.engName && emp.engName !== emp.viName ? emp.engName : emp.viName}</span>
-                            {expandedKey === empKey ? (
-                              <ChevronUp className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-                            ) : (
-                              <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-500 shrink-0 transition-colors" />
-                            )}
-                          </div>
-                          {emp.engName && emp.engName !== emp.viName && emp.viName && (
-                            <div className="text-[10px] text-slate-400 font-medium leading-none mt-0.5">
-                              {emp.viName}
-                            </div>
-                          )}
+                          {(() => {
+                            // Detect which field has Vietnamese diacritics
+                            const hasViet = (s: string) => /[àáảãạăắặẳẵâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđÀÁẢÃẠĂẮẶẲẴÂẤẦẨẪẬÈÉẺẼẸÊẾỀỂỄỆÌÍỈĨỊÒÓỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÙÚỦŨỤƯỨỪỬỮỰỲÝỶỸỴĐ]/.test(s);
+                            const n1 = emp.engName || '';
+                            const n2 = emp.viName || '';
+                            // If n1 has Vietnamese chars → it's actually viName, swap display
+                            const displayEng = hasViet(n1) && !hasViet(n2) ? n2 : (n1 || n2);
+                            const displayVi  = hasViet(n1) && !hasViet(n2) ? n1 : (hasViet(n2) ? n2 : '');
+                            const showSub = displayVi && displayVi !== displayEng;
+                            return (
+                              <>
+                                <div className="font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors w-max flex items-center gap-1.5">
+                                  <span>{displayEng}</span>
+                                  {expandedKey === empKey ? (
+                                    <ChevronUp className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                                  ) : (
+                                    <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-500 shrink-0 transition-colors" />
+                                  )}
+                                </div>
+                                {showSub && (
+                                  <div className="text-[10px] text-slate-400 font-medium leading-none mt-0.5">
+                                    {displayVi}
+                                  </div>
+                                )}
+                              </>
+                            );
+                          })()}
                         </td>
 
                         {/* Dept/Section - No vertical line borders */}

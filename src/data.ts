@@ -68,6 +68,7 @@ export const ashTalentPool: Talent[] = [
   { name: "Jassy Nguyen", cell: "Solid Professional", results: "Effective", potential: "Low", group: "Keepers", dept: "CUSTOMER SERVICE", site: "ASH" },
   { name: "Mia Nguyen", cell: "Solid Professional", results: "Effective", potential: "Low", group: "Keepers", dept: "CUSTOMER SERVICE", site: "ASH" },
   { name: "Amy Nguyen", cell: "Diamond in the Rough", results: "Less Effective", potential: "High", group: "Movers", dept: "CUSTOMER SERVICE", site: "ASH" },
+  { name: "Lona Nguyen", cell: "Valued Contributor", results: "Effective", potential: "Mid", group: "Keepers", dept: "CUSTOMS", site: "ASH" },
 ];
 
 // Pipeline Positions — Ashton (60 critical roles from CRA)

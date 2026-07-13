@@ -305,7 +305,7 @@ const filteredCombined = rawCombined.filter(idp => {
 
   const wnkCleanNames = new Set([
     "ashtonvo", "quachledu", "phanthiha", "trancongminh", "vovuluan",
-    "nguyenthimongvan", "truongminhhung", "harveynguyen", "edgarbui", "buitronghung",
+    "nguyenthimongvan", "truongminhhung", "harveynguyen",
     "nguyendangviet", "phamhungminh", "nguyentrongthuy", "dannycao", "leole",
     "willypham", "phamminhphuong", "chivascao", "luciannguyen", "tuannguyen",
     "quyenlam", "quuyenlam", "hanatruong", "gintadoan", "annatran",

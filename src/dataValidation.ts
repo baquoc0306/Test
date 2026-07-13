@@ -15,7 +15,7 @@ export interface ValidationWarning {
 
 // ── EXPECTED COUNTS (từ file gốc) ──────────────────────────
 const EXPECTED_COUNTS = {
-  ASH: { talents: 43, pipeline: 60, growers: 16, keepers: 25, movers: 2 }, // TODO: verify missing 1 Keeper talent
+  ASH: { talents: 44, pipeline: 60, growers: 16, keepers: 26, movers: 2 },
   WNK: { talents: 56, pipeline: 56, growers: 26, keepers: 30, movers: 0 },
   MLN: { talents: 100, pipeline: 72 },
 };
