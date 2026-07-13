@@ -974,20 +974,24 @@ export default function IndividualIDPWorkspace({
           </div>
 
           {/* Dept R breakdown filter */}
-          <div className="space-y-1.5 pt-1 border-t border-slate-700 flex-1">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">{lang === 'VI' ? 'R1+R2 theo phòng ban' : 'R1+R2 by department'}</span>
+          <div className="pt-2 border-t border-slate-700 flex-1">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[12px] text-white font-black uppercase tracking-wider">
+                {lang === 'VI' ? '📊 R1+R2 theo phòng ban' : '📊 R1+R2 by dept'}
+              </span>
               {selectedDept !== 'ALL' && (
-                <button onClick={() => onDeptChange('ALL')} className="text-[9px] text-indigo-400 hover:text-indigo-300 font-bold">✕ {lang === 'VI' ? 'Bỏ lọc' : 'Clear'}</button>
+                <button onClick={() => onDeptChange('ALL')} className="text-[10px] text-indigo-300 hover:text-white font-bold bg-indigo-700/40 px-2 py-0.5 rounded-full border border-indigo-600/50">
+                  ✕ {lang === 'VI' ? 'Bỏ lọc' : 'Clear'}
+                </button>
               )}
             </div>
             {(() => {
-              // Group employees by dept, count R1+R2
+              // Group by dept using emp.items (duties array)
               const deptMap: Record<string, { r12: number; total: number }> = {};
               groupedEmployees.forEach(emp => {
-                const dept = emp.department || 'Other';
+                const dept = (emp.department || 'Other').replace(/^(HUMAN RESOURCES|Human Resources)$/i, 'HR');
                 if (!deptMap[dept]) deptMap[dept] = { r12: 0, total: 0 };
-                emp.duties?.forEach((d: any) => {
+                (emp.items || []).forEach((d: IndividualIDP) => {
                   deptMap[dept].total++;
                   if (d.rRating === 'R1' || d.rRating === 'R2') deptMap[dept].r12++;
                 });
@@ -995,31 +999,39 @@ export default function IndividualIDPWorkspace({
               const depts = Object.entries(deptMap)
                 .filter(([, v]) => v.total > 0)
                 .sort((a, b) => b[1].r12 - a[1].r12)
-                .slice(0, 6);
+                .slice(0, 7);
               const maxR12 = Math.max(...depts.map(([, v]) => v.r12), 1);
+              if (depts.length === 0) return (
+                <p className="text-[11px] text-slate-500 italic">{lang === 'VI' ? 'Không có dữ liệu' : 'No data'}</p>
+              );
               return (
-                <div className="space-y-1 overflow-y-auto max-h-[160px] scrollbar-thin pr-1">
+                <div className="space-y-1.5 overflow-y-auto max-h-[180px] scrollbar-thin pr-0.5">
                   {depts.map(([dept, val]) => {
-                    const isActive = selectedDept === dept;
+                    const isActive = selectedDept === dept || selectedDept === dept.replace(/^HR$/, 'HUMAN RESOURCES');
                     const pct = Math.round(val.r12 / val.total * 100);
+                    const barColor = pct > 30 ? 'bg-red-500' : pct > 10 ? 'bg-amber-400' : 'bg-emerald-500';
+                    const pctColor = pct > 30 ? 'text-red-400' : pct > 10 ? 'text-amber-400' : 'text-emerald-400';
                     return (
                       <button
                         key={dept}
                         onClick={() => onDeptChange(isActive ? 'ALL' : dept)}
-                        className={`w-full text-left rounded-lg px-2.5 py-1.5 transition-all ${isActive ? 'bg-indigo-600/30 border border-indigo-500/50' : 'hover:bg-slate-800 border border-transparent'}`}
+                        className={`w-full text-left rounded-xl px-3 py-2 transition-all border ${
+                          isActive
+                            ? 'bg-indigo-600/40 border-indigo-400/60 shadow-sm'
+                            : 'bg-slate-800/60 border-slate-700/50 hover:bg-slate-700/60 hover:border-slate-600'
+                        }`}
                       >
-                        <div className="flex items-center justify-between mb-0.5">
-                          <span className="text-[10px] font-bold text-slate-300 truncate max-w-[120px]">{dept}</span>
-                          <div className="flex items-center gap-1.5 shrink-0">
-                            <span className="text-[10px] font-black text-red-400">{val.r12}</span>
-                            <span className="text-[9px] text-slate-600">/</span>
-                            <span className="text-[9px] text-slate-500">{val.total}</span>
-                            <span className={`text-[9px] font-bold px-1 rounded ${pct > 30 ? 'text-red-400' : pct > 10 ? 'text-amber-400' : 'text-emerald-400'}`}>{pct}%</span>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[11px] font-bold text-white truncate max-w-[110px]">{dept}</span>
+                          <div className="flex items-center gap-1 shrink-0">
+                            <span className="text-[13px] font-black text-red-300">{val.r12}</span>
+                            <span className="text-[10px] text-slate-500">/{val.total}</span>
+                            <span className={`text-[10px] font-black ml-1 ${pctColor}`}>{pct}%</span>
                           </div>
                         </div>
-                        <div className="h-1 bg-slate-700 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
                           <div
-                            className={`h-full rounded-full transition-all ${pct > 30 ? 'bg-red-500' : pct > 10 ? 'bg-amber-500' : 'bg-emerald-500'}`}
+                            className={`h-full rounded-full transition-all duration-300 ${barColor}`}
                             style={{ width: `${Math.round(val.r12 / maxR12 * 100)}%` }}
                           />
                         </div>
