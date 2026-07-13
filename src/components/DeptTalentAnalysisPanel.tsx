@@ -491,21 +491,21 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
     <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4 flex flex-col w-full select-none" id="dept-analysis-component">
       <div>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-          <h4 className="text-[12px] md:text-[13px] font-bold text-slate-800 uppercase tracking-wider font-sans flex items-center gap-1.5 leading-snug">
+          <h4 className="text-[14px] md:text-[15px] font-bold text-slate-800 uppercase tracking-wider font-sans flex items-center gap-1.5 leading-snug">
             📊 <span>{lang === 'VI' ? 'TỔNG QUAN & PHÂN TÍCH' : 'OVERVIEW & ANALYSIS'}</span>
           </h4>
           
           <div className="flex flex-wrap items-center gap-2">
             {/* Department Filter Selector */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
+              <span className="text-[12px] uppercase tracking-wider font-bold text-slate-400">
                 {lang === 'VI' ? 'Bộ phận:' : 'Dept:'}
               </span>
               <select
                 id="internal-dept-select"
                 value={selectedDept}
                 onChange={(e) => onDeptChange && onDeptChange(e.target.value)}
-                className="text-[11px] font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg px-2 py-1 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all"
+                className="text-[13px] font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg px-2 py-1 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all"
               >
                 {departmentList.map(dept => (
                   <option key={dept} value={dept}>
@@ -517,7 +517,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
 
             {/* Stage Selector */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
+              <span className="text-[12px] uppercase tracking-wider font-bold text-slate-400">
                 {lang === 'VI' ? 'Giai đoạn:' : 'Stage:'}
               </span>
               <div className="inline-flex bg-slate-100/80 p-0.5 rounded-lg border border-slate-200">
@@ -554,7 +554,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
 
         {/* Current Active Filter Info Banner */}
         <div className="flex items-center justify-between mt-2.5">
-          <p className="text-[10.5px] text-slate-500 leading-normal font-medium">
+          <p className="text-[12.5px] text-slate-500 leading-normal font-medium">
             {selectedDept && selectedDept !== 'ALL' ? (
               <span className="inline-flex items-center gap-1.5 bg-indigo-50/70 border border-indigo-100 px-2 py-0.5 rounded-md text-indigo-800 font-bold font-sans">
                 🔍 {lang === 'VI' ? `Đang phân tích bộ phận: ${selectedDept}` : `Analyzing Department: ${selectedDept}`}
@@ -574,12 +574,12 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b-2 border-slate-200">
-                    <th className="text-left py-2 px-3 text-[10px] font-black text-slate-500 uppercase tracking-wider w-[28%]">{lang === 'VI' ? 'Bộ phận' : 'Department'}</th>
-                    <th className="text-center py-2 px-2 text-[10px] font-black text-slate-400 uppercase tracking-wider w-[8%]">{lang === 'VI' ? 'Nhân sự' : 'Headcount'}</th>
-                    <th className="text-left py-2 px-3 text-[10px] font-black text-emerald-600 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Phát triển' : 'Growers'}</th>
-                    <th className="text-left py-2 px-3 text-[10px] font-black text-amber-600 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Duy trì' : 'Keepers'}</th>
-                    <th className="text-left py-2 px-3 text-[10px] font-black text-rose-500 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Cần bồi dưỡng' : 'Movers'}</th>
-                    <th className="text-right py-2 px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider w-[10%]">{lang === 'VI' ? 'Hồ sơ' : 'Profile'}</th>
+                    <th className="text-left py-2 px-3 text-[12px] font-black text-slate-500 uppercase tracking-wider w-[28%]">{lang === 'VI' ? 'Bộ phận' : 'Department'}</th>
+                    <th className="text-center py-2 px-2 text-[12px] font-black text-slate-400 uppercase tracking-wider w-[8%]">{lang === 'VI' ? 'Nhân sự' : 'Headcount'}</th>
+                    <th className="text-left py-2 px-3 text-[12px] font-black text-emerald-600 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Phát triển' : 'Growers'}</th>
+                    <th className="text-left py-2 px-3 text-[12px] font-black text-amber-600 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Duy trì' : 'Keepers'}</th>
+                    <th className="text-left py-2 px-3 text-[12px] font-black text-rose-500 uppercase tracking-wider w-[18%]">{lang === 'VI' ? 'Nhóm Cần bồi dưỡng' : 'Movers'}</th>
+                    <th className="text-right py-2 px-3 text-[12px] font-black text-slate-400 uppercase tracking-wider w-[10%]">{lang === 'VI' ? 'Hồ sơ' : 'Profile'}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -592,16 +592,16 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                     >
                       <td className="py-2.5 px-3">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[12px] font-bold text-slate-900 leading-tight">{item.dept}</span>
+                          <span className="text-[13px] font-bold text-slate-900 leading-tight">{item.dept}</span>
                           <span className="text-[8px] text-indigo-400 font-bold opacity-0 group-hover:opacity-100">→</span>
                         </div>
                       </td>
                       <td className="py-2.5 px-2 text-center">
-                        <span className="text-[12px] font-black text-slate-600">{item.total}</span>
+                        <span className="text-[13px] font-black text-slate-600">{item.total}</span>
                       </td>
                       <td className="py-2.5 px-3">
                         <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-black text-emerald-600 w-8 shrink-0">{item.growersPct}%</span>
+                          <span className="text-[12.5px] font-black text-emerald-600 w-8 shrink-0">{item.growersPct}%</span>
                           <div className="flex-1 bg-emerald-100 rounded-full h-2">
                             <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${item.growersPct}%` }} />
                           </div>
@@ -610,7 +610,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                       </td>
                       <td className="py-2.5 px-3">
                         <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-black text-amber-600 w-8 shrink-0">{item.keepersPct}%</span>
+                          <span className="text-[12.5px] font-black text-amber-600 w-8 shrink-0">{item.keepersPct}%</span>
                           <div className="flex-1 bg-amber-100 rounded-full h-2">
                             <div className="bg-amber-500 h-2 rounded-full" style={{ width: `${item.keepersPct}%` }} />
                           </div>
@@ -619,7 +619,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                       </td>
                       <td className="py-2.5 px-3">
                         <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-black text-rose-500 w-8 shrink-0">{item.moversPct}%</span>
+                          <span className="text-[12.5px] font-black text-rose-500 w-8 shrink-0">{item.moversPct}%</span>
                           <div className="flex-1 bg-rose-100 rounded-full h-2">
                             <div className="bg-rose-500 h-2 rounded-full" style={{ width: `${item.moversPct}%` }} />
                           </div>
@@ -641,12 +641,12 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
 
         {/* Popup Modal: Phân tích chi tiết từng bộ phận */}
         {selectedDeptDetail && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4" onClick={() => setSelectedDeptDetail(null)}>
-            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-5xl w-full max-h-[92vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 animate-in fade-in duration-200" onClick={() => setSelectedDeptDetail(null)}>
+            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-5xl w-full max-h-[92vh] overflow-y-auto animate-in slide-in-from-bottom-4 fade-in duration-300" onClick={(e) => e.stopPropagation()}>
               <div className="bg-slate-900 text-white px-5 py-4 flex items-center justify-between rounded-t-2xl sticky top-0 z-10">
                 <div>
                   <h3 className="font-black text-sm uppercase tracking-wide">{selectedDeptDetail.dept}</h3>
-                  <p className="text-slate-400 text-[10px] mt-0.5">
+                  <p className="text-slate-400 text-[12px] mt-0.5">
                     {selectedDeptDetail.total} {lang === 'VI' ? 'nhân sự' : 'people'} · {lang === 'VI' ? selectedDeptDetail.profileVi : selectedDeptDetail.profileEn}
                   </p>
                 </div>
@@ -677,25 +677,25 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                 {/* Danh sách thành viên theo nhóm */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-800 block mb-1.5 flex items-center gap-1">
+                    <span className="text-[12px] uppercase tracking-wider font-extrabold text-amber-800 block mb-1.5 flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-amber-500" />
                       {lang === 'VI' ? `Nhóm Duy trì (${selectedDeptDetail.keepers}):` : `Keepers (${selectedDeptDetail.keepers}):`}
                     </span>
                     <div className="flex flex-wrap gap-1">
                       {selectedDeptDetail.keeperMembers?.length > 0 ? selectedDeptDetail.keeperMembers.map((name: string) => (
                         <span key={name} className="px-3 py-1 rounded-lg border text-[12px] font-semibold bg-white border-amber-200 text-amber-800">👤 {name}</span>
-                      )) : <span className="text-[10px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
+                      )) : <span className="text-[12px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
                     </div>
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 block mb-1.5 flex items-center gap-1">
+                    <span className="text-[12px] uppercase tracking-wider font-extrabold text-emerald-800 block mb-1.5 flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-emerald-500" />
                       {lang === 'VI' ? `Nhóm Phát triển (${selectedDeptDetail.growers}):` : `Growers (${selectedDeptDetail.growers}):`}
                     </span>
                     <div className="flex flex-wrap gap-1">
                       {selectedDeptDetail.growerMembers?.length > 0 ? selectedDeptDetail.growerMembers.map((name: string) => (
                         <span key={name} className="px-3 py-1 rounded-lg border text-[12px] font-semibold bg-white border-emerald-200 text-emerald-800">👤 {name}</span>
-                      )) : <span className="text-[10px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
+                      )) : <span className="text-[12px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
                     </div>
                   </div>
                 </div>
@@ -722,7 +722,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
 
                 {/* Khuyến nghị hành động */}
                 <div className="p-5 bg-indigo-950 text-indigo-50 rounded-xl space-y-3 border border-slate-900 shadow-md">
-                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-indigo-300 flex items-center justify-between border-b border-indigo-900/80 pb-2">
+                  <span className="text-[12px] uppercase tracking-wider font-extrabold text-indigo-300 flex items-center justify-between border-b border-indigo-900/80 pb-2">
                     <span className="flex items-center gap-1.5">
                       <Briefcase className="w-4 h-4 text-emerald-400" />
                       {lang === 'VI' ? 'KHUYẾN NGHỊ HÀNH ĐỘNG CHO MANAGER:' : 'DECISIONAL ROADMAPS FOR MANAGERS:'}
