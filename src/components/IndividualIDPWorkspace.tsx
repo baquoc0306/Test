@@ -973,37 +973,59 @@ export default function IndividualIDPWorkspace({
             <span className="text-[18px] font-black text-indigo-200">{filteredPlans.filter(p => p.topOpportunity === 'X').length}</span>
           </div>
 
-          {/* Action breakdown */}
-          <div className="space-y-1.5 pt-1 border-t border-slate-700">
-            <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">{lang === 'VI' ? 'Phân loại hành động' : 'Action breakdown'}</span>
+          {/* Dept R breakdown filter */}
+          <div className="space-y-1.5 pt-1 border-t border-slate-700 flex-1">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">{lang === 'VI' ? 'R1+R2 theo phòng ban' : 'R1+R2 by department'}</span>
+              {selectedDept !== 'ALL' && (
+                <button onClick={() => onDeptChange('ALL')} className="text-[9px] text-indigo-400 hover:text-indigo-300 font-bold">✕ {lang === 'VI' ? 'Bỏ lọc' : 'Clear'}</button>
+              )}
+            </div>
             {(() => {
-              const addCount = filteredPlans.filter(p => p.action === 'Add to Training Plan').length;
-              const deptCount = filteredPlans.filter(p => p.action === 'Department Follow-up').length;
-              const valCount = filteredPlans.filter(p => p.action === 'Need Validation').length;
-              const total = filteredPlans.length || 1;
+              // Group employees by dept, count R1+R2
+              const deptMap: Record<string, { r12: number; total: number }> = {};
+              groupedEmployees.forEach(emp => {
+                const dept = emp.department || 'Other';
+                if (!deptMap[dept]) deptMap[dept] = { r12: 0, total: 0 };
+                emp.duties?.forEach((d: any) => {
+                  deptMap[dept].total++;
+                  if (d.rRating === 'R1' || d.rRating === 'R2') deptMap[dept].r12++;
+                });
+              });
+              const depts = Object.entries(deptMap)
+                .filter(([, v]) => v.total > 0)
+                .sort((a, b) => b[1].r12 - a[1].r12)
+                .slice(0, 6);
+              const maxR12 = Math.max(...depts.map(([, v]) => v.r12), 1);
               return (
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${Math.round(addCount/total*100)}%` }} />
-                    </div>
-                    <span className="text-[10px] text-emerald-400 font-bold w-6 text-right">{addCount}</span>
-                    <span className="text-[10px] text-slate-500 w-20 truncate">{lang === 'VI' ? 'Đưa vào KH ĐT' : 'Training Plan'}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-amber-500 rounded-full" style={{ width: `${Math.round(deptCount/total*100)}%` }} />
-                    </div>
-                    <span className="text-[10px] text-amber-400 font-bold w-6 text-right">{deptCount}</span>
-                    <span className="text-[10px] text-slate-500 w-20 truncate">{lang === 'VI' ? 'Bộ phận theo dõi' : 'Dept Follow-up'}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-rose-500 rounded-full" style={{ width: `${Math.round(valCount/total*100)}%` }} />
-                    </div>
-                    <span className="text-[10px] text-rose-400 font-bold w-6 text-right">{valCount}</span>
-                    <span className="text-[10px] text-slate-500 w-20 truncate">{lang === 'VI' ? 'Cần thẩm định' : 'Need Validation'}</span>
-                  </div>
+                <div className="space-y-1 overflow-y-auto max-h-[160px] scrollbar-thin pr-1">
+                  {depts.map(([dept, val]) => {
+                    const isActive = selectedDept === dept;
+                    const pct = Math.round(val.r12 / val.total * 100);
+                    return (
+                      <button
+                        key={dept}
+                        onClick={() => onDeptChange(isActive ? 'ALL' : dept)}
+                        className={`w-full text-left rounded-lg px-2.5 py-1.5 transition-all ${isActive ? 'bg-indigo-600/30 border border-indigo-500/50' : 'hover:bg-slate-800 border border-transparent'}`}
+                      >
+                        <div className="flex items-center justify-between mb-0.5">
+                          <span className="text-[10px] font-bold text-slate-300 truncate max-w-[120px]">{dept}</span>
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <span className="text-[10px] font-black text-red-400">{val.r12}</span>
+                            <span className="text-[9px] text-slate-600">/</span>
+                            <span className="text-[9px] text-slate-500">{val.total}</span>
+                            <span className={`text-[9px] font-bold px-1 rounded ${pct > 30 ? 'text-red-400' : pct > 10 ? 'text-amber-400' : 'text-emerald-400'}`}>{pct}%</span>
+                          </div>
+                        </div>
+                        <div className="h-1 bg-slate-700 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all ${pct > 30 ? 'bg-red-500' : pct > 10 ? 'bg-amber-500' : 'bg-emerald-500'}`}
+                            style={{ width: `${Math.round(val.r12 / maxR12 * 100)}%` }}
+                          />
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               );
             })()}
