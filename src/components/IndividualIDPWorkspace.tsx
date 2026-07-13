@@ -920,12 +920,9 @@ export default function IndividualIDPWorkspace({
             <span className="text-[12px] text-slate-400 font-black uppercase tracking-widest">
               {lang === 'VI' ? 'NHÂN SỰ ĐƯỢC ĐÁNH GIÁ' : 'ASSESSED PERSONNEL'}
             </span>
-            <button
-              onClick={() => setSelectedRating('ALL')}
-              className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${selectedRating === 'ALL' ? 'bg-indigo-500 text-white border-indigo-400' : 'bg-slate-700 text-slate-300 border-slate-600 hover:bg-slate-600'}`}
-            >
-              {selectedRating === 'ALL' ? (lang === 'VI' ? 'Tất cả' : 'All') : selectedRating}
-            </button>
+            <span className="px-2 py-0.5 rounded-full bg-slate-700 text-[10px] font-black text-slate-300 uppercase tracking-widest border border-slate-600">
+              IDP
+            </span>
           </div>
 
           {/* Big number */}
@@ -937,33 +934,22 @@ export default function IndividualIDPWorkspace({
           {/* 3 metric boxes — clickable filters */}
           <div className="grid grid-cols-3 gap-1.5 pt-2 border-t border-slate-700">
             {/* Total duties */}
-            <button
-              onClick={() => setSelectedRating('ALL')}
-              className={`rounded-lg p-2.5 text-center transition-all ${selectedRating === 'ALL' ? 'bg-slate-600 ring-2 ring-slate-400' : 'bg-slate-800 hover:bg-slate-700'}`}
-            >
+            <div className="bg-slate-800 rounded-lg p-2.5 text-center">
               <span className="block text-[11px] text-slate-500 font-bold uppercase mb-0.5">{lang === 'VI' ? 'Tổng' : 'Total'}</span>
               <span className="block text-xl font-black text-white">{filteredPlans.length}</span>
-            </button>
-            {/* R1+R2 — clickable filter */}
-            <button
-              onClick={() => setSelectedRating(selectedRating === 'R2' ? 'ALL' : 'R2')}
-              title={lang === 'VI' ? 'Bấm để lọc R1+R2 (Cần phát triển)' : 'Click to filter R1+R2 (Needs development)'}
-              className={`rounded-lg p-2.5 text-center border transition-all cursor-pointer ${selectedRating === 'R1' || selectedRating === 'R2' ? 'bg-red-700/60 border-red-500 ring-2 ring-red-400' : 'bg-red-900/40 border-red-800/40 hover:bg-red-800/50'}`}
-            >
+            </div>
+            {/* R1+R2 */}
+            <div className="bg-red-900/40 rounded-lg p-2.5 text-center border border-red-800/40">
               <span className="block text-[11px] text-red-400 font-bold uppercase mb-0.5">R1+R2</span>
               <span className="block text-xl font-black text-red-300">{statistics.r1 + statistics.r2}</span>
               <span className="block text-[9px] text-red-500 mt-0.5">{lang === 'VI' ? 'Cần PT' : 'Dev needed'}</span>
-            </button>
-            {/* R3+R4 — clickable filter */}
-            <button
-              onClick={() => setSelectedRating(selectedRating === 'R4' ? 'ALL' : 'R4')}
-              title={lang === 'VI' ? 'Bấm để lọc R3+R4 (Đã thành thạo)' : 'Click to filter R3+R4 (Proficient)'}
-              className={`rounded-lg p-2.5 text-center border transition-all cursor-pointer ${selectedRating === 'R3' || selectedRating === 'R4' ? 'bg-emerald-700/60 border-emerald-500 ring-2 ring-emerald-400' : 'bg-emerald-900/30 border-emerald-800/30 hover:bg-emerald-800/40'}`}
-            >
+            </div>
+            {/* R3+R4 */}
+            <div className="bg-emerald-900/30 rounded-lg p-2.5 text-center border border-emerald-800/30">
               <span className="block text-[11px] text-emerald-400 font-bold uppercase mb-0.5">R3+R4</span>
               <span className="block text-xl font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
               <span className="block text-[9px] text-emerald-500 mt-0.5">{lang === 'VI' ? 'Thành thạo' : 'Proficient'}</span>
-            </button>
+            </div>
           </div>
 
           {/* Progress bar R1+R2 vs R3+R4 */}
@@ -985,6 +971,42 @@ export default function IndividualIDPWorkspace({
           <div className="bg-indigo-900/30 border border-indigo-800/40 rounded-lg p-2.5 flex items-center justify-between">
             <span className="text-[11px] text-indigo-300 font-bold">⭐ {lang === 'VI' ? 'Cơ hội ưu tiên' : 'Top opportunities'}</span>
             <span className="text-[18px] font-black text-indigo-200">{filteredPlans.filter(p => p.topOpportunity === 'X').length}</span>
+          </div>
+
+          {/* Action breakdown */}
+          <div className="space-y-1.5 pt-1 border-t border-slate-700">
+            <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">{lang === 'VI' ? 'Phân loại hành động' : 'Action breakdown'}</span>
+            {(() => {
+              const addCount = filteredPlans.filter(p => p.action === 'Add to Training Plan').length;
+              const deptCount = filteredPlans.filter(p => p.action === 'Department Follow-up').length;
+              const valCount = filteredPlans.filter(p => p.action === 'Need Validation').length;
+              const total = filteredPlans.length || 1;
+              return (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                      <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${Math.round(addCount/total*100)}%` }} />
+                    </div>
+                    <span className="text-[10px] text-emerald-400 font-bold w-6 text-right">{addCount}</span>
+                    <span className="text-[10px] text-slate-500 w-20 truncate">{lang === 'VI' ? 'Đưa vào KH ĐT' : 'Training Plan'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                      <div className="h-full bg-amber-500 rounded-full" style={{ width: `${Math.round(deptCount/total*100)}%` }} />
+                    </div>
+                    <span className="text-[10px] text-amber-400 font-bold w-6 text-right">{deptCount}</span>
+                    <span className="text-[10px] text-slate-500 w-20 truncate">{lang === 'VI' ? 'Bộ phận theo dõi' : 'Dept Follow-up'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                      <div className="h-full bg-rose-500 rounded-full" style={{ width: `${Math.round(valCount/total*100)}%` }} />
+                    </div>
+                    <span className="text-[10px] text-rose-400 font-bold w-6 text-right">{valCount}</span>
+                    <span className="text-[10px] text-slate-500 w-20 truncate">{lang === 'VI' ? 'Cần thẩm định' : 'Need Validation'}</span>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </div>
 
