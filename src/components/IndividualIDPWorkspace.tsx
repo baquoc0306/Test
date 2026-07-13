@@ -915,33 +915,77 @@ export default function IndividualIDPWorkspace({
 
         {/* Metric 1 - Total People — dark card */}
         <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-md">
+          {/* Header */}
           <div className="flex items-center justify-between">
-            <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">
+            <span className="text-[12px] text-slate-400 font-black uppercase tracking-widest">
               {lang === 'VI' ? 'NHÂN SỰ ĐƯỢC ĐÁNH GIÁ' : 'ASSESSED PERSONNEL'}
             </span>
-            <span className="px-2 py-0.5 rounded-full bg-slate-700 text-[9px] font-black text-slate-300 uppercase tracking-widest border border-slate-600">
-              IDP
-            </span>
-          </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-5xl font-black text-white tracking-tight leading-none">{statistics.total}</span>
-            <span className="text-slate-400 text-[11px] font-bold">{lang === 'VI' ? 'nhân sự' : 'people'}</span>
-          </div>
-          <div className="grid grid-cols-3 gap-1.5 pt-2 border-t border-slate-700">
-            <div className="bg-slate-800 rounded-lg p-2 text-center">
-              <span className="block text-[8px] text-slate-500 font-bold uppercase mb-0.5">{lang === 'VI' ? 'Tổng duties' : 'Total'}</span>
-              <span className="block text-lg font-black text-white">{filteredPlans.length}</span>
-            </div>
-            <div className="bg-red-900/40 rounded-lg p-2 text-center border border-red-800/40">
-              <span className="block text-[8px] text-red-400 font-bold uppercase mb-0.5">R1+R2</span>
-              <span className="block text-lg font-black text-red-300">{statistics.r1 + statistics.r2}</span>
-            </div>
-            <div className="bg-emerald-900/30 rounded-lg p-2 text-center border border-emerald-800/30">
-              <span className="block text-[8px] text-emerald-400 font-bold uppercase mb-0.5">R3+R4</span>
-              <span className="block text-lg font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
-            </div>
+            <button
+              onClick={() => setSelectedRating('ALL')}
+              className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${selectedRating === 'ALL' ? 'bg-indigo-500 text-white border-indigo-400' : 'bg-slate-700 text-slate-300 border-slate-600 hover:bg-slate-600'}`}
+            >
+              {selectedRating === 'ALL' ? (lang === 'VI' ? 'Tất cả' : 'All') : selectedRating}
+            </button>
           </div>
 
+          {/* Big number */}
+          <div className="flex items-baseline gap-2">
+            <span className="text-5xl font-black text-white tracking-tight leading-none">{statistics.total}</span>
+            <span className="text-slate-400 text-[13px] font-bold">{lang === 'VI' ? 'nhân sự' : 'people'}</span>
+          </div>
+
+          {/* 3 metric boxes — clickable filters */}
+          <div className="grid grid-cols-3 gap-1.5 pt-2 border-t border-slate-700">
+            {/* Total duties */}
+            <button
+              onClick={() => setSelectedRating('ALL')}
+              className={`rounded-lg p-2.5 text-center transition-all ${selectedRating === 'ALL' ? 'bg-slate-600 ring-2 ring-slate-400' : 'bg-slate-800 hover:bg-slate-700'}`}
+            >
+              <span className="block text-[11px] text-slate-500 font-bold uppercase mb-0.5">{lang === 'VI' ? 'Tổng' : 'Total'}</span>
+              <span className="block text-xl font-black text-white">{filteredPlans.length}</span>
+            </button>
+            {/* R1+R2 — clickable filter */}
+            <button
+              onClick={() => setSelectedRating(selectedRating === 'R2' ? 'ALL' : 'R2')}
+              title={lang === 'VI' ? 'Bấm để lọc R1+R2 (Cần phát triển)' : 'Click to filter R1+R2 (Needs development)'}
+              className={`rounded-lg p-2.5 text-center border transition-all cursor-pointer ${selectedRating === 'R1' || selectedRating === 'R2' ? 'bg-red-700/60 border-red-500 ring-2 ring-red-400' : 'bg-red-900/40 border-red-800/40 hover:bg-red-800/50'}`}
+            >
+              <span className="block text-[11px] text-red-400 font-bold uppercase mb-0.5">R1+R2</span>
+              <span className="block text-xl font-black text-red-300">{statistics.r1 + statistics.r2}</span>
+              <span className="block text-[9px] text-red-500 mt-0.5">{lang === 'VI' ? 'Cần PT' : 'Dev needed'}</span>
+            </button>
+            {/* R3+R4 — clickable filter */}
+            <button
+              onClick={() => setSelectedRating(selectedRating === 'R4' ? 'ALL' : 'R4')}
+              title={lang === 'VI' ? 'Bấm để lọc R3+R4 (Đã thành thạo)' : 'Click to filter R3+R4 (Proficient)'}
+              className={`rounded-lg p-2.5 text-center border transition-all cursor-pointer ${selectedRating === 'R3' || selectedRating === 'R4' ? 'bg-emerald-700/60 border-emerald-500 ring-2 ring-emerald-400' : 'bg-emerald-900/30 border-emerald-800/30 hover:bg-emerald-800/40'}`}
+            >
+              <span className="block text-[11px] text-emerald-400 font-bold uppercase mb-0.5">R3+R4</span>
+              <span className="block text-xl font-black text-emerald-300">{statistics.r3 + statistics.r4}</span>
+              <span className="block text-[9px] text-emerald-500 mt-0.5">{lang === 'VI' ? 'Thành thạo' : 'Proficient'}</span>
+            </button>
+          </div>
+
+          {/* Progress bar R1+R2 vs R3+R4 */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between text-[11px]">
+              <span className="text-red-400 font-bold">R1+R2: {statistics.r1 + statistics.r2 > 0 ? Math.round((statistics.r1 + statistics.r2) / (statistics.r1 + statistics.r2 + statistics.r3 + statistics.r4) * 100) : 0}%</span>
+              <span className="text-emerald-400 font-bold">R3+R4: {statistics.r3 + statistics.r4 > 0 ? Math.round((statistics.r3 + statistics.r4) / (statistics.r1 + statistics.r2 + statistics.r3 + statistics.r4) * 100) : 0}%</span>
+            </div>
+            <div className="h-2 bg-slate-700 rounded-full overflow-hidden flex">
+              <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${statistics.r1 + statistics.r2 > 0 ? Math.round((statistics.r1 + statistics.r2) / (statistics.r1 + statistics.r2 + statistics.r3 + statistics.r4) * 100) : 0}%` }} />
+              <div className="bg-emerald-500 h-full transition-all duration-500 flex-1" />
+            </div>
+            <p className="text-[10px] text-slate-500 text-center">
+              {lang === 'VI' ? 'Tỷ lệ cần phát triển / đã thành thạo' : 'Development needed vs proficient ratio'}
+            </p>
+          </div>
+
+          {/* Top opportunity count */}
+          <div className="bg-indigo-900/30 border border-indigo-800/40 rounded-lg p-2.5 flex items-center justify-between">
+            <span className="text-[11px] text-indigo-300 font-bold">⭐ {lang === 'VI' ? 'Cơ hội ưu tiên' : 'Top opportunities'}</span>
+            <span className="text-[18px] font-black text-indigo-200">{filteredPlans.filter(p => p.topOpportunity === 'X').length}</span>
+          </div>
         </div>
 
         {/* Skill/Will Matrix 2x2 */}
