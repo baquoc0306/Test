@@ -296,6 +296,18 @@ const getPersonalizedActions = (item: any, phase: 'FAST_GROWTH' | 'STABLE_SCALE'
 export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, selectedDept, onDeptChange, isLdMode = false }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'insights'>('overview');
   const [selectedDeptDetail, setSelectedDeptDetail] = useState<any>(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedDeptDetail) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedDeptDetail]);
   const [expandedDept, setExpandedDept] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [businessPhase, setBusinessPhase] = useState<'FAST_GROWTH' | 'STABLE_SCALE'>('STABLE_SCALE');
@@ -630,7 +642,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
         {/* Popup Modal: Phân tích chi tiết từng bộ phận */}
         {selectedDeptDetail && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4" onClick={() => setSelectedDeptDetail(null)}>
-            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-5xl w-full max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-5xl w-full max-h-[92vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               <div className="bg-slate-900 text-white px-5 py-4 flex items-center justify-between rounded-t-2xl sticky top-0 z-10">
                 <div>
                   <h3 className="font-black text-sm uppercase tracking-wide">{selectedDeptDetail.dept}</h3>
