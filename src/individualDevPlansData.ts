@@ -650,9 +650,9 @@ const WANEK_MSNV_MAP: Record<string, string> = {
   "vovuluan": "72166",
   "nguyenthimongvan": "17676",
   "truongminhhung": "24805",
-  "harveynguyenedgarbui": "-",
+
   "harveynguyen": "-",
-  "edgarbui": "-",
+
   "nguyendangviet": "14472",
   "phamhungminh": "6829",
   "nguyentrongthuy": "6653",
@@ -723,8 +723,8 @@ const USER_WNK_CONFIG: Record<string, { officialName: string, dept: string, expe
   "gintadoan": { officialName: "Ginta Doan", dept: "Human Resources", expectedCount: 9 },
   "hanatruong": { officialName: "Hana Truong", dept: "Human Resources", expectedCount: 9 },
   "harveynguyen": { officialName: "Harvey Nguyen", dept: "Cut&Sew WNK3", expectedCount: 27 },
-  "edgarbui": { officialName: "Edgar Bui", dept: "TAT Quality", expectedCount: 27 },
-  "buitronghung": { officialName: "Edgar Bui", dept: "TAT Quality", expectedCount: 27 },
+
+
   "huynhvannhat": { officialName: "Huynh Van Nhat", dept: "Components", expectedCount: 13 },
   "kelvinhuynh": { officialName: "Kelvin Huynh", dept: "Planning & Inventory Control", expectedCount: 36 },
   "lethihuong": { officialName: "Le Thi Huong", dept: "Cut&Sew WNK2", expectedCount: 11 },
