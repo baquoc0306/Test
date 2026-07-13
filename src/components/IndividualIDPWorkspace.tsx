@@ -911,10 +911,10 @@ export default function IndividualIDPWorkspace({
         </div>
       )}
 
-      <div id="onboarding-idp-metrics-block" className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div id="onboarding-idp-metrics-block" className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
 
         {/* Metric 1 - Total People — dark card */}
-        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-md">
+        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-2 shadow-md h-full">
           {/* Header */}
           <div className="flex items-center justify-between">
             <span className="text-[12px] text-slate-400 font-black uppercase tracking-widest">
@@ -967,16 +967,16 @@ export default function IndividualIDPWorkspace({
             </p>
           </div>
 
-          {/* Top opportunity count */}
-          <div className="bg-indigo-900/30 border border-indigo-800/40 rounded-lg p-2.5 flex items-center justify-between">
-            <span className="text-[11px] text-indigo-300 font-bold">⭐ {lang === 'VI' ? 'Cơ hội ưu tiên' : 'Top opportunities'}</span>
-            <span className="text-[18px] font-black text-indigo-200">{filteredPlans.filter(p => p.topOpportunity === 'X').length}</span>
+          {/* Top opportunity count — compact */}
+          <div className="bg-indigo-900/30 border border-indigo-800/40 rounded-lg px-3 py-1.5 flex items-center justify-between">
+            <span className="text-[11px] text-indigo-300 font-bold">⭐ {lang === 'VI' ? 'Cơ hội ưu tiên' : 'Top opps'}</span>
+            <span className="text-[16px] font-black text-indigo-200">{filteredPlans.filter(p => p.topOpportunity === 'X').length}</span>
           </div>
 
           {/* Dept R breakdown filter */}
-          <div className="pt-2 border-t border-slate-700 flex-1">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[12px] text-white font-black uppercase tracking-wider">
+          <div className="pt-1.5 border-t border-slate-700 flex-1 min-h-0">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[11px] text-white font-black uppercase tracking-wider">
                 {lang === 'VI' ? '📊 R1+R2 theo phòng ban' : '📊 R1+R2 by dept'}
               </span>
               {selectedDept !== 'ALL' && (
@@ -1005,7 +1005,7 @@ export default function IndividualIDPWorkspace({
                 <p className="text-[11px] text-slate-500 italic">{lang === 'VI' ? 'Không có dữ liệu' : 'No data'}</p>
               );
               return (
-                <div className="space-y-1.5 overflow-y-auto max-h-[180px] scrollbar-thin pr-0.5">
+                <div className="space-y-1 overflow-y-auto max-h-[220px] scrollbar-thin pr-0.5">
                   {depts.map(([dept, val]) => {
                     const isActive = selectedDept === dept || selectedDept === dept.replace(/^HR$/, 'HUMAN RESOURCES');
                     const pct = Math.round(val.r12 / val.total * 100);
@@ -1015,13 +1015,13 @@ export default function IndividualIDPWorkspace({
                       <button
                         key={dept}
                         onClick={() => onDeptChange(isActive ? 'ALL' : dept)}
-                        className={`w-full text-left rounded-xl px-3 py-2 transition-all border ${
+                        className={`w-full text-left rounded-lg px-2.5 py-1.5 transition-all border ${
                           isActive
                             ? 'bg-indigo-600/40 border-indigo-400/60 shadow-sm'
                             : 'bg-slate-800/60 border-slate-700/50 hover:bg-slate-700/60 hover:border-slate-600'
                         }`}
                       >
-                        <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center justify-between mb-0.5">
                           <span className="text-[11px] font-bold text-white truncate max-w-[110px]">{dept}</span>
                           <div className="flex items-center gap-1 shrink-0">
                             <span className="text-[13px] font-black text-red-300">{val.r12}</span>
@@ -1045,7 +1045,7 @@ export default function IndividualIDPWorkspace({
         </div>
 
         {/* Skill/Will Matrix 2x2 */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm h-full">
           <div className="mb-3">
             <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-700">
               {lang === 'VI' ? 'PHÂN BỔ NHIỆM VỤ THEO MỨC ĐỘ SẴN SÀNG' : 'TASK DISTRIBUTION BY READINESS'}
