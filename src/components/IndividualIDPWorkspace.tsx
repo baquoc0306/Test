@@ -999,13 +999,13 @@ export default function IndividualIDPWorkspace({
               const depts = Object.entries(deptMap)
                 .filter(([, v]) => v.total > 0)
                 .sort((a, b) => b[1].r12 - a[1].r12)
-                .slice(0, 7);
+                .slice(0, 4);
               const maxR12 = Math.max(...depts.map(([, v]) => v.r12), 1);
               if (depts.length === 0) return (
                 <p className="text-[11px] text-slate-500 italic">{lang === 'VI' ? 'Không có dữ liệu' : 'No data'}</p>
               );
               return (
-                <div className="space-y-1 overflow-y-auto max-h-[220px] scrollbar-thin pr-0.5">
+                <div className="space-y-1">
                   {depts.map(([dept, val]) => {
                     const isActive = selectedDept === dept || selectedDept === dept.replace(/^HR$/, 'HUMAN RESOURCES');
                     const pct = Math.round(val.r12 / val.total * 100);
@@ -1015,25 +1015,19 @@ export default function IndividualIDPWorkspace({
                       <button
                         key={dept}
                         onClick={() => onDeptChange(isActive ? 'ALL' : dept)}
-                        className={`w-full text-left rounded-lg px-2.5 py-1.5 transition-all border ${
+                        className={`w-full text-left rounded-lg px-2.5 py-1.5 transition-all flex items-center justify-between gap-2 border ${
                           isActive
-                            ? 'bg-indigo-600/40 border-indigo-400/60 shadow-sm'
-                            : 'bg-slate-800/60 border-slate-700/50 hover:bg-slate-700/60 hover:border-slate-600'
+                            ? 'bg-indigo-600/40 border-indigo-400/60'
+                            : 'bg-slate-800/50 border-slate-700/40 hover:bg-slate-700/50'
                         }`}
                       >
-                        <div className="flex items-center justify-between mb-0.5">
-                          <span className="text-[11px] font-bold text-white truncate max-w-[110px]">{dept}</span>
-                          <div className="flex items-center gap-1 shrink-0">
-                            <span className="text-[13px] font-black text-red-300">{val.r12}</span>
-                            <span className="text-[10px] text-slate-500">/{val.total}</span>
-                            <span className={`text-[10px] font-black ml-1 ${pctColor}`}>{pct}%</span>
+                        <span className="text-[11px] font-bold text-white truncate flex-1">{dept}</span>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <div className="w-16 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                            <div className={`h-full rounded-full ${barColor}`} style={{ width: `${Math.round(val.r12 / maxR12 * 100)}%` }} />
                           </div>
-                        </div>
-                        <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-all duration-300 ${barColor}`}
-                            style={{ width: `${Math.round(val.r12 / maxR12 * 100)}%` }}
-                          />
+                          <span className={`text-[11px] font-black ${pctColor}`}>{pct}%</span>
+                          <span className="text-[11px] font-black text-red-300">{val.r12}</span>
                         </div>
                       </button>
                     );
