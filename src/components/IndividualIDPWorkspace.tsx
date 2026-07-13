@@ -911,10 +911,10 @@ export default function IndividualIDPWorkspace({
         </div>
       )}
 
-      <div id="onboarding-idp-metrics-block" className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+      <div id="onboarding-idp-metrics-block" className="flex flex-col lg:flex-row gap-5">
 
         {/* Metric 1 - Total People — dark card */}
-        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-2 shadow-md h-full">
+        <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 flex flex-col gap-2 shadow-md lg:w-[320px] shrink-0">
           {/* Header */}
           <div className="flex items-center justify-between">
             <span className="text-[12px] text-slate-400 font-black uppercase tracking-widest">
@@ -1045,7 +1045,7 @@ export default function IndividualIDPWorkspace({
         </div>
 
         {/* Skill/Will Matrix 2x2 */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm h-full">
+        <div className="flex-1 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
           <div className="mb-3">
             <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-700">
               {lang === 'VI' ? 'PHÂN BỔ NHIỆM VỤ THEO MỨC ĐỘ SẴN SÀNG' : 'TASK DISTRIBUTION BY READINESS'}
