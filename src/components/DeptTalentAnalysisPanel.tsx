@@ -630,7 +630,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
         {/* Popup Modal: Phân tích chi tiết từng bộ phận */}
         {selectedDeptDetail && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4" onClick={() => setSelectedDeptDetail(null)}>
-            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-3xl w-full max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               <div className="bg-slate-900 text-white px-5 py-4 flex items-center justify-between rounded-t-2xl sticky top-0 z-10">
                 <div>
                   <h3 className="font-black text-sm uppercase tracking-wide">{selectedDeptDetail.dept}</h3>
@@ -671,7 +671,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                     </span>
                     <div className="flex flex-wrap gap-1">
                       {selectedDeptDetail.keeperMembers?.length > 0 ? selectedDeptDetail.keeperMembers.map((name: string) => (
-                        <span key={name} className="px-2 py-0.5 rounded border text-[10px] font-semibold bg-white border-amber-200 text-amber-800">👤 {name}</span>
+                        <span key={name} className="px-2.5 py-1 rounded border text-[11px] font-semibold bg-white border-amber-200 text-amber-800">👤 {name}</span>
                       )) : <span className="text-[10px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
                     </div>
                   </div>
@@ -682,28 +682,28 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                     </span>
                     <div className="flex flex-wrap gap-1">
                       {selectedDeptDetail.growerMembers?.length > 0 ? selectedDeptDetail.growerMembers.map((name: string) => (
-                        <span key={name} className="px-2 py-0.5 rounded border text-[10px] font-semibold bg-white border-emerald-200 text-emerald-800">👤 {name}</span>
+                        <span key={name} className="px-2.5 py-1 rounded border text-[11px] font-semibold bg-white border-emerald-200 text-emerald-800">👤 {name}</span>
                       )) : <span className="text-[10px] text-slate-400 italic">{lang === 'VI' ? 'Không có' : 'None'}</span>}
                     </div>
                   </div>
                 </div>
 
                 {/* Đánh giá cấu trúc & Điểm mạnh */}
-                <div className="p-3 bg-indigo-50/50 rounded-xl border border-indigo-200/50 space-y-2">
-                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-indigo-950 flex items-center gap-1.5 border-b border-indigo-100 pb-1.5">
+                <div className="p-4 bg-indigo-50/50 rounded-xl border border-indigo-200/50 space-y-2">
+                  <span className="text-[11px] uppercase tracking-wider font-extrabold text-indigo-950 flex items-center gap-1.5 border-b border-indigo-100 pb-1.5">
                     🛡️ {lang === 'VI' ? 'ĐÁNH GIÁ CẤU TRÚC & ĐIỂM MẠNH ĐỘI NGŨ:' : 'STRUCTURAL STRENGTHS & ALIGNMENT ASSESSMENT:'}
                   </span>
-                  <div className="prose prose-slate max-w-none text-slate-700 text-[11px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
+                  <div className="prose prose-slate max-w-none text-slate-700 text-[12.5px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
                     <Markdown>{getPersonalizedStrengths(selectedDeptDetail, lang)}</Markdown>
                   </div>
                 </div>
 
                 {/* Rủi ro & Cảnh báo */}
-                <div className="p-3 bg-rose-50/50 rounded-xl border border-rose-200/50 space-y-2">
-                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-rose-950 flex items-center gap-1.5 border-b border-rose-100 pb-1.5">
+                <div className="p-4 bg-rose-50/50 rounded-xl border border-rose-200/50 space-y-2">
+                  <span className="text-[11px] uppercase tracking-wider font-extrabold text-rose-950 flex items-center gap-1.5 border-b border-rose-100 pb-1.5">
                     ⚠️ {lang === 'VI' ? 'RỦI RO THÁCH THỨC QUẢN TRỊ CHIẾN LƯỢC:' : 'CRITICAL RETENTION RISKS & DIAGNOSTIC WARNINGS:'}
                   </span>
-                  <div className="prose prose-slate max-w-none text-slate-700 text-[11px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
+                  <div className="prose prose-slate max-w-none text-slate-700 text-[12.5px] leading-relaxed font-sans space-y-2 markdown-body [&_strong]:font-extrabold [&_p]:font-medium">
                     <Markdown>{getPersonalizedRisks(selectedDeptDetail, lang)}</Markdown>
                   </div>
                 </div>
@@ -721,7 +721,7 @@ export const DeptTalentAnalysisPanel: React.FC<Props> = ({ talents, lang, select
                         : (lang === 'VI' ? 'Quy mô ổn định' : 'Stable Scale')}
                     </span>
                   </span>
-                  <div className="prose prose-indigo max-w-none text-slate-100 text-[11px] leading-relaxed font-sans space-y-2.5 markdown-body [&_strong]:font-bold [&_p]:font-medium [&_li]:text-slate-200">
+                  <div className="prose prose-indigo max-w-none text-slate-100 text-[12.5px] leading-relaxed font-sans space-y-2.5 markdown-body [&_strong]:font-bold [&_p]:font-medium [&_li]:text-slate-200">
                     <Markdown>{getPersonalizedActions(selectedDeptDetail, businessPhase, lang)}</Markdown>
                   </div>
                 </div>
