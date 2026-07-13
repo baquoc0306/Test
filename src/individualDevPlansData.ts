@@ -327,32 +327,7 @@ const filteredCombined = rawCombined.filter(idp => {
 });
 
 const wnkSampleIDPs: IndividualIDP[] = [
-  {
-    id: "idp-wnk-1",
-    empCode: "W001",
-    viName: "Bùi Trọng Hưng",
-    engName: "Edgar Bui",
-    site: "WNK",
-    location: "Wanek",
-    department: "TAT Quality",
-    section: "Quality Assurance",
-    position: "QA Supervisor",
-    title: "Superstar QA Leader",
-    jobDuty: "Lead and optimize quality inspection processes for components and TAT.",
-    rRating: "R1",
-    topOpportunity: "Acquire advanced digital control systems and automatic testing methodologies.",
-    comments: "Edgar shows outstanding potential to lead the QA department. Needs coaching on strategic quality management.",
-    wayForward: "Enroll in Advanced Quality Management & Six Sigma Black Belt training.",
-    timeline: "Q3/2026",
-    note: "High priority development track",
-    sourceFile: "Wanek_QA_Talent_Development",
-    mappedNeed: "Leadership / Advanced QA",
-    competencyFocus: "Strategic Quality & Six Sigma",
-    trainingCategory: "Leadership Development",
-    action: "Add to Training Plan",
-    proposedProgram: "Six Sigma Black Belt & Agile Leadership",
-    owner: "L&D + QA Manager"
-  },
+
   {
     id: "idp-wnk-2",
     empCode: "W002",
