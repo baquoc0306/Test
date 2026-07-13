@@ -956,68 +956,84 @@ export default function IndividualIDPWorkspace({
           </div>
           <div className="grid grid-cols-2 gap-3">
             {/* R2: Skill Low, Will High — top-left */}
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex flex-col gap-1">
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-black text-amber-700 uppercase">R2</span>
-                <span className="text-[9px] bg-amber-100 text-amber-700 border border-amber-200 px-1.5 py-0.5 rounded-full font-bold">
-                  {lang === 'VI' ? 'Kèm cặp' : 'Coaching'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[20px] font-black text-amber-700 leading-none">R2</span>
+                  <span className="text-[11px] bg-amber-500 text-white px-2 py-0.5 rounded-full font-black">
+                    {lang === 'VI' ? 'Kèm cặp' : 'Coaching'}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[30px] font-black text-amber-600 leading-none">{statistics.r2}</span>
+                  <span className="text-[11px] text-amber-500 font-bold block">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+                </div>
               </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-3xl font-black text-amber-600 leading-none">{statistics.r2}</span>
-                <span className="text-[9px] text-amber-500 font-bold">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+              <div className="border-t border-amber-200 pt-2 space-y-1">
+                <p className="text-[12px] text-amber-700 font-bold">↓ {lang === 'VI' ? 'Kỹ năng thấp · ↑ Ý chí cao' : 'Low Skill · ↑ High Will'}</p>
+                <p className="text-[11px] text-amber-600 leading-relaxed">{lang === 'VI' ? 'Nhiệt tình nhưng chưa đủ năng lực. Cần hướng dẫn chi tiết và kèm cặp thực chiến.' : 'Enthusiastic but lacks competence. Needs detailed guidance and hands-on coaching.'}</p>
+                <p className="text-[11px] font-black text-amber-700">→ {lang === 'VI' ? 'Giao việc có giám sát, đào tạo kỹ năng cụ thể' : 'Assign supervised tasks, train specific skills'}</p>
               </div>
-              <p className="text-[8.5px] text-amber-600 font-medium">
-                {lang === 'VI' ? '↓ Kỹ năng thấp · ↑ Ý chí cao' : '↓ Low Skill · ↑ High Will'}
-              </p>
             </div>
             {/* R4: Skill High, Will High — top-right */}
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 flex flex-col gap-1">
+            <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-black text-emerald-700 uppercase">R4</span>
-                <span className="text-[9px] bg-emerald-100 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded-full font-bold">
-                  {lang === 'VI' ? 'Ủy quyền' : 'Delegating'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[20px] font-black text-emerald-700 leading-none">R4</span>
+                  <span className="text-[11px] bg-emerald-500 text-white px-2 py-0.5 rounded-full font-black">
+                    {lang === 'VI' ? 'Ủy quyền' : 'Delegating'}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[30px] font-black text-emerald-600 leading-none">{statistics.r4}</span>
+                  <span className="text-[11px] text-emerald-500 font-bold block">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+                </div>
               </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-3xl font-black text-emerald-600 leading-none">{statistics.r4}</span>
-                <span className="text-[9px] text-emerald-500 font-bold">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+              <div className="border-t border-emerald-200 pt-2 space-y-1">
+                <p className="text-[12px] text-emerald-700 font-bold">↑ {lang === 'VI' ? 'Kỹ năng cao · ↑ Ý chí cao' : 'High Skill · ↑ High Will'}</p>
+                <p className="text-[11px] text-emerald-600 leading-relaxed">{lang === 'VI' ? 'Tự chủ hoàn toàn. Có thể giao việc độc lập và trở thành người kèm cặp cho người khác.' : 'Fully autonomous. Can work independently and mentor others.'}</p>
+                <p className="text-[11px] font-black text-emerald-700">→ {lang === 'VI' ? 'Giao dự án chiến lược, phát triển lên cấp kế thừa' : 'Assign strategic projects, develop as successor'}</p>
               </div>
-              <p className="text-[8.5px] text-emerald-600 font-medium">
-                {lang === 'VI' ? '↑ Kỹ năng cao · ↑ Ý chí cao' : '↑ High Skill · ↑ High Will'}
-              </p>
             </div>
             {/* R1: Skill Low, Will Low — bottom-left */}
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex flex-col gap-1">
+            <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-black text-red-700 uppercase">R1</span>
-                <span className="text-[9px] bg-red-100 text-red-700 border border-red-200 px-1.5 py-0.5 rounded-full font-bold">
-                  {lang === 'VI' ? 'Chỉ đạo' : 'Directing'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[20px] font-black text-red-700 leading-none">R1</span>
+                  <span className="text-[11px] bg-red-500 text-white px-2 py-0.5 rounded-full font-black">
+                    {lang === 'VI' ? 'Chỉ đạo' : 'Directing'}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[30px] font-black text-red-600 leading-none">{statistics.r1}</span>
+                  <span className="text-[11px] text-red-500 font-bold block">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+                </div>
               </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-3xl font-black text-red-600 leading-none">{statistics.r1}</span>
-                <span className="text-[9px] text-red-500 font-bold">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+              <div className="border-t border-red-200 pt-2 space-y-1">
+                <p className="text-[12px] text-red-700 font-bold">↓ {lang === 'VI' ? 'Kỹ năng thấp · ↓ Ý chí thấp' : 'Low Skill · ↓ Low Will'}</p>
+                <p className="text-[11px] text-red-600 leading-relaxed">{lang === 'VI' ? 'Cần can thiệp khẩn cấp. Thiếu cả năng lực lẫn động lực — chẩn đoán nguyên nhân trước khi đào tạo.' : 'Urgent intervention needed. Lacks both skill and motivation — diagnose root cause first.'}</p>
+                <p className="text-[11px] font-black text-red-700">→ {lang === 'VI' ? 'Gặp 1-1 khẩn, lập kế hoạch cải thiện 30 ngày' : 'Urgent 1-1, create 30-day improvement plan'}</p>
               </div>
-              <p className="text-[8.5px] text-red-600 font-medium">
-                {lang === 'VI' ? '↓ Kỹ năng thấp · ↓ Ý chí thấp' : '↓ Low Skill · ↓ Low Will'}
-              </p>
             </div>
             {/* R3: Skill High, Will Low — bottom-right */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex flex-col gap-1">
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-black text-blue-700 uppercase">R3</span>
-                <span className="text-[9px] bg-blue-100 text-blue-700 border border-blue-200 px-1.5 py-0.5 rounded-full font-bold">
-                  {lang === 'VI' ? 'Hỗ trợ' : 'Supporting'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[20px] font-black text-blue-700 leading-none">R3</span>
+                  <span className="text-[11px] bg-blue-500 text-white px-2 py-0.5 rounded-full font-black">
+                    {lang === 'VI' ? 'Hỗ trợ' : 'Supporting'}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[30px] font-black text-blue-600 leading-none">{statistics.r3}</span>
+                  <span className="text-[11px] text-blue-500 font-bold block">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+                </div>
               </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-3xl font-black text-blue-600 leading-none">{statistics.r3}</span>
-                <span className="text-[9px] text-blue-500 font-bold">{lang === 'VI' ? 'nhiệm vụ' : 'tasks'}</span>
+              <div className="border-t border-blue-200 pt-2 space-y-1">
+                <p className="text-[12px] text-blue-700 font-bold">↑ {lang === 'VI' ? 'Kỹ năng cao · ↓ Ý chí thấp' : 'High Skill · ↓ Low Will'}</p>
+                <p className="text-[11px] text-blue-600 leading-relaxed">{lang === 'VI' ? 'Có năng lực nhưng thiếu động lực. Thường do thiếu thách thức hoặc chưa thấy lộ trình phát triển.' : 'Competent but unmotivated. Often due to lack of challenge or unclear growth path.'}</p>
+                <p className="text-[11px] font-black text-blue-700">→ {lang === 'VI' ? 'Giao thêm trách nhiệm, tạo lộ trình thăng tiến rõ ràng' : 'Add responsibilities, create clear promotion path'}</p>
               </div>
-              <p className="text-[8.5px] text-blue-600 font-medium">
-                {lang === 'VI' ? '↑ Kỹ năng cao · ↓ Ý chí thấp' : '↑ High Skill · ↓ Low Will'}
-              </p>
             </div>
           </div>
 
